@@ -1,9 +1,10 @@
-package com.slove.play;
+package com.slove.play.view.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.slove.play.R;
 import com.slove.play.biz.Factory;
 import com.slove.play.biz.http.HttpFlag;
 import com.slove.play.biz.http.HttpRepListener;
