@@ -65,6 +65,17 @@ import javax.net.ssl.X509TrustManager;
  */
 public class OkHttpClientManager {
 
+    private static final MediaType MEDIA_TYPE_JSON =
+            MediaType.parse("application/x-www-form-urlencoded; charset=utf-8");//mdiatype 这个需要和服务端保持一致
+    private static final MediaType MEDIA_TYPE_X_WWW =
+            MediaType.parse("application/x-www-form-urlencoded; charset=utf-8");//mdiatype 这个需要和服务端保持一致
+    private static final MediaType MEDIA_TYPE_NORM =
+            MediaType.parse("application/x-www-form-urlencoded");//mdiatype 这个需要和服务端保持一致
+    private static final MediaType MEDIA_TYPE_STREAM =
+            MediaType.parse("application/octet-stream;charset=utf-8");
+    private static final MediaType MEDIA_TYPE_MARKDOWN =
+            MediaType.parse("text/x-markdown; charset=utf-8");//mdiatype 这个需要和服务端保持一致
+
     private static OkHttpClientManager mInstance;
     private OkHttpClient mOkHttpClient;
     private Handler mDelivery;
@@ -109,9 +120,7 @@ public class OkHttpClientManager {
         return mNewPostDelegate;
     }
 
-    public UploadDelegate getUploadDelegate() {
-        return mUploadDelegate;
-    }
+    public UploadDelegate getUploadDelegate() { return mUploadDelegate; }
 
     public GetDelegate getDelegate(){
         return mGetDelegate;
@@ -125,6 +134,11 @@ public class OkHttpClientManager {
         getInstance().getPostNewDelegate().postAsyn(url, params, callback, null);
     }
 
+    public static void postJson(String url, Map<String, Object> params, final ResultCallback callback) {
+//        LogCustom.i(Const.LOG_TAG_HTTP, "请求参数是：" + params.toString());
+        getInstance().getPostNewDelegate().postJson(url, params, callback, null);
+    }
+
     public static void uploadPost(String url, String fileKey, File file, Map<String, String> params, final ResultCallback callback){
         LogCustom.i(Const.LOG_TAG_HTTP, "请求参数是：" + params.toString());
         getInstance().getUploadDelegate().postUpload(url,fileKey,file,params,callback,null);
@@ -133,6 +147,14 @@ public class OkHttpClientManager {
     public static void multiUploadPost(String url, String[] fileKeys, File[] files, Map<String, String> params, final ResultCallback callback) {
         LogCustom.i(Const.LOG_TAG_HTTP, "请求参数是：" + params.toString());
         getInstance().getUploadDelegate().postMultiUpload(url, fileKeys, files, params, callback,null);
+    }
+
+    public static void uploadPostJson(String url, String fileKey, File file, Map<String, Object> params, final ResultCallback callback){
+        getInstance().getUploadDelegate().postUploadForJson(url,fileKey,file,params,callback,null);
+    }
+
+    public static void multiUploadPostJson(String url, String[] fileKeys, File[] files, Map<String, Object> params, final ResultCallback callback) {
+        getInstance().getUploadDelegate().postMultiUploadForJson(url, fileKeys, files, params, callback,null);
     }
 
     public static void get(String url, final ResultCallback callback, Object tag) {
@@ -296,13 +318,34 @@ public class OkHttpClientManager {
         return reqBuilder.build();
     }
 
+    private Request buildPostForJson(String url, Map<String, Object> params, Object tag) {
+        String json = "";
+        if (params != null){
+            json = mGson.toJson(params);
+        }
+        LogCustom.i(Const.LOG_TAG_HTTP, "请求参数是：" + json);
+        RequestBody requestBody = RequestBody.create(MEDIA_TYPE_JSON, json);
+        Request.Builder reqBuilder = new Request.Builder()
+                .addHeader("Connection", "keep-alive")
+                .addHeader("mc_platform", "android")
+                .addHeader("phoneModel", Build.MODEL)
+                .addHeader("systemVersion", Build.VERSION.RELEASE)
+                .addHeader("mc_os_version", Build.VERSION.SDK_INT+"")
+                .addHeader("mc_appid", "2001");
+
+        reqBuilder.url(url)
+                .post(requestBody);
+        if (tag != null) {
+            reqBuilder.tag(tag);
+        }
+        return reqBuilder.build();
+    }
+
     public static abstract class ResultCallback<T> {
         Type mType;
-
         public ResultCallback() {
             mType = getSuperclassTypeParameter(getClass());
         }
-
         static Type getSuperclassTypeParameter(Class<?> subclass) {
             Type superclass = subclass.getGenericSuperclass();
             if (superclass instanceof Class) {
@@ -311,47 +354,35 @@ public class OkHttpClientManager {
             ParameterizedType parameterized = (ParameterizedType) superclass;
             return $Gson$Types.canonicalize(parameterized.getActualTypeArguments()[0]);
         }
-
         public void onBefore(Request request) {
         }
-
         public void onAfter() {
         }
-
         public abstract void onError(Request request, Exception e);
-
         public abstract void onResponse(T response);
     }
 
     private final ResultCallback<String> DEFAULT_RESULT_CALLBACK = new ResultCallback<String>() {
         @Override
         public void onError(Request request, Exception e) {
-
         }
-
         @Override
         public void onResponse(String response) {
-
         }
     };
 
 
     public static class Param {
-        public Param() {
-        }
-
+        public Param() {}
         public Param(String key, String value) {
             this.key = key;
             this.value = value;
         }
-
         String key;
         String value;
     }
 
-
     public class GetDelegate {
-
         private Request buildGetRequest(String url, Object tag) {
             Request.Builder builder = new Request.Builder()
                     .addHeader("Connection", "keep-alive")
@@ -362,7 +393,6 @@ public class OkHttpClientManager {
             if (tag != null) {
                 builder.tag(tag);
             }
-
             return builder.build();
         }
 
@@ -381,12 +411,10 @@ public class OkHttpClientManager {
         public Response get(String url) throws IOException {
             return get(url, null);
         }
-
         public Response get(String url, Object tag) throws IOException {
             final Request request = buildGetRequest(url, tag);
             return get(request);
         }
-
 
         /**
          * 同步的Get请求
@@ -454,16 +482,26 @@ public class OkHttpClientManager {
          */
         public void postAsyn(String url, String[] fileKeys, File[] files, Param[] params, ResultCallback callback, Object tag) {
             Request request = buildMultipartFormRequest(url, files, fileKeys, params, tag);
-//            deliveryResult(callback, request);
+            mcDeliveryResult(callback, request);
+        }
+
+        public void postAsynForJson(String url, String[] fileKeys, File[] files, Map<String, Object> params, ResultCallback callback, Object tag) {
+            Request request = buildMultipartForJson(url, files, fileKeys, params, tag);
             mcDeliveryResult(callback, request);
         }
 
         /**
-         * 异步基于post的文件上传:单文件不带参数上传
+         * 异步基于post的文件上传，单文件且携带其他form参数上传
          */
-        public void postAsyn(String url, String fileKey, File file, ResultCallback callback, Object tag) throws IOException {
+        public void postUploadForJson(String url, String fileKey, File file, Map<String, Object> paramsMap, ResultCallback callback, Object tag) {
+            postAsynForJson(url, new String[]{fileKey}, new File[]{file}, paramsMap, callback, tag);
+        }
 
-            postAsyn(url, new String[]{fileKey}, new File[]{file}, null, callback, tag);
+        /**
+         * 异步基于post的文件上传，多文件且携带其他form参数上传
+         */
+        public void postMultiUploadForJson(String url, String[] fileKeys, File[] files, Map<String, Object> paramsMap, ResultCallback callback, Object tag) {
+            postAsynForJson(url, fileKeys, files, paramsMap, callback, tag);
         }
 
         /**
@@ -507,7 +545,6 @@ public class OkHttpClientManager {
                     }
                 }
             }
-
             RequestBody requestBody = builder.build();
             Request.Builder reqBuilder = new Request.Builder()
                     .addHeader("Connection", "keep-alive")
@@ -521,6 +558,47 @@ public class OkHttpClientManager {
 
         }
 
+        private Request buildMultipartForJson(String url, File[] files,
+                                                  String[] fileKeys, Map<String, Object> params, Object tag) {
+            MultipartBuilder builder = new MultipartBuilder()
+                    .type(MultipartBuilder.FORM);
+            if (params!=null&&params.size()>0) {
+                /*for (String key:params.keySet()) {
+                    builder.addPart(Headers.of("Content-Disposition", "form-data; name=\"" + key + "\""),
+                            RequestBody.create(null, params.get(key)+""));
+                }*/
+                String json = mGson.toJson(params);
+                LogCustom.i(Const.LOG_TAG_HTTP, "请求参数是：" + json);
+                builder.addPart(Headers.of("Content-Disposition", "form-data;"),
+                        RequestBody.create(MEDIA_TYPE_JSON, json));
+            }
+
+            if (files != null) {
+                RequestBody fileBody = null;
+                for (int i = 0; i < files.length; i++) {
+                    File file = files[i];
+                    if (file != null && file.exists()) {
+                        String fileName = file.getName();
+                        fileBody = RequestBody.create(MediaType.parse(guessMimeType(fileName)), file);
+                        //TODO 根据文件名设置contentType
+                        builder.addPart(Headers.of("Content-Disposition",
+                                "form-data; name=\"" + fileKeys[i] + "\"; filename=\"" + fileName + "\""),
+                                fileBody);
+                    }
+                }
+            }
+            RequestBody requestBody = builder.build();
+            Request.Builder reqBuilder = new Request.Builder()
+                    .addHeader("Connection", "keep-alive")
+                    .addHeader("mc_platform", "android")
+                    .addHeader("phoneModel", Build.MODEL)
+                    .addHeader("systemVersion", Build.VERSION.RELEASE);
+            return reqBuilder.url(url)
+                    .post(requestBody)
+                    .tag(tag)
+                    .build();
+        }
+
     }
 
     //====================HttpsDelegate=======================
@@ -528,11 +606,9 @@ public class OkHttpClientManager {
      * Https相关模块
      */
     public class HttpsDelegate {
-
         public void setCertificates(InputStream... certificates) {
             setCertificates(certificates, null, null);
         }
-
         public TrustManager[] prepareTrustManager(InputStream... certificates) {
             if (certificates == null || certificates.length <= 0) return null;
             try {
@@ -638,11 +714,8 @@ public class OkHttpClientManager {
                 this.localTrustManager = localTrustManager;
             }
 
-
             @Override
-            public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-
-            }
+            public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {}
 
             @Override
             public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
@@ -652,7 +725,6 @@ public class OkHttpClientManager {
                     localTrustManager.checkServerTrusted(chain, authType);
                 }
             }
-
 
             @Override
             public X509Certificate[] getAcceptedIssuers() {
@@ -687,6 +759,15 @@ public class OkHttpClientManager {
                 mcDeliveryResult(callback, request);
             }catch (Exception e){
                 ExceptionUtils.ExceptionSend(e,"OKHTTP mcPostAsyn");
+            }
+        }
+
+        public void postJson(String url, Map<String, Object> params, final ResultCallback callback, Object tag) {
+            try {
+                Request request = buildPostForJson(url, params, tag);
+                mcDeliveryResult(callback, request);
+            }catch (Exception e){
+                ExceptionUtils.ExceptionSend(e,"OKHTTP postJson");
             }
         }
 
@@ -749,15 +830,7 @@ public class OkHttpClientManager {
         return ssfFactory;
     }
 
-    public static final int TYPE_POST_JSON = 1;//post请求参数为json
-    private static final MediaType MEDIA_TYPE_JSON =
-            MediaType.parse("application/x-www-form-urlencoded; charset=utf-8");//mdiatype 这个需要和服务端保持一致
-    private static final MediaType MEDIA_TYPE_NORM =
-            MediaType.parse("application/x-www-form-urlencoded");//mdiatype 这个需要和服务端保持一致
-    private static final MediaType MEDIA_TYPE_STREAM =
-            MediaType.parse("application/octet-stream;charset=utf-8");
-    private static final MediaType MEDIA_TYPE_MARKDOWN =
-            MediaType.parse("text/x-markdown; charset=utf-8");//mdiatype 这个需要和服务端保持一致
+
     /**
      *
      * post同步请求
@@ -784,7 +857,7 @@ public class OkHttpClientManager {
             //生成参数
             String params = tempParams.toString();
             //创建一个请求实体对象 RequestBody
-            RequestBody body = RequestBody.create(MEDIA_TYPE_JSON, params.getBytes());
+            RequestBody body = RequestBody.create(MEDIA_TYPE_X_WWW, params.getBytes());
             //创建一个请求
             final Request request = addHeaders().url(actionUrl).post(body).build();
             //创建一个Call

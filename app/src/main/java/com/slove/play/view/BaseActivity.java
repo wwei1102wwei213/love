@@ -2,7 +2,6 @@ package com.slove.play.view;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
@@ -14,7 +13,9 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.slove.play.R;
 import com.slove.play.util.ExceptionUtils;
+import com.slove.play.util.manager.SkinManager;
 
 /**
  * Created by Administrator on 2017/8/29 0029.
@@ -25,37 +26,17 @@ import com.slove.play.util.ExceptionUtils;
  */
 public class BaseActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("com.broadcast.kick");
-
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
     }
 
     protected void showToast(String str){
         Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public Resources getResources() {
-        Resources res = super.getResources();
-        Configuration config = new Configuration();
-        config.setToDefaults();
-        res.updateConfiguration(config,res.getDisplayMetrics());
-        return res;
+    protected void startActivity(Class<? extends Activity> activityClass) {
+        startActivity(new Intent(this, activityClass));
     }
 
     /*protected void setTitleAndBack(String title){
@@ -68,22 +49,6 @@ public class BaseActivity extends AppCompatActivity {
             }
         });
     }*/
-
-    /**
-     * 设置状态栏为透明
-     */
-    public void setStatusBarTranslucent(){
-        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.KITKAT){
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
-    }
-
-    /**
-     * 设置状态栏为透明
-     */
-    public void setFullScreen(){
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-    }
 
     protected void setBackViews(int... ids) {
         if (ids != null) {
@@ -101,12 +66,19 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
+    //设置状态栏为透明
+    public void setStatusBarTranslucent(){
+        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.KITKAT){
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
+    }
 
+    //设置全屏样式
+    public void setFullScreen(){
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+    }
 
-    /**
-     * 获取状态栏高度
-     * @return 状态栏高度
-     */
+    //获取状态栏高度
     public int getStatusBarHeight() {
         int result = 0;
         int resourceId = getResources().getIdentifier("status_bar_height", "dimen", "android");
@@ -116,10 +88,7 @@ public class BaseActivity extends AppCompatActivity {
         return result;
     }
 
-    /**
-     * @公用方法抽取
-     * 设置状态栏
-     */
+    //设置状态栏
     public void initStatusBar(View v){
         try {
             if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.KITKAT){
@@ -132,54 +101,55 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * 退出动画设置
-     */
+    //退出动画设置
     protected void finishForAnim(){
         finish();
-//        overridePendingTransition(R.anim.activity_in_from_right,R.anim.activity_out_to_left);
+        overridePendingTransition(R.anim.activity_in_from_right,R.anim.activity_out_to_left);
     }
 
-    protected boolean exit_mBase = false;
-
-
-
-    protected void showTJLoading(){
-
-    }
-
-    protected void cancelTJLoading(){
-
-    }
-
-    protected void WatchVideoComplete(){
-
-    }
-
-    @Override
-    protected void onDestroy() {
-        exit_mBase = true;
-        //解除广播
-        super.onDestroy();
-    }
-
-    /**
-     * 退出动画设置
-     * @param enterAnim 下个页面的开始动画
-     * @param exitAnim 这个页面的退出动画
-     */
+    //退出动画设置 @enterAnim 下个页面的开始动画 @exitAnim 这个页面的退出动画
     protected void finishForAnim(int enterAnim, int exitAnim){
         finish();
         overridePendingTransition(enterAnim,exitAnim);
     }
 
-    protected void addActivityInList(){
 
+    @Override
+    public Resources getResources() {
+        Resources res = super.getResources();
+        Configuration config = new Configuration();
+        config.setToDefaults();
+        res.updateConfiguration(config,res.getDisplayMetrics());
+        return res;
     }
 
-    protected void startActivity(Class<? extends Activity> activityClass) {
-        startActivity(new Intent(this, activityClass));
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
+    private int mSkinType = -1;
+    protected void skinSetting(){
+        if (mSkinType==-1 || mSkinType!= SkinManager.getInstance(this).getSkinType()) {
+            mSkinType = SkinManager.getInstance(this).getSkinType();
+            setSkinView();
+        }
+    }
+
+    //设置皮肤相关UI
+    protected void setSkinView(){}
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+
+    protected boolean _mBaseExit = false;
+    @Override
+    protected void onDestroy() {
+        _mBaseExit = true;
+        super.onDestroy();
+    }
 
 }

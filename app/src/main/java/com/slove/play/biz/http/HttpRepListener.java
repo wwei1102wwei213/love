@@ -35,6 +35,6 @@ public interface HttpRepListener {
     void hideLoading(int flag, Object obj);
 
     //请求错误
-    void showError(int flag, Object obj);
+    void showError(int flag, Object obj, int errorType);
 
 }

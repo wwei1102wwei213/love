@@ -1,4 +1,4 @@
-package com.slove.play.util.BlurUtil;
+package com.slove.play.util.blur;
 
 import android.content.Context;
 import android.graphics.Bitmap;

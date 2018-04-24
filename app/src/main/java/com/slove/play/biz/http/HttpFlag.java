@@ -6,6 +6,9 @@ package com.slove.play.biz.http;
 
 public class HttpFlag {
 
+    public static final int ERROR_NORMAL = 0;
+    public static final int ERROR_TIME_OUT = 1;
+
     private static final String IP_PORT = "http://119.23.232.112:8001/slove/";
 
     public static final int TEST = 1;

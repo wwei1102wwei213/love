@@ -9,6 +9,7 @@ import com.slove.play.util.LogCustom;
 import com.squareup.okhttp.Request;
 
 import java.io.File;
+import java.net.SocketTimeoutException;
 import java.util.Map;
 
 
@@ -60,14 +61,14 @@ public class HttpRespBiz implements IHttpRespBiz{
     @Override
     public void post() {
         mResp.showLoading(flag , tag);
-        OkHttpClientManager.post(getPostUrl(), mResp.getParamInfo(flag, tag),
+        OkHttpClientManager.postJson(getPostUrl(), mResp.getParamInfo(flag, tag),
                 new OkHttpClientManager.ResultCallback<String>() {
                     @Override
                     public void onError(Request request, Exception e) {
                         if (mResp!=null){
                             mResp.hideLoading(flag, tag);
                             LogCustom.i(Const.LOG_TAG_HTTP, "请求失败：" + request.toString());
-                            mResp.showError(flag, tag);
+                            showError(e);
                         }
                     }
 
@@ -80,7 +81,7 @@ public class HttpRespBiz implements IHttpRespBiz{
                                 mResp.toActivity(o, flag, tag);
                             }else {
                                 LogCustom.i(Const.LOG_TAG_HTTP, "请求成功但数据为空");
-                                mResp.showError(flag, tag);
+                                mResp.showError(flag, tag, HttpFlag.ERROR_NORMAL);
                             }
                         }
                     }
@@ -97,7 +98,7 @@ public class HttpRespBiz implements IHttpRespBiz{
                         if (mResp==null) return;
                         mResp.hideLoading(flag, tag);
                         LogCustom.i(Const.LOG_TAG_HTTP, "请求失败：" + request.toString());
-                        mResp.showError(flag, tag);
+                        showError(e);
                     }
 
                     @Override
@@ -109,7 +110,7 @@ public class HttpRespBiz implements IHttpRespBiz{
                             mResp.toActivity(o, flag, tag);
                         } else {
                             LogCustom.i(Const.LOG_TAG_HTTP, "请求成功但数据为空");
-                            mResp.showError(flag, tag);
+                            mResp.showError(flag, tag, HttpFlag.ERROR_NORMAL);
                         }
                     }
                 },null);
@@ -118,14 +119,14 @@ public class HttpRespBiz implements IHttpRespBiz{
     @Override
     public void uploadPost() {
         mResp.showLoading(flag , tag);
-        OkHttpClientManager.uploadPost(getPostUrl(),fileKey, tempFile ,mResp.getParamInfo(flag, tag),
+        OkHttpClientManager.uploadPostJson(getPostUrl(),fileKey, tempFile ,mResp.getParamInfo(flag, tag),
                 new OkHttpClientManager.ResultCallback<String>() {
                     @Override
                     public void onError(Request request, Exception e) {
                         if (mResp==null) return;
                         mResp.hideLoading(flag, tag);
                         LogCustom.i(Const.LOG_TAG_HTTP, "请求失败：" + request.toString());
-                        mResp.showError(flag, tag);
+                        showError(e);
                     }
 
                     @Override
@@ -137,7 +138,7 @@ public class HttpRespBiz implements IHttpRespBiz{
                             mResp.toActivity(o, flag, tag);
                         }else {
                             LogCustom.i(Const.LOG_TAG_HTTP, "请求成功但数据为空");
-                            mResp.showError(flag, tag);
+                            mResp.showError(flag, tag, HttpFlag.ERROR_NORMAL);
                         }
                     }
                 });
@@ -146,14 +147,14 @@ public class HttpRespBiz implements IHttpRespBiz{
     @Override
     public void multiUploadPost() {
         mResp.showLoading(flag , tag);
-        OkHttpClientManager.multiUploadPost(getPostUrl(), fileKeys, files ,mResp.getParamInfo(flag, tag),
+        OkHttpClientManager.multiUploadPostJson(getPostUrl(), fileKeys, files ,mResp.getParamInfo(flag, tag),
                 new OkHttpClientManager.ResultCallback<String>() {
                     @Override
                     public void onError(Request request, Exception e) {
                         if (mResp==null) return;
                         mResp.hideLoading(flag, tag);
                         LogCustom.i(Const.LOG_TAG_HTTP, "请求失败：" + request.toString());
-                        mResp.showError(flag, tag);
+                        showError(e);
                     }
 
                     @Override
@@ -165,10 +166,22 @@ public class HttpRespBiz implements IHttpRespBiz{
                             mResp.toActivity(o, flag, tag);
                         }else {
                             LogCustom.i(Const.LOG_TAG_HTTP, "请求成功但数据为空");
-                            mResp.showError(flag, tag);
+                            mResp.showError(flag, tag, HttpFlag.ERROR_NORMAL);
                         }
                     }
                 });
+    }
+
+    private void showError(Exception e){
+        int error = HttpFlag.ERROR_NORMAL;
+        try {
+            if (e.getCause().equals(SocketTimeoutException.class)) {
+                error = HttpFlag.ERROR_TIME_OUT;
+            }
+        } catch (Exception ex){
+
+        }
+        mResp.showError(flag, tag, error);
     }
 
     /**

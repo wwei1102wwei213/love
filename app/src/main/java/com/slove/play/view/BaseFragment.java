@@ -10,10 +10,11 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.slove.play.util.ExceptionUtils;
+import com.slove.play.util.manager.SkinManager;
 
 
 /**
- * Created by Administrator on 2017/8/29 0029.
+ * Created by Administrator on yd
  *
  * App Fragment父类
  *
@@ -42,19 +43,7 @@ public class BaseFragment extends Fragment {
         Toast.makeText(context, str, Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-    }
-
-    /**
-     * 设置状态栏
-     */
+    //设置状态栏
     public void initStatusBar(View v){
         try {
             if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.KITKAT){
@@ -67,10 +56,7 @@ public class BaseFragment extends Fragment {
         }
     }
 
-    /**
-     * 获取状态栏高度
-     * @return 状态栏高度
-     */
+    //获取状态栏高度
     public int getStatusBarHeight() {
         int result = 0;
         try {
@@ -84,5 +70,24 @@ public class BaseFragment extends Fragment {
         return result;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+    }
+
+    private int mSkinType = -1;
+    protected void skinSetting(){
+        if (mSkinType==-1 || mSkinType!= SkinManager.getInstance(context).getSkinType()) {
+            mSkinType = SkinManager.getInstance(context).getSkinType();
+            setSkinView();
+        }
+    }
+
+    //设置皮肤相关UI
+    protected void setSkinView(){}
 }

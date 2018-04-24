@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.slove.play.R;
-import com.slove.play.biz.Factory;
 import com.slove.play.biz.http.HttpFlag;
 import com.slove.play.biz.http.HttpRepListener;
 
@@ -21,9 +20,9 @@ public class MainActivity extends AppCompatActivity implements HttpRepListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Factory.getHttpRespBiz(this, HttpFlag.LOGIN, null).post();
-        Factory.getHttpRespBiz(this, HttpFlag.REGISTER, null).post();
-        Factory.getHttpRespBiz(this, HttpFlag.USER_DETAIL, null).post();
+//        Factory.getHttpRespBiz(this, HttpFlag.LOGIN, null).post();
+//        Factory.getHttpRespBiz(this, HttpFlag.REGISTER, null).post();
+//        Factory.getHttpRespBiz(this, HttpFlag.USER_DETAIL, null).post();
 
     }
 
@@ -65,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements HttpRepListener{
     }
 
     @Override
-    public void showError(int flag, Object obj) {
+    public void showError(int flag, Object obj, int errorType) {
         Log.d(TAG_LOG, "showError");
     }
 }

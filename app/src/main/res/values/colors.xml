@@ -3,4 +3,57 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!--基本颜色-->
+    <color name="white">#FFFFFF</color>
+    <color name="text_white">#FFFFFF</color>
+    <color name="base_all">#7E008C</color>
+    <color name="text_333">#333333</color>
+    <color name="text_444">#444444</color>
+    <color name="text_666">#666666</color>
+    <color name="text_999">#999999</color>
+    <color name="text_ccc">#cccccc</color>
+
+    <color name="white_half_for_bg">#90FFFFFF</color>
+
+    <!--皮肤颜色-->
+    <color name="base_color_0">#9200AA</color>
+    <color name="base_color_1">#8C1600</color>
+    <color name="base_color_2">#303F9F</color>
+    <color name="base_color_3">#cc0000</color>
+    <color name="base_color_4">#008744</color>
+    <color name="base_color_5">#ed1f8b</color>
+    <color name="base_color_6">#2222ff</color>
+    <color name="base_color_7">#ea4849</color>
+    <color name="base_color_8">#0eb1a7</color>
+    <color name="base_color_9">#3d195f</color>
+
+    <!--AlertView-->
+    <!--覆盖颜色-->
+    <color name="bgColor_overlay">#60000000</color>
+    <!--窗口背景颜色-->
+    <color name="bgColor_alertview_alert">#f8f8f8</color>
+    <!--标题颜色-->
+    <color name="textColor_alert_title">#000000</color>
+    <color name="textColor_actionsheet_title">#333333</color>
+    <!--消息颜色-->
+    <color name="textColor_alert_msg">#000000</color>
+    <color name="textColor_actionsheet_msg">#999999</color>
+    <!--线条颜色-->
+    <color name="bgColor_divier">#dddddd</color>
+    <!--取消按钮颜色-->
+    <color name="textColor_alert_button_cancel">#1eccd2</color>
+    <color name="textColor_alert_button_cancel_1">#666666</color>
+    <!--高亮按钮颜色-->
+    <!--<color name="textColor_alert_button_destructive">#ff3b30</color>-->
+    <color name="textColor_alert_button_destructive">#1eccd2</color>
+    <!--普通按钮文字颜色-->
+    <!--<color name="textColor_alert_button_others">#17cbd1</color>-->
+    <color name="textColor_alert_button_others">#666666</color>
+    <!--点击颜色-->
+    <color name="bgColor_alert_button_press">#EAEAEA</color>
+    <!--actionsheet模式的取消按钮背景颜色-->
+    <color name="bgColor_actionsheet_cancel_nor">#ffffff</color>
+
+
 </resources>
