@@ -4,12 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.slove.play.view.activity.MainActivity">
+    android:background="@drawable/bg_base_milo"
+    tools:context="com.micro.milu.view.activity.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-         />
+
+
+    <com.micro.milu.widget.custom.MyScrollerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/transparent"
+        android:id="@+id/msv"
+        app:visibility_height="180dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_base_milo"
+            android:gravity="center"
+            android:orientation="vertical">
+            <include layout="@layout/layout_user_information"/>
+        </LinearLayout>
+    </com.micro.milu.widget.custom.MyScrollerView>
 
 </RelativeLayout>

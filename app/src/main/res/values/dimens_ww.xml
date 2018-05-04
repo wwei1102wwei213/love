@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--LoginActivity-->
+    <dimen name="login_btn_width">60dp</dimen>
+    <dimen name="login_btn_width_half">30dp</dimen>
+    
+    <!--Information-->
+    <dimen name="visible_view_height">200dp</dimen>
+    <dimen name="information_head_width">40dp</dimen>
+    <dimen name="information_item_base">40dp</dimen>
+    <dimen name="information_margin_base">32dp</dimen>
+    <dimen name="information_drawable_padding">8dp</dimen>
+    <dimen name="information_padding_right">12dp</dimen>
+    <dimen name="information_item_height">54dp</dimen>
+</resources>

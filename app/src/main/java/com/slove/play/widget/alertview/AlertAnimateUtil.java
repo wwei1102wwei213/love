@@ -4,6 +4,7 @@ import android.view.Gravity;
 
 import com.slove.play.R;
 
+
 /**
  * Created by Sai on 15/8/9.
  */
@@ -22,6 +23,8 @@ public class AlertAnimateUtil {
                 return isInAnimation ? R.anim.slide_in_bottom : R.anim.slide_out_bottom;
             case Gravity.CENTER:
                 return isInAnimation ?R.anim.fade_in_center : R.anim.fade_out_center;
+            case Gravity.TOP:
+                return isInAnimation ?R.anim.activity_in_from_right : R.anim.activity_translate_down;
         }
         return INVALID;
     }

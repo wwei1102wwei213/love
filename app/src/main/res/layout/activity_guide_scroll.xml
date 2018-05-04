@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/guide_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/skip_view"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_gravity="right"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="30dp"
+        android:text="Skip"
+        android:textColor="#ffffff"
+        android:textSize="14sp"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/enter_view"
+        android:layout_width="150dp"
+        android:layout_height="36dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="17dp"
+        android:text="Get Started"
+        android:textColor="#ffffff"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:visibility="gone"/>
+
+</FrameLayout>

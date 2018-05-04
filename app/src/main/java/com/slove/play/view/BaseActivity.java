@@ -7,7 +7,7 @@ import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -17,6 +17,7 @@ import com.slove.play.R;
 import com.slove.play.util.ExceptionUtils;
 import com.slove.play.util.manager.SkinManager;
 
+
 /**
  * Created by Administrator on 2017/8/29 0029.
  *
@@ -24,7 +25,7 @@ import com.slove.play.util.manager.SkinManager;
  *
  * @author wwei
  */
-public class BaseActivity extends AppCompatActivity {
+public class BaseActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,17 +39,6 @@ public class BaseActivity extends AppCompatActivity {
     protected void startActivity(Class<? extends Activity> activityClass) {
         startActivity(new Intent(this, activityClass));
     }
-
-    /*protected void setTitleAndBack(String title){
-        initStatusBar(findViewById(R.id.status_bar));
-        ((TextView) findViewById(R.id.title)).setText(title);
-        findViewById(R.id.iv_back).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-    }*/
 
     protected void setBackViews(int... ids) {
         if (ids != null) {
@@ -104,7 +94,7 @@ public class BaseActivity extends AppCompatActivity {
     //退出动画设置
     protected void finishForAnim(){
         finish();
-        overridePendingTransition(R.anim.activity_in_from_right,R.anim.activity_out_to_left);
+        overridePendingTransition(R.anim.activity_translate_up,R.anim.activity_out_to_left);
     }
 
     //退出动画设置 @enterAnim 下个页面的开始动画 @exitAnim 这个页面的退出动画
@@ -126,6 +116,13 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+//        MobclickAgent.onResume(this); // 基础指标统计，不能遗漏
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+//        MobclickAgent.onPause(this); // 基础指标统计，不能遗漏
     }
 
     private int mSkinType = -1;
@@ -139,16 +136,13 @@ public class BaseActivity extends AppCompatActivity {
     //设置皮肤相关UI
     protected void setSkinView(){}
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
 
 
-    protected boolean _mBaseExit = false;
+
+    protected boolean mBaseExit = false;
     @Override
     protected void onDestroy() {
-        _mBaseExit = true;
+        mBaseExit = true;
         super.onDestroy();
     }
 

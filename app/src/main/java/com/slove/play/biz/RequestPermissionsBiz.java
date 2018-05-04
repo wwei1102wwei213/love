@@ -26,12 +26,13 @@ public class RequestPermissionsBiz {
     // 回调
     private RequestPermissionsListener listener;
 
-    private final int REQUEST_CODE = 321;
+    private int REQUEST_CODE = 321;
 
-    public RequestPermissionsBiz(Context context, String[] permissions, RequestPermissionsListener listener){
+    public RequestPermissionsBiz(Context context, String[] permissions, RequestPermissionsListener listener, int code){
         this.context = context;
         this.permissions = permissions;
         this.listener = listener;
+        this.REQUEST_CODE = code;
     }
 
     //权限回调判断
