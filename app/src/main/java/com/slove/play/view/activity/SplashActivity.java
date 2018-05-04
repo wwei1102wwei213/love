@@ -6,12 +6,13 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
-import com.micro.milu.MLApplication;
-import com.micro.milu.R;
-import com.micro.milu.util.CommonUtils;
-import com.micro.milu.util.LogCustom;
-import com.micro.milu.util.sp.UserDataUtil;
-import com.micro.milu.view.BaseActivity;
+import com.slove.play.LApplication;
+import com.slove.play.R;
+import com.slove.play.util.CommonUtils;
+import com.slove.play.util.LogCustom;
+import com.slove.play.util.sp.UserDataUtil;
+import com.slove.play.view.BaseActivity;
+
 
 /**
  * Created by Administrator on 2017/8/30 0030.
@@ -27,8 +28,8 @@ public class SplashActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         if (!TextUtils.isEmpty(UserDataUtil.getAccessToken(this))){
-            MLApplication.getInstance().setInfoToken(UserDataUtil.getAccessToken(this));
-            LogCustom.show("User Token:"+ MLApplication.getInstance().getInfoToken());
+            LApplication.getInstance().setInfoToken(UserDataUtil.getAccessToken(this));
+            LogCustom.show("User Token:"+ LApplication.getInstance().getInfoToken());
         }
         LogCustom.show(TextUtils.isEmpty(CommonUtils.getUUID())?"User UUID is empty":"User UUID:"+CommonUtils.getUUID());
         toNext();

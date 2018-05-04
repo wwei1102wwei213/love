@@ -6,15 +6,16 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.micro.milu.R;
-import com.micro.milu.view.BaseActivity;
+import com.slove.play.R;
+import com.slove.play.view.BaseActivity;
+
 
 /**
  * Created by Administrator on 2018/4/27 0027.
  *
  * @author wwei
  */
-public class LoginActivity extends BaseActivity{
+public class LoginActivity extends BaseActivity {
 
     private Context mContext;
     //微信QQ登陆控件

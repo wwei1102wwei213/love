@@ -11,16 +11,16 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.micro.milu.R;
-import com.micro.milu.biz.RequestPermissionsBiz;
-import com.micro.milu.biz.TakePhotoBiz;
-import com.micro.milu.util.ExceptionUtils;
-import com.micro.milu.util.LogCustom;
-import com.micro.milu.view.BaseActivity;
-import com.micro.milu.widget.SelectableRoundedImageView;
-import com.micro.milu.widget.alertview.AlertView;
-import com.micro.milu.widget.alertview.OnDismissListener;
-import com.micro.milu.widget.alertview.OnItemClickListener;
+import com.slove.play.R;
+import com.slove.play.biz.RequestPermissionsBiz;
+import com.slove.play.biz.TakePhotoBiz;
+import com.slove.play.util.ExceptionUtils;
+import com.slove.play.util.LogCustom;
+import com.slove.play.view.BaseActivity;
+import com.slove.play.widget.SelectableRoundedImageView;
+import com.slove.play.widget.alertview.AlertView;
+import com.slove.play.widget.alertview.OnDismissListener;
+import com.slove.play.widget.alertview.OnItemClickListener;
 
 import java.io.File;
 
