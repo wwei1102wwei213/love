@@ -1,0 +1,96 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_et_white"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_et_white"
+            android:orientation="horizontal"
+            android:paddingRight="@dimen/padding15">
+
+            <ImageView
+                android:id="@+id/iv_gift_pictures"
+                android:layout_width="64dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="11dp"
+                android:layout_marginTop="18dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="18dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_gift_names"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_color_434284"
+                    android:textSize="@dimen/font15" />
+
+
+                <TextView
+                    android:id="@+id/tv_gift_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:lineSpacingExtra="2.5dp"
+                    android:lineSpacingMultiplier="1.08"
+                    android:textColor="@color/text_666"
+                    android:textSize="@dimen/font12" />
+
+
+                <TextView
+                    android:id="@+id/tv_exchange"
+                    android:layout_width="100dp"
+                    android:layout_height="36dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/base_item_circle_radius_all_gray"
+                    android:clickable="false"
+                    android:gravity="center"
+                    android:text="@string/exchange"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font15" />
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_gift_num_zone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/text_color_434284"
+            android:textSize="@dimen/font15" />
+
+
+        <ProgressBar
+            android:id="@+id/customProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_marginTop="8dp"
+            android:progressDrawable="@drawable/progressbar" />
+    </LinearLayout>
+
+    <!--构建一个分割区、让listview列表中的item看起来是间隔开的-->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:background="@color/bg_color_f0eff6" />
+
+</LinearLayout>

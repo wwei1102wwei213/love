@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <View
+        android:id="@+id/v_space"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/transparent_half"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/ll_top_choose_time"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/time_item_height"
+            android:background="@color/white"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_choose_zone"
+                android:textSize="@dimen/font16"
+                android:textColor="@color/text_666"
+                android:layout_marginLeft="@dimen/margin15"
+                android:layout_centerVertical="true"
+                android:textStyle="bold"
+                />
+            <Button
+                android:id="@+id/btn_confirm"
+                android:layout_width="80dp"
+                android:layout_height="32dp"
+                android:text="@string/text_sure"
+                android:textColor="@color/white"
+                android:background="@drawable/choose_time_btn"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/margin15"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_below="@id/ll_top_choose_time"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+
+            <kankan.wheel.widget.WheelView
+                android:id="@+id/id_province"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:textColorOuter="@color/text_999"
+                app:textColorCenter="@color/base_all"
+                app:wheelGravity="center" >
+            </kankan.wheel.widget.WheelView>
+
+            <kankan.wheel.widget.WheelView
+                android:id="@+id/id_city"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:textColorOuter="@color/text_999"
+                app:textColorCenter="@color/base_all"
+                android:layout_weight="1"
+                app:wheelGravity="center" >
+            </kankan.wheel.widget.WheelView>
+
+            <kankan.wheel.widget.WheelView
+                android:id="@+id/id_district"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                app:textColorOuter="@color/text_999"
+                app:textColorCenter="@color/base_all"
+                app:wheelGravity="center">
+            </kankan.wheel.widget.WheelView>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

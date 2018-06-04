@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerInParent="true"
+    android:layout_gravity="center"
+    android:layout_marginLeft="@dimen/name_body_margin"
+    android:layout_marginRight="@dimen/name_body_margin"
+    android:focusable="true"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/rl_prize_zone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/invitation_success_bg"
+            android:orientation="vertical">
+
+        </RelativeLayout>
+
+
+        <!--
+                <ImageView
+                    android:id="@+id/iv_avatar"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@mipmap/invitation_success_avatar" />
+        -->
+
+        <!--
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="小迷鹿"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font12"
+                    android:layout_below="@id/iv_avatar"
+                    android:layout_marginTop="2dp"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="给你带来了礼包 :"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/font16"
+                    android:layout_below="@id/tv_name"
+                    android:layout_marginTop="8dp"
+                    />-->
+
+
+        <ImageView
+            android:id="@+id/invitation_success_card_img"
+            android:layout_width="52.2dp"
+            android:layout_height="86dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="144dp" />
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/tv_accept"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/rl_prize_zone"
+        android:layout_alignRight="@id/rl_prize_zone"
+        android:layout_below="@id/rl_prize_zone"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/corners_bottom"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="11dp"
+            android:text="收下礼包"
+            android:textColor="@color/text_color_352b99"
+            android:textSize="@dimen/font16" />
+    </LinearLayout>
+
+</RelativeLayout>

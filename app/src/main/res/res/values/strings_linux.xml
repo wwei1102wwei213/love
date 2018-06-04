@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--FeedbackActivity-->
+    <string name="title_feedback">意见反馈</string>
+    <string name="feedback_hint_contact">请输入你的联系方式</string>
+    <string name="please_input_right_phone_msg">请输入正确的手机</string>
+    <string name="feedback_hint_opinion">请输入你的意见</string>
+    <string name="feedback_commit_opinion">提交意见</string>
+    <!--AddressActivityvity-->
+    <string name="title_exchange_center">兑换中心</string>
+    <string name="exchange_center_recipient_hint">收件人</string>
+    <string name="exchange_center_recipient_hint_toast">请输入收件人</string>
+    <string name="exchange_phone_hint">电话</string>
+    <string name="exchange_center_adress_hint">请输入你的地址</string>
+    <string name="btn_exchange_center_submit">提交</string>
+    <string name="activity_record_prize_result_title">兑换结果</string>
+    <string name="activity_record_prize_result_success">兑换成功</string>
+    <string name="activity_record_prize_result_fail">兑换失败、请检查你输入信息</string>
+
+    <string name="title_exchange_center_confirm">是否确认兑换？</string>
+    <string name="confirm_yes">确认兑换</string>
+    <string name="confirm_no">暂时不了</string>
+
+    <string name="exchange">我要这个</string>
+    <string name="has_exchanged">已兑换</string>
+    <string name="not_enough">未达标</string>
+    <string name="no_more_gift">已结束</string>
+
+    <!--ShuffleCardsActivity-->
+    <string name="shuffle_cards_title">洗牌</string>
+
+
+    <string name="network_error_text">哎呀～网络中断了</string>
+    <string name="no_record_text">你还没有占卜过哦~\n快点去体验一下吧</string>
+    <string name="have_a_try">占卜一下</string>
+    <string name="collect_card_to_win_gift_text">占卜可收集卡牌，到一定数量就能兑换礼品哦</string>
+
+    <!--ShareInstructionsActivity-->
+    <string name="share_instructions_title">注册集卡</string>
+    <string name="share_instructions_step_title_text">简单三步•即可集卡</string>
+    <string name="share_instructions_step_one_text">分享APP</string>
+    <string name="share_instructions_step_two_text">好友使用</string>
+    <string name="share_instructions_step_three_text">你获得卡牌</string>
+    <string name="share_instructions_go_text">立即分享 > GO！</string>
+
+
+</resources>

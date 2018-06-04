@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">迷鹿</string>
+
+    <!--provider authorities-->
+    <string name="provider_authorities">com.micro.milu.files.2</string>
+
+    <!--常用字段-->
+    <string name="base_cancel">取消</string>
+    <string name="base_complete">完成</string>
+
+    <!--性别-->
+    <string name="gender_man">男</string>
+    <string name="gender_women">女</string>
+    <string name="gender_default">未填写</string>
+    <string name="gender_cancel">取消</string>
+    <string name="gender_choose">选择性别</string>
+
+    <!--版本迭代-->
+    <string name="downloading_apk">正在后台下载...</string>
+    <string name="not_find_sdcard">找不到存储路径</string>
+</resources>

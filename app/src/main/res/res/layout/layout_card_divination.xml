@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/base_app_title_bg">
+
+    <include layout="@layout/base_title_layout_nothing"/>
+
+    <FrameLayout
+        android:id="@+id/fl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.micro.milu.widget.custom.ShuffleMLView
+            android:id="@+id/smv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="64dp"
+            android:visibility="gone">
+
+        </com.micro.milu.widget.custom.ShuffleMLView>
+        <TextView
+            android:id="@+id/tv_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginBottom="100dp"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font14"
+            android:text=""
+            />
+        <TextView
+            android:id="@+id/tv_middle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font14"
+            android:text="摇一摇，选择卡牌"
+            android:visibility="gone"
+            android:paddingBottom="100dp"/>
+
+        <LinearLayout
+            android:id="@+id/v_result"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginBottom="40dp"
+            android:gravity="center"
+            android:visibility="gone">
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="10dp"/>
+            <include layout="@layout/item_card_result_child"
+                android:id="@+id/v1"
+                android:visibility="gone"/>
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="10dp"/>
+            <include layout="@layout/item_card_result_child"
+                android:id="@+id/v2"
+                android:visibility="visible"/>
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="10dp"/>
+            <include layout="@layout/item_card_result_child"
+                android:id="@+id/v3"
+                android:visibility="gone"/>
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="10dp"/>
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

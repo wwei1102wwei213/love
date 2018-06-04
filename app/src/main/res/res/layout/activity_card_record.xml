@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/base_app_title_bg"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+    <include layout="@layout/base_title_layout_nothing"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.andview.refreshview.XRefreshView
+            android:id="@+id/xrv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/base_gray_bg">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+        </com.andview.refreshview.XRefreshView>
+
+        <include layout="@layout/layout_no_record"/>
+    </RelativeLayout>
+
+
+</LinearLayout>

@@ -1,0 +1,41 @@
+<resources>
+
+    <!--基本字体大小-->
+    <dimen name="font12">12sp</dimen>
+    <dimen name="font13">13sp</dimen>
+    <dimen name="font14">14sp</dimen>
+    <dimen name="font15">15sp</dimen>
+    <dimen name="font16">16sp</dimen>
+    <dimen name="font17">17sp</dimen>
+    <dimen name="font18">18sp</dimen>
+    <dimen name="font20">20sp</dimen>
+    <dimen name="font22">22sp</dimen>
+    <dimen name="font11">11sp</dimen>
+    <dimen name="font10">10sp</dimen>
+    <dimen name="font9">9sp</dimen>
+
+    <!--基本内外边距-->
+    <dimen name="padding4">4dp</dimen>
+    <dimen name="padding5">5dp</dimen>
+    <dimen name="padding6">6dp</dimen>
+    <dimen name="padding8">8dp</dimen>
+    <dimen name="padding10">10dp</dimen>
+    <dimen name="padding12">12dp</dimen>
+    <dimen name="padding15">15dp</dimen>
+    <dimen name="padding20">20dp</dimen>
+    <dimen name="margin4">4dp</dimen>
+    <dimen name="margin5">5dp</dimen>
+    <dimen name="margin6">6dp</dimen>
+    <dimen name="margin8">8dp</dimen>
+    <dimen name="margin10">10dp</dimen>
+    <dimen name="margin12">12dp</dimen>
+    <dimen name="margin15">15dp</dimen>
+    <dimen name="margin20">20dp</dimen>
+
+    <!--标题大小-->
+    <dimen name="base_title_size">17sp</dimen>
+    <dimen name="base_title_right_size">14sp</dimen>
+    <dimen name="base_title_height">44dp</dimen>
+    <dimen name="base_title_right_padding">10dp</dimen>
+
+</resources>

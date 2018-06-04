@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--状态栏和顶部底部菜单颜色-->
+    <color name="colorPrimary">#00000000</color>
+    <color name="colorPrimaryDark">#00000000</color>
+    <color name="colorAccent">#00000000</color>
+
+    <!--基本颜色-->
+    <color name="transparent">#00000000</color>
+    <color name="transparent_half">#80000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_2">#FFFFFFFF</color>
+    <color name="base_all">#4a356a</color>
+    <color name="base_all_half">#80434284</color>
+    <color name="base_radius_selected">#9f9f9f</color>
+
+    <!--文字颜色-->
+    <color name="text_white">#FFFFFF</color>
+    <color name="text_333">#333333</color>
+    <color name="text_444">#444444</color>
+    <color name="text_666">#666666</color>
+    <color name="text_999">#999999</color>
+    <color name="text_ccc">#cccccc</color>
+    <color name="text_1e4089">#1e4089</color>
+
+    <!--半透明色-->
+    <color name="white_half_for_bg">#90FFFFFF</color>
+
+
+    <color name="text_color_434284">#434284</color>
+    <color name="text_color_fd402e">#fd402e</color>
+    <color name="text_color_352b99">#352b99</color>
+
+
+    <!--皮肤颜色-->
+    <color name="base_color_0">#9200AA</color>
+    <color name="base_color_1">#8C1600</color>
+    <color name="base_color_2">#303F9F</color>
+    <color name="base_color_3">#cc0000</color>
+    <color name="base_color_4">#008744</color>
+    <color name="base_color_5">#ed1f8b</color>
+    <color name="base_color_6">#2222ff</color>
+    <color name="base_color_7">#ea4849</color>
+    <color name="base_color_8">#0eb1a7</color>
+    <color name="base_color_9">#3d195f</color>
+
+
+    <color name="color_b7b7b7">#b7b7b7</color>
+
+
+    <!--背景渐变颜色-->
+    <color name="base_start_color">#2D2D56</color>
+    <color name="base_center_color">#7A64A7</color>
+    <color name="base_end_color">#4A5089</color>
+
+    <color name="bg_color_f0eff6">#f0eff6</color>
+
+    <!--标题文字颜色-->
+    <color name="base_title_color">#FFFFFF</color>
+
+    <!--按钮背景颜色-->
+    <color name="base_btn_bg_color_gray">#9f9f9f</color>
+
+    <!--选择区域分割线颜色-->
+    <color name="province_line_border">#C7C7C7</color>
+
+</resources>

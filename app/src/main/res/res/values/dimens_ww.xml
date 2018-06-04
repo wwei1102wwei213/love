@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="base_radius_btn">44dp</dimen>
+    <dimen name="base_radius_btn_half">22dp</dimen>
+
+    <!--LoginActivity-->
+    <dimen name="login_btn_width">70dp</dimen>
+    <dimen name="login_btn_width_half">30dp</dimen>
+    <dimen name="login_margin">40dp</dimen>
+    <dimen name="login_et_height">44dp</dimen>
+    <dimen name="login_btn_mobile_width">140dp</dimen>
+
+    <!--主页-->
+    <dimen name="home_btn_radius_height">36dp</dimen>
+    <dimen name="home_btn_radius_height_half">18dp</dimen>
+
+    <!--Information-->
+    <dimen name="visible_view_height">200dp</dimen>
+    <dimen name="information_head_width">40dp</dimen>
+    <dimen name="information_item_base">40dp</dimen>
+    <dimen name="information_margin_base">32dp</dimen>
+    <dimen name="information_drawable_padding">8dp</dimen>
+    <dimen name="information_padding_right">12dp</dimen>
+    <dimen name="information_item_height">52dp</dimen>
+    <dimen name="information_top_view_height">128dp</dimen>
+
+    <!--choose time-->
+    <dimen name="time_item_height">48dp</dimen>
+    <dimen name="name_body_margin">30dp</dimen>
+    <dimen name="name_et_height">48dp</dimen>
+    <dimen name="name_et_btn">44dp</dimen>
+
+    <!--Card Box-->
+    <dimen name="btn_type_height">40dp</dimen>
+    <dimen name="btn_type_height_half">20dp</dimen>
+    <dimen name="card_box_margin">30dp</dimen>
+
+    <!--Card Detail-->
+    <dimen name="card_detail_btn_wh">56dp</dimen>
+    <dimen name="get_card_btn_wh">50dp</dimen>
+    <dimen name="get_card_btn_height">40dp</dimen>
+
+</resources>

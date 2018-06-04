@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+灰色不可以点击的按钮
+-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="22dp"/>
+    <stroke android:color="@color/base_btn_bg_color_gray" android:width="1px"/>
+    <solid android:color="@color/base_btn_bg_color_gray"/>
+</shape>

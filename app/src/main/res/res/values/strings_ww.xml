@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--LoginActivity-->
+    <string name="text_three_login">第三方登录</string>
+    <string name="text_mobile_login">手机号登录</string>
+    <string name="login_type_wechat">微信登录</string>
+    <string name="login_text">登录</string>
+    <string name="login_type_qq">QQ</string>
+    <string name="login_mobile_btn">手机号注册/登录</string>
+    <string name="login_user_agreement">用户协议</string>
+    <string name="login_get_v_code">获取验证码</string>
+    <string name="login_release_v_code">重新获取</string>
+    <string name="login_num_hint">请输入手机号</string>
+    <string name="login_code_hint">请输入验证码</string>
+
+    <!--Information-->
+    <string name="title_info_setting">个人中心</string>
+    <string name="title_info_setting_right">系统设置</string>
+    <string name="information_nickname_hint">请输入昵称</string>
+    <string name="information_jump">点击跳过</string>
+    <string name="information_complete">完成注册</string>
+    <string name="information_back_main">点击此处返回首页</string>
+    <string name="information_nickname">昵称</string>
+    <string name="information_gender">性别</string>
+    <string name="information_birthday">生日</string>
+    <string name="information_city">所在地</string>
+    <string name="information_divine_record">占卜记录</string>
+    <string name="information_invitation_code">激活邀请码</string>
+    <string name="information_invitation_code_hint">请输入邀请码</string>
+    <string name="information_invitation_code_msg">激活邀请码可获得一份大礼包</string>
+    <string name="information_invitation_code_msg_first_start">欢迎来到迷鹿旅行\n如果你是朋友介绍来的，输入邀请码，双方都能获得大礼包哦～</string>
+    <string name="information_invitation_code_title_first_start">Hey～</string>
+
+    <!--SystemSettingActivity-->
+    <string name="title_system_setting">系统设置</string>
+    <string name="system_setting_version">版本信息</string>
+    <string name="system_setting_feedback">意见反馈</string>
+    <string name="system_setting_update">更新版本</string>
+    <string name="system_setting_secret">隐私政策</string>
+
+    <!--choose time-->
+    <string name="text_choose_time">请选择时间</string>
+    <string name="text_choose_zone">请选择省市区</string>
+    <string name="text_sure">确 定</string>
+
+    <!--修改昵称-->
+    <string name="text_change_name">修改昵称</string>
+
+    <!--卡包CardBox-->
+    <string name="card_box_type_1">神谕卡</string>
+    <string name="card_box_type_2">塔罗牌</string>
+    <string name="title_card_box">卡包</string>
+    <string name="title_card_detail">卡牌详情</string>
+
+    <!--卡包分类-->
+    <string name="card_classify_exchange">兑换中心</string>
+    <string name="card_un_collect">哎呀～这张牌还没有收集到哦！</string>
+    <string name="card_to_collect">去占卜顺便收集</string>
+    <string name="card_to_shape_app">好友激活邀请码，领取大礼包</string>
+    <string name="card_collect_again">前往占卜</string>
+    <string name="card_collect_share">分享APP给朋友</string>
+    <string name="title_un_collect">待收集</string>
+
+    <!--选择问题-->
+    <string name="title_choose_question">选择问题</string>
+    <string name="choose_question_more">点击查看更多问题</string>
+    <string name="dialog_choose_title">你困惑的问题:</string>
+    <string name="dialog_choose_sure_btn">是的</string>
+    <string name="dialog_choose_cancel_btn">重新选</string>
+
+    <string name="dialog_choose_title_no">能量恢复未结束</string>
+    <string name="dialog_choose_sure_btn_no">去分享增强能量</string>
+    <string name="dialog_choose_cancel_btn_no">查看上次结果</string>
+    <string name="dialog_choose_content_no">距离上一次占卜时间还太短,小迷鹿消耗的能量还未恢复哦</string>
+
+    <!--占卜记录-->
+    <string name="title_card_record">占卜记录</string>
+    <string name="title_card_record_detail">占卜记录详情</string>
+    <string name="card_record_tag_question">问题</string>
+    <string name="card_record_tag_formation">牌阵</string>
+    <string name="card_record_tag_time">占卜时间</string>
+    <string name="card_record_tag_result">结果</string>
+
+    <string name="card_un_has">***</string>
+
+    <!---->
+    <string name="hint_not_open">暂未开放</string>
+
+    <!--占卜页面-->
+    <string name="title_divination_type_1">占卜</string>
+    <string name="title_divination_type_2">占卜结果</string>
+    <string name="divination_hint_text_1">请在心中默念你的问题</string>
+    <string name="divination_hint_text_2">正在与宇宙中的女神进行能量连接</string>
+    <string name="divination_click_2read">点击看看说了什么</string>
+
+    <!--冷却结果页-->
+    <string name="title_cooling_result">占卜结果</string>
+    <string name="cooling_result_back_home">返回首页</string>
+    <string name="cooling_result_card_box">查看卡包</string>
+    <string name="cooling_hint_1_true">女神恢复动力啦</string>
+    <string name="cooling_hint_1_false">女神累啦，需要休息</string>
+    <string name="cooling_hint_2_true">分享APP给朋友，让朋友占卜，可以获得更多卡牌哦~</string>
+    <string name="cooling_hint_2_false">女神们说还需要休息才有能量再算一次。你可以分享给朋友，让女神们多一点动力。</string>
+    <string name="cooling_result_share">分享APP</string>
+
+    <!--H5展示页-->
+    <string name="title_html_user_agreement">用户协议</string>
+    <string name="title_html_conceal">隐私政策</string>
+
+</resources>
