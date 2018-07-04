@@ -2,21 +2,21 @@ package com.fuyou.play.biz;
 
 import android.Manifest;
 import android.app.Activity;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
-import android.provider.Settings;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.fuyou.play.R;
 import com.fuyou.play.service.DownloadService;
+import com.fuyou.play.util.Const;
+import com.fuyou.play.util.ExceptionUtils;
+import com.fuyou.play.util.LogCustom;
+import com.fuyou.play.util.sp.SPLongUtils;
+import com.fuyou.play.view.activity.SystemSettingActivity;
 
 import java.io.File;
 
@@ -24,75 +24,78 @@ import java.io.File;
 /**
  * Created by Administrator on 2018/1/30 0030.
  */
-
 public class UpdateAppBiz {
 
-
     private Activity context;
+    private boolean isHome;
 
-    public UpdateAppBiz(Activity context){
+    public UpdateAppBiz(Activity context, boolean isHome){
         this.context = context;
-        compareVersion(context);
-    }
-
-    private static final int COMPARE_VERSION = 54;
-    public void compareVersion(final Activity activity){
-        /*AsyncTaskManager.getInstance(activity).request(COMPARE_VERSION, new OnDataListener() {
-            @Override
-            public Object doInBackground(int requestCode, String parameter) throws HttpException {
-                return new SealAction(context).getSealTalkVersion3();
-            }
-
-            @Override
-            public void onSuccess(int requestCode, Object result2) {
-                if (result2 != null) {
-                    try {
-                        //key带有空格 org.json.JSONException: No value for
-                        String result= (String) result2;
-                        NLog.e("MCTEST", "--onSuccess.result--" + result.toString());
-                        result=result.replaceAll(" ","").trim();
-                        JSONObject resultjson=new JSONObject((String) result);
-                        String data=resultjson.getString("data");
-                        JSONObject datajson=new JSONObject(data);
-                        String config=datajson.getString("config");
-                        JSONObject configjson=new JSONObject(config);
-                        String version=configjson.getString("version");
-                        String tmpurl=configjson.getString("url");
-                        int is_must_upgrade=configjson.getInt("is_must_upgrade");
-                        String describe=configjson.getString("describe");
-                        int status=configjson.getInt("status");
-                        if (status==1){
-                            VersionResponse.VersionConfig config1 = new VersionResponse.VersionConfig();
-                            config1.version = version;
-                            config1.url = tmpurl;
-                            config1.describe = describe;
-                            config1.is_must_upgrade = is_must_upgrade;
-                            config1.status = status;
-                            toUpdateApp(config1);
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
+        this.isHome = isHome;
+        /*Object obj = SPLongUtils.getString(context, Const.SP_VERSION_CONFIG, null, CheckVersionConfig.class);
+        if (obj!=null) {
+            CheckVersionConfig bean = (CheckVersionConfig) obj;
+            if (!TextUtils.isEmpty(bean.getVersion())&&!TextUtils.isEmpty(bean.getUrl())) {
+                if (getVersionNameIntForString(bean.getVersion())>getVersionNameIntForString(CommonUtils.getVersionNum())) {
+                    toUpdateApp(bean);
+                }else {
+                    if (!isHome) {
+                        Toast.makeText(context, "已是最新版本，无需更新!", Toast.LENGTH_SHORT).show();
                     }
                 }
+            } else {
+                if (!isHome) {
+                    Toast.makeText(context, "已是最新版本，无需更新!", Toast.LENGTH_SHORT).show();
+                }
             }
-
-            @Override
-            public void onFailure(int requestCode, int state, Object result) {
-
+        } else {
+            if (!isHome) {
+                Toast.makeText(context, "已是最新版本，无需更新!", Toast.LENGTH_SHORT).show();
             }
-        });*/
+        }*/
     }
 
     private String mUrl = "";
-    private AlertDialog dialog;
-    private void toUpdateApp(Object result){
+    /*private MLDialog dialog;
+    private void toUpdateApp(CheckVersionConfig bean){
         try {
-
+            mUrl = bean.getUrl();
+            MLDialog.Builder builder = new MLDialog.Builder(context);
+            builder.setTitle("有新的版本:");
+            if (!TextUtils.isEmpty(bean.getDescribe())) {
+                builder.setMessage(bean.getDescribe());
+            }
+            if ("1".equals(bean.getIs_must_upgrade())){
+                builder.setPositiveButton("更新", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        toCheckDownPermission();
+                        dialog.dismiss();
+                    }
+                });
+                builder.setCancelAble(false);
+            } else {
+                builder.setPositiveButton("更新", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        toCheckDownPermission();
+                        dialog.dismiss();
+                    }
+                });
+                builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+            }
+            dialog = builder.create();
+            dialog.show();
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
         }
-    }
+    }*/
 
     private String[] permissions = { Manifest.permission.WRITE_EXTERNAL_STORAGE };
     private void toCheckDownPermission(){
@@ -103,7 +106,15 @@ public class UpdateAppBiz {
             // 权限是否已经 授权 GRANTED---授权  DINIED---拒绝
             if (i != PackageManager.PERMISSION_GRANTED ) {
                 // 如果没有授予该权限，就去提示用户请求
-                startRequestPermission();
+                try {
+                    if (isHome) {
+//                        ((MainActivity) context).checkPermissionUpdateApp();
+                    } else {
+                        ((SystemSettingActivity) context).checkPermissionUpdateApp();
+                    }
+                } catch (Exception e){
+                    ExceptionUtils.ExceptionSend(e, "toCheckDownPermission");
+                }
             } else {
                 downloadApk();
             }
@@ -112,15 +123,12 @@ public class UpdateAppBiz {
         }
     }
 
-    // 开始提交请求权限
-    private void startRequestPermission() {
-        ActivityCompat.requestPermissions(context, permissions, 321);
-    }
-
     public void downloadApk() {
+        SPLongUtils.saveString(context, Const.SP_VERSION_CONFIG, "");
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            LogCustom.show("downloadApk");
             String downloadDir = Environment.getExternalStorageDirectory().getPath() + "/Download/APK";
-            String apkName = TextUtils.isEmpty(mUrl) ? "machat.apk" : mUrl.substring(mUrl.lastIndexOf("/"));
+            String apkName = TextUtils.isEmpty(mUrl) ? "milu.apk" : mUrl.substring(mUrl.lastIndexOf("/"));
             File file = new File(downloadDir);
             if (!file.exists()) {
                 file.mkdirs();
@@ -134,33 +142,21 @@ public class UpdateAppBiz {
         }
     }
 
-    // 提示用户去应用设置界面手动开启权限
-    public void showDialogTipUserGoToAppSettting() {
-        AlertDialog dialog = new AlertDialog.Builder(context)
-                .setTitle("手机存储权限不可用")
-                .setMessage("请在-应用设置-权限-中，允许手机存储功能")
-                .setPositiveButton("立即开启", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // 跳转到应用设置界面
-                        goToAppSetting();
-                    }
-                })
-                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-//                        finish();
-                    }
-                }).setCancelable(false).show();
-    }
+    private int getVersionNameIntForString(String versionName){
+        if (TextUtils.isEmpty(versionName)||"0".equals(versionName)) return 0;
+        int result = 0;
+        try {
+            versionName = versionName.trim().replace(".","");
+            int spaceLength = 5 - versionName.length();
+            if (spaceLength>0){
+                for (int i=0;i<spaceLength;i++){
+                    versionName.concat("0");
+                }
+            }
+            result = Integer.valueOf(versionName);
+        } catch (Exception e){
 
-    // 跳转到当前应用的设置界面
-    private void goToAppSetting() {
-        Intent intent = new Intent();
-        intent.setAction(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-        Uri uri = Uri.fromParts("package", context.getPackageName(), null);
-        intent.setData(uri);
-        context.startActivityForResult(intent, 123);
+        }
+        return result;
     }
-
 }

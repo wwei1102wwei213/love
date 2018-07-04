@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 
+import com.fuyou.play.util.AES;
 import com.google.gson.Gson;
 import com.google.gson.internal.$Gson$Types;
 import com.fuyou.play.util.Const;
@@ -205,6 +206,46 @@ public class OkHttpClientManager {
         }
         return res;
     }
+    private Param[] map2NoEmptyParamsFY(Map<String, String> params) {
+        if (params == null) return new Param[0];
+        int size = params.size();
+        Param[] res = new Param[1];
+        Set<Map.Entry<String, String>> entries = params.entrySet();
+        int i = 0;
+        StringBuffer sb = new StringBuffer();
+        for (Map.Entry<String, String> entry : entries) {
+            if (!TextUtils.isEmpty(entry.getKey())){
+                if (i==0) {
+                    i++;
+                } else {
+                    sb.append("&");
+                }
+                sb.append(URLEncoder.encode(entry.getKey()));
+                sb.append("=");
+                if (!TextUtils.isEmpty(entry.getValue())){
+                    sb.append(URLEncoder.encode(entry.getValue()));
+                }else {
+                    sb.append("");
+                }
+            }
+        }
+        String temp = sb.toString();
+        if (TextUtils.isEmpty(temp)) {
+            res[0] = new Param("params", "");
+        } else {
+            res[0] = new Param("params", AES.encode(temp));
+        }
+        return res;
+    }
+    /*String temp = "";
+                for (Param p:params){
+                    if (TextUtils.isEmpty(temp)){
+                        temp += p.key + "=" + p.value;
+                    }else {
+                        temp += "&" + p.key + "=" + p.value;
+                    }
+                }
+                LogCustom.i(Const.LOG_TAG_HTTP,"请求参数："+temp);*/
 
     private void deliveryResult(ResultCallback callback, final Request request) {
         if (callback == null) callback = DEFAULT_RESULT_CALLBACK;
@@ -740,21 +781,12 @@ public class OkHttpClientManager {
 
 
         public void postAsyn(String url, Map<String, String> params, final ResultCallback callback, Object tag) {
-            Param[] paramsArr = map2NoEmptyParams(params);
+            Param[] paramsArr = map2NoEmptyParamsFY(params);
             mcPostAsyn(url, paramsArr, callback, tag);
         }
 
         public void mcPostAsyn(String url, Param[] params, final ResultCallback callback, Object tag) {
             try {
-                String temp = "";
-                for (Param p:params){
-                    if (TextUtils.isEmpty(temp)){
-                        temp += p.key + "=" + p.value;
-                    }else {
-                        temp += "&" + p.key + "=" + p.value;
-                    }
-                }
-                LogCustom.i(Const.LOG_TAG_HTTP,"请求参数："+temp);
                 Request request = buildPostFormRequest(url, params, tag);
                 mcDeliveryResult(callback, request);
             }catch (Exception e){

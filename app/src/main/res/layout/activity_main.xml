@@ -1,15 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_base_milo"
-    tools:context="com.micro.milu.view.activity.MainActivity">
+    android:background="@drawable/bg_base_milo">
+    <View android:id="@+id/status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="1px"/>
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/home_top_height">
+            <ImageView
+                android:id="@+id/iv"
+                android:layout_width="@dimen/home_top_height"
+                android:layout_height="@dimen/home_top_height"
+                android:src="@mipmap/ic_launcher_round"
+                android:padding="11dp"
+                android:scaleType="centerInside"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_margin="5dp"
+            android:background="@color/white">
 
-    <com.micro.milu.widget.custom.MyScrollerView
+        </LinearLayout>
+    </LinearLayout>
+    <!--<com.fuyou.play.widget.custom.MyScrollerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentBottom="true"
@@ -25,6 +52,6 @@
             android:orientation="vertical">
             <include layout="@layout/layout_user_information"/>
         </LinearLayout>
-    </com.micro.milu.widget.custom.MyScrollerView>
+    </com.fuyou.play.widget.custom.MyScrollerView>-->
 
-</RelativeLayout>
+</LinearLayout>

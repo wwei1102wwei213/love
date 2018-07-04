@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.fuyou.play.R;
+import com.fuyou.play.biz.Factory;
 import com.fuyou.play.biz.http.HttpFlag;
 import com.fuyou.play.biz.http.HttpRepListener;
 import com.fuyou.play.view.BaseActivity;
@@ -28,56 +29,24 @@ public class MainActivity extends BaseActivity implements HttpRepListener, View.
         setStatusBarTranslucent();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initStatusBar(findViewById(R.id.status_bar_info));
+        initStatusBar(findViewById(R.id.status_bar));
         initViews();
 
-//        Factory.getHttpRespBiz(this, HttpFlag.LOGIN, null).post();
+        Factory.getHttpRespBiz(this, HttpFlag.LOGIN, null).post();
 //        Factory.getHttpRespBiz(this, HttpFlag.REGISTER, null).post();
 //        Factory.getHttpRespBiz(this, HttpFlag.USER_DETAIL, null).post();
 
     }
 
     private void initViews(){
-        msv = findViewById(R.id.msv);
-        civ_head = findViewById(R.id.civ_head);
-        civ_head.setOnClickListener(this);
-        findViewById(R.id.v_nickname).setOnClickListener(this);
-        findViewById(R.id.v_gender).setOnClickListener(this);
-        findViewById(R.id.v_birthday).setOnClickListener(this);
-        findViewById(R.id.v_city).setOnClickListener(this);
-        findViewById(R.id.v_record).setOnClickListener(this);
-        findViewById(R.id.v_menu).setOnClickListener(this);
+        findViewById(R.id.iv).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.civ_head:
-                if (msv.isTop()) {
-                    msv.initScroll();
-                    findViewById(R.id.tv_top_hint).setVisibility(View.INVISIBLE);
-                } else {
-                    msv.topScroll();
-                    findViewById(R.id.tv_top_hint).setVisibility(View.VISIBLE);
-                }
-                break;
-            case R.id.v_nickname:
-
-                break;
-            case R.id.v_gender:
-
-                break;
-            case R.id.v_birthday:
-
-                break;
-            case R.id.v_city:
-
-                break;
-            case R.id.v_record:
-
-                break;
-            case R.id.v_menu:
-
+            case R.id.iv:
+                startActivity(InfoSettingActivity.class);
                 break;
         }
     }
@@ -86,8 +55,8 @@ public class MainActivity extends BaseActivity implements HttpRepListener, View.
     public Map getParamInfo(int flag, Object obj) {
         Map<String, String> map = new HashMap<>();
         if (HttpFlag.LOGIN == flag) {
-            map.put("username", "test");
-            map.put("password", "123456");
+            map.put("PhoneNum", "13723701704");
+            map.put("Code", "123456");
         } else if (HttpFlag.REGISTER == flag) {
             map.put("username", "goodluck");
             map.put("password", "123456");
@@ -95,7 +64,6 @@ public class MainActivity extends BaseActivity implements HttpRepListener, View.
         } else if (HttpFlag.USER_DETAIL == flag) {
             map.put("InfoID", "100003");
         }
-
         return map;
     }
 

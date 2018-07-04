@@ -22,21 +22,37 @@
     <declare-styleable name="MyScrollerView">
         <attr name="visibility_height" format="dimension" />
     </declare-styleable>
-
+    <!--自定义阴影控件-->
+    <declare-styleable name="ShadowCardView">
+        <attr name="body_percent_width" format="float"/>
+        <attr name="body_percent_height" format="float"/>
+        <attr name="image_percent_width" format="float"/>
+        <attr name="image_percent_height" format="float"/>
+        <attr name="space_dimen_width" format="dimension"/>
+        <attr name="space_dimen_height" format="dimension"/>
+        <attr name="space_dimen" format="dimension"/>
+    </declare-styleable>
 
     <!--滑动选择器-->
     <declare-styleable name="WheelView">
-        <attr name="normalTextColor" format="color" />
-        <attr name="normalTextSize" format="dimension" />
-        <attr name="selectedTextColor" format="color" />
-        <attr name="selectedTextSize" format="dimension" />
-        <attr name="unitHight" format="dimension" />
-        <attr name="itemNumber" format="integer"/>
+        <attr name="itemVisibleNum" format="integer"/>
+
+        <attr name="textColorOuter" format="color" />
+        <attr name="textSizeOuter" format="dimension" />
+        <attr name="textColorCenter" format="color" />
+        <attr name="textSizeCenter" format="dimension" />
+
         <attr name="lineColor" format="color" />
-        <attr name="lineHeight" format="dimension" />
-        <attr name="maskHight" format="dimension"/>
-        <attr name="noEmpty" format="boolean"/>
-        <attr name="isEnable" format="boolean"/>
+
+        <attr name="isLoop" format="boolean"/>
+        <attr name="lineSpaceingDimens" format="dimension"/>
+
+        <attr name="wheelGravity" format="enum" >
+            <enum name="left" value="234"/>
+            <enum name="center" value="354"/>
+            <enum name="right" value="894"/>
+        </attr>
+
     </declare-styleable>
 
     <declare-styleable name="PetalView">

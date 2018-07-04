@@ -61,7 +61,7 @@ public class HttpRespBiz implements IHttpRespBiz{
     @Override
     public void post() {
         mResp.showLoading(flag , tag);
-        OkHttpClientManager.postJson(getPostUrl(), mResp.getParamInfo(flag, tag),
+        OkHttpClientManager.post(getPostUrl(), mResp.getParamInfo(flag, tag),
                 new OkHttpClientManager.ResultCallback<String>() {
                     @Override
                     public void onError(Request request, Exception e) {

@@ -2,13 +2,22 @@
 <resources>
 
     <color name="login_btn_stroke">#80ffffff</color>
+    <color name="login_et_hint">#b7b7b7</color>
+    <color name="red_sign_out">#fd402e</color>
+    <!--常用line-->
+    <color name="line_ddd">#dddddd</color>
+    <color name="line_ccc">#cccccc</color>
+    <color name="text_hint_color">#b7b7b7</color>
 
     <!--基本弹窗-->
     <color name="base_dialog_line">#dddddd</color>
-    <color name="base_dialog_title">#333333</color>
+    <color name="base_dialog_title">#ffffff</color>
     <color name="base_dialog_msg">#333333</color>
     <color name="base_dialog_button">#333333</color>
-
+    <color name="base_dialog_button_press">#999999</color>
+    <!--选择时间-->
+    <color name="time_line">#e0e0e0</color>
+    <!--修改昵称-->
     <!--AlertView-->
     <!--覆盖颜色-->
     <color name="bgColor_overlay">#60000000</color>
@@ -23,7 +32,7 @@
     <!--线条颜色-->
     <color name="bgColor_divier">#dddddd</color>
     <!--取消按钮颜色-->
-    <color name="textColor_alert_button_cancel">#1eccd2</color>
+    <color name="textColor_alert_button_cancel">#4a356a</color>
     <color name="textColor_alert_button_cancel_1">#666666</color>
     <!--高亮按钮颜色-->
     <!--<color name="textColor_alert_button_destructive">#ff3b30</color>-->
@@ -35,4 +44,12 @@
     <color name="bgColor_alert_button_press">#EAEAEA</color>
     <!--actionsheet模式的取消按钮背景颜色-->
     <color name="bgColor_actionsheet_cancel_nor">#ffffff</color>
+
+    <!--问题页面-->
+    <color name="choose_question_bg">#f0eff6</color>
+    <color name="base_gray_bg">#f0eff6</color>
+
+    <!--h5进度条颜色-->
+    <color name="html_progress_normal">#999999</color>
+
 </resources>

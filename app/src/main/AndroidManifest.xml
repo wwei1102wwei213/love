@@ -24,8 +24,7 @@
         android:resizeableActivity="true"
         android:theme="@style/AppTheme"
         >
-
-
+        <!--闪屏页-->
         <activity android:name="com.fuyou.play.view.activity.SplashActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize"
@@ -37,41 +36,37 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
+        <!--主页-->
         <activity android:name="com.fuyou.play.view.activity.MainActivity"
             android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize"
             android:launchMode="singleTask"
             android:theme="@style/HomeTheme"/>
-
-
-
-
+        <!--引导页-->
         <activity android:name="com.fuyou.play.view.activity.GuideScrollActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTop"/>
-
+        <!--登陆页-->
         <activity android:name="com.fuyou.play.view.activity.LoginActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTop"/>
-
+        <!--信息设置-->
         <activity android:name="com.fuyou.play.view.activity.InformationSettingActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTop"/>
-
-
-
-        <activity android:name=".wxapi.WXEntryActivity"
-            android:launchMode="singleInstance"
-            android:exported="true"
-            android:windowSoftInputMode="adjustPan|adjustUnspecified|stateHidden"
-            android:screenOrientation="portrait"/>
-
+        <!--个人设置-->
+        <activity android:name=".view.activity.InfoSettingActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
+        <!--系统设置-->
+        <activity android:name=".view.activity.SystemSettingActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
+        <!--Glide设置-->
         <meta-data
             android:name="com.fuyou.play.util.GlideModelConfig"
             android:value="GlideModule" />
-
+        <!--下载服务-->
         <service android:name=".service.DownloadService"/>
 
         <!--适配相册路径问题-->
@@ -86,8 +81,11 @@
                 android:resource="@xml/file_paths"/>
         </provider>
         <!--wechat callback-->
-
-
+        <activity android:name=".wxapi.WXEntryActivity"
+            android:launchMode="singleInstance"
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan|adjustUnspecified|stateHidden"
+            android:screenOrientation="portrait"/>
         <!--适配全面屏手机-->
         <meta-data android:name="android.max_aspect"
             android:value="ratio_float"/>

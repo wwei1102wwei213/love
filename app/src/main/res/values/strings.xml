@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">迷鹿</string>
+    <string name="app_name">蜉蝣</string>
 
     <!--provider authorities-->
-    <string name="provider_authorities">com.micro.milu.files</string>
+    <string name="provider_authorities">com.fuyou.play.files</string>
 
     <!--常用字段-->
     <string name="base_cancel">取消</string>
@@ -11,7 +11,8 @@
     <!--性别-->
     <string name="gender_man">男</string>
     <string name="gender_women">女</string>
-    <string name="gender_default">中性</string>
+    <string name="gender_default">未填写</string>
+    <string name="gender_cancel">取消</string>
     <string name="gender_choose">选择性别</string>
 
     <!--版本迭代-->
