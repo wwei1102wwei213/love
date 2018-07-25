@@ -2,6 +2,7 @@ package com.andview.refreshview;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +35,11 @@ public class XRefreshViewHeader extends LinearLayout implements IHeaderCallBack 
         initView(context);
     }
 
+    public XRefreshViewHeader(Context context, boolean isTran) {
+        super(context);
+        initView(context, isTran);
+    }
+
     /**
      * @param context
      * @param attrs
@@ -46,6 +52,28 @@ public class XRefreshViewHeader extends LinearLayout implements IHeaderCallBack 
     private void initView(Context context) {
         mContent = (ViewGroup) LayoutInflater.from(context).inflate(
                 R.layout.xrefreshview_header, this);
+        mArrowImageView = (ImageView) findViewById(R.id.xrefreshview_header_arrow);
+        mOkImageView = (ImageView) findViewById(R.id.xrefreshview_header_ok);
+        mHintTextView = (TextView) findViewById(R.id.xrefreshview_header_hint_textview);
+        mHeaderTimeTextView = (TextView) findViewById(R.id.xrefreshview_header_time);
+        mProgressBar = (ProgressBar) findViewById(R.id.xrefreshview_header_progressbar);
+
+        mRotateUpAnim = new RotateAnimation(0.0f, -180.0f,
+                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+        mRotateUpAnim.setDuration(ROTATE_ANIM_DURATION);
+        mRotateUpAnim.setFillAfter(true);
+        mRotateDownAnim = new RotateAnimation(-180.0f, 0.0f,
+                Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF,
+                0.5f);
+        mRotateDownAnim.setDuration(0);
+        mRotateDownAnim.setFillAfter(true);
+    }
+
+    private void initView(Context context, boolean isTran) {
+        mContent = (ViewGroup) LayoutInflater.from(context).inflate(
+                R.layout.xrefreshview_header, this);
+        View v_body = findViewById(R.id.xrefreshview_header_text);
+        v_body.setBackgroundColor(Color.parseColor("#00000000"));
         mArrowImageView = (ImageView) findViewById(R.id.xrefreshview_header_arrow);
         mOkImageView = (ImageView) findViewById(R.id.xrefreshview_header_ok);
         mHintTextView = (TextView) findViewById(R.id.xrefreshview_header_hint_textview);

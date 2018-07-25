@@ -76,6 +76,7 @@ public class XRefreshView extends LinearLayout {
     private boolean isForHorizontalMove = false;
     private boolean mCanMoveHeaderWhenDisablePullRefresh = true;
     private boolean mCanMoveFooterWhenDisablePullLoadMore = true;
+    private boolean isTransparent = false;
 
     private boolean mIsIntercept = false;
     private IHeaderCallBack mHeaderCallBack;
@@ -200,6 +201,8 @@ public class XRefreshView extends LinearLayout {
                         R.styleable.XRefreshView_XRefreshView_autoRefresh, false);
                 autoLoadMore = a.getBoolean(
                         R.styleable.XRefreshView_XRefreshView_autoLoadMore, true);
+                isTransparent = a.getBoolean(
+                        R.styleable.XRefreshView_XRefreshView_isTransparent, true);
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {

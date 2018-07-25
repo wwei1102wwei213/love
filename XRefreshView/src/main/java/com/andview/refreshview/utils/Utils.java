@@ -211,7 +211,7 @@ public class Utils {
 
 
     /**
-     * 获得屏幕高度，不包括虚拟功能键的高度
+     * 获得屏幕高度
      *
      * @param context
      * @return

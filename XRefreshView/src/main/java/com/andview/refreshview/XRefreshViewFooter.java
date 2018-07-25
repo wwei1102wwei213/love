@@ -1,6 +1,7 @@
 package com.andview.refreshview;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,10 @@ public class XRefreshViewFooter extends LinearLayout implements IFooterCallBack 
         super(context);
         initView(context);
     }
+    public XRefreshViewFooter(Context context, boolean isTran) {
+        super(context);
+        initView(context, isTran);
+    }
 
     public XRefreshViewFooter(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -31,23 +36,22 @@ public class XRefreshViewFooter extends LinearLayout implements IFooterCallBack 
 
     @Override
     public void callWhenNotAutoLoadMore(final XRefreshView xRefreshView) {
-        mClickView.setText(R.string.xrefreshview_footer_hint_click);
-        mClickView.setOnClickListener(new OnClickListener() {
-
+//        mClickView.setText(R.string.xrefreshview_footer_hint_click);
+        /*mClickView.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 xRefreshView.notifyLoadMore();
             }
-        });
+        });*/
     }
 
     @Override
     public void onStateReady() {
         mHintView.setVisibility(View.GONE);
         mProgressBar.setVisibility(View.GONE);
-        mClickView.setText(R.string.xrefreshview_footer_hint_click);
-        mClickView.setVisibility(View.GONE);
-        show(false);
+//        mClickView.setText(R.string.xrefreshview_footer_hint_click);
+        mClickView.setVisibility(View.INVISIBLE);
+//        show(true);
     }
 
     @Override
@@ -62,9 +66,8 @@ public class XRefreshViewFooter extends LinearLayout implements IFooterCallBack 
     public void onReleaseToLoadMore() {
         mHintView.setVisibility(View.GONE);
         mProgressBar.setVisibility(View.GONE);
-        mClickView.setText(R.string.xrefreshview_footer_hint_release);
-        mClickView.setVisibility(View.VISIBLE);
-        show(true);
+//        mClickView.setText(R.string.xrefreshview_footer_hint_release);
+        mClickView.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -77,8 +80,7 @@ public class XRefreshViewFooter extends LinearLayout implements IFooterCallBack 
         }
         mHintView.setVisibility(View.VISIBLE);
         mProgressBar.setVisibility(View.GONE);
-        mClickView.setVisibility(View.GONE);
-        show(false);
+        mClickView.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -86,8 +88,7 @@ public class XRefreshViewFooter extends LinearLayout implements IFooterCallBack 
         mHintView.setText(R.string.xrefreshview_footer_hint_complete);
         mHintView.setVisibility(View.VISIBLE);
         mProgressBar.setVisibility(View.GONE);
-        mClickView.setVisibility(View.GONE);
-        show(false);
+        mClickView.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -100,7 +101,7 @@ public class XRefreshViewFooter extends LinearLayout implements IFooterCallBack 
                 .getLayoutParams();
         lp.height = show ? LayoutParams.WRAP_CONTENT : 0;
         mContentView.setLayoutParams(lp);
-        setVisibility(show?VISIBLE:GONE);
+//        setVisibility(show?VISIBLE:GONE);
 
     }
 
@@ -111,10 +112,25 @@ public class XRefreshViewFooter extends LinearLayout implements IFooterCallBack 
 
     private void initView(Context context) {
         mContext = context;
-        ViewGroup moreView = (ViewGroup) LayoutInflater.from(mContext).inflate(R.layout.xrefreshview_footer, this, true);
+        ViewGroup moreView = (ViewGroup) LayoutInflater.from(mContext).inflate(R.layout.xrefreshview_footer, this);
         moreView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
 
         mContentView = moreView.findViewById(R.id.xrefreshview_footer_content);
+        mProgressBar = moreView
+                .findViewById(R.id.xrefreshview_footer_progressbar);
+        mHintView = (TextView) moreView
+                .findViewById(R.id.xrefreshview_footer_hint_textview);
+        mClickView = (TextView) moreView
+                .findViewById(R.id.xrefreshview_footer_click_textview);
+    }
+
+    private void initView(Context context, boolean isTran) {
+        mContext = context;
+        ViewGroup moreView = (ViewGroup) LayoutInflater.from(mContext).inflate(R.layout.xrefreshview_footer, this);
+        moreView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+
+        mContentView = moreView.findViewById(R.id.xrefreshview_footer_content);
+        mContentView.setBackgroundColor(Color.parseColor("#00000000"));
         mProgressBar = moreView
                 .findViewById(R.id.xrefreshview_footer_progressbar);
         mHintView = (TextView) moreView

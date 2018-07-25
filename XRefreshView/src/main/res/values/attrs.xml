@@ -22,5 +22,6 @@
         <attr name="XRefreshView_isWidthMatchParent" format="boolean" />
         <attr name="XRefreshView_autoRefresh" format="boolean" />
         <attr name="XRefreshView_autoLoadMore" format="boolean" />
+        <attr name="XRefreshView_isTransparent" format="boolean" />
     </declare-styleable>
 </resources>
