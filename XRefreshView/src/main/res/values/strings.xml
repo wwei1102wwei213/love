@@ -1,0 +1,24 @@
+<resources>
+
+    <string name="xrefreshview_title_activity_main">MainActivity</string>
+    <string name="xrefreshview_app_name">app_name</string>
+    <string name="xrefreshview_header_hint_normal">pull down refresh</string>
+    <string name="xrefreshview_header_hint_ready">loosen refresh data</string>
+    <string name="xrefreshview_header_hint_refreshing">refreshing...</string>
+    <string name="xrefreshview_header_hint_loading">loading...</string>
+    <string name="xrefreshview_header_hint_loaded">load complete.</string>
+    <string name="xrefreshview_header_hint_loaded_fail">load fail.</string>
+    <string name="xrefreshview_header_last_time">last Time：</string>
+    <string name="xrefreshview_footer_hint_normal">load complete.</string>
+    <string name="xrefreshview_footer_hint_fail">load fail,please try again.</string>
+    <string name="xrefreshview_footer_hint_complete">no more data.</string>
+    <string name="xrefreshview_footer_hint_click">load more</string>
+    <string name="xrefreshview_footer_hint_release">loosen load more</string>
+    <string name="xrefreshview_footer_hint_ready">loosen load more</string>
+    <string name="xrefreshview_never_refresh">never refresh</string>
+    <string name="xrefreshview_refresh_justnow">just now</string>
+    <string name="xrefreshview_refresh_minutes_ago">%1s minute ago</string>
+    <string name="xrefreshview_refresh_hours_ago">%1s hour ago</string>
+    <string name="xrefreshview_refresh_days_ago">%1s day ago</string>
+
+</resources>
