@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/v_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_avatar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="12dp"
+            />
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/iv_avatar"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="12dp"
+            android:text="NickName"
+            android:textSize="16sp"
+            android:textColor="@color/text_color_6897BB"/>
+
+        <com.fuyou.play.widget.custom.CollapsibleTextView
+            android:id="@+id/ctv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/tv_name"
+            android:layout_marginRight="20dp"
+            android:layout_below="@id/tv_name"
+            android:layout_marginTop="2dp"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:visibility="gone"/>
+
+
+        <com.fuyou.play.widget.custom.NestedGridView
+            android:id="@+id/gv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="30dp"
+            android:layout_alignLeft="@id/tv_name"
+            android:layout_below="@id/ctv"
+            android:numColumns="3"
+            android:horizontalSpacing="4dp"
+            android:verticalSpacing="4dp"
+            android:visibility="gone"
+            android:listSelector="@color/transparent_little"
+            >
+
+        </com.fuyou.play.widget.custom.NestedGridView>
+
+        <LinearLayout
+            android:id="@+id/ll_comment"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/line_eee"
+            android:paddingBottom="4dp"
+            android:layout_alignLeft="@id/tv_name"
+            android:layout_marginRight="16dp"
+            android:layout_below="@id/gv">
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="12dp"
+        android:layout_below="@+id/v_body"
+        android:background="@color/line_eee"/>
+
+</RelativeLayout>

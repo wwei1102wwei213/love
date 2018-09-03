@@ -3,13 +3,21 @@ package com.fuyou.play.biz.http;
 
 import android.text.TextUtils;
 
-import com.google.gson.Gson;
+import com.fuyou.play.bean.BaseBean;
+import com.fuyou.play.bean.discuss.DiscussBaseBean;
+import com.fuyou.play.bean.login.CheckBaseBean;
+import com.fuyou.play.bean.login.LoginPhoneBean;
+import com.fuyou.play.bean.moment.MomentItem;
+import com.fuyou.play.bean.moment.MomentUser;
 import com.fuyou.play.util.Const;
 import com.fuyou.play.util.LogCustom;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.squareup.okhttp.Request;
 
 import java.io.File;
 import java.net.SocketTimeoutException;
+import java.util.List;
 import java.util.Map;
 
 
@@ -191,7 +199,9 @@ public class HttpRespBiz implements IHttpRespBiz{
     private String getGetUrl(){
         String url = null;
         switch (flag){
-            case HttpFlag.TEST:
+            case HttpFlag.CHECK:
+            case HttpFlag.MOMENT_USER:
+            case HttpFlag.MOMENT_LIST:
                 url = getPostUrl();
                 Map<String,String> map = mResp.getParamInfo(flag, tag);
                 String params = "";
@@ -221,8 +231,8 @@ public class HttpRespBiz implements IHttpRespBiz{
     private String getPostUrl(){
         String url = null;
         switch (flag){
-            case HttpFlag.TEST:
-                url = HttpFlag.TEST_URL;
+            case HttpFlag.CHECK:
+                url = HttpFlag.CHECK_URL;
                 break;
             case HttpFlag.LOGIN:
                 url = HttpFlag.LOGIN_URL;
@@ -232,6 +242,24 @@ public class HttpRespBiz implements IHttpRespBiz{
                 break;
             case HttpFlag.USER_DETAIL:
                 url = HttpFlag.USER_DETAIL_URL;
+                break;
+            case HttpFlag.PHONE_CODE:
+                url = HttpFlag.PHONE_CODE_URL;
+                break;
+            case HttpFlag.LOGIN_OUT:
+                url = HttpFlag.LOGIN_OUT_URL;
+                break;
+            case HttpFlag.DISCUSS_ADD:
+                url = HttpFlag.DISCUSS_ADD_URL;
+                break;
+            case HttpFlag.DISCUSS_QUERY:
+                url = HttpFlag.DISCUSS_QUERY_URL;
+                break;
+            case HttpFlag.MOMENT_USER:
+                url = HttpFlag.MOMENT_USER_URL;
+                break;
+            case HttpFlag.MOMENT_LIST:
+                url = HttpFlag.MOMENT_LIST_URL;
                 break;
             default:
         }
@@ -251,17 +279,35 @@ public class HttpRespBiz implements IHttpRespBiz{
         LogCustom.i(Const.LOG_TAG_HTTP, "请求数据：" + response);
         try {
             switch (flag){
-                case HttpFlag.TEST:
-                    o = response;
+                case HttpFlag.CHECK:
+                    o = mGson.fromJson(response, CheckBaseBean.class);
                     break;
                 case HttpFlag.LOGIN:
-                    o = response;
+                    o = mGson.fromJson(response, LoginPhoneBean.class);
+                    break;
+                case HttpFlag.LOGIN_OUT:
+                    o = mGson.fromJson(response, BaseBean.class);
                     break;
                 case HttpFlag.REGISTER:
-                    o = response;
+                    o = mGson.fromJson(response, BaseBean.class);
                     break;
                 case HttpFlag.USER_DETAIL:
-                    o = response;
+                    o = mGson.fromJson(response, BaseBean.class);
+                    break;
+                case HttpFlag.PHONE_CODE:
+                    o = mGson.fromJson(response, BaseBean.class);
+                    break;
+                case HttpFlag.DISCUSS_ADD:
+                    o = mGson.fromJson(response, BaseBean.class);
+                    break;
+                case HttpFlag.DISCUSS_QUERY:
+                    o = mGson.fromJson(response, DiscussBaseBean.class);
+                    break;
+                case HttpFlag.MOMENT_USER:
+                    o = mGson.fromJson(response, MomentUser.class);
+                    break;
+                case HttpFlag.MOMENT_LIST:
+                    o = mGson.fromJson(response, new TypeToken<List<MomentItem>>(){}.getType());
                     break;
             }
         } catch (Exception e) {

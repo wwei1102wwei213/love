@@ -7,6 +7,7 @@
     <!--常用line-->
     <color name="line_ddd">#dddddd</color>
     <color name="line_ccc">#cccccc</color>
+    <color name="line_eee">#eeeeee</color>
     <color name="text_hint_color">#b7b7b7</color>
 
     <!--基本弹窗-->

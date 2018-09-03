@@ -3,6 +3,7 @@ package com.fuyou.play.util.sp;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.fuyou.play.bean.UserInfo;
 import com.fuyou.play.util.ExceptionUtils;
 
 import java.util.ArrayList;
@@ -181,7 +182,7 @@ public class UserDataUtil {
 
     public static String getBornTime(Context context) {
         if (TextUtils.isEmpty(BornTime)){
-            BornTime = SharePrefUtil.getString(context, "ml_config_BornTime", "");
+            BornTime = SharePrefUtil.getString(context, "ml_config_BornTime", "0");
         }
         return BornTime;
     }
@@ -347,24 +348,23 @@ public class UserDataUtil {
         return datalist;
     }
 
-    /*public static void saveUserData(Context context, UserInfoBean bean){
-        setUserID(context, bean.getId());
-        setUserName(context, bean.getNick_name());
+    public static void saveUserData(Context context, UserInfo bean){
+        setUserID(context, bean.getId()+"");
+        setUserName(context, bean.getNickName());
         setGender(context, bean.getGender()+"");
         setBornTime(context, bean.getBirthday());
         setCity(context, bean.getLocation());
-        if (!TextUtils.isEmpty(bean.getAccess_token())) {
-            saveAccessToken(context, bean.getAccess_token());
+        if (!TextUtils.isEmpty(bean.getToken())) {
+            saveAccessToken(context, bean.getToken());
         }
-        saveCreateTime(context, bean.getReg_time());
-        saveLastLoginTime(context, bean.getLast_login_time());
-        setAvatar(context, bean.getAvatar());
-        if (!TextUtils.isEmpty(bean.getPhone_num())) {
-            savePhoneNum(context, bean.getPhone_num());
+        saveCreateTime(context, bean.getCreateTime());
+        setAvatar(context, bean.getIcon());
+        if (!TextUtils.isEmpty(bean.getPhoneNum())) {
+            savePhoneNum(context, bean.getPhoneNum());
         }
 
-        setInvite_code(context, bean.getInvite_code());
-    }*/
+        setLoginType(context, "1");
+    }
 
     public static void clearUserData(Context context){
         PhoneNum = null;

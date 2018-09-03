@@ -15,6 +15,7 @@
     <dimen name="home_btn_radius_height">36dp</dimen>
     <dimen name="home_btn_radius_height_half">18dp</dimen>
     <dimen name="home_top_height">60dp</dimen>
+    <dimen name="home_radio_btn_height">53dp</dimen>
 
     <!--Information-->
     <dimen name="visible_view_height">200dp</dimen>
@@ -24,7 +25,8 @@
     <dimen name="information_drawable_padding">8dp</dimen>
     <dimen name="information_padding_right">12dp</dimen>
     <dimen name="information_item_height">52dp</dimen>
-    <dimen name="information_top_view_height">128dp</dimen>
+    <dimen name="information_top_view_height">158dp</dimen>
+    <dimen name="information_top_view_height_fragment">138dp</dimen>
 
     <!--choose time-->
     <dimen name="time_item_height">48dp</dimen>

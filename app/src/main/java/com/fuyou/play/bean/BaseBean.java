@@ -8,6 +8,7 @@ public class BaseBean {
 
     private int status;
     private ErrorBean error;
+    private String msg;
 
     public int getStatus() {
         return status;
@@ -24,4 +25,9 @@ public class BaseBean {
     public void setError(ErrorBean error) {
         this.error = error;
     }
+
+    public String getMsg() {
+        return msg;
+    }
+
 }

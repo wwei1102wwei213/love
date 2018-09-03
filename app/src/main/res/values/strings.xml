@@ -18,4 +18,7 @@
     <!--版本迭代-->
     <string name="downloading_apk">正在后台下载...</string>
     <string name="not_find_sdcard">找不到存储路径</string>
+
+    <string name="full_text">全文</string>
+    <string name="collapse_text">收起</string>
 </resources>

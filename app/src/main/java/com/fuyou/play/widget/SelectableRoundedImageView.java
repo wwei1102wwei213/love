@@ -23,13 +23,14 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
-import android.widget.ImageView;
 
 import com.fuyou.play.R;
+import com.fuyou.play.util.ExceptionUtils;
 
 
-public class SelectableRoundedImageView extends ImageView {
+public class SelectableRoundedImageView extends AppCompatImageView {
 
     public static final String TAG = "SelectableRoundedImageView";
 
@@ -195,12 +196,16 @@ public class SelectableRoundedImageView extends ImageView {
         if (mDrawable == null) {
             return;
         }
+        try {
+            ((SelectableRoundedCornerDrawable) mDrawable).setScaleType(mScaleType);
+            ((SelectableRoundedCornerDrawable) mDrawable).setCornerRadii(mRadii);
+            ((SelectableRoundedCornerDrawable) mDrawable).setBorderWidth(mBorderWidth);
+            ((SelectableRoundedCornerDrawable) mDrawable).setBorderColor(mBorderColor);
+            ((SelectableRoundedCornerDrawable) mDrawable).setOval(isOval);
+        } catch (Exception e){
+            ExceptionUtils.ExceptionSend(e);
+        }
 
-        ((SelectableRoundedCornerDrawable) mDrawable).setScaleType(mScaleType);
-        ((SelectableRoundedCornerDrawable) mDrawable).setCornerRadii(mRadii);
-        ((SelectableRoundedCornerDrawable) mDrawable).setBorderWidth(mBorderWidth);
-        ((SelectableRoundedCornerDrawable) mDrawable).setBorderColor(mBorderColor);
-        ((SelectableRoundedCornerDrawable) mDrawable).setOval(isOval);
     }
 
     public float getCornerRadius() {

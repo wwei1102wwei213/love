@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -16,9 +17,14 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.fuyou.play.R;
+import com.fuyou.play.bean.BaseBean;
+import com.fuyou.play.bean.ErrorBean;
+import com.fuyou.play.biz.xmpp.XmppConnection;
 import com.fuyou.play.util.ExceptionUtils;
 import com.fuyou.play.util.OsUtil;
 import com.fuyou.play.util.manager.SkinManager;
+import com.fuyou.play.util.sp.UserDataUtil;
+import com.fuyou.play.view.activity.MobileLoginActivity;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -162,7 +168,7 @@ public class BaseActivity extends FragmentActivity {
      *
      * @param dark 状态栏字体是否为深色
      */
-    private void setStatusBarFontIconDark(boolean dark) {
+    protected void setStatusBarFontIconDark(boolean dark) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             // android6.0+系统
             // 这个设置和在xml的style文件中用这个<item name="android:windowLightStatusBar">true</item>属性是一样的
@@ -213,4 +219,40 @@ public class BaseActivity extends FragmentActivity {
         }
     }
 
+    //错误提示方法
+    protected void showBaseError(BaseBean bean){
+        if (bean==null) return;
+        try {
+            String msg=bean.getMsg();
+            ErrorBean error= bean.getError();
+            if (msg!=null&&!TextUtils.isEmpty(msg)){
+                showToast(msg);
+            }else if (error!=null&&!TextUtils.isEmpty(error.getMessage())){
+                showToast(error.getMessage());
+            }
+        } catch (Exception e){
+            ExceptionUtils.ExceptionSend(e);
+        }
+    }
+
+    //退出账号,启动登陆页面
+    protected void signOut(){
+        try {
+            try {
+                // 更改用户状态为离线
+                XmppConnection.getInstance().setPresence(5);
+                // 退出登录先关闭连接，这样可以清除所有监听
+                XmppConnection.getInstance().closeConnection();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            UserDataUtil.clearUserData(this);
+            Intent intent = new Intent(this, MobileLoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        } catch (Exception e){
+
+        }
+    }
 }

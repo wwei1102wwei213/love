@@ -1,57 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_base_milo">
-    <View android:id="@+id/status_bar"
-        android:layout_width="match_parent"
-        android:layout_height="1px"/>
+    android:background="@color/base_all"
+    tools:context="com.fuyou.play.view.activity.MainActivity">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <RadioGroup
+        android:id="@+id/ll"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/home_top_height">
-            <ImageView
-                android:id="@+id/iv"
-                android:layout_width="@dimen/home_top_height"
-                android:layout_height="@dimen/home_top_height"
-                android:src="@mipmap/ic_launcher_round"
-                android:padding="11dp"
-                android:scaleType="centerInside"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
+        android:layout_height="@dimen/home_radio_btn_height"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:layout_alignParentBottom="true">
+        <RadioButton
+            android:id="@+id/btn1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:layout_margin="5dp"
-            android:background="@color/white">
-
-        </LinearLayout>
-    </LinearLayout>
-    <!--<com.fuyou.play.widget.custom.MyScrollerView
+            android:background="@null"
+            android:paddingTop="5dp"
+            android:drawableTop="@drawable/radio_knowing_selector"
+            android:drawablePadding="@dimen/home_radio_drawable_padding"
+            android:button="@null"
+            android:text="主页"
+            android:textSize="@dimen/font12"
+            android:gravity="center_horizontal"
+            android:textColor="@color/selector_main_radio"
+            />
+        <RadioButton
+            android:id="@+id/btn2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:paddingTop="5dp"
+            android:drawableTop="@drawable/radio_community_selector"
+            android:drawablePadding="@dimen/home_radio_drawable_padding"
+            android:button="@null"
+            android:text="星盘"
+            android:textSize="@dimen/font12"
+            android:gravity="center_horizontal"
+            android:textColor="@color/selector_main_radio"
+            />
+        <RadioButton
+            android:id="@+id/btn3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:paddingTop="5dp"
+            android:drawableTop="@drawable/radio_discovery_selector"
+            android:drawablePadding="@dimen/home_radio_drawable_padding"
+            android:button="@null"
+            android:text="社区"
+            android:textSize="@dimen/font12"
+            android:gravity="center_horizontal"
+            android:textColor="@color/selector_main_radio"
+            />
+        <RadioButton
+            android:id="@+id/btn4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:paddingTop="5dp"
+            android:drawableTop="@drawable/radio_myself_selector"
+            android:drawablePadding="@dimen/home_radio_drawable_padding"
+            android:button="@null"
+            android:text="我的"
+            android:textSize="@dimen/font12"
+            android:gravity="center_horizontal"
+            android:textColor="@color/selector_main_radio"
+            />
+    </RadioGroup>
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1.5px"
+        android:background="@color/line_eee"
+        android:layout_above="@id/ll"/>
+    <FrameLayout
+        android:id="@+id/fl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:background="@android:color/transparent"
-        android:id="@+id/msv"
-        app:visibility_height="180dp"
-        >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/bg_base_milo"
-            android:gravity="center"
-            android:orientation="vertical">
-            <include layout="@layout/layout_user_information"/>
-        </LinearLayout>
-    </com.fuyou.play.widget.custom.MyScrollerView>-->
+        android:layout_above="@id/line"/>
+</RelativeLayout>
 
-</LinearLayout>

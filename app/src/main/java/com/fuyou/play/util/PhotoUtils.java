@@ -54,7 +54,7 @@ public class PhotoUtils {
      */
     public static final int SCAL_IMAGE_1024 = 1024;
     public static final int SCAL_IMAGE_240 = 240;
-    public static final int SCAL_IMAGE_100 = 200;
+    public static final int SCAL_IMAGE_100 = 320;
     public static final int SCAL_IMAGE_80 = 200;
     public static final int SCAL_IMAGE_30 = 30;
     private static String TAG = "PhotoUtils";

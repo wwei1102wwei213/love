@@ -45,14 +45,14 @@ public class GuideScrollActivity extends BaseActivity {
             mSkipView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(mContext, MainActivity.class));
+                    startActivity(new Intent(mContext, MobileLoginActivity.class));
                     finish();
                 }
             });
             mEnterView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    startActivity(new Intent(mContext, MainActivity.class));
+                    startActivity(new Intent(mContext, MobileLoginActivity.class));
                     finish();
                 }
             });

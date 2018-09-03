@@ -131,7 +131,7 @@ public class OkHttpClientManager {
      * ============POST方便的访问方式===============
      */
     public static void post(String url, Map<String, String> params, final ResultCallback callback) {
-//        LogCustom.i(Const.LOG_TAG_HTTP, "请求参数是：" + params.toString());
+        LogCustom.i(Const.LOG_TAG_HTTP, "请求参数是：" + params.toString());
         getInstance().getPostNewDelegate().postAsyn(url, params, callback, null);
     }
 
@@ -297,8 +297,8 @@ public class OkHttpClientManager {
             @Override
             public void onResponse(final Response response) {
                 try {
-                    final String string = response.body().string();
-//                    LogCustom.i(Const.LOG_TAG_HTTP, "请求原始数据：" + string);
+                    final String string = response.body().string().trim();
+                    LogCustom.i(Const.LOG_TAG_HTTP, "请求原始数据：" + string);
                     sendSuccessResultCallback(string, resCallBack);
 
                 } catch (Exception e) {

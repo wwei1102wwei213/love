@@ -8,15 +8,23 @@
     <!--基本颜色-->
     <color name="transparent">#00000000</color>
     <color name="transparent_half">#80000000</color>
+    <color name="transparent_little">#20000000</color>
     <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="white_half_more">#40FFFFFF</color>
+    <color name="white_half_little">#B0FFFFFF</color>
+    <color name="white_half">#80FFFFFF</color>
     <color name="white_2">#FFFFFFFF</color>
     <color name="base_all">#4a356a</color>
-    <color name="base_all_half">#80434284</color>
-    <color name="base_background">#dddddd</color>
+    <color name="base_all_half">#804a356a</color>
+    <color name="base_all_half_half">#404a356a</color>
+    <color name="base_background">#eeeeee</color>
     <color name="base_radius_selected">#9f9f9f</color>
 
     <!--文字颜色-->
     <color name="text_white">#FFFFFF</color>
+    <color name="text_111">#111111</color>
+    <color name="text_222">#222222</color>
     <color name="text_333">#333333</color>
     <color name="text_444">#444444</color>
     <color name="text_666">#666666</color>
@@ -31,6 +39,7 @@
     <color name="text_color_434284">#434284</color>
     <color name="text_color_fd402e">#fd402e</color>
     <color name="text_color_352b99">#352b99</color>
+    <color name="text_color_6897BB">#6897BB</color>
 
 
     <!--皮肤颜色-->
@@ -64,5 +73,9 @@
 
     <!--选择区域分割线颜色-->
     <color name="province_line_border">#C7C7C7</color>
+
+    <color name="text_comment_item">#444444</color>
+    <color name="bg_gray_color_pressed">#CCCCCC</color>
+    <color name="bg_gray_color_nothing">#eeeeee</color>
 
 </resources>

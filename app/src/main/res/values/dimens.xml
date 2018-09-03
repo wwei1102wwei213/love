@@ -32,10 +32,17 @@
     <dimen name="margin15">15dp</dimen>
     <dimen name="margin20">20dp</dimen>
 
+    <!---->
+    <dimen name="height48">48dp</dimen>
+
+    <dimen name="status_title_height">44dp</dimen>
+
     <!--标题大小-->
     <dimen name="base_title_size">17sp</dimen>
     <dimen name="base_title_right_size">14sp</dimen>
-    <dimen name="base_title_height">44dp</dimen>
-    <dimen name="base_title_right_padding">10dp</dimen>
+    <dimen name="base_title_height">42dp</dimen>
+    <dimen name="base_title_right_padding">12dp</dimen>
 
+    <!--主页-->
+    <dimen name="home_radio_drawable_padding">2dp</dimen>
 </resources>

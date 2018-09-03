@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <com.fuyou.play.widget.HackyViewPager
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.fuyou.play.widget.HackyViewPager>
+
+    <ImageView
+        android:id="@+id/download_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:padding="20dp"
+        android:src="@mipmap/icon_img_save" />
+
+    <ProgressBar
+        android:id="@+id/pb_base"
+        style="@style/ProgressBar_Base_Circle_Style"
+        android:visibility="gone" />
+
+</RelativeLayout>

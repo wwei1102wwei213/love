@@ -7,7 +7,9 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-    <!--Theme.AppCompat.Light.NoActionBar-->
+    <!--Theme.AppCompat.Light.NoActionBar
+    @style/Theme.AppCompat.Light.NoActionBar-->
+    <!--<style name="AppTheme" parent="@android:style/Theme.Translucent.NoTitleBar">-->
     <style name="AppTheme" parent="@android:style/Theme.Translucent.NoTitleBar">
         <item name="android:windowBackground">@color/transparent</item>
         <item name="android:backgroundDimEnabled">false</item><!-- 半透明 -->
@@ -148,4 +150,13 @@
         <item name="android:background">@color/line_ddd</item>
     </style>
 
+
+    <style name="ProgressBar_Base_Circle_Style">
+        <!--<item name="android:indeterminateDrawable">@android:drawable/progress_medium_white</item>-->
+        <item name="android:indeterminateDuration">1500</item>
+        <item name="android:layout_width">54dp</item>
+        <item name="android:layout_height">54dp</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_centerInParent">true</item>
+    </style>
 </resources>

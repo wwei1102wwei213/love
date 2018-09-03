@@ -9,10 +9,10 @@ import java.io.File;
  */
 public class Const {
 
-    public static final String TAG_LOG = "ML_PLAY";
-    public static final String LOG_TAG_HTTP = "ML_HTTP";
-    public static final String LOG_TAG_ERROR = "ML_ERROR";
-    public static final String LOG_TAG = "ML_PLAY";
+    public static final String TAG_LOG = "PLAY";
+    public static final String LOG_TAG_HTTP = "PLAY_HTTP";
+    public static final String LOG_TAG_ERROR = "PLAY_ERROR";
+    public static final String LOG_TAG = "PLAY";
 
     public static final String CONTACTS_WX_APPID = "wx9c58b3025ddbc6a4";
     public static final String RECEIVER_ACTION_WXLOGIN = "receiver_action_wx_login";
@@ -31,4 +31,16 @@ public class Const {
     public final static String SL_DIRECTORY_PICTURE_FOLD_PATH = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getPath()
             + File.separator + "ML";                   // 图片存储到相册目录下
 
+    public final static String FY_DIRECTORY_PICTURE_FOLD_PATH = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getPath()
+            + File.separator + "fuyou";                   // 图片存储到相册目录下
+
+    public static final String CHAT_ACCOUNT_PASSWORD = "123456";
+
+    /**Intent消息串**/
+    //聊天页面
+    public static final String INTENT_CHAT_TYPE = "intent_chat_type";
+    public static final String INTENT_CHAT_USER = "intent_chat_user";
+
+    public static final String INTENT_MAX_NUM = "intent_max_num";
+    public static final String INTENT_SELECTED_PICTURE = "intent_selected_picture";
 }

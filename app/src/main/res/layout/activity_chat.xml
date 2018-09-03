@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/base_all"
+    android:fitsSystemWindows="true">
+
+    <include layout="@layout/base_title_layout"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center_vertical"
+        android:background="@color/base_background">
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="6dp"
+        android:paddingTop="6dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:minHeight="48dp"
+        android:background="@color/white"
+        android:gravity="bottom"
+        android:layout_gravity="bottom">
+        <!--android:imeOptions="flagNoExtractUi"-->
+        <ImageView
+            android:id="@+id/v_left"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/chat_voice_normal"
+            android:layout_alignBottom="@+id/et_text"
+            android:visibility="visible" />
+        <EditText
+            android:id="@+id/et_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/tv_send"
+            android:layout_toRightOf="@+id/v_left"
+            android:inputType="textMultiLine"
+            android:background="@null"
+            android:minHeight="36dp"
+            android:maxHeight="120dp"
+            android:padding="3dp"
+            android:textColor="@color/text_333"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"/>
+        <TextView
+            android:id="@+id/tv_send"
+            android:layout_width="48dp"
+            android:layout_height="wrap_content"
+            android:minHeight="36dp"
+            android:gravity="center"
+            android:padding="6dp"
+            android:background="@drawable/message_send_btn"
+            android:text="发送"
+            android:layout_alignParentRight="true"
+            android:layout_alignBottom="@+id/et_text"
+            android:textColor="@color/white"
+            android:visibility="visible" />
+
+    </RelativeLayout>
+</LinearLayout>

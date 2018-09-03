@@ -1,10 +1,12 @@
 package com.fuyou.play.util;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.text.TextUtils;
+import android.util.DisplayMetrics;
 
 import com.fuyou.play.LApplication;
 
@@ -23,6 +25,7 @@ public class CommonUtils {
     private static String UUID;
     private static String ChannelName;
     private static String LANGUAGE;
+    private static int DeviceWidth;
 
     public static String getLanguage(){
         if (LANGUAGE==null){
@@ -59,7 +62,8 @@ public class CommonUtils {
     public static String getChannelName(){
         if (ChannelName==null){
             try {
-                ApplicationInfo appInfo = LApplication.getInstance().getPackageManager().getApplicationInfo(LApplication.getInstance().getPackageName(), PackageManager.GET_META_DATA);
+                ApplicationInfo appInfo = LApplication.getInstance().getPackageManager().getApplicationInfo(
+                        LApplication.getInstance().getPackageName(), PackageManager.GET_META_DATA);
                 ChannelName =appInfo.metaData.get("COM_MICRO_MILU_CHANNEL_NAME")+"";
             } catch (Exception e){
                 e.printStackTrace();
@@ -67,6 +71,17 @@ public class CommonUtils {
             }
         }
         return ChannelName;
+    }
+
+    public static int getDeviceWidth(Context context) {
+        if (DeviceWidth==0) {
+            if (context instanceof Activity) {
+                DisplayMetrics dm = new DisplayMetrics();
+                ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(dm);
+                DeviceWidth = dm.widthPixels;
+            }
+        }
+        return DeviceWidth;
     }
 
     private static String getVersion(Context context) {

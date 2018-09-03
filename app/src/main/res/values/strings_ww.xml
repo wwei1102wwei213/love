@@ -108,5 +108,26 @@
     <string name="title_html_user_agreement">用户协议</string>
     <string name="title_html_conceal">隐私政策</string>
 
+    <!---->
+    <string name="hint_add_photo">添加照片（最多9张,长按图片可删除）</string>
+    <string name="hint_discuss_title">请输入标题</string>
+    <string name="hint_discuss_content">请输入内容</string>
+    <string name="title_discuss_content">帖子正文</string>
+    <string name="discuss_post_txt">发布</string>
+    <string name="discuss_post_success">发布成功</string>
+    <string name="discuss_post_fail">发布失败</string>
+    <string name="discuss_post_loading">正在发布...</string>
+    <string name="discuss_post_title">发帖</string>
 
+    <!--个人资料页-->
+    <string name="title_info_profile">个人资料</string>
+    <string name="info_profile_add_friend">加为好友</string>
+    <string name="info_profile_wait">已添加(待验证)</string>
+    <string name="info_profile_chat">开始聊天</string>
+
+    <!--个人星盘-->
+    <string name="title_info_astrolabe">个人星盘</string>
+
+    <!--选择图片-->
+    <string name="title_select_picture">选择图片</string>
 </resources>

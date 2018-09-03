@@ -1,14 +1,19 @@
 package com.fuyou.play.view;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.fuyou.play.bean.BaseBean;
+import com.fuyou.play.bean.ErrorBean;
 import com.fuyou.play.util.ExceptionUtils;
 import com.fuyou.play.util.manager.SkinManager;
 
@@ -68,6 +73,26 @@ public class BaseFragment extends Fragment {
             ExceptionUtils.ExceptionSend(e, "获取状态栏高度失败");
         }
         return result;
+    }
+
+    protected void startActivity(Class<? extends Activity> activityClass) {
+        startActivity(new Intent(getActivity(), activityClass));
+    }
+
+    //错误提示方法
+    protected void showBaseError(BaseBean bean){
+        if (bean==null) return;
+        try {
+            String msg=bean.getMsg();
+            ErrorBean error= bean.getError();
+            if (msg!=null&&!TextUtils.isEmpty(msg)){
+                showToast(msg);
+            }else if (error!=null&&!TextUtils.isEmpty(error.getMessage())){
+                showToast(error.getMessage());
+            }
+        } catch (Exception e){
+            ExceptionUtils.ExceptionSend(e);
+        }
     }
 
     @Override
