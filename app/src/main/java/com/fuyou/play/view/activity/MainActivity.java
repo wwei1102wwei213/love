@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.fuyou.play.R;
 import com.fuyou.play.bean.chat.ChatMessageBean;
+import com.fuyou.play.biz.FYThreadPoolManager;
 import com.fuyou.play.biz.db.DBHelper;
 import com.fuyou.play.biz.http.HttpFlag;
 import com.fuyou.play.biz.http.HttpRepListener;
@@ -33,6 +34,7 @@ import com.google.gson.JsonSyntaxException;
 import org.greenrobot.eventbus.EventBus;
 import org.jivesoftware.smack.packet.Message;
 
+import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -188,28 +190,7 @@ public class MainActivity extends BaseActivity implements HttpRepListener, View.
     }
 
     private void dealWithLogin(final String account, final String password) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    if (XmppConnection.getInstance().login(account, password)) {
-                        LogCustom.show("登录成功");
-
-                        XmppConnection.getInstance().getHistoryMessages();
-
-                        XmppConnection.getInstance().initChatManager();
-                        XmppConnection.getInstance().initGroupChatManager();
-                        XMChatMessageListener.removeAll();
-                        XMChatMessageListener.addWatcher(MainActivity.this);// 增加XMPP消息观察者
-                    } else {
-                        LogCustom.show("登录失败");
-                    }
-                } catch (Exception e){
-                    LogCustom.show("登录失败");
-                    ExceptionUtils.ExceptionSend(e);
-                }
-            }
-        }).start();
+        FYThreadPoolManager.execute(new XmppRunnable(this, account, password));
     }
 
     @Override
@@ -251,14 +232,43 @@ public class MainActivity extends BaseActivity implements HttpRepListener, View.
             // 更改用户状态为离线
             XmppConnection.getInstance().setPresence(5);
             // 1.退出程序应该移除监听
-//            XmppConnection.getInstance().getConnection().getChatManager().removeChatListener(chatManagerListener);
             // 2.退出程序应该移除连接监听
-//
             // 3.退出程序应该关闭连接
             XmppConnection.getInstance().closeConnection();
         } catch (Exception e) {
             e.printStackTrace();
         }
         super.finish();
+    }
+
+    private static class XmppRunnable implements Runnable {
+
+        private String account, password;
+        private WeakReference<Watcher> weak;
+
+        private XmppRunnable(Watcher watcher, String account, String password) {
+            weak = new WeakReference<>(watcher);
+            this.account = account;
+            this.password = password;
+        }
+
+        @Override
+        public void run() {
+            try {
+                if (weak!=null&&weak.get()!=null&&XmppConnection.getInstance().login(account, password)) {
+                    LogCustom.show("登录成功");
+                    XmppConnection.getInstance().getHistoryMessages();
+                    XmppConnection.getInstance().initChatManager();
+                    XmppConnection.getInstance().initGroupChatManager();
+                    XMChatMessageListener.removeAll();
+                    XMChatMessageListener.addWatcher(weak.get());// 增加XMPP消息观察者
+                } else {
+                    LogCustom.show("登录失败");
+                }
+            } catch (Exception e){
+                LogCustom.show("登录失败");
+                ExceptionUtils.ExceptionSend(e);
+            }
+        }
     }
 }

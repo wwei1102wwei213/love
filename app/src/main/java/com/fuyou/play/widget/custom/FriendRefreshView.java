@@ -526,10 +526,10 @@ public class FriendRefreshView extends ViewGroup implements OnDetectScrollListen
         isLoading = loading;
         if (isLoading) {
             // 显示布局
-            adapter.showFooter(mFooterView, true);
+//            adapter.showFooter(mFooterView, true);
         } else {
             // 隐藏布局
-            adapter.showFooter(mFooterView, false);
+//            adapter.showFooter(mFooterView, false);
             // 重置滑动的坐标
             mDownY = 0;
             mUpY = 0;

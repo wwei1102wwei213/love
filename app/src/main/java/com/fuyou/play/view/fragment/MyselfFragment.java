@@ -14,10 +14,10 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.fuyou.play.R;
 import com.fuyou.play.util.sp.UserDataUtil;
 import com.fuyou.play.view.BaseFragment;
+import com.fuyou.play.view.activity.InfoSettingActivity;
 import com.fuyou.play.view.activity.SystemSettingActivity;
 import com.fuyou.play.widget.CircleImageView;
 
-import cn.wwei.sdktest.SdkTestActivity;
 
 /**
  * Created by Administrator on 2018-07-20.
@@ -59,8 +59,7 @@ public class MyselfFragment extends BaseFragment{
         civ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                startActivity(InfoSettingActivity.class);
-                startActivity(SdkTestActivity.class);
+                startActivity(InfoSettingActivity.class);
             }
         });
         tv_name = (TextView)findViewById(R.id.tv_name);

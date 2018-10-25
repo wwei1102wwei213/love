@@ -58,7 +58,7 @@ public class SplashActivity extends BaseActivity implements HttpRepListener{
             Factory.getHttpRespBiz(this, HttpFlag.CHECK, null).post();
         }
         LogCustom.show(TextUtils.isEmpty(CommonUtils.getUUID())?"User UUID is empty":"User UUID:"+CommonUtils.getUUID());
-        DBHelper.getInstance().dropTable(ChatMessageBean.class);
+//        DBHelper.getInstance().dropTable(ChatMessageBean.class);
     }
 
     private static final String IS_FIRST_RUN = "IsFirstRun";

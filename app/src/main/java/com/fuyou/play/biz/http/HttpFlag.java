@@ -9,8 +9,8 @@ public class HttpFlag {
     public static final int ERROR_NORMAL = 0;
     public static final int ERROR_TIME_OUT = 1;
 
-    private static final String IP_PORT = "http://119.23.247.126:8001/slove/";
-    public static final String HOST = "119.23.247.126";
+    private static final String IP_PORT = "http://www.fuyou.site/";
+    public static final String HOST = "www.fuyou.site";
 
     public static final int CHECK = 1;
     public static final String CHECK_URL = IP_PORT+"check.jsp";

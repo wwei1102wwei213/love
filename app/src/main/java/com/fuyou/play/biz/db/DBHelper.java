@@ -119,6 +119,12 @@ public class DBHelper {
         return null;
     }
 
+    /**
+     * 查询聊天记录
+     * @param lastTime
+     * @param ChatID
+     * @return
+     */
     public List<ChatMessageBean> queryChatObject (String lastTime, String ChatID){
         try {
             TASQLiteDatabase tasqLiteDatabase = LApplication.getInstance().getSQLiteDatabasePool().getSQLiteDatabase();
@@ -157,4 +163,27 @@ public class DBHelper {
         }
         return null;
     }
+
+    public void insertChatHistory(List<ChatMessageBean> list) {
+        try {
+            TASQLiteDatabase tasqLiteDatabase = LApplication.getInstance().getSQLiteDatabasePool().getSQLiteDatabase();
+            if (!tasqLiteDatabase.hasTable(ChatMessageBean.class)) {
+                tasqLiteDatabase.creatTable(ChatMessageBean.class);
+                LogCustom.show("DBHelper", ChatMessageBean.class.getSimpleName()+"表已创建");
+            }
+            List<ChatMessageBean> find;
+            String where;
+            for (ChatMessageBean bean:list) {
+                where = "ChatID="+bean.getChatID() + " AND SendTime=" + bean.getSendTime() + " AND ToID=" + bean.getToID();
+                find = tasqLiteDatabase.query(ChatMessageBean.class, false, where, null, null, null, null);
+                if (find==null||find.size()==0) {
+                    tasqLiteDatabase.insert(bean);
+                }
+            }
+            LApplication.getInstance().getSQLiteDatabasePool().releaseSQLiteDatabase(tasqLiteDatabase);
+        } catch (Exception e){
+            ExceptionUtils.ExceptionSend(e);
+        }
+    }
+
 }

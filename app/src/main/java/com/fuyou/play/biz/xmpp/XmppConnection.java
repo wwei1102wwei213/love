@@ -7,6 +7,7 @@ import android.util.Log;
 import com.fuyou.play.BuildConfig;
 import com.fuyou.play.LApplication;
 import com.fuyou.play.bean.chat.ChatMessageBean;
+import com.fuyou.play.biz.FYThreadPoolManager;
 import com.fuyou.play.biz.db.DBHelper;
 import com.fuyou.play.util.ExceptionUtils;
 import com.fuyou.play.util.LogCustom;
@@ -79,6 +80,14 @@ public class XmppConnection {
     private static XmppConnection xmppConnection = new XmppConnection();
     private XMConnectionListener connectionListener;
 
+
+    private Runnable openRunnable = new Runnable() {
+        @Override
+        public void run() {
+            openConnection();
+        }
+    };
+
     /**
      * 单例模式
      *
@@ -103,12 +112,7 @@ public class XmppConnection {
         if (connection == null) {
             // 开线程打开连接，避免在主线程里面执行HTTP请求
             // Caused by: android.os.NetworkOnMainThreadException
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    openConnection();
-                }
-            }).start();
+            FYThreadPoolManager.execute(openRunnable);
         }
         return connection;
     }
@@ -998,6 +1002,7 @@ public class XmppConnection {
             List<Message> messageList = offlineManager.getMessages();
             if (messageList!=null&&messageList.size()>0) {
                 LogCustom.show("离线消息列表："+messageList.size());
+                List<ChatMessageBean> myList = new ArrayList<>();
                 for (Message message:messageList) {
                     LogCustom.show("收到离线消息：" + "Received from 【"
                             + message.getFrom() + "】 message: " + message.getBody());
@@ -1017,6 +1022,7 @@ public class XmppConnection {
                                 ExceptionUtils.ExceptionSend(e);
                             }
                             if (bean!=null&&UserDataUtil.getUserID(LApplication.getInstance()).equals(bean.getToID()+"")) {
+                                myList.add(bean);
                                 DBHelper.getInstance().insertObject(bean, ChatMessageBean.class);
                             }
                         }
@@ -1025,6 +1031,9 @@ public class XmppConnection {
                     } else {
                         LogCustom.show("type:error");
                     }
+                }
+                if (myList.size()>0) {
+                    DBHelper.getInstance().insertChatHistory(myList);
                 }
                 offlineManager.deleteMessages();
             } else {
@@ -1037,7 +1046,8 @@ public class XmppConnection {
     }
 
     public void connectChatServer() {
-        new Thread("connect thread") {
+        FYThreadPoolManager.execute(new Runnable() {
+            @Override
             public void run() {
                 try {
                     int threadId = (int) Thread.currentThread().getId();
@@ -1057,7 +1067,7 @@ public class XmppConnection {
                     ExceptionUtils.ExceptionSend(e);
                 }
             }
-        }.start();
+        });
     }
 
     // 聊天监听类
