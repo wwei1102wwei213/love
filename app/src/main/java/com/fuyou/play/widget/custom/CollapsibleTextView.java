@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import com.fuyou.play.R;
 
+import java.lang.ref.WeakReference;
+
 
 /**
  * Created by Administrator on 1/23/2018.
@@ -45,9 +47,9 @@ public class CollapsibleTextView extends LinearLayout implements View.OnClickLis
     private changeState changeStateCallBack;
     private boolean isNeedLayout;
     private int maxLineCount = 8;
-    private final Handler handler = new Handler() {
-        @Override
-        public void dispatchMessage(Message msg) {
+
+    private void handleMsg(){
+        try {
             if (mText.getLineCount() <= maxLineCount) {
                 // 行数不足不做处理
                 mState = COLLAPSIBLE_STATE_NONE;
@@ -75,8 +77,23 @@ public class CollapsibleTextView extends LinearLayout implements View.OnClickLis
                         break;
                 }
             }
+        } catch (Exception e){
+            e.printStackTrace();
         }
-    };
+    }
+
+    private static class MyHandler extends Handler {
+        private WeakReference<CollapsibleTextView> weak;
+        private MyHandler(CollapsibleTextView view) {
+            weak = new WeakReference<>(view);
+        }
+        @Override
+        public void handleMessage(Message msg) {
+            if (weak!=null&&weak.get()!=null) {
+                weak.get().handleMsg();
+            }
+        }
+    }
 
     public CollapsibleTextView(Context context) {
         this(context, null);
@@ -147,12 +164,19 @@ public class CollapsibleTextView extends LinearLayout implements View.OnClickLis
         }
     }
 
+    private MyHandler handler;
+
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         super.onLayout(changed, l, t, r, b);
-        if (isNeedLayout) {
-            isNeedLayout = false;
-            handler.sendMessage(Message.obtain());
+        try {
+            if (isNeedLayout) {
+                isNeedLayout = false;
+                if (handler==null) handler = new MyHandler(this);
+                handler.sendMessage(Message.obtain());
+            }
+        } catch (Exception e){
+            e.printStackTrace();
         }
     }
 
