@@ -8,6 +8,7 @@
     <!--基本颜色-->
     <color name="transparent">#00000000</color>
     <color name="transparent_half">#80000000</color>
+    <color name="transparent_double_half">#40000000</color>
     <color name="transparent_little">#20000000</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
@@ -18,7 +19,7 @@
     <color name="base_all">#4a356a</color>
     <color name="base_all_half">#804a356a</color>
     <color name="base_all_half_half">#404a356a</color>
-    <color name="base_background">#eeeeee</color>
+    <color name="base_background">#f0f0f0</color>
     <color name="base_radius_selected">#9f9f9f</color>
 
     <!--文字颜色-->

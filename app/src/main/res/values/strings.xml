@@ -1,4 +1,5 @@
 <resources>
+    <!--ML只有5个转义符: &lt; &gt;&amp; &quot; &apos;-->
     <string name="app_name">蜉蝣</string>
 
     <!--provider authorities-->
@@ -21,4 +22,11 @@
 
     <string name="full_text">全文</string>
     <string name="collapse_text">收起</string>
+
+    <!--测试题标题-->
+    <string name="home_menu_title_quizzes">QUIZZES</string>
+    <string name="home_menu_title_matching">MATCHING</string>
+    <string name="quizzes_name_zodiac">zodiac</string>
+    <string name="quizzes_name_love_sex">love&amp;sex</string>
+    <string name="quizzes_name_personal">personal</string>
 </resources>

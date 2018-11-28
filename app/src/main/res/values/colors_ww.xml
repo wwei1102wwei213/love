@@ -10,6 +10,7 @@
     <color name="line_eee">#eeeeee</color>
     <color name="text_hint_color">#b7b7b7</color>
 
+    <color name="base_line">#eeeeee</color>
     <!--基本弹窗-->
     <color name="base_dialog_line">#dddddd</color>
     <color name="base_dialog_title">#ffffff</color>

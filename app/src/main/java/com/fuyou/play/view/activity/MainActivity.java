@@ -27,6 +27,7 @@ import com.fuyou.play.view.BaseActivity;
 import com.fuyou.play.view.BaseFragment;
 import com.fuyou.play.view.fragment.AstrolableFragment;
 import com.fuyou.play.view.fragment.DiscussFragment;
+import com.fuyou.play.view.fragment.HomeFragment;
 import com.fuyou.play.view.fragment.MyselfFragment;
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
@@ -69,7 +70,7 @@ public class MainActivity extends BaseActivity implements HttpRepListener, View.
             }
             BaseFragment fragment1,fragment2,fragment3,fragment4;
             fragmentManager = getSupportFragmentManager();
-            fragment1 = new MyselfFragment();
+            fragment1 = new HomeFragment();
             fragment2 = new AstrolableFragment();
             fragment3 = new DiscussFragment();
             fragment4 = new MyselfFragment();
