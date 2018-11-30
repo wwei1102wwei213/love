@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/home_base_space"
+    android:padding="@dimen/home_base_padding"
+    android:background="@color/white">
+
+    <com.fuyou.play.widget.tv.TitleTextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/home_menu_title_height"
+        android:gravity="center_vertical"
+        android:text="@string/home_menu_title_quizzes"
+        android:textSize="@dimen/home_menu_title_size"
+        android:paddingBottom="@dimen/home_base_padding"
+        />
+
+    <RelativeLayout
+        android:id="@+id/v_library_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/home_library_item_space">
+        <ImageView
+            android:id="@+id/iv_library_1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/home_library_item_iv_height"
+            android:scaleType="centerCrop"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/v_library_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/home_library_item_space">
+        <ImageView
+            android:id="@+id/iv_library_2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/home_library_item_iv_height"
+            android:scaleType="centerCrop"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/v_library_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/home_library_item_space">
+        <ImageView
+            android:id="@+id/iv_library_3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/home_library_item_iv_height"
+            android:scaleType="centerCrop"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/v_library_4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/home_library_item_space">
+        <ImageView
+            android:id="@+id/iv_library_4"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/home_library_item_iv_height"
+            android:scaleType="centerCrop"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/v_library_5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/home_library_item_space">
+        <ImageView
+            android:id="@+id/iv_library_5"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/home_library_item_iv_height"
+            android:scaleType="centerCrop"/>
+    </RelativeLayout>
+
+</LinearLayout>

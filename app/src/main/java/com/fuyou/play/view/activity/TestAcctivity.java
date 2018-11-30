@@ -1,127 +1,55 @@
-package com.fuyou.play.view.fragment;
+package com.fuyou.play.view.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.fuyou.play.R;
 import com.fuyou.play.adapter.PostListAdapter;
 import com.fuyou.play.bean.discuss.DiscussBaseBean;
 import com.fuyou.play.bean.discuss.DiscussEntity;
-import com.fuyou.play.biz.Factory;
 import com.fuyou.play.biz.http.HttpFlag;
 import com.fuyou.play.biz.http.HttpRepListener;
 import com.fuyou.play.util.sp.UserDataUtil;
-import com.fuyou.play.view.BaseFragment;
-import com.fuyou.play.view.activity.DiscussPostActivity;
-import com.fuyou.play.widget.pullwidget.elasticity.ElasticityHelper;
+import com.fuyou.play.view.BaseActivity;
 import com.fuyou.play.widget.pullwidget.pullrefresh.ElasticityListView;
 import com.fuyou.play.widget.pullwidget.pullrefresh.PullElasticityListView;
-import com.fuyou.play.widget.pullwidget.pullrefresh.PullToRefreshBase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by Administrator on 2018-07-25.
- */
-public class DiscussFragment extends BaseFragment implements HttpRepListener{
+public class TestAcctivity extends BaseActivity implements HttpRepListener {
 
     private List<DiscussEntity> list;
     private PostListAdapter adapter;
     private PullElasticityListView pv;
     private ElasticityListView lv;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_discuss, container, false);
-        initStatusBar(findViewById(R.id.status_bar));
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_test);
         initViews();
         initData();
-        return rootView;
     }
 
+
     private void initViews(){
-        ((TextView) findViewById(R.id.tv_title_base)).setText("社区");
-        findViewById(R.id.iv_post).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(DiscussPostActivity.class);
-            }
-        });
-        pv = (PullElasticityListView) findViewById(R.id.pv);
-        lv = pv.getRefreshableView();
-        lv.setFadingEdgeLength(0);
-        lv.setDivider(null);
-        lv.setVerticalScrollBarEnabled(false);
-        list = new ArrayList<>();
-        adapter = new PostListAdapter(context, list);
-        lv.setAdapter(adapter);
-        pv.setPullRefreshEnabled(true);
-        pv.setScrollLoadEnabled(true);
-        pv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ElasticityListView>() {
-            @Override
-            public void onPullDownToRefresh(PullToRefreshBase<ElasticityListView> pullToRefreshBase) {
-                if (!mBaseExit) {
-                    refresh = true;
-                    pv.onPullUpRefreshComplete();
-                    LastID = "";
-                    page = 0;
-                    initData();
-                }
-            }
 
-            @Override
-            public void onPullUpToRefresh(PullToRefreshBase<ElasticityListView> pullToRefreshBase) {
-
-            }
-        });
-        /*pv.setOnScrollListener(new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-                if (!mBaseExit&&pv.isReadyForPullUp() && pv.hasMoreData()) {
-                    loading = true;
-                    page++;
-                    initData();
-                }
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-
-            }
-        });*/
-        pv.setLoadingListener(new PullElasticityListView.OnLoadingListener() {
-            @Override
-            public void onPullUpLoading() {
-                if (!mBaseExit) {
-                    loading = true;
-                    page++;
-                    initData();
-                }
-            }
-        });
-        ElasticityHelper.setUpOverScroll(lv);
     }
 
     private void initData() {
-        Factory.getHttpRespBiz(this, HttpFlag.DISCUSS_QUERY, page).post();
+
     }
 
-    private int label = 0;
     private int order = 0;
     private String LastID = "";
     @Override
     public Map getParamInfo(int flag, Object obj) {
         Map<String, String> map = new HashMap<>();
         if (flag == HttpFlag.DISCUSS_QUERY) {
-            map.put("InfoID", UserDataUtil.getUserID(context));
+            map.put("InfoID", UserDataUtil.getUserID(this));
             map.put("LastID", LastID);
             map.put("order", ""+order);
             map.put("pagesize", "7");

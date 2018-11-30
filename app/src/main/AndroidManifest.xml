@@ -101,6 +101,14 @@
         <activity android:name=".view.activity.ShowPhotoActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTop"/>
+        <!--测试列表-->
+        <activity android:name=".view.activity.QuizzesListActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
+        <!--展示图片-->
+        <activity android:name=".view.activity.TestAcctivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
 
         <!--Glide设置-->
         <meta-data

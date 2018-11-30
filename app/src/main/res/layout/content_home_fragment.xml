@@ -30,6 +30,10 @@
 
     <include layout="@layout/layout_quizzes_menu" />
 
+    <include layout="@layout/layout_matching_menu" />
+
+    <include layout="@layout/layout_library_menu" />
+
     <View android:layout_width="match_parent"
         android:layout_height="200dp"
         android:background="@color/white"

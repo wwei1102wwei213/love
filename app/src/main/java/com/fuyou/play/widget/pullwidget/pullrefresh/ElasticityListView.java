@@ -7,10 +7,12 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.ScaleAnimation;
 import android.widget.ListView;
 
-public class ElasticityListView extends ListView {
-    private ScaleAnimation bottomAnim;
+import com.fuyou.play.widget.pullwidget.elasticity.ElasticityConfig;
+
+
+public class ElasticityListView extends ListView{
+
     private boolean overScrollAnim = true;
-    private ScaleAnimation topAnim;
 
     public void setOverScrollAnim(boolean overScrollAnim) {
         this.overScrollAnim = overScrollAnim;
@@ -28,24 +30,35 @@ public class ElasticityListView extends ListView {
         super(context, attrs, defStyleAttr);
     }
 
-    protected boolean overScrollBy(int deltaX, int deltaY, int scrollX, int scrollY, int scrollRangeX, int scrollRangeY, int maxOverScrollX, int maxOverScrollY, boolean isTouchEvent) {
-        int overScrollMode = getOverScrollMode();
-        boolean canScrollHorizontal = computeHorizontalScrollRange() > computeHorizontalScrollExtent();
-        boolean canScrollVertical = computeVerticalScrollRange() > computeVerticalScrollExtent();
-        boolean overScrollHorizontal = overScrollMode == 0 || (overScrollMode == 1 && canScrollHorizontal);
-        boolean overScrollVertical = overScrollMode == 0 || (overScrollMode == 1 && canScrollVertical);
+    @Override
+    protected boolean overScrollBy(int deltaX, int deltaY, int scrollX, int scrollY,
+                                   int scrollRangeX, int scrollRangeY,
+                                   int maxOverScrollX, int maxOverScrollY, boolean isTouchEvent) {
+        final int overScrollMode = getOverScrollMode();
+        final boolean canScrollHorizontal =
+                computeHorizontalScrollRange() > computeHorizontalScrollExtent();
+        final boolean canScrollVertical =
+                computeVerticalScrollRange() > computeVerticalScrollExtent();
+        final boolean overScrollHorizontal = overScrollMode == OVER_SCROLL_ALWAYS ||
+                (overScrollMode == OVER_SCROLL_IF_CONTENT_SCROLLS && canScrollHorizontal);
+        final boolean overScrollVertical = overScrollMode == OVER_SCROLL_ALWAYS ||
+                (overScrollMode == OVER_SCROLL_IF_CONTENT_SCROLLS && canScrollVertical);
+
         int newScrollX = scrollX + deltaX;
         if (!overScrollHorizontal) {
             maxOverScrollX = 0;
         }
+
         int newScrollY = scrollY + deltaY;
         if (!overScrollVertical) {
             maxOverScrollY = 0;
         }
-        int left = -maxOverScrollX;
-        int right = maxOverScrollX + scrollRangeX;
-        int top = -maxOverScrollY;
-        int bottom = maxOverScrollY + scrollRangeY;
+
+        final int left = -maxOverScrollX;
+        final int right = maxOverScrollX + scrollRangeX;
+        final int top = -maxOverScrollY;
+        final int bottom = maxOverScrollY + scrollRangeY;
+
         boolean clampedX = false;
         if (newScrollX > right) {
             newScrollX = right;
@@ -54,46 +67,50 @@ public class ElasticityListView extends ListView {
             newScrollX = left;
             clampedX = true;
         }
+
         boolean clampedY = false;
         if (newScrollY > bottom) {
             newScrollY = bottom;
             clampedY = true;
-            if (!(!this.overScrollAnim || isTouchEvent || getOverBottomAnim() == null)) {
+            if (overScrollAnim&&!isTouchEvent&&getOverBottomAnim()!=null) {
                 startAnimation(getOverBottomAnim());
             }
         } else if (newScrollY < top) {
             newScrollY = top;
             clampedY = true;
-            if (!(!this.overScrollAnim || isTouchEvent || getOverTopAnim() == null)) {
+            if (overScrollAnim&&!isTouchEvent&&getOverTopAnim()!=null) {
                 startAnimation(getOverTopAnim());
             }
         }
+
         onOverScrolled(newScrollX, newScrollY, clampedX, clampedY);
-        if (clampedX || clampedY) {
-            return true;
-        }
-        return false;
+
+        return clampedX || clampedY;
     }
 
+    private ScaleAnimation bottomAnim;
     private Animation getOverBottomAnim() {
-        if (this.bottomAnim == null) {
-            this.bottomAnim = new ScaleAnimation(1.0f, 1.0f, 1.0f, 1.075f, 1, 1.0f, 1, 1.0f);
-            this.bottomAnim.setDuration(180);
-            this.bottomAnim.setInterpolator(new DecelerateInterpolator());
-            this.bottomAnim.setRepeatCount(1);
-            this.bottomAnim.setRepeatMode(2);
+        if (bottomAnim==null) {
+            bottomAnim = new ScaleAnimation(1, 1, 1, ElasticityConfig.ELASTICITY_PIVOT_DITANCE,
+                    Animation.RELATIVE_TO_SELF,1f,Animation.RELATIVE_TO_SELF,1f);
+            bottomAnim.setDuration(ElasticityConfig.ELASTICITY_DURATION_BACK);
+            bottomAnim.setInterpolator(new DecelerateInterpolator());
+            bottomAnim.setRepeatCount(1);
+            bottomAnim.setRepeatMode(Animation.REVERSE);
         }
-        return this.bottomAnim;
+        return bottomAnim;
     }
 
+    private ScaleAnimation topAnim;
     private Animation getOverTopAnim() {
-        if (this.topAnim == null) {
-            this.topAnim = new ScaleAnimation(1.0f, 1.0f, 1.0f, 1.075f, 1, 1.0f, 1, 0.0f);
-            this.topAnim.setDuration(180);
-            this.topAnim.setInterpolator(new DecelerateInterpolator());
-            this.topAnim.setRepeatCount(1);
-            this.topAnim.setRepeatMode(2);
+        if (topAnim==null) {
+            topAnim = new ScaleAnimation(1, 1, 1, ElasticityConfig.ELASTICITY_PIVOT_DITANCE,
+                    Animation.RELATIVE_TO_SELF,1f,Animation.RELATIVE_TO_SELF,0f);
+            topAnim.setDuration(ElasticityConfig.ELASTICITY_DURATION_BACK);
+            topAnim.setInterpolator(new DecelerateInterpolator());
+            topAnim.setRepeatCount(1);
+            topAnim.setRepeatMode(Animation.REVERSE);
         }
-        return this.topAnim;
+        return topAnim;
     }
 }

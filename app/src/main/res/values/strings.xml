@@ -23,10 +23,19 @@
     <string name="full_text">全文</string>
     <string name="collapse_text">收起</string>
 
-    <!--测试题标题-->
+    <!--主页菜单-->
     <string name="home_menu_title_quizzes">QUIZZES</string>
     <string name="home_menu_title_matching">MATCHING</string>
-    <string name="quizzes_name_zodiac">zodiac</string>
-    <string name="quizzes_name_love_sex">love&amp;sex</string>
-    <string name="quizzes_name_personal">personal</string>
+    <string name="home_menu_title_library">LIBRARY</string>
+    <string name="quizzes_name_zodiac">Zodiac</string>
+    <string name="quizzes_name_love_sex">Love&amp;Sex</string>
+    <string name="quizzes_name_personal">Personal</string>
+    <string name="library_name_1">Personal</string>
+    <string name="library_name_2">Personal</string>
+    <string name="library_name_3">Personal</string>
+    <string name="library_name_4">Personal</string>
+    <string name="library_name_5">Personal</string>
+
+    <!---->
+
 </resources>

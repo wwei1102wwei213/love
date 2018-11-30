@@ -23,6 +23,7 @@ import com.fuyou.play.util.DensityUtils;
 import com.fuyou.play.util.GlideRoundTransform;
 import com.fuyou.play.util.LogCustom;
 import com.fuyou.play.view.BaseFragment;
+import com.fuyou.play.view.activity.TestAcctivity;
 import com.fuyou.play.widget.pullwidget.elasticity.ElasticityHelper;
 import com.fuyou.play.widget.pullwidget.elasticity.ElasticityNestedScrollView;
 import com.fuyou.play.widget.pullwidget.pullrefresh.PullElasticityNestedScrollView;
@@ -67,6 +68,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
             initMenu(layout);
             initBanner(layout);
             initQuizzes(layout);
+            initMatching(layout);
+            initLibrary(layout);
             sv.addView(layout);
             pv.setPullRefreshEnabled(false);
             pv.setPullLoadEnabled(false);
@@ -142,7 +145,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         banner.start();
     }
 
-    //设置
+    //设置测试菜单
     private void initQuizzes(ViewGroup group) {
         int width = CommonUtils.getDeviceWidth(context);
         if (width==0) return;
@@ -159,6 +162,51 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         group.findViewById(R.id.v_quizzes_1).setOnClickListener(this);
         group.findViewById(R.id.v_quizzes_2).setOnClickListener(this);
         group.findViewById(R.id.v_quizzes_3).setOnClickListener(this);
+    }
+
+    //设置匹配菜单
+    private void initMatching(ViewGroup group) {
+        int width = CommonUtils.getDeviceWidth(context);
+        if (width==0) return;
+        int height = (width - DensityUtils.dp2px(context, 25))/3;
+        ImageView iv1 = (ImageView) group.findViewById(R.id.iv_matching_1);
+        ImageView iv2 = (ImageView) group.findViewById(R.id.iv_matching_2);
+        ImageView iv3 = (ImageView) group.findViewById(R.id.iv_matching_3);
+        ImageView iv4 = (ImageView) group.findViewById(R.id.iv_matching_4);
+        setViewHeight(iv1, height);
+        setViewHeight(iv2, height);
+        setViewHeight(iv3, height);
+        setViewHeight(iv4, height);
+        iv1.setImageResource(R.mipmap.menu_home_top_1);
+        iv2.setImageResource(R.mipmap.menu_home_top_1);
+        iv3.setImageResource(R.mipmap.menu_home_top_1);
+        iv4.setImageResource(R.mipmap.menu_home_top_1);
+        group.findViewById(R.id.v_matching_1).setOnClickListener(this);
+        group.findViewById(R.id.v_matching_2).setOnClickListener(this);
+        group.findViewById(R.id.v_matching_3).setOnClickListener(this);
+        group.findViewById(R.id.v_matching_4).setOnClickListener(this);
+    }
+
+    //设置
+    private void initLibrary(ViewGroup group) {
+        int width = CommonUtils.getDeviceWidth(context);
+        if (width==0) return;
+        int height = (width - DensityUtils.dp2px(context, 24))/3;
+        ImageView iv1 = (ImageView) group.findViewById(R.id.iv_library_1);
+        ImageView iv2 = (ImageView) group.findViewById(R.id.iv_library_2);
+        ImageView iv3 = (ImageView) group.findViewById(R.id.iv_library_3);
+        ImageView iv4 = (ImageView) group.findViewById(R.id.iv_library_4);
+        ImageView iv5 = (ImageView) group.findViewById(R.id.iv_library_5);
+        iv1.setImageResource(R.mipmap.home_library_zodiac_signs);
+        iv2.setImageResource(R.mipmap.home_library_zodiac_signs);
+        iv3.setImageResource(R.mipmap.home_library_zodiac_signs);
+        iv4.setImageResource(R.mipmap.home_library_zodiac_signs);
+        iv5.setImageResource(R.mipmap.home_library_zodiac_signs);
+        group.findViewById(R.id.v_library_1).setOnClickListener(this);
+        group.findViewById(R.id.v_library_2).setOnClickListener(this);
+        group.findViewById(R.id.v_library_3).setOnClickListener(this);
+        group.findViewById(R.id.v_library_4).setOnClickListener(this);
+        group.findViewById(R.id.v_library_5).setOnClickListener(this);
     }
 
     //设置滑动时状态栏透明度
@@ -192,13 +240,40 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.v_quizzes_1:
-                showToast("1");
+                startActivity(TestAcctivity.class);
                 break;
             case R.id.v_quizzes_2:
                 showToast("2");
                 break;
             case R.id.v_quizzes_3:
                 showToast("3");
+                break;
+            case R.id.v_matching_1:
+                showToast("4");
+                break;
+            case R.id.v_matching_2:
+                showToast("5");
+                break;
+            case R.id.v_matching_3:
+                showToast("6");
+                break;
+            case R.id.v_matching_4:
+                showToast("7");
+                break;
+            case R.id.v_library_1:
+                showToast("7");
+                break;
+            case R.id.v_library_2:
+                showToast("7");
+                break;
+            case R.id.v_library_3:
+                showToast("7");
+                break;
+            case R.id.v_library_4:
+                showToast("7");
+                break;
+            case R.id.v_library_5:
+                showToast("7");
                 break;
         }
     }

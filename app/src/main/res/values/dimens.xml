@@ -48,6 +48,9 @@
     <dimen name="home_base_space">10dp</dimen>
     <dimen name="home_menu_title_height">44dp</dimen>
     <dimen name="home_base_padding">10dp</dimen>
+    <dimen name="home_base_margin">12dp</dimen>
     <dimen name="home_menu_title_size">17sp</dimen>
     <dimen name="home_menu_name_size">15sp</dimen>
+    <dimen name="home_library_item_iv_height">95dp</dimen>
+    <dimen name="home_library_item_space">10dp</dimen>
 </resources>

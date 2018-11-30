@@ -3,6 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/home_base_space"
+    android:background="@color/white"
     >
     <com.fuyou.play.widget.tv.TitleTextView
         android:layout_width="match_parent"
@@ -11,17 +12,14 @@
         android:paddingLeft="@dimen/home_base_padding"
         android:text="@string/home_menu_title_quizzes"
         android:textSize="@dimen/home_menu_title_size"
-        android:paddingTop="10dp"
-        android:background="@color/white"/>
-    <!--<View android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/base_line"/>-->
+        android:paddingBottom="10dp"
+        />
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/home_base_padding"
-        android:background="@color/white">
+        android:padding="@dimen/home_base_padding">
         <LinearLayout
             android:id="@+id/v_quizzes_1"
             android:orientation="vertical"
@@ -84,24 +82,6 @@
                 android:maxLines="1"
                 android:ellipsize="end"/>
         </LinearLayout>
-    </LinearLayout>
-
-    <com.fuyou.play.widget.tv.TitleTextView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/home_menu_title_height"
-        android:gravity="center_vertical"
-        android:paddingLeft="@dimen/home_base_padding"
-        android:text="@string/home_menu_title_quizzes"
-        android:textSize="@dimen/home_menu_title_size"
-        android:paddingTop="10dp"
-        android:background="@color/white"/>
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/home_base_padding"
-        android:background="@color/white">
-
     </LinearLayout>
 
 </LinearLayout>
