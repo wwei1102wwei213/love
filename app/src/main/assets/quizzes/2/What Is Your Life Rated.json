@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "What Is Your Life Rated.png",
+    "allQuestion": [
+  {
+    "questionResult_name": "What Is Your Life Rated?",
+    "explanation": "If your life had a movie rating, would yours be child-friendly or adults only?",
+    "answers": [
+      {
+        "text": "Skinny dipping or streaking in a public place.",
+        "indentifer": "1"
+      },
+      {
+        "text": "Cheat or tell a big lie.",
+        "indentifer": "2"
+      },
+      {
+        "text": "Drive over the speed limit.",
+        "indentifer": "3"
+      },
+      {
+        "text": "Commit a felony.",
+        "indentifer": "4"
+      }
+    ],
+    "image": "",
+    "text": "What risky behavior would you try?"
+  },
+  {
+    "questionResult_name": "What Is Your Life Rated?",
+    "explanation": "If your life had a movie rating, would yours be child-friendly or adults only?",
+    "answers": [
+      {
+        "text": "Dress up in something so revealing you have to cover up anywhere outside the confines of the party.",
+        "indentifer": "5"
+      },
+      {
+        "text": "Don't go.",
+        "indentifer": "6"
+      },
+      {
+        "text": "Wear something sexy but not too outrageous.",
+        "indentifer": "7"
+      },
+      {
+        "text": "Wear next to nothing and hook up with at least one person. You don't remember much the next morning.",
+        "indentifer": "8"
+      }
+    ],
+    "image": "",
+    "text": "You're invited to a ''naughty'' costume party. You:"
+  },
+  {
+    "questionResult_name": "What Is Your Life Rated?",
+    "explanation": "If your life had a movie rating, would yours be child-friendly or adults only?",
+    "answers": [
+      {
+        "text": "It makes you sick.",
+        "indentifer": "9"
+      },
+      {
+        "text": "Fictional violence can be exciting, but you're not a big fan.",
+        "indentifer": "10"
+      },
+      {
+        "text": "It's thrilling.",
+        "indentifer": "11"
+      },
+      {
+        "text": "You love it - the more, and the more extreme, the better.",
+        "indentifer": "12"
+      }
+    ],
+    "image": "",
+    "text": "How do you feel about violence in movies?"
+  }
+]
+}

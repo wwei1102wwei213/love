@@ -1,6 +1,7 @@
 package com.fuyou.play.view.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -20,10 +21,10 @@ import com.fuyou.play.bean.other.BannerEntity;
 import com.fuyou.play.bean.other.MenuEntity;
 import com.fuyou.play.util.CommonUtils;
 import com.fuyou.play.util.DensityUtils;
-import com.fuyou.play.util.GlideRoundTransform;
 import com.fuyou.play.util.LogCustom;
+import com.fuyou.play.util.UiUtils;
 import com.fuyou.play.view.BaseFragment;
-import com.fuyou.play.view.activity.TestAcctivity;
+import com.fuyou.play.view.activity.QuizzesListActivity;
 import com.fuyou.play.widget.pullwidget.elasticity.ElasticityHelper;
 import com.fuyou.play.widget.pullwidget.elasticity.ElasticityNestedScrollView;
 import com.fuyou.play.widget.pullwidget.pullrefresh.PullElasticityNestedScrollView;
@@ -98,7 +99,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
             View v = LayoutInflater.from(context).inflate(R.layout.item_menu_home_top, v_menu, false);
             ImageView iv = (ImageView) v.findViewById(R.id.iv);
             Glide.with(context).load(list.get(i).getRes())
-                    .bitmapTransform(new CenterCrop(context), new GlideRoundTransform(context,8))
+                    .bitmapTransform(new CenterCrop(context), UiUtils.getGideTransformation(context))
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .crossFade().into(iv);
             TextView tv = (TextView) v.findViewById(R.id.tv);
@@ -156,9 +157,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         setViewHeight(iv1, height);
         setViewHeight(iv2, height);
         setViewHeight(iv3, height);
-        iv1.setImageResource(R.mipmap.menu_home_top_1);
-        iv2.setImageResource(R.mipmap.menu_home_top_1);
-        iv3.setImageResource(R.mipmap.menu_home_top_1);
+        iv1.setImageResource(R.mipmap.home_menu_quizzes_1);
+        iv2.setImageResource(R.mipmap.home_menu_quizzes_2);
+        iv3.setImageResource(R.mipmap.home_menu_quizzes_3);
         group.findViewById(R.id.v_quizzes_1).setOnClickListener(this);
         group.findViewById(R.id.v_quizzes_2).setOnClickListener(this);
         group.findViewById(R.id.v_quizzes_3).setOnClickListener(this);
@@ -177,10 +178,10 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         setViewHeight(iv2, height);
         setViewHeight(iv3, height);
         setViewHeight(iv4, height);
-        iv1.setImageResource(R.mipmap.menu_home_top_1);
-        iv2.setImageResource(R.mipmap.menu_home_top_1);
-        iv3.setImageResource(R.mipmap.menu_home_top_1);
-        iv4.setImageResource(R.mipmap.menu_home_top_1);
+        iv1.setImageResource(R.mipmap.home_menu_match_1);
+        iv2.setImageResource(R.mipmap.home_menu_match_2);
+        iv3.setImageResource(R.mipmap.home_menu_match_3);
+        iv4.setImageResource(R.mipmap.home_menu_match_4);
         group.findViewById(R.id.v_matching_1).setOnClickListener(this);
         group.findViewById(R.id.v_matching_2).setOnClickListener(this);
         group.findViewById(R.id.v_matching_3).setOnClickListener(this);
@@ -197,11 +198,11 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         ImageView iv3 = (ImageView) group.findViewById(R.id.iv_library_3);
         ImageView iv4 = (ImageView) group.findViewById(R.id.iv_library_4);
         ImageView iv5 = (ImageView) group.findViewById(R.id.iv_library_5);
-        iv1.setImageResource(R.mipmap.home_library_zodiac_signs);
-        iv2.setImageResource(R.mipmap.home_library_zodiac_signs);
-        iv3.setImageResource(R.mipmap.home_library_zodiac_signs);
-        iv4.setImageResource(R.mipmap.home_library_zodiac_signs);
-        iv5.setImageResource(R.mipmap.home_library_zodiac_signs);
+        iv1.setImageResource(R.mipmap.home_menu_library_1);
+        iv2.setImageResource(R.mipmap.home_menu_library_2);
+        iv3.setImageResource(R.mipmap.home_menu_library_3);
+        iv4.setImageResource(R.mipmap.home_menu_library_4);
+        iv5.setImageResource(R.mipmap.home_menu_library_5);
         group.findViewById(R.id.v_library_1).setOnClickListener(this);
         group.findViewById(R.id.v_library_2).setOnClickListener(this);
         group.findViewById(R.id.v_library_3).setOnClickListener(this);
@@ -213,8 +214,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     private void statusBarChangerAlpha(int top){
         try {
             if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.KITKAT){
-                if (top>0) {
-                    float alpha = top/HeightTop;
+                if (top>HeightTop/2) {
+                    float alpha = (top-HeightTop/2)*2/HeightTop;
                     alpha = alpha>1?1:alpha;
                     statusBar.setAlpha(alpha>1?1:alpha);
                 } else {
@@ -240,13 +241,13 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.v_quizzes_1:
-                startActivity(TestAcctivity.class);
+                toQuizzes(0);
                 break;
             case R.id.v_quizzes_2:
-                showToast("2");
+                toQuizzes(1);
                 break;
             case R.id.v_quizzes_3:
-                showToast("3");
+                toQuizzes(2);
                 break;
             case R.id.v_matching_1:
                 showToast("4");
@@ -276,6 +277,12 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                 showToast("7");
                 break;
         }
+    }
+
+    private void toQuizzes(int type) {
+        Intent intent = new Intent(context, QuizzesListActivity.class);
+        intent.putExtra("quizzes_type", type);
+        startActivity(intent);
     }
 
     @Override

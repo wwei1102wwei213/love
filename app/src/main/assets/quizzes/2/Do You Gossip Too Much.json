@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "Do You Gossip Too Much.jpg",
+    "allQuestion": [
+  {
+    "questionResult_name": "Do You Gossip Too Much?",
+    "explanation": "Could you learn a lesson in humility, or do you keep other's business tightly under wraps?",
+    "answers": [
+      {
+        "text": "Don't mention it.",
+        "indentifer": "1"
+      },
+      {
+        "text": "Point out the fashion disaster.",
+        "indentifer": "2"
+      },
+      {
+        "text": "Give your friend a 'woah!' look and nod in the stranger's direction.",
+        "indentifer": "3"
+      },
+      {
+        "text": "Loudly criticize the stranger's appearance.",
+        "indentifer": "4"
+      }
+    ],
+    "image": "",
+    "text": "You're with your friend when you see a stranger in a very unflattering outfit. You:"
+  },
+  {
+    "questionResult_name": "Do You Gossip Too Much?",
+    "explanation": "Could you learn a lesson in humility, or do you keep other's business tightly under wraps?",
+    "answers": [
+      {
+        "text": "No.",
+        "indentifer": "5"
+      },
+      {
+        "text": "You might scan the tabloid headlines while waiting in line at a store.",
+        "indentifer": "6"
+      },
+      {
+        "text": "You follow celeb stories online and/or TV entertainment news shows.",
+        "indentifer": "7"
+      },
+      {
+        "text": "It's a guilty pleasure, yes.",
+        "indentifer": "8"
+      }
+    ],
+    "image": "",
+    "text": "Do you keep up with celebrity news?"
+  },
+  {
+    "questionResult_name": "Do You Gossip Too Much?",
+    "explanation": "Could you learn a lesson in humility, or do you keep other's business tightly under wraps?",
+    "answers": [
+      {
+        "text": "Quite a bit - you are close to your colleagues.",
+        "indentifer": "9"
+      },
+      {
+        "text": "Never.",
+        "indentifer": "10"
+      },
+      {
+        "text": "Rarely - you keep conversations work-focused.",
+        "indentifer": "11"
+      },
+      {
+        "text": "Only small chitchat or at a happy hour.",
+        "indentifer": "12"
+      }
+    ],
+    "image": "",
+    "text": "How much do you talk about your personal life at work?"
+  }
+]
+}

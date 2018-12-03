@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "Are you a true Gemini.jpg",
+    "allQuestion": [
+        {
+            "questionResult_name": "Are you a true Gemini?",
+            "explanation": "Does your personality match up to your given Sun Sign? If not, you might be more in tune with your Rising or Moon Sign!",
+            "answers": [
+                {
+                    "text": "Plan everything before you go.",
+                    "indentifer": "1"
+                },
+                {
+                    "text": "Plan nothing, and just do what sounds good at the moment.",
+                    "indentifer": "2"
+                },
+                {
+                    "text": "Have a list of things you want to see and do, but no set plan.",
+                    "indentifer": "3"
+                },
+                {
+                    "text": "Plan about half of it ahead of time.",
+                    "indentifer": "4"
+                }
+            ],
+            "image": "",
+            "text": "When you take a vacation, you prefer to:"
+        },
+        {
+            "questionResult_name": "Are you a true Gemini?",
+            "explanation": "Does your personality match up to your given Sun Sign? If not, you might be more in tune with your Rising or Moon Sign!",
+            "answers": [
+                {
+                    "text": "Might speak up or might hold it in. Depends on the situation and your mood.",
+                    "indentifer": "5"
+                },
+                {
+                    "text": "Will let anyone and everyone know about it.",
+                    "indentifer": "6"
+                },
+                {
+                    "text": "Confide in a few trusted people.",
+                    "indentifer": "7"
+                },
+                {
+                    "text": "You keep your thoughts to yourself.",
+                    "indentifer": "8"
+                }
+            ],
+            "image": "",
+            "text": "When something is bothering you, you:"
+        },
+        {
+            "questionResult_name": "Are you a true Gemini?",
+            "explanation": "Does your personality match up to your given Sun Sign? If not, you might be more in tune with your Rising or Moon Sign!",
+            "answers": [
+                {
+                    "text": "Put on the spot.",
+                    "indentifer": "9"
+                },
+                {
+                    "text": "Surprised.",
+                    "indentifer": "10"
+                },
+                {
+                    "text": "Bored.",
+                    "indentifer": "11"
+                },
+                {
+                    "text": "Ignored.",
+                    "indentifer": "12"
+                }
+            ],
+            "image": "",
+            "text": "You hate to be:"
+        }
+    ]
+}

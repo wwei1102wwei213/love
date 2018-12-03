@@ -1,0 +1,57 @@
+[
+    {
+        "questionResult_name": " The Holiday Cookie Personality Test",
+        "answersResultList": [
+            {
+                "answerCode": "1",
+                "title": " Sugar cutouts in festive shapes.",
+                "resultContent": "You like to know what you're getting. Life in general needs to be predictable. Flat horizons and content-free experiences are OK with you as long as everybody's sweet about it."
+            },
+            {
+                "answerCode": "2",
+                "title": " Candy cane cookies or anything minty.",
+                "resultContent": "You like keeping it fresh. You cleanse your palate after bad-tasting experiences. You're not worried about stripes making you look fat. The sting of wintry air makes you feel alive."
+            },
+            {
+                "answerCode": "3",
+                "title": " Mexican wedding cakes/melting moments.",
+                "resultContent": "You favor intense, fleeting experiences. Romance is about melting on contact and dissolving into sensory bliss. You'll fearlessly meet anyone's gaze while licking powdered sugar off your fingers. Who's next?"
+            },
+            {
+                "answerCode": "4",
+                "title": " Peanut blossoms.",
+                "resultContent": "You have an oral fixation. You take life in small bites, savoring each and every one. Your kisses tend to shock others -- and hopefully not with allergic reactions!"
+            },
+            {
+                "answerCode": "5",
+                "title": " Gingerbread.",
+                "resultContent": "You're a sculptor or architect, seeing structural possibilities everywhere. You like to run, run, run as fast as you can. You're sweet with a bite. Handled carefully, you last forever."
+            },
+            {
+                "answerCode": "6",
+                "title": " Spritz or thumbprints.",
+                "resultContent": "You do what works best. Your variations on basic themes are uniquely you. You like shaping impressionable people. Who can argue with your recipe for success?"
+            },
+            {
+                "answerCode": "7",
+                "title": " Nut crescents.",
+                "resultContent": "You're light, delicate, and delicious. Whether or not you're from the South, you're down with the whole charm and manners thing. You're coy about secrets, making you irresistibly seductive."
+            },
+            {
+                "answerCode": "8",
+                "title": " Shortbread.",
+                "resultContent": "You're the baseline of sanity among fruits and nuts. Going out for coffee with you is a dense, high-quality experience. You can pull off a convincing Scottish accent, too."
+            },
+            {
+                "answerCode": "9",
+                "title": " Fruitcake or rum balls.",
+                "resultContent": "You're drunk on life, rooted in the moment, overpowering everything else. You're an oddball and proud of it. Your fans are crazy about you. You don't care about the rest."
+            },
+            {
+                "answerCode": "10",
+                "title": " I don't like cookies.",
+                "resultContent": "Scrooge in the house! Listen, you could use some holiday spirit, whether it's meaningful messages from seasonal ghosts or spicy gifts from wise guys. Just chill and have a cookie!"
+            }
+        ]
+    }
+]

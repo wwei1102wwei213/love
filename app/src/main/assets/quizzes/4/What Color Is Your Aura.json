@@ -1,0 +1,327 @@
+[
+    {
+        "answersResultList" : [
+            {
+                "title" : " Yellow.",
+                "answerCode" : "1-5-9",
+                "resultContent" : "You just went through some positive change, and now you're waking to the reality of an altered life. Little things inspire you. Everything is worth talking about. You feel yourself getting smarter by the minute. There's obviously a reason why you're in luck. Appreciate it instead of analyzing it. The moment lasts a lot longer that way."
+            },
+            {
+                "title" : " Green.",
+                "answerCode" : "1-5-10",
+                "resultContent" : "You're comfortable, at ease, in your groove. Breathing is good, heart rate steady. Somehow you're growing and balanced at the same time, which seems counterintuitive, but you make it work. You fall in love with every dog, cat, baby, man or woman you see. As a citizen of the world, you're within your rights to offer positive feedback."
+            },
+            {
+                "title" : " Orange.",
+                "answerCode" : "1-5-11",
+                "resultContent" : "You're feeling vital and vigorous. Your team, boss, or lover benefits from this explosion of good vibes and stamina. But it's easy to get addicted to wildness and wonder, so recognize your limitations, because when your energy or mood crashes, the grief, drama, and lamentation will be spectacular. Surely you don't want to be famous for that! "
+            },
+            {
+                "title" : " Yellow.",
+                "answerCode" : "1-5-12",
+                "resultContent" : "You just went through some positive change, and now you're waking to the reality of an altered life. Little things inspire you. Everything is worth talking about. You feel yourself getting smarter by the minute. There's obviously a reason why you're in luck. Appreciate it instead of analyzing it. The moment lasts a lot longer that way."
+            },
+            {
+                "title" : " Green.",
+                "answerCode" : "1-6-9",
+                "resultContent" : "You're comfortable, at ease, in your groove. Breathing is good, heart rate steady. Somehow you're growing and balanced at the same time, which seems counterintuitive, but you make it work. You fall in love with every dog, cat, baby, man or woman you see. As a citizen of the world, you're within your rights to offer positive feedback."
+            },
+            {
+                "title" : " Blue.",
+                "answerCode" : "1-6-10",
+                "resultContent" : "You're cool, calm, and in control. Instead of making ripples, you're a strong, gentle tide pushing along beneath the surface. You want what's best for others and can easily get them to go along without argument by telling the truth in a loving way. When anyone needs comforting, your soothing sounds resemble a purring cat."
+            },
+            {
+                "title" : " Yellow.",
+                "answerCode" : "1-6-11",
+                "resultContent" : "You just went through some positive change, and now you're waking to the reality of an altered life. Little things inspire you. Everything is worth talking about. You feel yourself getting smarter by the minute. There's obviously a reason why you're in luck. Appreciate it instead of analyzing it. The moment lasts a lot longer that way."
+            },
+            {
+                "title" : " Blue.",
+                "answerCode" : "1-6-12",
+                "resultContent" : "You're cool, calm, and in control. Instead of making ripples, you're a strong, gentle tide pushing along beneath the surface. You want what's best for others and can easily get them to go along without argument by telling the truth in a loving way. When anyone needs comforting, your soothing sounds resemble a purring cat."
+            },
+            {
+                "title" : " Orange.",
+                "answerCode" : "1-7-9",
+                "resultContent" : "You're feeling vital and vigorous. Your team, boss, or lover benefits from this explosion of good vibes and stamina. But it's easy to get addicted to wildness and wonder, so recognize your limitations, because when your energy or mood crashes, the grief, drama, and lamentation will be spectacular. Surely you don't want to be famous for that! "
+            },
+            {
+                "title" : " Yellow.",
+                "answerCode" : "1-7-10",
+                "resultContent" : "You just went through some positive change, and now you're waking to the reality of an altered life. Little things inspire you. Everything is worth talking about. You feel yourself getting smarter by the minute. There's obviously a reason why you're in luck. Appreciate it instead of analyzing it. The moment lasts a lot longer that way."
+            },
+            {
+                "title" : " Red.",
+                "answerCode" : "1-7-11",
+                "resultContent" : "You're all about friction. Maybe it's social or sexual. Maybe you're working and playing hard, wearing out essential parts. You might have an unusual relationship with static electricity. You attract and\/or repel money. Possibly you're obsessive or the object of other people's obsessions. It's a good day when you turn restlessness and anger into motivation and confidence."
+            },
+            {
+                "title" : " Yellow.",
+                "answerCode" : "1-7-12",
+                "resultContent" : "You just went through some positive change, and now you're waking to the reality of an altered life. Little things inspire you. Everything is worth talking about. You feel yourself getting smarter by the minute. There's obviously a reason why you're in luck. Appreciate it instead of analyzing it. The moment lasts a lot longer that way."
+            },
+            {
+                "title" : " Yellow.",
+                "answerCode" : "1-8-9",
+                "resultContent" : "You just went through some positive change, and now you're waking to the reality of an altered life. Little things inspire you. Everything is worth talking about. You feel yourself getting smarter by the minute. There's obviously a reason why you're in luck. Appreciate it instead of analyzing it. The moment lasts a lot longer that way."
+            },
+            {
+                "title" : " Blue.",
+                "answerCode" : "1-8-10",
+                "resultContent" : "You're cool, calm, and in control. Instead of making ripples, you're a strong, gentle tide pushing along beneath the surface. You want what's best for others and can easily get them to go along without argument by telling the truth in a loving way. When anyone needs comforting, your soothing sounds resemble a purring cat."
+            },
+            {
+                "title" : " Yellow.",
+                "answerCode" : "1-8-11",
+                "resultContent" : "You just went through some positive change, and now you're waking to the reality of an altered life. Little things inspire you. Everything is worth talking about. You feel yourself getting smarter by the minute. There's obviously a reason why you're in luck. Appreciate it instead of analyzing it. The moment lasts a lot longer that way."
+            },
+            {
+                "title" : " Green.",
+                "answerCode" : "1-8-12",
+                "resultContent" : "You're comfortable, at ease, in your groove. Breathing is good, heart rate steady. Somehow you're growing and balanced at the same time, which seems counterintuitive, but you make it work. You fall in love with every dog, cat, baby, man or woman you see. As a citizen of the world, you're within your rights to offer positive feedback."
+            },
+            {
+                "title" : " Green.",
+                "answerCode" : "2-5-9",
+                "resultContent" : "You're comfortable, at ease, in your groove. Breathing is good, heart rate steady. Somehow you're growing and balanced at the same time, which seems counterintuitive, but you make it work. You fall in love with every dog, cat, baby, man or woman you see. As a citizen of the world, you're within your rights to offer positive feedback."
+            },
+            {
+                "title" : " Blue.",
+                "answerCode" : "2-5-10",
+                "resultContent" : "You're cool, calm, and in control. Instead of making ripples, you're a strong, gentle tide pushing along beneath the surface. You want what's best for others and can easily get them to go along without argument by telling the truth in a loving way. When anyone needs comforting, your soothing sounds resemble a purring cat."
+            },
+            {
+                "title" : " Yellow.",
+                "answerCode" : "2-5-11",
+                "resultContent" : "You just went through some positive change, and now you're waking to the reality of an altered life. Little things inspire you. Everything is worth talking about. You feel yourself getting smarter by the minute. There's obviously a reason why you're in luck. Appreciate it instead of analyzing it. The moment lasts a lot longer that way."
+            },
+            {
+                "title" : " Blue.",
+                "answerCode" : "2-5-12",
+                "resultContent" : "You're cool, calm, and in control. Instead of making ripples, you're a strong, gentle tide pushing along beneath the surface. You want what's best for others and can easily get them to go along without argument by telling the truth in a loving way. When anyone needs comforting, your soothing sounds resemble a purring cat."
+            },
+            {
+                "title" : " Blue.",
+                "answerCode" : "2-6-9",
+                "resultContent" : "You're cool, calm, and in control. Instead of making ripples, you're a strong, gentle tide pushing along beneath the surface. You want what's best for others and can easily get them to go along without argument by telling the truth in a loving way. When anyone needs comforting, your soothing sounds resemble a purring cat."
+            },
+            {
+                "title" : " Purple.",
+                "answerCode" : "2-6-10",
+                "resultContent" : "All those strange, wonderful, lucky things that have been happening lately? That's magic, and you're attracting it! Of course you'll use this for good, not evil, because you're catching sneak previews of the future, and only sensitivity and wisdom will get you there. You could rule the world, but only if it wants you to rule it."
+            },
+            {
+                "title" : " Blue.",
+                "answerCode" : "2-6-11",
+                "resultContent" : "You're cool, calm, and in control. Instead of making ripples, you're a strong, gentle tide pushing along beneath the surface. You want what's best for others and can easily get them to go along without argument by telling the truth in a loving way. When anyone needs comforting, your soothing sounds resemble a purring cat."
+            },
+            {
+                "title" : " Purple.",
+                "answerCode" : "2-6-12",
+                "resultContent" : "All those strange, wonderful, lucky things that have been happening lately? That's magic, and you're attracting it! Of course you'll use this for good, not evil, because you're catching sneak previews of the future, and only sensitivity and wisdom will get you there. You could rule the world, but only if it wants you to rule it."
+            },
+            {
+                "title" : " Yellow.",
+                "answerCode" : "2-7-9",
+                "resultContent" : "You just went through some positive change, and now you're waking to the reality of an altered life. Little things inspire you. Everything is worth talking about. You feel yourself getting smarter by the minute. There's obviously a reason why you're in luck. Appreciate it instead of analyzing it. The moment lasts a lot longer that way."
+            },
+            {
+                "title" : " Blue.",
+                "answerCode" : "2-7-10",
+                "resultContent" : "You're cool, calm, and in control. Instead of making ripples, you're a strong, gentle tide pushing along beneath the surface. You want what's best for others and can easily get them to go along without argument by telling the truth in a loving way. When anyone needs comforting, your soothing sounds resemble a purring cat."
+            },
+            {
+                "title" : " Yellow.",
+                "answerCode" : "2-7-11",
+                "resultContent" : "You just went through some positive change, and now you're waking to the reality of an altered life. Little things inspire you. Everything is worth talking about. You feel yourself getting smarter by the minute. There's obviously a reason why you're in luck. Appreciate it instead of analyzing it. The moment lasts a lot longer that way."
+            },
+            {
+                "title" : " Green.",
+                "answerCode" : "2-7-12",
+                "resultContent" : "You're comfortable, at ease, in your groove. Breathing is good, heart rate steady. Somehow you're growing and balanced at the same time, which seems counterintuitive, but you make it work. You fall in love with every dog, cat, baby, man or woman you see. As a citizen of the world, you're within your rights to offer positive feedback."
+            },
+            {
+                "title" : " Blue.",
+                "answerCode" : "2-8-9",
+                "resultContent" : "You're cool, calm, and in control. Instead of making ripples, you're a strong, gentle tide pushing along beneath the surface. You want what's best for others and can easily get them to go along without argument by telling the truth in a loving way. When anyone needs comforting, your soothing sounds resemble a purring cat."
+            },
+            {
+                "title" : " Purple.",
+                "answerCode" : "2-8-10",
+                "resultContent" : "All those strange, wonderful, lucky things that have been happening lately? That's magic, and you're attracting it! Of course you'll use this for good, not evil, because you're catching sneak previews of the future, and only sensitivity and wisdom will get you there. You could rule the world, but only if it wants you to rule it."
+            },
+            {
+                "title" : " Green.",
+                "answerCode" : "2-8-11",
+                "resultContent" : "You're comfortable, at ease, in your groove. Breathing is good, heart rate steady. Somehow you're growing and balanced at the same time, which seems counterintuitive, but you make it work. You fall in love with every dog, cat, baby, man or woman you see. As a citizen of the world, you're within your rights to offer positive feedback."
+            },
+            {
+                "title" : " Blue.",
+                "answerCode" : "2-8-12",
+                "resultContent" : "You're cool, calm, and in control. Instead of making ripples, you're a strong, gentle tide pushing along beneath the surface. You want what's best for others and can easily get them to go along without argument by telling the truth in a loving way. When anyone needs comforting, your soothing sounds resemble a purring cat."
+            },
+            {
+                "title" : " Yellow.",
+                "answerCode" : "3-5-9",
+                "resultContent" : "You just went through some positive change, and now you're waking to the reality of an altered life. Little things inspire you. Everything is worth talking about. You feel yourself getting smarter by the minute. There's obviously a reason why you're in luck. Appreciate it instead of analyzing it. The moment lasts a lot longer that way."
+            },
+            {
+                "title" : " Blue.",
+                "answerCode" : "3-5-10",
+                "resultContent" : "You're cool, calm, and in control. Instead of making ripples, you're a strong, gentle tide pushing along beneath the surface. You want what's best for others and can easily get them to go along without argument by telling the truth in a loving way. When anyone needs comforting, your soothing sounds resemble a purring cat."
+            },
+            {
+                "title" : " Yellow.",
+                "answerCode" : "3-5-11",
+                "resultContent" : "You just went through some positive change, and now you're waking to the reality of an altered life. Little things inspire you. Everything is worth talking about. You feel yourself getting smarter by the minute. There's obviously a reason why you're in luck. Appreciate it instead of analyzing it. The moment lasts a lot longer that way."
+            },
+            {
+                "title" : " Green.",
+                "answerCode" : "3-5-12",
+                "resultContent" : "You're comfortable, at ease, in your groove. Breathing is good, heart rate steady. Somehow you're growing and balanced at the same time, which seems counterintuitive, but you make it work. You fall in love with every dog, cat, baby, man or woman you see. As a citizen of the world, you're within your rights to offer positive feedback."
+            },
+            {
+                "title" : " Blue.",
+                "answerCode" : "3-6-9",
+                "resultContent" : "You're cool, calm, and in control. Instead of making ripples, you're a strong, gentle tide pushing along beneath the surface. You want what's best for others and can easily get them to go along without argument by telling the truth in a loving way. When anyone needs comforting, your soothing sounds resemble a purring cat."
+            },
+            {
+                "title" : " Purple.",
+                "answerCode" : "3-6-10",
+                "resultContent" : "All those strange, wonderful, lucky things that have been happening lately? That's magic, and you're attracting it! Of course you'll use this for good, not evil, because you're catching sneak previews of the future, and only sensitivity and wisdom will get you there. You could rule the world, but only if it wants you to rule it."
+            },
+            {
+                "title" : " Green.",
+                "answerCode" : "3-6-11",
+                "resultContent" : "You're comfortable, at ease, in your groove. Breathing is good, heart rate steady. Somehow you're growing and balanced at the same time, which seems counterintuitive, but you make it work. You fall in love with every dog, cat, baby, man or woman you see. As a citizen of the world, you're within your rights to offer positive feedback."
+            },
+            {
+                "title" : " Blue.",
+                "answerCode" : "3-6-12",
+                "resultContent" : "You're cool, calm, and in control. Instead of making ripples, you're a strong, gentle tide pushing along beneath the surface. You want what's best for others and can easily get them to go along without argument by telling the truth in a loving way. When anyone needs comforting, your soothing sounds resemble a purring cat."
+            },
+            {
+                "title" : " Yellow.",
+                "answerCode" : "3-7-9",
+                "resultContent" : "You just went through some positive change, and now you're waking to the reality of an altered life. Little things inspire you. Everything is worth talking about. You feel yourself getting smarter by the minute. There's obviously a reason why you're in luck. Appreciate it instead of analyzing it. The moment lasts a lot longer that way."
+            },
+            {
+                "title" : " Green.",
+                "answerCode" : "3-7-10",
+                "resultContent" : "You're comfortable, at ease, in your groove. Breathing is good, heart rate steady. Somehow you're growing and balanced at the same time, which seems counterintuitive, but you make it work. You fall in love with every dog, cat, baby, man or woman you see. As a citizen of the world, you're within your rights to offer positive feedback."
+            },
+            {
+                "title" : " Orange.",
+                "answerCode" : "3-7-11",
+                "resultContent" : "You're feeling vital and vigorous. Your team, boss, or lover benefits from this explosion of good vibes and stamina. But it's easy to get addicted to wildness and wonder, so recognize your limitations, because when your energy or mood crashes, the grief, drama, and lamentation will be spectacular. Surely you don't want to be famous for that! "
+            },
+            {
+                "title" : " Yellow.",
+                "answerCode" : "3-7-12",
+                "resultContent" : "You just went through some positive change, and now you're waking to the reality of an altered life. Little things inspire you. Everything is worth talking about. You feel yourself getting smarter by the minute. There's obviously a reason why you're in luck. Appreciate it instead of analyzing it. The moment lasts a lot longer that way."
+            },
+            {
+                "title" : " Green.",
+                "answerCode" : "3-8-9",
+                "resultContent" : "You're comfortable, at ease, in your groove. Breathing is good, heart rate steady. Somehow you're growing and balanced at the same time, which seems counterintuitive, but you make it work. You fall in love with every dog, cat, baby, man or woman you see. As a citizen of the world, you're within your rights to offer positive feedback."
+            },
+            {
+                "title" : " Blue.",
+                "answerCode" : "3-8-10",
+                "resultContent" : "You're cool, calm, and in control. Instead of making ripples, you're a strong, gentle tide pushing along beneath the surface. You want what's best for others and can easily get them to go along without argument by telling the truth in a loving way. When anyone needs comforting, your soothing sounds resemble a purring cat."
+            },
+            {
+                "title" : " Yellow.",
+                "answerCode" : "3-8-11",
+                "resultContent" : "You just went through some positive change, and now you're waking to the reality of an altered life. Little things inspire you. Everything is worth talking about. You feel yourself getting smarter by the minute. There's obviously a reason why you're in luck. Appreciate it instead of analyzing it. The moment lasts a lot longer that way."
+            },
+            {
+                "title" : " Blue.",
+                "answerCode" : "3-8-12",
+                "resultContent" : "You're cool, calm, and in control. Instead of making ripples, you're a strong, gentle tide pushing along beneath the surface. You want what's best for others and can easily get them to go along without argument by telling the truth in a loving way. When anyone needs comforting, your soothing sounds resemble a purring cat."
+            },
+            {
+                "title" : " Orange.",
+                "answerCode" : "4-5-9",
+                "resultContent" : "You're feeling vital and vigorous. Your team, boss, or lover benefits from this explosion of good vibes and stamina. But it's easy to get addicted to wildness and wonder, so recognize your limitations, because when your energy or mood crashes, the grief, drama, and lamentation will be spectacular. Surely you don't want to be famous for that! "
+            },
+            {
+                "title" : " Yellow.",
+                "answerCode" : "4-5-10",
+                "resultContent" : "You just went through some positive change, and now you're waking to the reality of an altered life. Little things inspire you. Everything is worth talking about. You feel yourself getting smarter by the minute. There's obviously a reason why you're in luck. Appreciate it instead of analyzing it. The moment lasts a lot longer that way."
+            },
+            {
+                "title" : " Red.",
+                "answerCode" : "4-5-11",
+                "resultContent" : "You're all about friction. Maybe it's social or sexual. Maybe you're working and playing hard, wearing out essential parts. You might have an unusual relationship with static electricity. You attract and\/or repel money. Possibly you're obsessive or the object of other people's obsessions. It's a good day when you turn restlessness and anger into motivation and confidence."
+            },
+            {
+                "title" : " Yellow.",
+                "answerCode" : "4-5-12",
+                "resultContent" : "You just went through some positive change, and now you're waking to the reality of an altered life. Little things inspire you. Everything is worth talking about. You feel yourself getting smarter by the minute. There's obviously a reason why you're in luck. Appreciate it instead of analyzing it. The moment lasts a lot longer that way."
+            },
+            {
+                "title" : " Yellow.",
+                "answerCode" : "4-6-9",
+                "resultContent" : "You just went through some positive change, and now you're waking to the reality of an altered life. Little things inspire you. Everything is worth talking about. You feel yourself getting smarter by the minute. There's obviously a reason why you're in luck. Appreciate it instead of analyzing it. The moment lasts a lot longer that way."
+            },
+            {
+                "title" : " Blue.",
+                "answerCode" : "4-6-10",
+                "resultContent" : "You're cool, calm, and in control. Instead of making ripples, you're a strong, gentle tide pushing along beneath the surface. You want what's best for others and can easily get them to go along without argument by telling the truth in a loving way. When anyone needs comforting, your soothing sounds resemble a purring cat."
+            },
+            {
+                "title" : " Yellow.",
+                "answerCode" : "4-6-11",
+                "resultContent" : "You just went through some positive change, and now you're waking to the reality of an altered life. Little things inspire you. Everything is worth talking about. You feel yourself getting smarter by the minute. There's obviously a reason why you're in luck. Appreciate it instead of analyzing it. The moment lasts a lot longer that way."
+            },
+            {
+                "title" : " Green.",
+                "answerCode" : "4-6-12",
+                "resultContent" : "You're comfortable, at ease, in your groove. Breathing is good, heart rate steady. Somehow you're growing and balanced at the same time, which seems counterintuitive, but you make it work. You fall in love with every dog, cat, baby, man or woman you see. As a citizen of the world, you're within your rights to offer positive feedback."
+            },
+            {
+                "title" : " Red.",
+                "answerCode" : "4-7-9",
+                "resultContent" : "You're all about friction. Maybe it's social or sexual. Maybe you're working and playing hard, wearing out essential parts. You might have an unusual relationship with static electricity. You attract and\/or repel money. Possibly you're obsessive or the object of other people's obsessions. It's a good day when you turn restlessness and anger into motivation and confidence."
+            },
+            {
+                "title" : " Yellow.",
+                "answerCode" : "4-7-10",
+                "resultContent" : "You just went through some positive change, and now you're waking to the reality of an altered life. Little things inspire you. Everything is worth talking about. You feel yourself getting smarter by the minute. There's obviously a reason why you're in luck. Appreciate it instead of analyzing it. The moment lasts a lot longer that way."
+            },
+            {
+                "title" : " Red.",
+                "answerCode" : "4-7-11",
+                "resultContent" : "You're all about friction. Maybe it's social or sexual. Maybe you're working and playing hard, wearing out essential parts. You might have an unusual relationship with static electricity. You attract and\/or repel money. Possibly you're obsessive or the object of other people's obsessions. It's a good day when you turn restlessness and anger into motivation and confidence."
+            },
+            {
+                "title" : " Orange.",
+                "answerCode" : "4-7-12",
+                "resultContent" : "You're feeling vital and vigorous. Your team, boss, or lover benefits from this explosion of good vibes and stamina. But it's easy to get addicted to wildness and wonder, so recognize your limitations, because when your energy or mood crashes, the grief, drama, and lamentation will be spectacular. Surely you don't want to be famous for that! "
+            },
+            {
+                "title" : " Yellow.",
+                "answerCode" : "4-8-9",
+                "resultContent" : "You just went through some positive change, and now you're waking to the reality of an altered life. Little things inspire you. Everything is worth talking about. You feel yourself getting smarter by the minute. There's obviously a reason why you're in luck. Appreciate it instead of analyzing it. The moment lasts a lot longer that way."
+            },
+            {
+                "title" : " Green.",
+                "answerCode" : "4-8-10",
+                "resultContent" : "You're comfortable, at ease, in your groove. Breathing is good, heart rate steady. Somehow you're growing and balanced at the same time, which seems counterintuitive, but you make it work. You fall in love with every dog, cat, baby, man or woman you see. As a citizen of the world, you're within your rights to offer positive feedback."
+            },
+            {
+                "title" : " Orange.",
+                "answerCode" : "4-8-11",
+                "resultContent" : "You're feeling vital and vigorous. Your team, boss, or lover benefits from this explosion of good vibes and stamina. But it's easy to get addicted to wildness and wonder, so recognize your limitations, because when your energy or mood crashes, the grief, drama, and lamentation will be spectacular. Surely you don't want to be famous for that! "
+            },
+            {
+                "title" : " Yellow.",
+                "answerCode" : "4-8-12",
+                "resultContent" : "You just went through some positive change, and now you're waking to the reality of an altered life. Little things inspire you. Everything is worth talking about. You feel yourself getting smarter by the minute. There's obviously a reason why you're in luck. Appreciate it instead of analyzing it. The moment lasts a lot longer that way."
+            }
+        ],
+        "questionResult_name" : " What Color Is Your Aura"
+    }
+]

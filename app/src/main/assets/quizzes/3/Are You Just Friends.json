@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "Are You Just Friends.jpg",
+    "allQuestion": [
+        {
+            "questionResult_name": "Are You Just Friends?",
+            "explanation": "Is your relationship strictly platonic, or is it blossoming into a romance?",
+            "answers": [
+                {
+                    "text": "Many. Just exchanging a look is like you can read each other's minds.",
+                    "indentifer": "1"
+                },
+                {
+                    "text": "None. Plus you sometimes don't even get each other's sense of humor.",
+                    "indentifer": "2"
+                },
+                {
+                    "text": "None. You don't actually know each other that well.",
+                    "indentifer": "3"
+                },
+                {
+                    "text": "A few, and at least one other person is in on them, too.",
+                    "indentifer": "4"
+                }
+            ],
+            "image": "",
+            "text": "How many inside jokes do you have?"
+        },
+        {
+            "questionResult_name": "Are You Just Friends?",
+            "explanation": "Is your relationship strictly platonic, or is it blossoming into a romance?",
+            "answers": [
+                {
+                    "text": "Makes you feel uncomfortable.",
+                    "indentifer": "5"
+                },
+                {
+                    "text": "Turns you on.",
+                    "indentifer": "6"
+                },
+                {
+                    "text": "Makes you nervous... maybe in a good way, maybe in a bad way.",
+                    "indentifer": "7"
+                },
+                {
+                    "text": "Grosses you out!",
+                    "indentifer": "8"
+                }
+            ],
+            "image": "",
+            "text": "The thought of kissing or doing other intimate things with your friend."
+        },
+        {
+            "questionResult_name": "Are You Just Friends?",
+            "explanation": "Is your relationship strictly platonic, or is it blossoming into a romance?",
+            "answers": [
+                {
+                    "text": "Not think anything of it.",
+                    "indentifer": "9"
+                },
+                {
+                    "text": "Feel a little excluded because you're so close.",
+                    "indentifer": "10"
+                },
+                {
+                    "text": "Be jealous.",
+                    "indentifer": "11"
+                },
+                {
+                    "text": "Confront you about the friendship, and maybe even break up with you.",
+                    "indentifer": "12"
+                }
+            ],
+            "image": "",
+            "text": "If your significant other (or, if you're single, pretend you have a steady mate) watched all of your interactions with your friend, he or she would probably:"
+        }
+    ]
+}

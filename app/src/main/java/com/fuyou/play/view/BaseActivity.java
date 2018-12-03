@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.fuyou.play.R;
@@ -66,6 +67,19 @@ public class BaseActivity extends FragmentActivity {
                 }
             }
         }
+    }
+
+    protected void setTitle(String title) {
+        if (title == null) return;
+        try {
+            ((TextView) findViewById(R.id.tv_title_base)).setText(title);
+        } catch (Exception e){
+
+        }
+    }
+
+    protected void setTitleColor() {
+       findViewById(R.id.v_title).setBackgroundColor(getResources().getColor(R.color.base_all));
     }
 
     //设置状态栏为透明

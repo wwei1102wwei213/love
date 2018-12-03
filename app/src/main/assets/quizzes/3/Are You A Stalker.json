@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "Are You A Stalker.jpg",
+    "allQuestion": [
+        {
+            "questionResult_name": "Are You A Stalker?",
+            "explanation": "You may need to start giving others more space!",
+            "answers": [
+                {
+                    "text": "Searched online for anything you could find on them.",
+                    "indentifer": "1"
+                },
+                {
+                    "text": "Stolen their personal property.",
+                    "indentifer": "2"
+                },
+                {
+                    "text": "Asked about them personally or through someone who knows them better.",
+                    "indentifer": "3"
+                },
+                {
+                    "text": "All of these and more.",
+                    "indentifer": "4"
+                }
+            ],
+            "image": "",
+            "text": "Which of the following have you done to find out more about someone of interest?"
+        },
+        {
+            "questionResult_name": "Are You A Stalker?",
+            "explanation": "You may need to start giving others more space!",
+            "answers": [
+                {
+                    "text": "Hurry up so you can say hello.",
+                    "indentifer": "5"
+                },
+                {
+                    "text": "Pick up the pace and follow them discreetly.",
+                    "indentifer": "6"
+                },
+                {
+                    "text": "Follow them a long time, maybe taking a photo or getting close enough to hear or smell them.",
+                    "indentifer": "7"
+                },
+                {
+                    "text": "Make sure they don't see you and get out of there!",
+                    "indentifer": "8"
+                }
+            ],
+            "image": "",
+            "text": "You are out in public and see someone you're attracted to from afar. What do you do?"
+        },
+        {
+            "questionResult_name": "Are You A Stalker?",
+            "explanation": "You may need to start giving others more space!",
+            "answers": [
+                {
+                    "text": "Keep pursuing them anyway.",
+                    "indentifer": "9"
+                },
+                {
+                    "text": "Try to stay in touch unless they don't seem to want you to.",
+                    "indentifer": "10"
+                },
+                {
+                    "text": "Avoid them.",
+                    "indentifer": "11"
+                },
+                {
+                    "text": "Give them space, hoping you can be friends someday.",
+                    "indentifer": "12"
+                }
+            ],
+            "image": "",
+            "text": "Someone breaks up with you. How do you handle it?"
+        }
+    ]
+}

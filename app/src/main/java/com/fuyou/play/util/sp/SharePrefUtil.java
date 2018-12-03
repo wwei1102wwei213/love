@@ -18,7 +18,7 @@ import java.util.Set;
  */
 public final class SharePrefUtil {
 
-	private final static String SP_NAME = "milu_info_config";
+	private final static String SP_NAME = "fuyou_info_config";
 	private static SharedPreferences sp;
 
 	/**

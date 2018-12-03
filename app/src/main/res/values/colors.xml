@@ -79,4 +79,7 @@
     <color name="bg_gray_color_pressed">#CCCCCC</color>
     <color name="bg_gray_color_nothing">#eeeeee</color>
 
+    <!--测试-->
+    <color name="quizzes_detail_bg_vp">#b036fa</color>
+    <color name="quizzes_text_yellow">#B69157</color>
 </resources>

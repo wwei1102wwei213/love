@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class TestAcctivity extends BaseActivity implements HttpRepListener {
+public class TestActivity extends BaseActivity implements HttpRepListener {
 
     private List<DiscussEntity> list;
     private PostListAdapter adapter;

@@ -1,0 +1,101 @@
+{
+    "subTopicImage": "What galaxy do you belong in.jpg",
+    "allQuestion": [
+        {
+            "questionResult_name": "What galaxy do you belong in?",
+            "explanation": "Do you ever feel like you don't fit in? Find out if the Milky Way galaxy is your native home or if you belong in a galaxy farther away...",
+            "answers": [
+                {
+                    "text": "Austin, TX.",
+                    "indentifer": "1"
+                },
+                {
+                    "text": "Miami, FL.",
+                    "indentifer": "2"
+                },
+                {
+                    "text": "New York, NY.",
+                    "indentifer": "3"
+                },
+                {
+                    "text": "San Francisco, CA.",
+                    "indentifer": "4"
+                }
+            ],
+            "image": "",
+            "text": "What U.S. city would you rather live in?"
+        },
+        {
+            "questionResult_name": "What galaxy do you belong in?",
+            "explanation": "Do you ever feel like you don't fit in? Find out if the Milky Way galaxy is your native home or if you belong in a galaxy farther away...",
+            "answers": [
+                {
+                    "text": "Sunglasses.",
+                    "indentifer": "5"
+                },
+                {
+                    "text": "A hat.",
+                    "indentifer": "6"
+                },
+                {
+                    "text": "Jewelry.",
+                    "indentifer": "7"
+                },
+                {
+                    "text": "Your latest gadget.",
+                    "indentifer": "8"
+                }
+            ],
+            "image": "",
+            "text": "Your favorite accessory is:"
+        },
+        {
+            "questionResult_name": "What galaxy do you belong in?",
+            "explanation": "Do you ever feel like you don't fit in? Find out if the Milky Way galaxy is your native home or if you belong in a galaxy farther away...",
+            "answers": [
+                {
+                    "text": "Drinking, dancing, and debauchery.",
+                    "indentifer": "9"
+                },
+                {
+                    "text": "A nice dinner and maybe a movie.",
+                    "indentifer": "10"
+                },
+                {
+                    "text": "Grabbing some take-out and renting a DVD.",
+                    "indentifer": "11"
+                },
+                {
+                    "text": "Running around in the dark.",
+                    "indentifer": "12"
+                }
+            ],
+            "image": "",
+            "text": "Your idea of the perfect night out on the town involves:"
+        },
+        {
+            "questionResult_name": "What galaxy do you belong in?",
+            "explanation": "Do you ever feel like you don't fit in? Find out if the Milky Way galaxy is your native home or if you belong in a galaxy farther away...",
+            "answers": [
+                {
+                    "text": "Foreign or independent films.",
+                    "indentifer": "13"
+                },
+                {
+                    "text": "Comedy or horror movies.",
+                    "indentifer": "14"
+                },
+                {
+                    "text": "Big blockbusters or epic dramas.",
+                    "indentifer": "15"
+                },
+                {
+                    "text": "Romances or ''feel good'' movies.",
+                    "indentifer": "16"
+                }
+            ],
+            "image": "",
+            "text": "What film genre do you like best?"
+        }
+    ]
+}

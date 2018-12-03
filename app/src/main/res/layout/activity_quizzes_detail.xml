@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/base_all"
+    android:orientation="vertical">
+    <include layout="@layout/base_title_layout"/>
+    <com.fuyou.play.widget.custom.CustomScrollView
+        android:id="@+id/sv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/v_title"
+        android:scrollbars="none">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:id="@+id/quizzess_detail_acitvity_root_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="250dp"/>
+
+        </LinearLayout>
+
+    </com.fuyou.play.widget.custom.CustomScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+        <RelativeLayout
+            android:id="@+id/v_lv"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:visibility="visible">
+            <ListView
+                android:id="@+id/lv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:background="@color/transparent_double_half"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/v_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@color/transparent_double_half"
+            android:visibility="gone">
+            <TextView
+                android:id="@+id/tv_result"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="VIEW RESULT"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font14"
+                android:background="@drawable/base_btn_radius_normal"
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_centerInParent="true"
+                android:visibility="gone"
+                />
+            <TextView
+                android:id="@+id/tv_next"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="PLAY TEST NEXT"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font14"
+                android:background="@drawable/base_btn_radius_normal"
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginTop="25dp"
+                android:layout_centerHorizontal="true"
+                android:visibility="gone"
+                />
+            <TextView
+                android:id="@+id/tv_again"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:text="AGAIN"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font14"
+                android:paddingLeft="32dp"
+                android:paddingRight="32dp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="15dp"
+                android:layout_centerHorizontal="true"
+                android:visibility="gone"
+                />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "How Annoying Are You.jpg",
+    "allQuestion": [
+  {
+    "questionResult_name": "How Annoying Are You?",
+    "explanation": "Do you drive people crazy with your inconsiderate ways, or get the prize for politeness?",
+    "answers": [
+      {
+        "text": "Answer it, keep it brief, and refuse to talk about anything private.",
+        "indentifer": "1"
+      },
+      {
+        "text": "Silence your ringtone and let the call go to voice mail.",
+        "indentifer": "2"
+      },
+      {
+        "text": "Answer it and talk freely.",
+        "indentifer": "3"
+      },
+      {
+        "text": "Only take the call if it's someone you really want to talk to.",
+        "indentifer": "4"
+      }
+    ],
+    "image": "",
+    "text": "You're on public transit and receive a personal phone call. What do you do?"
+  },
+  {
+    "questionResult_name": "How Annoying Are You?",
+    "explanation": "Do you drive people crazy with your inconsiderate ways, or get the prize for politeness?",
+    "answers": [
+      {
+        "text": "Gambling, slacking off at work, and/or being selfish.",
+        "indentifer": "5"
+      },
+      {
+        "text": "Smoking, drinking, drugs, and/or eating junk food.",
+        "indentifer": "6"
+      },
+      {
+        "text": "Swearing, poor manners, and/or being messy.",
+        "indentifer": "7"
+      },
+      {
+        "text": "I don't have any of these vices.",
+        "indentifer": "8"
+      }
+    ],
+    "image": "",
+    "text": "Which one of these vices are you guilty of?"
+  },
+  {
+    "questionResult_name": "How Annoying Are You?",
+    "explanation": "Do you drive people crazy with your inconsiderate ways, or get the prize for politeness?",
+    "answers": [
+      {
+        "text": "Your closest family and friends.",
+        "indentifer": "9"
+      },
+      {
+        "text": "No one.",
+        "indentifer": "10"
+      },
+      {
+        "text": "Your social networking, blog readers, and/or entire e-list.",
+        "indentifer": "11"
+      },
+      {
+        "text": "Friends, family, co-workers... people you interact with face-to-face.",
+        "indentifer": "12"
+      }
+    ],
+    "image": "",
+    "text": "Something really bad or really good happens to you. Who do you tell about it?"
+  }
+]
+}

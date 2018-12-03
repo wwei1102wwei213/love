@@ -1,0 +1,101 @@
+{
+    "subTopicImage": "Are You Soul Mates.jpg",
+    "allQuestion": [
+        {
+            "questionResult_name": "Are You Soul Mates?",
+            "explanation": "Wondering if the two of you are fated to be with one another? Find out how strong your soul mate energy is...",
+            "answers": [
+                {
+                    "text": "Often.",
+                    "indentifer": "1"
+                },
+                {
+                    "text": "Sometimes.",
+                    "indentifer": "2"
+                },
+                {
+                    "text": "Rarely.",
+                    "indentifer": "3"
+                },
+                {
+                    "text": "Never.",
+                    "indentifer": "4"
+                }
+            ],
+            "image": "",
+            "text": "Do you ever sense each other's feelings, say the same thing at the same time, or other cross-over things like texting out of the blue at the same time?"
+        },
+        {
+            "questionResult_name": "Are You Soul Mates?",
+            "explanation": "Wondering if the two of you are fated to be with one another? Find out how strong your soul mate energy is...",
+            "answers": [
+                {
+                    "text": "Out at a bar, club, event, dating site/app, or other place where the goal was to meet someone.",
+                    "indentifer": "5"
+                },
+                {
+                    "text": "Through friends or family, work, or school.",
+                    "indentifer": "6"
+                },
+                {
+                    "text": "On an errand, vacation, or place where meeting someone was unexpected.",
+                    "indentifer": "7"
+                },
+                {
+                    "text": "We haven't officially \"met\" yet.",
+                    "indentifer": "8"
+                }
+            ],
+            "image": "",
+            "text": "How did you meet?"
+        },
+        {
+            "questionResult_name": "Are You Soul Mates?",
+            "explanation": "Wondering if the two of you are fated to be with one another? Find out how strong your soul mate energy is...",
+            "answers": [
+                {
+                    "text": "Many. We enjoy doing some things together, others we'd rather do with friends or by ourselves.",
+                    "indentifer": "9"
+                },
+                {
+                    "text": "Basically everything. We are so alike, it's a bit creepy.",
+                    "indentifer": "10"
+                },
+                {
+                    "text": "Not much. Opposites attract!",
+                    "indentifer": "11"
+                },
+                {
+                    "text": "A couple. There's a lot of things we don't really enjoy or understand that the other loves.",
+                    "indentifer": "12"
+                }
+            ],
+            "image": "",
+            "text": "How many shared interests do you have?"
+        },
+        {
+            "questionResult_name": "Are You Soul Mates?",
+            "explanation": "Wondering if the two of you are fated to be with one another? Find out how strong your soul mate energy is...",
+            "answers": [
+                {
+                    "text": "Comfortable.",
+                    "indentifer": "13"
+                },
+                {
+                    "text": "Anxious.",
+                    "indentifer": "14"
+                },
+                {
+                    "text": "Blissful",
+                    "indentifer": "15"
+                },
+                {
+                    "text": "Confuse",
+                    "indentifer": "16"
+                }
+            ],
+            "image": "",
+            "text": "Pick the one word that best describes the way your beloved makes you feel."
+        }
+    ]
+}

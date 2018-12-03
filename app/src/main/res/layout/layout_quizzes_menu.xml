@@ -12,7 +12,7 @@
         android:paddingLeft="@dimen/home_base_padding"
         android:text="@string/home_menu_title_quizzes"
         android:textSize="@dimen/home_menu_title_size"
-        android:paddingBottom="10dp"
+        android:paddingTop="@dimen/home_base_padding"
         />
 
     <LinearLayout

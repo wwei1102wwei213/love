@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "How Jersey Are You.jpg",
+    "allQuestion": [
+  {
+    "questionResult_name": "How Jersey Are You?",
+    "explanation": "Could you be the next big thing to come out of Jersey, or is a guido never going to grace your photos?",
+    "answers": [
+      {
+        "text": "Never.",
+        "indentifer": "1"
+      },
+      {
+        "text": "Every week.",
+        "indentifer": "2"
+      },
+      {
+        "text": "Just before a special occasion or vacation.",
+        "indentifer": "3"
+      },
+      {
+        "text": "As often as needed to maintain a healthy-looking glow.",
+        "indentifer": "4"
+      }
+    ],
+    "image": "",
+    "text": "How often do you go tanning or use self-tanner?"
+  },
+  {
+    "questionResult_name": "How Jersey Are You?",
+    "explanation": "Could you be the next big thing to come out of Jersey, or is a guido never going to grace your photos?",
+    "answers": [
+      {
+        "text": "I don't show much skin at all.",
+        "indentifer": "5"
+      },
+      {
+        "text": "I like to bare a little leg or chest.",
+        "indentifer": "6"
+      },
+      {
+        "text": "I show off my best assets.",
+        "indentifer": "7"
+      },
+      {
+        "text": "Very - I love to show off my cleavage, chest, butt and/or legs.",
+        "indentifer": "8"
+      }
+    ],
+    "image": "",
+    "text": "How revealing are your clothes?"
+  },
+  {
+    "questionResult_name": "How Jersey Are You?",
+    "explanation": "Could you be the next big thing to come out of Jersey, or is a guido never going to grace your photos?",
+    "answers": [
+      {
+        "text": "They happen often - I have to defend myself.",
+        "indentifer": "9"
+      },
+      {
+        "text": "Only when things get really nasty.",
+        "indentifer": "10"
+      },
+      {
+        "text": "I never fight.",
+        "indentifer": "11"
+      },
+      {
+        "text": "I have private arguments sometimes.",
+        "indentifer": "12"
+      }
+    ],
+    "image": "",
+    "text": "How often do you get into fights?"
+  }
+]
+}

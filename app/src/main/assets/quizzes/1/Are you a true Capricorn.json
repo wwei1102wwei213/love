@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "Are you a true Capricorn.jpg",
+    "allQuestion": [
+        {
+            "questionResult_name": "Are you a true Capricorn?",
+            "explanation": "Does your personality match up to your given Sun Sign? If not, you might be more in tune with your Rising or Moon Sign!",
+            "answers": [
+                {
+                    "text": "Goofy.",
+                    "indentifer": "1"
+                },
+                {
+                    "text": "Dark or sarcastic.",
+                    "indentifer": "2"
+                },
+                {
+                    "text": "Raunchy.",
+                    "indentifer": "3"
+                },
+                {
+                    "text": "One-liners and little jabs.",
+                    "indentifer": "4"
+                }
+            ],
+            "image": "",
+            "text": "Your sense of humor is:"
+        },
+        {
+            "questionResult_name": "Are you a true Capricorn?",
+            "explanation": "Does your personality match up to your given Sun Sign? If not, you might be more in tune with your Rising or Moon Sign!",
+            "answers": [
+                {
+                    "text": "You can be kind of mean.",
+                    "indentifer": "5"
+                },
+                {
+                    "text": "You tend to slack off.",
+                    "indentifer": "6"
+                },
+                {
+                    "text": "You're too serious.",
+                    "indentifer": "7"
+                },
+                {
+                    "text": "Your addictions.",
+                    "indentifer": "8"
+                }
+            ],
+            "image": "",
+            "text": "Your biggest flaw is:"
+        },
+        {
+            "questionResult_name": "Are you a true Capricorn?",
+            "explanation": "Does your personality match up to your given Sun Sign? If not, you might be more in tune with your Rising or Moon Sign!",
+            "answers": [
+                {
+                    "text": "Look up your symptoms and try to figure out what's wrong.",
+                    "indentifer": "9"
+                },
+                {
+                    "text": "Wonder if you're terminally ill.",
+                    "indentifer": "10"
+                },
+                {
+                    "text": "Don't worry about it - they should go away.",
+                    "indentifer": "11"
+                },
+                {
+                    "text": "Worry in silence and try to rest.",
+                    "indentifer": "12"
+                }
+            ],
+            "image": "",
+            "text": "You have some weird medical symptoms. Your reaction?"
+        }
+    ]
+}

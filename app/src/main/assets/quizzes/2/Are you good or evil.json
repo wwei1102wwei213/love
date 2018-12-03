@@ -1,0 +1,101 @@
+{
+    "subTopicImage": "Are you good or evil.jpg",
+    "allQuestion": [
+  {
+    "questionResult_name": "Are you good or evil?",
+    "explanation": "They say one¡¯s eyes are a window into the soul. What do your peepers say about you?",
+    "answers": [
+      {
+        "text": "Goo",
+        "indentifer": "1"
+      },
+      {
+        "text": "Ba",
+        "indentifer": "2"
+      },
+      {
+        "text": "Stupi",
+        "indentifer": "3"
+      },
+      {
+        "text": "Complicate",
+        "indentifer": "4"
+      }
+    ],
+    "image": "",
+    "text": "You think that people are inherently..."
+  },
+  {
+    "questionResult_name": "Are you good or evil?",
+    "explanation": "They say one¡¯s eyes are a window into the soul. What do your peepers say about you?",
+    "answers": [
+      {
+        "text": "Speed up.",
+        "indentifer": "5"
+      },
+      {
+        "text": "Slam on the brakes.",
+        "indentifer": "6"
+      },
+      {
+        "text": "Slow down a bit.",
+        "indentifer": "7"
+      },
+      {
+        "text": "Aren't paying attention.",
+        "indentifer": "8"
+      }
+    ],
+    "image": "",
+    "text": "An animal runs in front of your car. You..."
+  },
+  {
+    "questionResult_name": "Are you good or evil?",
+    "explanation": "They say one¡¯s eyes are a window into the soul. What do your peepers say about you?",
+    "answers": [
+      {
+        "text": "Friendship.",
+        "indentifer": "9"
+      },
+      {
+        "text": "Love.",
+        "indentifer": "10"
+      },
+      {
+        "text": "Revenge.",
+        "indentifer": "11"
+      },
+      {
+        "text": "Death.",
+        "indentifer": "12"
+      }
+    ],
+    "image": "",
+    "text": "If you could cast a spell on an ex, you would cast a ......... spell."
+  },
+  {
+    "questionResult_name": "Are you good or evil?",
+    "explanation": "They say one¡¯s eyes are a window into the soul. What do your peepers say about you?",
+    "answers": [
+      {
+        "text": "Silly or bizarre.",
+        "indentifer": "13"
+      },
+      {
+        "text": "Hostile.",
+        "indentifer": "14"
+      },
+      {
+        "text": "Your oyster.",
+        "indentifer": "15"
+      },
+      {
+        "text": "A romantic comedy.",
+        "indentifer": "16"
+      }
+    ],
+    "image": "",
+    "text": "As a child, you thought the world was..."
+  }
+]
+}

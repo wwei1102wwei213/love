@@ -1,0 +1,101 @@
+{
+    "subTopicImage": "What kind of friend are you.jpg",
+    "allQuestion": [
+  {
+    "questionResult_name": "What kind of friend are you?",
+    "explanation": "Are you the person others seek out for support, a laugh, or to keep them on their toes?",
+    "answers": [
+      {
+        "text": "Funny one.",
+        "indentifer": "1"
+      },
+      {
+        "text": "Pretty one.",
+        "indentifer": "2"
+      },
+      {
+        "text": "Outspoken one.",
+        "indentifer": "3"
+      },
+      {
+        "text": "Center of attention.",
+        "indentifer": "4"
+      }
+    ],
+    "image": "",
+    "text": "When you go out with a group of friends, you are the:"
+  },
+  {
+    "questionResult_name": "What kind of friend are you?",
+    "explanation": "Are you the person others seek out for support, a laugh, or to keep them on their toes?",
+    "answers": [
+      {
+        "text": "Sympathize with him or her.",
+        "indentifer": "5"
+      },
+      {
+        "text": "Give useful advice.",
+        "indentifer": "6"
+      },
+      {
+        "text": "Try to lighten the mood.",
+        "indentifer": "7"
+      },
+      {
+        "text": "Try to end the call -- and the drama! -- as soon as possible.",
+        "indentifer": "8"
+      }
+    ],
+    "image": "",
+    "text": "When a friend calls you in distress, you:"
+  },
+  {
+    "questionResult_name": "What kind of friend are you?",
+    "explanation": "Are you the person others seek out for support, a laugh, or to keep them on their toes?",
+    "answers": [
+      {
+        "text": "Money.",
+        "indentifer": "9"
+      },
+      {
+        "text": "Clothes.",
+        "indentifer": "10"
+      },
+      {
+        "text": "A place to stay.",
+        "indentifer": "11"
+      },
+      {
+        "text": "A lover.",
+        "indentifer": "12"
+      }
+    ],
+    "image": "",
+    "text": "What are you most likely to loan a friend in need?"
+  },
+  {
+    "questionResult_name": "What kind of friend are you?",
+    "explanation": "Are you the person others seek out for support, a laugh, or to keep them on their toes?",
+    "answers": [
+      {
+        "text": "On social networking sites like Facebook.",
+        "indentifer": "13"
+      },
+      {
+        "text": "At work or in school.",
+        "indentifer": "14"
+      },
+      {
+        "text": "Through family or other friends.",
+        "indentifer": "15"
+      },
+      {
+        "text": "When you are participating in activities or out in the world.",
+        "indentifer": "16"
+      }
+    ],
+    "image": "",
+    "text": "You meet most of your friends..."
+  }
+]
+}

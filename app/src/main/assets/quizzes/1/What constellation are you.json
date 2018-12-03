@@ -1,0 +1,101 @@
+{
+    "subTopicImage": "What constellation are you.jpg",
+    "allQuestion": [
+        {
+            "questionResult_name": "What constellation are you?",
+            "explanation": "The sky is full of stars, with clusters of them forming constellations. Which one of the most well-known constellations are you most like?",
+            "answers": [
+                {
+                    "text": "Serious one.",
+                    "indentifer": "1"
+                },
+                {
+                    "text": "Free spirit.",
+                    "indentifer": "2"
+                },
+                {
+                    "text": "Attractive one.",
+                    "indentifer": "3"
+                },
+                {
+                    "text": "One that ties you all together.",
+                    "indentifer": "4"
+                }
+            ],
+            "image": "",
+            "text": "In your circle of friends, you are the:"
+        },
+        {
+            "questionResult_name": "What constellation are you?",
+            "explanation": "The sky is full of stars, with clusters of them forming constellations. Which one of the most well-known constellations are you most like?",
+            "answers": [
+                {
+                    "text": "A spa package.",
+                    "indentifer": "5"
+                },
+                {
+                    "text": "Money.",
+                    "indentifer": "6"
+                },
+                {
+                    "text": "Tickets to an event.",
+                    "indentifer": "7"
+                },
+                {
+                    "text": "Books, movies, and/or music.",
+                    "indentifer": "8"
+                }
+            ],
+            "image": "",
+            "text": "What would you rather receive as a gift?"
+        },
+        {
+            "questionResult_name": "What constellation are you?",
+            "explanation": "The sky is full of stars, with clusters of them forming constellations. Which one of the most well-known constellations are you most like?",
+            "answers": [
+                {
+                    "text": "Not much - they tend to avoid me, or vice versa.",
+                    "indentifer": "9"
+                },
+                {
+                    "text": "All the time!",
+                    "indentifer": "10"
+                },
+                {
+                    "text": "I don't see them as much as I'd like to.",
+                    "indentifer": "11"
+                },
+                {
+                    "text": "I keep in touch regularly.",
+                    "indentifer": "12"
+                }
+            ],
+            "image": "",
+            "text": "How much time do you spend with your family?"
+        },
+        {
+            "questionResult_name": "What constellation are you?",
+            "explanation": "The sky is full of stars, with clusters of them forming constellations. Which one of the most well-known constellations are you most like?",
+            "answers": [
+                {
+                    "text": "A sky full of",
+                    "indentifer": "13"
+                },
+                {
+                    "text": "Shooting",
+                    "indentifer": "14"
+                },
+                {
+                    "text": "Super bright",
+                    "indentifer": "15"
+                },
+                {
+                    "text": "Twinkling",
+                    "indentifer": "16"
+                }
+            ],
+            "image": "",
+            "text": "You like _____ stars."
+        }
+    ]
+}

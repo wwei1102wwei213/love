@@ -1,5 +1,7 @@
 <resources>
 
+    <dimen name="base_radius">6dp</dimen>
+
     <!--基本字体大小-->
     <dimen name="font12">12sp</dimen>
     <dimen name="font13">13sp</dimen>
@@ -53,4 +55,8 @@
     <dimen name="home_menu_name_size">15sp</dimen>
     <dimen name="home_library_item_iv_height">95dp</dimen>
     <dimen name="home_library_item_space">10dp</dimen>
+
+    <!--Quizzes-->
+    <dimen name="base_margin_quizzes">20dp</dimen>
+
 </resources>

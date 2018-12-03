@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "What's the Highlight of Your New Year.jpg",
+    "allQuestion": [
+  {
+    "questionResult_name": "What's the Highlight of Your New Year?",
+    "explanation": "How should you change your priorities for the year ahead?",
+    "answers": [
+      {
+        "text": "Start a new workout routine.",
+        "indentifer": "1"
+      },
+      {
+        "text": "Get a new jo",
+        "indentifer": "2"
+      },
+      {
+        "text": "Find love.",
+        "indentifer": "3"
+      },
+      {
+        "text": "Be kinder to myself and others.",
+        "indentifer": "4"
+      }
+    ],
+    "image": "",
+    "text": "Which is closest to your number one resolution?"
+  },
+  {
+    "questionResult_name": "What's the Highlight of Your New Year?",
+    "explanation": "How should you change your priorities for the year ahead?",
+    "answers": [
+      {
+        "text": "Sun Sign horoscope.",
+        "indentifer": "5"
+      },
+      {
+        "text": "Wellness horoscope.",
+        "indentifer": "6"
+      },
+      {
+        "text": "Love horoscope.",
+        "indentifer": "7"
+      },
+      {
+        "text": "Career horoscope.",
+        "indentifer": "8"
+      }
+    ],
+    "image": "",
+    "text": "Which horoscope would you read first?"
+  },
+  {
+    "questionResult_name": "What's the Highlight of Your New Year?",
+    "explanation": "How should you change your priorities for the year ahead?",
+    "answers": [
+      {
+        "text": "Look for a New Year¡äs Eve kiss.",
+        "indentifer": "9"
+      },
+      {
+        "text": "Have an early night so you can work out early on the 1st.",
+        "indentifer": "10"
+      },
+      {
+        "text": "Call my friends and family to wish them a Happy New Year.",
+        "indentifer": "11"
+      },
+      {
+        "text": "Formulate a get-ahead plan for the New Year.",
+        "indentifer": "12"
+      }
+    ],
+    "image": "",
+    "text": "What are you doing (or did you do) for New Year¡äs Eve?"
+  }
+]
+}

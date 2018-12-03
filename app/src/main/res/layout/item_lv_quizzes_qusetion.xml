@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="60dp">
+
+    <ImageView
+        android:id="@+id/iv_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/icon_tools_quizzes_left"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/base_margin_quizzes"/>
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font14"
+        android:lineSpacingExtra="2dp"
+        android:lineSpacingMultiplier="1.1"
+        android:layout_toRightOf="@+id/iv_temp"
+        android:gravity="center_vertical"
+        android:paddingRight="@dimen/base_margin_quizzes"
+        android:paddingLeft="12dp"
+        android:text=""/>
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/line_eee"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/base_margin_quizzes"
+        android:layout_marginRight="@dimen/base_margin_quizzes"/>
+</RelativeLayout>

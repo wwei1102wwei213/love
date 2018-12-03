@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "Are you a true Cancer.jpg",
+    "allQuestion": [
+        {
+            "questionResult_name": "Are you a true Cancer?",
+            "explanation": "Does your personality match up to your given Sun Sign? If not, you might be more in tune with your Rising or Moon Sign!",
+            "answers": [
+                {
+                    "text": "Being happy.",
+                    "indentifer": "1"
+                },
+                {
+                    "text": "Your job, money, or possessions.",
+                    "indentifer": "2"
+                },
+                {
+                    "text": "Your family and friends.",
+                    "indentifer": "3"
+                },
+                {
+                    "text": "The world around you.",
+                    "indentifer": "4"
+                }
+            ],
+            "image": "",
+            "text": "Be honest - what is most important to you?"
+        },
+        {
+            "questionResult_name": "Are you a true Cancer?",
+            "explanation": "Does your personality match up to your given Sun Sign? If not, you might be more in tune with your Rising or Moon Sign!",
+            "answers": [
+                {
+                    "text": "Only a few really special ones.",
+                    "indentifer": "5"
+                },
+                {
+                    "text": "No, you don't keep any clutter like that.",
+                    "indentifer": "6"
+                },
+                {
+                    "text": "Yes, you have a lot of sentimental things.",
+                    "indentifer": "7"
+                },
+                {
+                    "text": "Yes, but just the things that you attach a lot of meaning to.",
+                    "indentifer": "8"
+                }
+            ],
+            "image": "",
+            "text": "Do you keep mementos like letters and gifts?"
+        },
+        {
+            "questionResult_name": "Are you a true Cancer?",
+            "explanation": "Does your personality match up to your given Sun Sign? If not, you might be more in tune with your Rising or Moon Sign!",
+            "answers": [
+                {
+                    "text": "Yes, you seem to be able to 'read' people accurately.",
+                    "indentifer": "9"
+                },
+                {
+                    "text": "Usually, but you've been wrong in the past.",
+                    "indentifer": "10"
+                },
+                {
+                    "text": "You're not sure, but you think so.",
+                    "indentifer": "11"
+                },
+                {
+                    "text": "No - you get played pretty often.",
+                    "indentifer": "12"
+                }
+            ],
+            "image": "",
+            "text": "Are you a good judge of character?"
+        }
+    ]
+}

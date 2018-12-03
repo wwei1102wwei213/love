@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "Are you a true Libra.jpg",
+    "allQuestion": [
+        {
+            "questionResult_name": "Are you a true Libra?",
+            "explanation": "Does your personality match up to your given Sun Sign? If not, you might be more in tune with your Rising or Moon Sign!",
+            "answers": [
+                {
+                    "text": "Team sports or going to the gym.",
+                    "indentifer": "1"
+                },
+                {
+                    "text": "Yoga or Pilates.",
+                    "indentifer": "2"
+                },
+                {
+                    "text": "Running or walking on through town.",
+                    "indentifer": "3"
+                },
+                {
+                    "text": "Anything outdoors, such as hiking.",
+                    "indentifer": "4"
+                }
+            ],
+            "image": "",
+            "text": "What is your favorite form of exercise?"
+        },
+        {
+            "questionResult_name": "Are you a true Libra?",
+            "explanation": "Does your personality match up to your given Sun Sign? If not, you might be more in tune with your Rising or Moon Sign!",
+            "answers": [
+                {
+                    "text": "Call up your friends and go out somewhere exciting.",
+                    "indentifer": "5"
+                },
+                {
+                    "text": "Stay home and watch TV or read.",
+                    "indentifer": "6"
+                },
+                {
+                    "text": "Go shopping or to a movie with a friend or solo.",
+                    "indentifer": "7"
+                },
+                {
+                    "text": "Do chores you've been putting off.",
+                    "indentifer": "8"
+                }
+            ],
+            "image": "",
+            "text": "You have a day off and have no plans. You:"
+        },
+        {
+            "questionResult_name": "Are you a true Libra?",
+            "explanation": "Does your personality match up to your given Sun Sign? If not, you might be more in tune with your Rising or Moon Sign!",
+            "answers": [
+                {
+                    "text": "Being hard to get along with.",
+                    "indentifer": "9"
+                },
+                {
+                    "text": "Being selfish.",
+                    "indentifer": "10"
+                },
+                {
+                    "text": "Holding a grudge.",
+                    "indentifer": "11"
+                },
+                {
+                    "text": "Being spacey.",
+                    "indentifer": "12"
+                }
+            ],
+            "image": "",
+            "text": "You'd never want to be accused of:"
+        }
+    ]
+}

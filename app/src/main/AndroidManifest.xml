@@ -105,8 +105,12 @@
         <activity android:name=".view.activity.QuizzesListActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTop"/>
+        <!--测试详情-->
+        <activity android:name=".view.activity.QuizzesDetailActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
         <!--展示图片-->
-        <activity android:name=".view.activity.TestAcctivity"
+        <activity android:name=".view.activity.TestActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTop"/>
 

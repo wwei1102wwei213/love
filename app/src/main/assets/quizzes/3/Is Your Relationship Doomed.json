@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "Is Your Relationship Doomed.jpg",
+    "allQuestion": [
+        {
+            "questionResult_name": "Is Your Relationship Doomed?",
+            "explanation": "Are the two of you meant to stay together, or is a nasty breakup just a matter of time?",
+            "answers": [
+                {
+                    "text": "It varies from week to week.",
+                    "indentifer": "1"
+                },
+                {
+                    "text": "Regularly.",
+                    "indentifer": "2"
+                },
+                {
+                    "text": "Seldom or never.",
+                    "indentifer": "3"
+                },
+                {
+                    "text": "You spend most of your time together.",
+                    "indentifer": "4"
+                }
+            ],
+            "image": "",
+            "text": "How often to you spend time together?"
+        },
+        {
+            "questionResult_name": "Is Your Relationship Doomed?",
+            "explanation": "Are the two of you meant to stay together, or is a nasty breakup just a matter of time?",
+            "answers": [
+                {
+                    "text": "Anything and everything.",
+                    "indentifer": "5"
+                },
+                {
+                    "text": "A shared hobby or interest.",
+                    "indentifer": "6"
+                },
+                {
+                    "text": "Other people.",
+                    "indentifer": "7"
+                },
+                {
+                    "text": "News, weather - general small talk.",
+                    "indentifer": "8"
+                }
+            ],
+            "image": "",
+            "text": "What do you usually talk about?"
+        },
+        {
+            "questionResult_name": "Is Your Relationship Doomed?",
+            "explanation": "Are the two of you meant to stay together, or is a nasty breakup just a matter of time?",
+            "answers": [
+                {
+                    "text": "Have heated fights.",
+                    "indentifer": "9"
+                },
+                {
+                    "text": "Discuss the issue calmly.",
+                    "indentifer": "10"
+                },
+                {
+                    "text": "Ignore the problem - or each other.",
+                    "indentifer": "11"
+                },
+                {
+                    "text": "One of you always backs down to avoid conflict.",
+                    "indentifer": "12"
+                }
+            ],
+            "image": "",
+            "text": "When you disagree, you:"
+        }
+    ]
+}

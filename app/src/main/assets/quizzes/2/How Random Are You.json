@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "How Random Are You.jpg",
+    "allQuestion": [
+  {
+    "questionResult_name": "How Random Are You?",
+    "explanation": "Find out if you're predictable or a total freak of nature...",
+    "answers": [
+      {
+        "text": "Anything, depending on your mood.",
+        "indentifer": "1"
+      },
+      {
+        "text": "A few different genres.",
+        "indentifer": "2"
+      },
+      {
+        "text": "Only obscure, indie artists.",
+        "indentifer": "3"
+      },
+      {
+        "text": "The current chart toppers or timeless classics.",
+        "indentifer": "4"
+      }
+    ],
+    "image": "",
+    "text": "What kind of music do you like?"
+  },
+  {
+    "questionResult_name": "How Random Are You?",
+    "explanation": "Find out if you're predictable or a total freak of nature...",
+    "answers": [
+      {
+        "text": "Often. It's fun to keep 'em guessing.",
+        "indentifer": "5"
+      },
+      {
+        "text": "Rarely. The moment usually isn't right.",
+        "indentifer": "6"
+      },
+      {
+        "text": "Never. There's too much important stuff to think about.",
+        "indentifer": "7"
+      },
+      {
+        "text": "Maybe, maybe not. Who keeps track of these things?",
+        "indentifer": "8"
+      }
+    ],
+    "image": "",
+    "text": "Do you ever throw out a bit of trivia, make a joke, or quote a line from a movie or TV show?"
+  },
+  {
+    "questionResult_name": "How Random Are You?",
+    "explanation": "Find out if you're predictable or a total freak of nature...",
+    "answers": [
+      {
+        "text": "Once or twice, as a kid. Oh, how they laughed.",
+        "indentifer": "9"
+      },
+      {
+        "text": "Nearly every week! Wait, here comes another one!",
+        "indentifer": "10"
+      },
+      {
+        "text": "Yes, quite a few. You have kind of a reputation around this.",
+        "indentifer": "11"
+      },
+      {
+        "text": "No. Proper communication is important.",
+        "indentifer": "12"
+      }
+    ],
+    "image": "",
+    "text": "Have you ever made up a word or expression?"
+  }
+]
+}

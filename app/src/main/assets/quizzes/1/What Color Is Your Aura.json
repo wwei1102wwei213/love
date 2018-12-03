@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "What Color Is Your Aura.jpg",
+    "allQuestion": [
+        {
+            "questionResult_name": "What Color Is Your Aura?",
+            "explanation": "Find out what color your energy is today and what it means about you...",
+            "answers": [
+                {
+                    "text": "Mad.",
+                    "indentifer": "1"
+                },
+                {
+                    "text": "Sad.",
+                    "indentifer": "2"
+                },
+                {
+                    "text": "Unaffected.",
+                    "indentifer": "3"
+                },
+                {
+                    "text": "Revenge.",
+                    "indentifer": "4"
+                }
+            ],
+            "image": "",
+            "text": "When someone treats you badly, you get:"
+        },
+        {
+            "questionResult_name": "What Color Is Your Aura?",
+            "explanation": "Find out what color your energy is today and what it means about you...",
+            "answers": [
+                {
+                    "text": "Irritable.",
+                    "indentifer": "5"
+                },
+                {
+                    "text": "Depressed.",
+                    "indentifer": "6"
+                },
+                {
+                    "text": "Angry.",
+                    "indentifer": "7"
+                },
+                {
+                    "text": "Just not feeling like yourself.",
+                    "indentifer": "8"
+                }
+            ],
+            "image": "",
+            "text": "When you're in a bad mood, it's because you are:"
+        },
+        {
+            "questionResult_name": "What Color Is Your Aura?",
+            "explanation": "Find out what color your energy is today and what it means about you...",
+            "answers": [
+                {
+                    "text": "Fun.",
+                    "indentifer": "9"
+                },
+                {
+                    "text": "Dependability.",
+                    "indentifer": "10"
+                },
+                {
+                    "text": "Honesty.",
+                    "indentifer": "11"
+                },
+                {
+                    "text": "They're unique -- just like you.",
+                    "indentifer": "12"
+                }
+            ],
+            "image": "",
+            "text": "You're drawn to friends whose best quality is:"
+        }
+    ]
+}

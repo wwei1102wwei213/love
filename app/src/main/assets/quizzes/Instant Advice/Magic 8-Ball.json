@@ -1,0 +1,66 @@
+{
+    "subTopicImage": "Magic 8-Ball.jpg",
+    "allQuestion": [
+        {
+            "questionResult_name": "Magic 8 Ball",
+            "explanation": "You remember this popular fortune telling toy now you can get the smart and straightforward advice you need whenever a yes no question pops into your mind, no clunky plastic ball required!",
+            "answers": [
+                {
+                    "text": "no",
+                    "indentifer": "",
+                    "compatibilityImage": ""
+                },
+                {
+                    "text": "maybe",
+                    "indentifer": "",
+                    "compatibilityImage": ""
+                },
+                {
+                    "text": "not yet",
+                    "indentifer": "",
+                    "compatibilityImage": ""
+                },
+                {
+                    "text": "not advisable",
+                    "indentifer": "",
+                    "compatibilityImage": ""
+                },
+                {
+                    "text": "yes",
+                    "indentifer": "",
+                    "compatibilityImage": ""
+                },
+                {
+                    "text": "its fate",
+                    "indentifer": "",
+                    "compatibilityImage": ""
+                },
+                {
+                    "text": "only time will tell",
+                    "indentifer": "",
+                    "compatibilityImage": ""
+                },
+                {
+                    "text": "probably",
+                    "indentifer": "",
+                    "compatibilityImage": ""
+                },
+                {
+                    "text": "perhaps",
+                    "indentifer": "",
+                    "compatibilityImage": ""
+                },
+                {
+                    "text": "doubtful",
+                    "indentifer": "",
+                    "compatibilityImage": ""
+                },
+                {
+                    "text": "definitely",
+                    "indentifer": "",
+                    "compatibilityImage": ""
+                }
+            ]
+        }
+    ]
+}

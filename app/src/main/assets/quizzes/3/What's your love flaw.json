@@ -1,0 +1,101 @@
+{
+    "subTopicImage": "What's your love flaw.jpg",
+    "allQuestion": [
+        {
+            "questionResult_name": "What's your love flaw?",
+            "explanation": "Are you a winner or loser in the game of love? Whether you're addicted to it or afraid of love, this quiz sizes up your flaw in matters of the heart.",
+            "answers": [
+                {
+                    "text": "What is this ''love'' of which you speak?",
+                    "indentifer": "1"
+                },
+                {
+                    "text": "Once or twice.",
+                    "indentifer": "2"
+                },
+                {
+                    "text": "At least three times.",
+                    "indentifer": "3"
+                },
+                {
+                    "text": "Umm... I've lost count.",
+                    "indentifer": "4"
+                }
+            ],
+            "image": "",
+            "text": "How many times have you been in love?"
+        },
+        {
+            "questionResult_name": "What's your love flaw?",
+            "explanation": "Are you a winner or loser in the game of love? Whether you're addicted to it or afraid of love, this quiz sizes up your flaw in matters of the heart.",
+            "answers": [
+                {
+                    "text": "Nervous and lost.",
+                    "indentifer": "5"
+                },
+                {
+                    "text": "Exhausted and broke.",
+                    "indentifer": "6"
+                },
+                {
+                    "text": "Perfect, invincible, and godlike.",
+                    "indentifer": "7"
+                },
+                {
+                    "text": "Content and open.",
+                    "indentifer": "8"
+                }
+            ],
+            "image": "",
+            "text": "Love makes you feel:"
+        },
+        {
+            "questionResult_name": "What's your love flaw?",
+            "explanation": "Are you a winner or loser in the game of love? Whether you're addicted to it or afraid of love, this quiz sizes up your flaw in matters of the heart.",
+            "answers": [
+                {
+                    "text": "Meet my date's friends and/or family.",
+                    "indentifer": "9"
+                },
+                {
+                    "text": "Hang out together with a group of friends.",
+                    "indentifer": "10"
+                },
+                {
+                    "text": "Something fancy and expensive.",
+                    "indentifer": "11"
+                },
+                {
+                    "text": "Something low-key, like coffee or a walk.",
+                    "indentifer": "12"
+                }
+            ],
+            "image": "",
+            "text": "What would you rather do on a first date?"
+        },
+        {
+            "questionResult_name": "What's your love flaw?",
+            "explanation": "Are you a winner or loser in the game of love? Whether you're addicted to it or afraid of love, this quiz sizes up your flaw in matters of the heart.",
+            "answers": [
+                {
+                    "text": "A type of footwear... right?",
+                    "indentifer": "13"
+                },
+                {
+                    "text": "Two people who are meant for each other and no one else.",
+                    "indentifer": "14"
+                },
+                {
+                    "text": "A wonderful possibility.",
+                    "indentifer": "15"
+                },
+                {
+                    "text": "Do people really believe that stuff?",
+                    "indentifer": "16"
+                }
+            ],
+            "image": "",
+            "text": "Soul mates are:"
+        }
+    ]
+}

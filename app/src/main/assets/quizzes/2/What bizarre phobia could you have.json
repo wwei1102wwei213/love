@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "What bizarre phobia could you have.jpg",
+    "allQuestion": [
+  {
+    "questionResult_name": "What bizarre phobia could you have?",
+    "explanation": "This just-for-fun quiz is not scientific nor a valid diagnosis, but who knows what you might be afraid of!",
+    "answers": [
+      {
+        "text": "Touch.",
+        "indentifer": "1"
+      },
+      {
+        "text": "Smell or Taste.",
+        "indentifer": "2"
+      },
+      {
+        "text": "Sound.",
+        "indentifer": "3"
+      },
+      {
+        "text": "Sight.",
+        "indentifer": "4"
+      }
+    ],
+    "image": "",
+    "text": "What sense are you most sensitive to?"
+  },
+  {
+    "questionResult_name": "What bizarre phobia could you have?",
+    "explanation": "This just-for-fun quiz is not scientific nor a valid diagnosis, but who knows what you might be afraid of!",
+    "answers": [
+      {
+        "text": "Be naked.",
+        "indentifer": "5"
+      },
+      {
+        "text": "Trip and fall and severely injure yourself or someone else.",
+        "indentifer": "6"
+      },
+      {
+        "text": "Sing a song you won't admit you like.",
+        "indentifer": "7"
+      },
+      {
+        "text": "Smell and look terrible.",
+        "indentifer": "8"
+      }
+    ],
+    "image": "",
+    "text": "You'd be most embarrassed to _______ in public (fill in the blank with one of the following descriptions)"
+  },
+  {
+    "questionResult_name": "What bizarre phobia could you have?",
+    "explanation": "This just-for-fun quiz is not scientific nor a valid diagnosis, but who knows what you might be afraid of!",
+    "answers": [
+      {
+        "text": "Melted cheese.",
+        "indentifer": "9"
+      },
+      {
+        "text": "Popcorn.",
+        "indentifer": "10"
+      },
+      {
+        "text": "BBQ ribs.",
+        "indentifer": "11"
+      },
+      {
+        "text": "Fast food sandwiches.",
+        "indentifer": "12"
+      }
+    ],
+    "image": "",
+    "text": "Which of these foods causes you the greatest anxiety?"
+  }
+]
+}

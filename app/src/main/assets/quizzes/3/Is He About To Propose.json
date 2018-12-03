@@ -1,0 +1,125 @@
+{
+    "subTopicImage": "Is He About To Propose.jpg",
+    "allQuestion": [
+        {
+            "questionResult_name": "Is He About To Propose?",
+            "explanation": "Find out if your sweetie is about to pop the question!",
+            "answers": [
+                {
+                    "text": "At least a year",
+                    "indentifer": "1"
+                },
+                {
+                    "text": "A few months",
+                    "indentifer": "2"
+                },
+                {
+                    "text": "A few weeks",
+                    "indentifer": "3"
+                },
+                {
+                    "text": "We aren't officially together",
+                    "indentifer": "4"
+                },
+                {
+                    "text": "Not long, but it feels like we've known each other forever",
+                    "indentifer": "5"
+                }
+            ],
+            "image": "",
+            "text": "How long have you been together?"
+        },
+        {
+            "questionResult_name": "Is He About To Propose?",
+            "explanation": "Find out if your sweetie is about to pop the question!",
+            "answers": [
+                {
+                    "text": "All the time!",
+                    "indentifer": "6"
+                },
+                {
+                    "text": "Often, like when we make plans for dates",
+                    "indentifer": "7"
+                },
+                {
+                    "text": "Occasionally",
+                    "indentifer": "8"
+                },
+                {
+                    "text": "Never",
+                    "indentifer": "9"
+                }
+            ],
+            "image": "",
+            "text": "How much do you two discuss the future?"
+        },
+        {
+            "questionResult_name": "Is He About To Propose?",
+            "explanation": "Find out if your sweetie is about to pop the question!",
+            "answers": [
+                {
+                    "text": "Yes, and also for no occasion",
+                    "indentifer": "10"
+                },
+                {
+                    "text": "Yes, major holidays",
+                    "indentifer": "11"
+                },
+                {
+                    "text": "We have once or twice",
+                    "indentifer": "12"
+                },
+                {
+                    "text": "No",
+                    "indentifer": "13"
+                }
+            ],
+            "image": "",
+            "text": "Do you exchange gifts for special occasions?"
+        },
+        {
+            "questionResult_name": "Is He About To Propose?",
+            "explanation": "Find out if your sweetie is about to pop the question!",
+            "answers": [
+                {
+                    "text": "Yes",
+                    "indentifer": "14"
+                },
+                {
+                    "text": "Just a select few",
+                    "indentifer": "15"
+                },
+                {
+                    "text": "No",
+                    "indentifer": "16"
+                }
+            ],
+            "image": "",
+            "text": "Have you met each other's families and friends?"
+        },
+        {
+            "questionResult_name": "Is He About To Propose?",
+            "explanation": "Find out if your sweetie is about to pop the question!",
+            "answers": [
+                {
+                    "text": "Yes, he wants to get married some day",
+                    "indentifer": "17"
+                },
+                {
+                    "text": "Once or twice but with no real opinions on it",
+                    "indentifer": "18"
+                },
+                {
+                    "text": "No",
+                    "indentifer": "19"
+                },
+                {
+                    "text": "He has specifically said he's not into it",
+                    "indentifer": "20"
+                }
+            ],
+            "image": "",
+            "text": "Has he ever mentioned marriage?"
+        }
+    ]
+}

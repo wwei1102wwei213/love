@@ -13,9 +13,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.fuyou.play.R;
-import com.fuyou.play.util.GlideRoundTransform;
-
-import java.util.List;
+import com.fuyou.play.util.CommonUtils;
+import com.fuyou.play.util.DensityUtils;
+import com.fuyou.play.util.UiUtils;
 
 /**
  * Created by Administrator on 2017/12/9 0009.
@@ -24,24 +24,24 @@ import java.util.List;
 public class QuizzesGvAdapter extends BaseAdapter {
 
     private Context context;
-    private List<String> list;
+    private String[] list = null;
     private String baseUrl;
     private int dex;
-    public QuizzesGvAdapter(Context context, List<String> list, int dex, String baseUrl){
+    public QuizzesGvAdapter(Context context, String[] list, String baseUrl){
         this.list = list;
-        this.dex = dex;
+        this.dex = (CommonUtils.getDeviceWidth(context) - DensityUtils.dp2px(context, 28))/2 - 2;
         this.context = context;
         this.baseUrl = baseUrl;
     }
 
     @Override
     public int getCount() {
-        return list.size();
+        return list.length;
     }
 
     @Override
     public Object getItem(int position) {
-        return list.get(position);
+        return list[position];
     }
 
     @Override
@@ -66,13 +66,14 @@ public class QuizzesGvAdapter extends BaseAdapter {
             convertView.setTag(vh);
         }
         vh = (ViewHolder) convertView.getTag();
-        String str = list.get(position);
+        String str = list[position];
         String url = baseUrl + str.replace(" ", "+").substring(0, str.length() - 4) + "jpg";
 
         vh.tv.setText(str.substring(0, str.length() - 5));
         Glide.with(context).load(url)
-                .bitmapTransform(new CenterCrop(context), new GlideRoundTransform(context,6))
+                .bitmapTransform(new CenterCrop(context), UiUtils.getGideTransformation(context))
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .placeholder(R.drawable.bg_default_error_radius)
                 .crossFade()
                 .into(vh.iv);
         return convertView;

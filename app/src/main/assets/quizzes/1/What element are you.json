@@ -1,0 +1,101 @@
+{
+    "subTopicImage": "What element are you.jpg",
+    "allQuestion": [
+        {
+            "questionResult_name": "What element are you?",
+            "explanation": "Are you Earth, Air, Fire, or Water? Find out what element you are most in touch with!",
+            "answers": [
+                {
+                    "text": "Uninhibited.",
+                    "indentifer": "1"
+                },
+                {
+                    "text": "Sincere.",
+                    "indentifer": "2"
+                },
+                {
+                    "text": "Feisty.",
+                    "indentifer": "3"
+                },
+                {
+                    "text": "Flirtatious.",
+                    "indentifer": "4"
+                }
+            ],
+            "image": "",
+            "text": "With your love interest:"
+        },
+        {
+            "questionResult_name": "What element are you?",
+            "explanation": "Are you Earth, Air, Fire, or Water? Find out what element you are most in touch with!",
+            "answers": [
+                {
+                    "text": "Sidekick.",
+                    "indentifer": "5"
+                },
+                {
+                    "text": "Loyal.",
+                    "indentifer": "6"
+                },
+                {
+                    "text": "Protective.",
+                    "indentifer": "7"
+                },
+                {
+                    "text": "Chatty.",
+                    "indentifer": "8"
+                }
+            ],
+            "image": "",
+            "text": "With your best friend:"
+        },
+        {
+            "questionResult_name": "What element are you?",
+            "explanation": "Are you Earth, Air, Fire, or Water? Find out what element you are most in touch with!",
+            "answers": [
+                {
+                    "text": "Threatening.",
+                    "indentifer": "9"
+                },
+                {
+                    "text": "Unforgiving.",
+                    "indentifer": "10"
+                },
+                {
+                    "text": "Deceptive.",
+                    "indentifer": "11"
+                },
+                {
+                    "text": "Passive aggressive.",
+                    "indentifer": "12"
+                }
+            ],
+            "image": "",
+            "text": "With your worst enemy:"
+        },
+        {
+            "questionResult_name": "What element are you?",
+            "explanation": "Are you Earth, Air, Fire, or Water? Find out what element you are most in touch with!",
+            "answers": [
+                {
+                    "text": "Exotic dining.",
+                    "indentifer": "13"
+                },
+                {
+                    "text": "Fast food.",
+                    "indentifer": "14"
+                },
+                {
+                    "text": "Healthy/organic.",
+                    "indentifer": "15"
+                },
+                {
+                    "text": "Comfort food.",
+                    "indentifer": "16"
+                }
+            ],
+            "image": "",
+            "text": "Deciding what to eat:"
+        }
+    ]
+}

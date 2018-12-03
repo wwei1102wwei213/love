@@ -1,0 +1,101 @@
+{
+    "subTopicImage": "What Mystical Being Are You.jpg",
+    "allQuestion": [
+  {
+    "questionResult_name": "What Mystical Being Are You?",
+    "explanation": "In a fantasy world, this is the creature you'd be...",
+    "answers": [
+      {
+        "text": "Fear.",
+        "indentifer": "1"
+      },
+      {
+        "text": "Enchantment.",
+        "indentifer": "2"
+      },
+      {
+        "text": "Respect.",
+        "indentifer": "3"
+      },
+      {
+        "text": "Hypnosis.",
+        "indentifer": "4"
+      }
+    ],
+    "image": "",
+    "text": "Which effect would you rather have on people?"
+  },
+  {
+    "questionResult_name": "What Mystical Being Are You?",
+    "explanation": "In a fantasy world, this is the creature you'd be...",
+    "answers": [
+      {
+        "text": "Flying.",
+        "indentifer": "5"
+      },
+      {
+        "text": "Swimming.",
+        "indentifer": "6"
+      },
+      {
+        "text": "Teleportation.",
+        "indentifer": "7"
+      },
+      {
+        "text": "Walking or running.",
+        "indentifer": "8"
+      }
+    ],
+    "image": "",
+    "text": "Which mode of transportation would you prefer?"
+  },
+  {
+    "questionResult_name": "What Mystical Being Are You?",
+    "explanation": "In a fantasy world, this is the creature you'd be...",
+    "answers": [
+      {
+        "text": "Sunrise.",
+        "indentifer": "9"
+      },
+      {
+        "text": "Nighttime.",
+        "indentifer": "10"
+      },
+      {
+        "text": "Midday.",
+        "indentifer": "11"
+      },
+      {
+        "text": "Sunset.",
+        "indentifer": "12"
+      }
+    ],
+    "image": "",
+    "text": "What¡äs your favorite time of day?"
+  },
+  {
+    "questionResult_name": "What Mystical Being Are You?",
+    "explanation": "In a fantasy world, this is the creature you'd be...",
+    "answers": [
+      {
+        "text": "A treehouse.",
+        "indentifer": "13"
+      },
+      {
+        "text": "I'd dematerialize.",
+        "indentifer": "14"
+      },
+      {
+        "text": "A big castle on top of the highest mountain.",
+        "indentifer": "15"
+      },
+      {
+        "text": "In the deepest waters of the se",
+        "indentifer": "16"
+      }
+    ],
+    "image": "",
+    "text": "Where would your lair be?"
+  }
+]
+}

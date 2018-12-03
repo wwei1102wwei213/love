@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "What intuitive power do you have.jpg",
+    "allQuestion": [
+        {
+            "questionResult_name": "What intuitive power do you have?",
+            "explanation": "You know you should trust your gut - but what is your gut best at telling you? Learn what intuitive sense you should trust the most!",
+            "answers": [
+                {
+                    "text": "It's fun, win or lose.",
+                    "indentifer": "1"
+                },
+                {
+                    "text": "It's a good way to win a little extra money.",
+                    "indentifer": "2"
+                },
+                {
+                    "text": "It's stressful.",
+                    "indentifer": "3"
+                },
+                {
+                    "text": "You've never tried it.",
+                    "indentifer": "4"
+                }
+            ],
+            "image": "",
+            "text": "What do you think about gambling?"
+        },
+        {
+            "questionResult_name": "What intuitive power do you have?",
+            "explanation": "You know you should trust your gut - but what is your gut best at telling you? Learn what intuitive sense you should trust the most!",
+            "answers": [
+                {
+                    "text": "For communicating with people you can't reach in real life.",
+                    "indentifer": "5"
+                },
+                {
+                    "text": "Interesting, but have no real meaning or purpose.",
+                    "indentifer": "6"
+                },
+                {
+                    "text": "Full of warnings and important symbols.",
+                    "indentifer": "7"
+                },
+                {
+                    "text": "A way to work out or cope with your real life issues.",
+                    "indentifer": "8"
+                }
+            ],
+            "image": "",
+            "text": "Dreams are..."
+        },
+        {
+            "questionResult_name": "What intuitive power do you have?",
+            "explanation": "You know you should trust your gut - but what is your gut best at telling you? Learn what intuitive sense you should trust the most!",
+            "answers": [
+                {
+                    "text": "Yes, something major.",
+                    "indentifer": "9"
+                },
+                {
+                    "text": "Yes, something minor.",
+                    "indentifer": "10"
+                },
+                {
+                    "text": "No.",
+                    "indentifer": "11"
+                },
+                {
+                    "text": "Maybe it was a coincidence?",
+                    "indentifer": "12"
+                }
+            ],
+            "image": "",
+            "text": "Have you ever predicted something would happen and it came true?"
+        }
+    ]
+}

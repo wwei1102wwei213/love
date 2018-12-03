@@ -1,0 +1,101 @@
+{
+    "subTopicImage": "What Age Do You Act.jpg",
+    "allQuestion": [
+  {
+    "questionResult_name": "What Age Do You Act?",
+    "explanation": "Find out what stage of mental and emotional development you've reache",
+    "answers": [
+      {
+        "text": "Accept that it wasn't meant to be.",
+        "indentifer": "1"
+      },
+      {
+        "text": "Criticize yourself for not trying hard enough.",
+        "indentifer": "2"
+      },
+      {
+        "text": "Cry or complain.",
+        "indentifer": "3"
+      },
+      {
+        "text": "You're disappointed but set a new goal.",
+        "indentifer": "4"
+      }
+    ],
+    "image": "",
+    "text": "You really want something but don't get it. Your reaction?"
+  },
+  {
+    "questionResult_name": "What Age Do You Act?",
+    "explanation": "Find out what stage of mental and emotional development you've reache",
+    "answers": [
+      {
+        "text": "Beach getaway.",
+        "indentifer": "5"
+      },
+      {
+        "text": "Tour of the Mediterranean.",
+        "indentifer": "6"
+      },
+      {
+        "text": "Theme park.",
+        "indentifer": "7"
+      },
+      {
+        "text": "Historic landmarks or learning about different cultures.",
+        "indentifer": "8"
+      }
+    ],
+    "image": "",
+    "text": "Your dream vacation?"
+  },
+  {
+    "questionResult_name": "What Age Do You Act?",
+    "explanation": "Find out what stage of mental and emotional development you've reache",
+    "answers": [
+      {
+        "text": "Your closest friends and family, via phone or in person.",
+        "indentifer": "9"
+      },
+      {
+        "text": "Everyone on your social network(s) via an update.",
+        "indentifer": "10"
+      },
+      {
+        "text": "Only your closest confidant.",
+        "indentifer": "11"
+      },
+      {
+        "text": "Everyone you encounter.",
+        "indentifer": "12"
+      }
+    ],
+    "image": "",
+    "text": "You have amazing news. Who do you tell first?"
+  },
+  {
+    "questionResult_name": "What Age Do You Act?",
+    "explanation": "Find out what stage of mental and emotional development you've reache",
+    "answers": [
+      {
+        "text": "Plain coffee or tea.",
+        "indentifer": "13"
+      },
+      {
+        "text": "Chai, mocha or latte.",
+        "indentifer": "14"
+      },
+      {
+        "text": "Decaf for me, please.",
+        "indentifer": "15"
+      },
+      {
+        "text": "Sod",
+        "indentifer": "16"
+      }
+    ],
+    "image": "",
+    "text": "What caffeinated beverage do you like best?"
+  }
+]
+}

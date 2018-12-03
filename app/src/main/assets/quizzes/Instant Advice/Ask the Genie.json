@@ -1,0 +1,66 @@
+{
+    "subTopicImage": "Ask the Genie.jpg",
+    "allQuestion": [
+        {
+            "questionResult_name": "Ask the Genie",
+            "explanation": "The mystical Genie takes your wishes very seriously. He contemplates them with intense consideration... and a bit of attitude! Ask him a \"yes\" or \"no\" question, and see what he has to say!",
+            "answers": [
+                {
+                    "text": "no",
+                    "indentifer": "",
+                    "compatibilityImage": ""
+                },
+                {
+                    "text": "maybe",
+                    "indentifer": "",
+                    "compatibilityImage": ""
+                },
+                {
+                    "text": "not yet",
+                    "indentifer": "",
+                    "compatibilityImage": ""
+                },
+                {
+                    "text": "not advisable",
+                    "indentifer": "",
+                    "compatibilityImage": ""
+                },
+                {
+                    "text": "yes",
+                    "indentifer": "",
+                    "compatibilityImage": ""
+                },
+                {
+                    "text": "it's fate",
+                    "indentifer": "",
+                    "compatibilityImage": ""
+                },
+                {
+                    "text": "only time will tell",
+                    "indentifer": "",
+                    "compatibilityImage": ""
+                },
+                {
+                    "text": "probably",
+                    "indentifer": "",
+                    "compatibilityImage": ""
+                },
+                {
+                    "text": "perhaps",
+                    "indentifer": "",
+                    "compatibilityImage": ""
+                },
+                {
+                    "text": "doubtful",
+                    "indentifer": "",
+                    "compatibilityImage": ""
+                },
+                {
+                    "text": "definitely",
+                    "indentifer": "",
+                    "compatibilityImage": ""
+                }
+            ]
+        }
+    ]
+}

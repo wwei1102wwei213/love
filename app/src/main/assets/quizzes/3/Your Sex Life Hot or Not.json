@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "Your Sex Life Hot or Not.jpg",
+    "allQuestion": [
+        {
+            "questionResult_name": "Your Sex Life: Hot or Not?",
+            "explanation": "When you get busy, are you more thrilling, or kind of chilling? Find out if you need to kick things up between the sheets...",
+            "answers": [
+                {
+                    "text": "Bedroom.",
+                    "indentifer": "1"
+                },
+                {
+                    "text": "Kitchen.",
+                    "indentifer": "2"
+                },
+                {
+                    "text": "The front porch or a balcony.",
+                    "indentifer": "3"
+                },
+                {
+                    "text": "The living room.",
+                    "indentifer": "4"
+                }
+            ],
+            "image": "",
+            "text": "What room of the house is most fun to get frisky?"
+        },
+        {
+            "questionResult_name": "Your Sex Life: Hot or Not?",
+            "explanation": "When you get busy, are you more thrilling, or kind of chilling? Find out if you need to kick things up between the sheets...",
+            "answers": [
+                {
+                    "text": "A police officer.",
+                    "indentifer": "5"
+                },
+                {
+                    "text": "A teacher.",
+                    "indentifer": "6"
+                },
+                {
+                    "text": "No one else - you want him/her as is.",
+                    "indentifer": "7"
+                },
+                {
+                    "text": "A housekeeper or gardener.",
+                    "indentifer": "8"
+                }
+            ],
+            "image": "",
+            "text": "You'd rather your lover dress up as..."
+        },
+        {
+            "questionResult_name": "Your Sex Life: Hot or Not?",
+            "explanation": "When you get busy, are you more thrilling, or kind of chilling? Find out if you need to kick things up between the sheets...",
+            "answers": [
+                {
+                    "text": "Soft moans.",
+                    "indentifer": "9"
+                },
+                {
+                    "text": "Yelps, screams, and heavy sighs.",
+                    "indentifer": "10"
+                },
+                {
+                    "text": "Dirty talk.",
+                    "indentifer": "11"
+                },
+                {
+                    "text": "You're mostly silent.",
+                    "indentifer": "12"
+                }
+            ],
+            "image": "",
+            "text": "What noises do you make while you're caught up in the act?"
+        }
+    ]
+}

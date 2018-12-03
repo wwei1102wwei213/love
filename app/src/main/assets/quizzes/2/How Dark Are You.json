@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "How Dark Are You.jpg",
+    "allQuestion": [
+  {
+    "questionResult_name": "How Dark Are You?",
+    "explanation": "Find out if you need to lighten up, or maybe get a little more edgy...",
+    "answers": [
+      {
+        "text": "Fascinated.",
+        "indentifer": "1"
+      },
+      {
+        "text": "Scared.",
+        "indentifer": "2"
+      },
+      {
+        "text": "Confused.",
+        "indentifer": "3"
+      },
+      {
+        "text": "Saddened.",
+        "indentifer": "4"
+      }
+    ],
+    "image": "",
+    "text": "You are ... by death."
+  },
+  {
+    "questionResult_name": "How Dark Are You?",
+    "explanation": "Find out if you need to lighten up, or maybe get a little more edgy...",
+    "answers": [
+      {
+        "text": "Most or all days, from head to toe.",
+        "indentifer": "5"
+      },
+      {
+        "text": "Often, but just staples like pants or a coat.",
+        "indentifer": "6"
+      },
+      {
+        "text": "Rarely. I like other colors.",
+        "indentifer": "7"
+      },
+      {
+        "text": "A lot. You might even dye your hair or paint your nails black.",
+        "indentifer": "8"
+      }
+    ],
+    "image": "",
+    "text": "How often do you wear black?"
+  },
+  {
+    "questionResult_name": "How Dark Are You?",
+    "explanation": "Find out if you need to lighten up, or maybe get a little more edgy...",
+    "answers": [
+      {
+        "text": "Detailed,dramatic,ornate.",
+        "indentifer": "9"
+      },
+      {
+        "text": "Clean,simple,smooth lines.",
+        "indentifer": "10"
+      },
+      {
+        "text": "Soft,natural,subdued.",
+        "indentifer": "11"
+      },
+      {
+        "text": "Bright,colorful,funky.",
+        "indentifer": "12"
+      }
+    ],
+    "image": "",
+    "text": "Your preferred style is..."
+  }
+]
+}

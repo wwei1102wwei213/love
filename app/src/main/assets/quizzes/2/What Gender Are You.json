@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "What Gender Are You.jpg",
+    "allQuestion": [
+  {
+    "questionResult_name": "What Gender Are You?",
+    "explanation": "Find out if you're more in touch with your feminine or masculine side...",
+    "answers": [
+      {
+        "text": "You have several to coordinate with outfits or for different occasions.",
+        "indentifer": "1"
+      },
+      {
+        "text": "Maybe a grocery bag if you go to the store.",
+        "indentifer": "2"
+      },
+      {
+        "text": "You have a bag when you need to carry more than pockets, hands or wallet allow.",
+        "indentifer": "3"
+      },
+      {
+        "text": "Yes, when you're traveling, going to work, at an event, etc.",
+        "indentifer": "4"
+      }
+    ],
+    "image": "",
+    "text": "Do you carry a bag with you?"
+  },
+  {
+    "questionResult_name": "What Gender Are You?",
+    "explanation": "Find out if you're more in touch with your feminine or masculine side...",
+    "answers": [
+      {
+        "text": "Awesome.",
+        "indentifer": "5"
+      },
+      {
+        "text": "Wonderful.",
+        "indentifer": "6"
+      },
+      {
+        "text": "Fabulous.",
+        "indentifer": "7"
+      },
+      {
+        "text": "Goo",
+        "indentifer": "8"
+      }
+    ],
+    "image": "",
+    "text": "Your favorite of these words to compliment something is:"
+  },
+  {
+    "questionResult_name": "What Gender Are You?",
+    "explanation": "Find out if you're more in touch with your feminine or masculine side...",
+    "answers": [
+      {
+        "text": "Boxing.",
+        "indentifer": "9"
+      },
+      {
+        "text": "Scrapbooking.",
+        "indentifer": "10"
+      },
+      {
+        "text": "Shopping.",
+        "indentifer": "11"
+      },
+      {
+        "text": "Woodworking.",
+        "indentifer": "12"
+      }
+    ],
+    "image": "",
+    "text": "A hobby you would most enjoy is:"
+  }
+]
+}

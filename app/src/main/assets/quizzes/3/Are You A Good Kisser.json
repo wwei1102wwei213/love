@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "Are You A Good Kisser.jpg",
+    "allQuestion": [
+        {
+            "questionResult_name": "Are You A Good Kisser?",
+            "explanation": "Do you make your mouth mate melt, or want to move far away?",
+            "answers": [
+                {
+                    "text": "A quick peck on the cheek.",
+                    "indentifer": "1"
+                },
+                {
+                    "text": "Soft, on the lips, no tongue.",
+                    "indentifer": "2"
+                },
+                {
+                    "text": "Wet, hot, and lots of tongue action.",
+                    "indentifer": "3"
+                },
+                {
+                    "text": "All over the body.",
+                    "indentifer": "4"
+                }
+            ],
+            "image": "",
+            "text": "The best kiss is:"
+        },
+        {
+            "questionResult_name": "Are You A Good Kisser?",
+            "explanation": "Do you make your mouth mate melt, or want to move far away?",
+            "answers": [
+                {
+                    "text": "Do a 'smell test' and makes sure it's not funky.",
+                    "indentifer": "5"
+                },
+                {
+                    "text": "Use mouthwash or eat a mint.",
+                    "indentifer": "6"
+                },
+                {
+                    "text": "Brush, floss, mouthwash - the works.",
+                    "indentifer": "7"
+                },
+                {
+                    "text": "You don't worry about it - you're sure it's fine.",
+                    "indentifer": "8"
+                }
+            ],
+            "image": "",
+            "text": "How do you prep your breath before you kiss someone?"
+        },
+        {
+            "questionResult_name": "Are You A Good Kisser?",
+            "explanation": "Do you make your mouth mate melt, or want to move far away?",
+            "answers": [
+                {
+                    "text": "On their butt, breasts, or other regions of the body.",
+                    "indentifer": "9"
+                },
+                {
+                    "text": "On their face, neck, or hair.",
+                    "indentifer": "10"
+                },
+                {
+                    "text": "Depends on how passionate the kiss is.",
+                    "indentifer": "11"
+                },
+                {
+                    "text": "At your sides, keeping them off their body.",
+                    "indentifer": "12"
+                }
+            ],
+            "image": "",
+            "text": "Where do you put your hands when you're kissing someone?"
+        }
+    ]
+}

@@ -1,0 +1,101 @@
+{
+    "subTopicImage": "What kind of weather are you.jpg",
+    "allQuestion": [
+  {
+    "questionResult_name": "What kind of weather are you?",
+    "explanation": "If the weather forecaster had to predict within your climate, would your skies be bright and clear, or downright dreary?",
+    "answers": [
+      {
+        "text": "Do it yourself.",
+        "indentifer": "1"
+      },
+      {
+        "text": "Wait until it happens.",
+        "indentifer": "2"
+      },
+      {
+        "text": "Tell someone to do it.",
+        "indentifer": "3"
+      },
+      {
+        "text": "Ask why isn't it happening!",
+        "indentifer": "4"
+      }
+    ],
+    "image": "",
+    "text": "When you want something done, you:"
+  },
+  {
+    "questionResult_name": "What kind of weather are you?",
+    "explanation": "If the weather forecaster had to predict within your climate, would your skies be bright and clear, or downright dreary?",
+    "answers": [
+      {
+        "text": "Something bland.",
+        "indentifer": "5"
+      },
+      {
+        "text": "Something spicy.",
+        "indentifer": "6"
+      },
+      {
+        "text": "Something with an odd texture.",
+        "indentifer": "7"
+      },
+      {
+        "text": "I'll skip the meal, thanks.",
+        "indentifer": "8"
+      }
+    ],
+    "image": "",
+    "text": "You'd rather eat:"
+  },
+  {
+    "questionResult_name": "What kind of weather are you?",
+    "explanation": "If the weather forecaster had to predict within your climate, would your skies be bright and clear, or downright dreary?",
+    "answers": [
+      {
+        "text": "Pop.",
+        "indentifer": "9"
+      },
+      {
+        "text": "Country.",
+        "indentifer": "10"
+      },
+      {
+        "text": "Jazz.",
+        "indentifer": "11"
+      },
+      {
+        "text": "Hard rock.",
+        "indentifer": "12"
+      }
+    ],
+    "image": "",
+    "text": "Your favorite music (of the following genres) might resemble:"
+  },
+  {
+    "questionResult_name": "What kind of weather are you?",
+    "explanation": "If the weather forecaster had to predict within your climate, would your skies be bright and clear, or downright dreary?",
+    "answers": [
+      {
+        "text": "Half full.",
+        "indentifer": "13"
+      },
+      {
+        "text": "Half empty.",
+        "indentifer": "14"
+      },
+      {
+        "text": "Overflowing.",
+        "indentifer": "15"
+      },
+      {
+        "text": "Broken.",
+        "indentifer": "16"
+      }
+    ],
+    "image": "",
+    "text": "You see the glass as:"
+  }
+]
+}

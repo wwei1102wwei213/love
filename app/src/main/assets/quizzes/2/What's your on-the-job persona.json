@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "What's your on-the-job persona.jpg",
+    "allQuestion": [
+  {
+    "questionResult_name": "What's your on-the-job persona?",
+    "explanation": "Want to know how your colleagues see you? Find out your work personality!",
+    "answers": [
+      {
+        "text": "Assume you're in trouble for something.",
+        "indentifer": "1"
+      },
+      {
+        "text": "Hope you're getting a raise!",
+        "indentifer": "2"
+      },
+      {
+        "text": "Figure he or she needs your help with something.",
+        "indentifer": "3"
+      },
+      {
+        "text": "Let your imagination wander about all the different reasons he or she might have asked.",
+        "indentifer": "4"
+      }
+    ],
+    "image": "",
+    "text": "Your boss asks to see you in his or her office. You..."
+  },
+  {
+    "questionResult_name": "What's your on-the-job persona?",
+    "explanation": "Want to know how your colleagues see you? Find out your work personality!",
+    "answers": [
+      {
+        "text": "As much as possible! I visit their work areas to chat, go to lunch with them, and sometimes see them on weekends.",
+        "indentifer": "5"
+      },
+      {
+        "text": "I don't usually have time.",
+        "indentifer": "6"
+      },
+      {
+        "text": "Sometimes, for an occasional happy hour or break.",
+        "indentifer": "7"
+      },
+      {
+        "text": "No. I like to keep to myself, or they don't seem to like me.",
+        "indentifer": "8"
+      }
+    ],
+    "image": "",
+    "text": "Do you socialize with your colleagues?"
+  },
+  {
+    "questionResult_name": "What's your on-the-job persona?",
+    "explanation": "Want to know how your colleagues see you? Find out your work personality!",
+    "answers": [
+      {
+        "text": "Ask for as much help as possible. It's all about teamwork!",
+        "indentifer": "9"
+      },
+      {
+        "text": "Get right to it, and put in overtime if necessary.",
+        "indentifer": "10"
+      },
+      {
+        "text": "Break it down into smaller, more manageable tasks, in order of priority.",
+        "indentifer": "11"
+      },
+      {
+        "text": "Put it off until the last minute.",
+        "indentifer": "12"
+      }
+    ],
+    "image": "",
+    "text": "You have a big project to tackle. How will you complete it?"
+  }
+]
+}

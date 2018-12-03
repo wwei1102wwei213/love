@@ -1,0 +1,157 @@
+{
+    "subTopicImage": "What will bring you luck.jpg",
+    "allQuestion": [
+        {
+            "questionResult_name": "What will bring you luck?",
+            "explanation": "Find out what you can use to boost your good luck...",
+            "answers": [
+                {
+                    "text": "Worried",
+                    "indentifer": "1"
+                },
+                {
+                    "text": "Calm",
+                    "indentifer": "2"
+                },
+                {
+                    "text": "Tired",
+                    "indentifer": "3"
+                },
+                {
+                    "text": "Happy",
+                    "indentifer": "4"
+                },
+                {
+                    "text": "Excited",
+                    "indentifer": "5"
+                },
+                {
+                    "text": "Angry",
+                    "indentifer": "6"
+                },
+                {
+                    "text": "Sad",
+                    "indentifer": "7"
+                },
+                {
+                    "text": "Annoyed",
+                    "indentifer": "8"
+                },
+                {
+                    "text": "Bored",
+                    "indentifer": "9"
+                },
+                {
+                    "text": "Lonely",
+                    "indentifer": "10"
+                }
+            ],
+            "image": "",
+            "text": "What word best describes your mood right now?"
+        },
+        {
+            "questionResult_name": "What will bring you luck?",
+            "explanation": "Find out what you can use to boost your good luck...",
+            "answers": [
+                {
+                    "text": "Unemployed/seeking work",
+                    "indentifer": "11"
+                },
+                {
+                    "text": "I don¡¯t have to work",
+                    "indentifer": "12"
+                },
+                {
+                    "text": "Employed full-time",
+                    "indentifer": "13"
+                },
+                {
+                    "text": "Employed part-time",
+                    "indentifer": "14"
+                },
+                {
+                    "text": "In school",
+                    "indentifer": "15"
+                },
+                {
+                    "text": "Retired",
+                    "indentifer": "16"
+                }
+            ],
+            "image": "",
+            "text": "What's your employment status?"
+        },
+        {
+            "questionResult_name": "What will bring you luck?",
+            "explanation": "Find out what you can use to boost your good luck...",
+            "answers": [
+                {
+                    "text": "In a serious relationship",
+                    "indentifer": "17"
+                },
+                {
+                    "text": "Seeing someone casually",
+                    "indentifer": "18"
+                },
+                {
+                    "text": "Playing the field",
+                    "indentifer": "19"
+                },
+                {
+                    "text": "Happily single and not looking",
+                    "indentifer": "20"
+                },
+                {
+                    "text": "Non-existent and you don¡¯t care",
+                    "indentifer": "21"
+                },
+                {
+                    "text": "It¡¯s super complicated",
+                    "indentifer": "22"
+                },
+                {
+                    "text": "Single and lonely",
+                    "indentifer": "23"
+                }
+            ],
+            "image": "",
+            "text": "What's your relationship status?"
+        },
+        {
+            "questionResult_name": "What will bring you luck?",
+            "explanation": "Find out what you can use to boost your good luck...",
+            "answers": [
+                {
+                    "text": "You're getting by on a strict budget",
+                    "indentifer": "24"
+                },
+                {
+                    "text": "You're getting by with no strict budgeting",
+                    "indentifer": "25"
+                },
+                {
+                    "text": "You're totally broke",
+                    "indentifer": "26"
+                },
+                {
+                    "text": "You're rich",
+                    "indentifer": "27"
+                },
+                {
+                    "text": "You're comfortable",
+                    "indentifer": "28"
+                },
+                {
+                    "text": "You don't care about money",
+                    "indentifer": "29"
+                },
+                {
+                    "text": "You're struggling",
+                    "indentifer": "30"
+                }
+            ],
+            "image": "",
+            "text": "How are your finances?"
+        }
+    ]
+}

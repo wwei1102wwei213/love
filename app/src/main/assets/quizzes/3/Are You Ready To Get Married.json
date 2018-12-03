@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "Are You Ready To Get Married.jpg",
+    "allQuestion": [
+        {
+            "questionResult_name": "Are You Ready To Get Married?",
+            "explanation": "Should you prepare to make that big commitment, or stay single for a while?",
+            "answers": [
+                {
+                    "text": "One or two.",
+                    "indentifer": "1"
+                },
+                {
+                    "text": "Several.",
+                    "indentifer": "2"
+                },
+                {
+                    "text": "None.",
+                    "indentifer": "3"
+                },
+                {
+                    "text": "Too many to count.",
+                    "indentifer": "4"
+                }
+            ],
+            "image": "",
+            "text": "How many serious relationships have you had?"
+        },
+        {
+            "questionResult_name": "Are You Ready To Get Married?",
+            "explanation": "Should you prepare to make that big commitment, or stay single for a while?",
+            "answers": [
+                {
+                    "text": "Convince him or her to break it.",
+                    "indentifer": "5"
+                },
+                {
+                    "text": "Encourage him or her to stop doing it.",
+                    "indentifer": "6"
+                },
+                {
+                    "text": "Don't care - no one is perfect.",
+                    "indentifer": "7"
+                },
+                {
+                    "text": "Tease him or her about it.",
+                    "indentifer": "8"
+                }
+            ],
+            "image": "",
+            "text": "If your partner has a bad habit, you:"
+        },
+        {
+            "questionResult_name": "Are You Ready To Get Married?",
+            "explanation": "Should you prepare to make that big commitment, or stay single for a while?",
+            "answers": [
+                {
+                    "text": "Spontaneous, and always fun and new.",
+                    "indentifer": "9"
+                },
+                {
+                    "text": "It depends on your mood - you can be happy just watching a movie at home, but sometimes you like going out to a nice dinner.",
+                    "indentifer": "10"
+                },
+                {
+                    "text": "First-class all the way - fancy dinner, dancing - the works.",
+                    "indentifer": "11"
+                },
+                {
+                    "text": "Low-key stuff like coffee, a walk, or hanging out with friends.",
+                    "indentifer": "12"
+                }
+            ],
+            "image": "",
+            "text": "You prefer your dates to be:"
+        }
+    ]
+}

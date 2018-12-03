@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "Which Pop Diva Are You.jpg",
+    "allQuestion": [
+  {
+    "questionResult_name": "Which Pop Diva Are You?",
+    "explanation": "Which hot female songstress is your personality most in line with?",
+    "answers": [
+      {
+        "text": "Odd.",
+        "indentifer": "1"
+      },
+      {
+        "text": "Sexy.",
+        "indentifer": "2"
+      },
+      {
+        "text": "Classic.",
+        "indentifer": "3"
+      },
+      {
+        "text": "Glamorous.",
+        "indentifer": "4"
+      }
+    ],
+    "image": "",
+    "text": "Your fashion sense is..."
+  },
+  {
+    "questionResult_name": "Which Pop Diva Are You?",
+    "explanation": "Which hot female songstress is your personality most in line with?",
+    "answers": [
+      {
+        "text": "Stable.",
+        "indentifer": "5"
+      },
+      {
+        "text": "Nonexistent.",
+        "indentifer": "6"
+      },
+      {
+        "text": "Up and down.",
+        "indentifer": "7"
+      },
+      {
+        "text": "A mess.",
+        "indentifer": "8"
+      }
+    ],
+    "image": "",
+    "text": "Your love life is..."
+  },
+  {
+    "questionResult_name": "Which Pop Diva Are You?",
+    "explanation": "Which hot female songstress is your personality most in line with?",
+    "answers": [
+      {
+        "text": "Having fun.",
+        "indentifer": "9"
+      },
+      {
+        "text": "Love and relationships.",
+        "indentifer": "10"
+      },
+      {
+        "text": "Inspirational subjects like self-confidence.",
+        "indentifer": "11"
+      },
+      {
+        "text": "Pain and anger.",
+        "indentifer": "12"
+      }
+    ],
+    "image": "",
+    "text": "You'd rather write songs about:"
+  }
+]
+}

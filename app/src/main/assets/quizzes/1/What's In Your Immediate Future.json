@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "What's In Your Immediate Future.jpg",
+    "allQuestion": [
+        {
+            "questionResult_name": "What's In Your Immediate Future?",
+            "explanation": "Will you find love, job success, more friends, or increased fortune?",
+            "answers": [
+                {
+                    "text": "Someone you like.",
+                    "indentifer": "1"
+                },
+                {
+                    "text": "Your dream job.",
+                    "indentifer": "2"
+                },
+                {
+                    "text": "Being able to afford more things.",
+                    "indentifer": "3"
+                },
+                {
+                    "text": "Your plans for later.",
+                    "indentifer": "4"
+                }
+            ],
+            "image": "",
+            "text": "When you daydream, you're usually thinking about:"
+        },
+        {
+            "questionResult_name": "What's In Your Immediate Future?",
+            "explanation": "Will you find love, job success, more friends, or increased fortune?",
+            "answers": [
+                {
+                    "text": "Have a strong work ethic.",
+                    "indentifer": "5"
+                },
+                {
+                    "text": "Maintain a tight budget.",
+                    "indentifer": "6"
+                },
+                {
+                    "text": "Find someone to love.",
+                    "indentifer": "7"
+                },
+                {
+                    "text": "Have more fun.",
+                    "indentifer": "8"
+                }
+            ],
+            "image": "",
+            "text": "You're trying hardest to:"
+        },
+        {
+            "questionResult_name": "What's In Your Immediate Future?",
+            "explanation": "Will you find love, job success, more friends, or increased fortune?",
+            "answers": [
+                {
+                    "text": "You're a control freak.",
+                    "indentifer": "9"
+                },
+                {
+                    "text": "You can be a bit flaky.",
+                    "indentifer": "10"
+                },
+                {
+                    "text": "You care too much what others think.",
+                    "indentifer": "11"
+                },
+                {
+                    "text": "You're a workaholic.",
+                    "indentifer": "12"
+                }
+            ],
+            "image": "",
+            "text": "One of your major weaknesses is:"
+        }
+    ]
+}

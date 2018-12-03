@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "Will Your Lover Cheat On You.jpg",
+    "allQuestion": [
+        {
+            "questionResult_name": "Will Your Lover Cheat On You?",
+            "explanation": "Can you trust that your mate will stay faithful, or might he or she already be playing the field?",
+            "answers": [
+                {
+                    "text": "Only once or twice.",
+                    "indentifer": "1"
+                },
+                {
+                    "text": "Never.",
+                    "indentifer": "2"
+                },
+                {
+                    "text": "Several times.",
+                    "indentifer": "3"
+                },
+                {
+                    "text": "You're not sure.",
+                    "indentifer": "4"
+                }
+            ],
+            "image": "",
+            "text": "How often do you catch him or her in a lie?"
+        },
+        {
+            "questionResult_name": "Will Your Lover Cheat On You?",
+            "explanation": "Can you trust that your mate will stay faithful, or might he or she already be playing the field?",
+            "answers": [
+                {
+                    "text": "He or she is busy.",
+                    "indentifer": "5"
+                },
+                {
+                    "text": "He or she is bad about follow-up.",
+                    "indentifer": "6"
+                },
+                {
+                    "text": "He or she hasn't seen them yet.",
+                    "indentifer": "7"
+                },
+                {
+                    "text": "Who knows!",
+                    "indentifer": "8"
+                }
+            ],
+            "image": "",
+            "text": "Your lover isn't returning your messages. It's probably because:"
+        },
+        {
+            "questionResult_name": "Will Your Lover Cheat On You?",
+            "explanation": "Can you trust that your mate will stay faithful, or might he or she already be playing the field?",
+            "answers": [
+                {
+                    "text": "Is completely focused on you.",
+                    "indentifer": "9"
+                },
+                {
+                    "text": "Is easily distracted.",
+                    "indentifer": "10"
+                },
+                {
+                    "text": "Is focused on his or her own needs.",
+                    "indentifer": "11"
+                },
+                {
+                    "text": "Talks and listens, but takes in the scene, too.",
+                    "indentifer": "12"
+                }
+            ],
+            "image": "",
+            "text": "When you're together, your lover:"
+        }
+    ]
+}

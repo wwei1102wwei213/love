@@ -16,7 +16,7 @@ import com.google.gson.JsonParseException;
 
 public class SPLongUtils {
 
-    private final static String SP_NAME = "milu_long_config";
+    private final static String SP_NAME = "fuyou_long_config";
 
     /**
      * 保存字符串

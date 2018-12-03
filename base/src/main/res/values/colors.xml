@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#23B382</color>
+    <color name="colorPrimaryDark">#23B382</color>
+    <color name="colorAccent">#23B382</color>
+    <!--<color name="actionbar_default">#ff730b</color>-->
+    <color name="actionbar_default">#23B382</color>
+    <color name="actionbar_press">#239882</color>
+    <color name="actionbar_enable">#3323B382</color>
+
+    <color name="actionbar_start">#2E5749</color>
+
+    <color name="base_half_color">#3323B382</color>
+    <color name="base_half_color_dip">#6623B382</color>
+    <color name="author_text_color">#aa23B382</color>
+    <color name="vip_title_recommend">#a0f43530</color><!--#cd694d-->
+    <color name="book_label_text_1">#77bb9b</color><!--#e1bb9b-->
+    <color name="book_label_text_2">#9f9f9f</color><!--#9f9f9f-->
+
+    <color name="bg_color">#f2f2f2</color>
+
+    <color name="split_color">#e2e2e2</color>
+    <color name="split_0">#d5d5d5</color>
+    <color name="split_my">#eeeeee</color>
+
+    <color name="text_1">#666666</color>
+    <color name="text_2">#23B382</color>
+    <color name="text_3">#f43530</color>
+    <color name="text_4">#222222</color>
+    <color name="text_5">#212121</color>
+    <color name="text_6">#999999</color>
+    <color name="text_7">#AFAFAF</color>
+    <color name="text_8">#cccccc</color>
+    <color name="text_9">#f09544</color>
+    <color name="text_10">#787878</color>
+    <color name="text_11">#333333</color>
+    <color name="text_12">#555555</color>
+    <color name="text_13">#929292</color>
+    <color name="text_14">#888888</color>
+    <color name="text_15">#c7c7c7</color>
+
+    <color name="tab_line_1">#23B382</color>
+    <color name="black_overlay">#66000000</color>
+
+    <color name="line_f1f1f1">#f1f1f1</color>
+    <color name="line_eee">#eeeeee</color>
+    <color name="line_ddd">#dddddd</color>
+
+    <color name="splash">#FDF2E2</color>
+
+    <!--read-->
+    <color name="nb.read.bg_1">#CEC29C</color>
+    <color name="nb.read.bg_2">#CCEBCC</color>
+    <color name="nb.read.bg_3">#AAAAAA</color>
+    <color name="nb.read.bg_4">#D1CEC5</color>
+    <color name="nb.read.bg_5">#001C27</color>
+    <color name="nb.read.bg_6">#DDCEC29C</color>
+
+
+    <color name="nb.read.font_1">#2C2C2C</color>
+    <color name="nb.read.font_2">#2F332D</color>
+    <color name="nb.read.font_3">#92918C</color>
+    <color name="nb.read.font_4">#383429</color>
+    <color name="nb.read.font_5">#627176</color>
+
+    <color name="nb.read.bg.night">#000000</color>
+    <color name="nb.read.font_night">#7f7f7f</color>
+
+    <color name="nb.read.menu.bg">#191919</color>
+    <color name="nb.read.menu.text">#CBCBCB</color>
+    <color name="nb.read.bar.translucent">#88000000</color>
+
+    <color name="bg_half_translucent">#40000000</color>
+    <color name="bg_white">#FFFFFF</color>
+    <color name="bg_white_half">#80FFFFFF</color>
+
+    <color name="ads_card_text">#B4854D</color>
+    <color name="ads_progress_selected">#ff0000</color>
+    <color name="ads_normal_text">#666666</color>
+
+
+
+</resources>

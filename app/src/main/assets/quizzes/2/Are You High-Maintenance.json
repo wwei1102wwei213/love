@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "Are You High-Maintenance.jpg",
+    "allQuestion": [
+  {
+    "questionResult_name": "Are You High-Maintenance?",
+    "explanation": "Is your life one big soap opera with you in the starring role, or are you amazingly down-to-earth?",
+    "answers": [
+      {
+        "text": "A few hours.",
+        "indentifer": "1"
+      },
+      {
+        "text": "Less than 30 minutes.",
+        "indentifer": "2"
+      },
+      {
+        "text": "About an hour.",
+        "indentifer": "3"
+      },
+      {
+        "text": "Days.",
+        "indentifer": "4"
+      }
+    ],
+    "image": "",
+    "text": "How long does it typically take you to get ready for a big event like a wedding or party?"
+  },
+  {
+    "questionResult_name": "Are You High-Maintenance?",
+    "explanation": "Is your life one big soap opera with you in the starring role, or are you amazingly down-to-earth?",
+    "answers": [
+      {
+        "text": "Rarely, if ever.",
+        "indentifer": "5"
+      },
+      {
+        "text": "Pretty often, but it's rarely your fault.",
+        "indentifer": "6"
+      },
+      {
+        "text": "Regularly -- we are high-drama.",
+        "indentifer": "7"
+      },
+      {
+        "text": "Once and a while, when one of us is totally out of line.",
+        "indentifer": "8"
+      }
+    ],
+    "image": "",
+    "text": "How often do you fight with your friends? "
+  },
+  {
+    "questionResult_name": "Are You High-Maintenance?",
+    "explanation": "Is your life one big soap opera with you in the starring role, or are you amazingly down-to-earth?",
+    "answers": [
+      {
+        "text": "Pay your half.",
+        "indentifer": "9"
+      },
+      {
+        "text": "Let your date pay for all of it.",
+        "indentifer": "10"
+      },
+      {
+        "text": "Offer to leave the tip.",
+        "indentifer": "11"
+      },
+      {
+        "text": "Pay the whole thing, or at least most of it.",
+        "indentifer": "12"
+      }
+    ],
+    "image": "",
+    "text": "You're out with a date or your partner and the bill arrives. You:"
+  }
+]
+}

@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "Horoscope Personality Test.jpg",
+    "allQuestion": [
+        {
+            "questionResult_name": "Horoscope Personality Test",
+            "explanation": "Take this quiz to find out what type of horoscope fits your personality and priorities in life!",
+            "answers": [
+                {
+                    "text": "Relationships.",
+                    "indentifer": "1"
+                },
+                {
+                    "text": "Your job.",
+                    "indentifer": "2"
+                },
+                {
+                    "text": "Everything!",
+                    "indentifer": "3"
+                },
+                {
+                    "text": "It varies - you focus on whatever is bothering you at the time.",
+                    "indentifer": "4"
+                }
+            ],
+            "image": "",
+            "text": "When you're with your friends, you mostly talk about:"
+        },
+        {
+            "questionResult_name": "Horoscope Personality Test",
+            "explanation": "Take this quiz to find out what type of horoscope fits your personality and priorities in life!",
+            "answers": [
+                {
+                    "text": "Quit as soon as you get frustrated.",
+                    "indentifer": "5"
+                },
+                {
+                    "text": "Get distracted daydreaming about something - or someone - else.",
+                    "indentifer": "6"
+                },
+                {
+                    "text": "Be a little scattered, with a mix of work and wasting time.",
+                    "indentifer": "7"
+                },
+                {
+                    "text": "Stay focused and work hard until it's completed.",
+                    "indentifer": "8"
+                }
+            ],
+            "image": "",
+            "text": "When you have to get something important done, you tend to:"
+        },
+        {
+            "questionResult_name": "Horoscope Personality Test",
+            "explanation": "Take this quiz to find out what type of horoscope fits your personality and priorities in life!",
+            "answers": [
+                {
+                    "text": "Seize the day!",
+                    "indentifer": "9"
+                },
+                {
+                    "text": "It's better to have loved and lost than never to have loved at all.",
+                    "indentifer": "10"
+                },
+                {
+                    "text": "Be true to yourself.",
+                    "indentifer": "11"
+                },
+                {
+                    "text": "Go big or go home!",
+                    "indentifer": "12"
+                }
+            ],
+            "image": "",
+            "text": "Which life philosophy is most relevant to you?"
+        }
+    ]
+}

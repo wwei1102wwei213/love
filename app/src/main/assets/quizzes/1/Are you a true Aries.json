@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "Are you a true Aries.jpg",
+    "allQuestion": [
+        {
+            "questionResult_name": "Are you a true Aries?",
+            "explanation": "Does your personality match up to your given Sun Sign? If not, you might be more in tune with your Rising or Moon Sign!",
+            "answers": [
+                {
+                    "text": "Plan the best strategy for getting it.",
+                    "indentifer": "1"
+                },
+                {
+                    "text": "Try to decide if you really need it.",
+                    "indentifer": "2"
+                },
+                {
+                    "text": "Wait and hope it happens.",
+                    "indentifer": "3"
+                },
+                {
+                    "text": "Go after it immediately with full force.",
+                    "indentifer": "4"
+                }
+            ],
+            "image": "",
+            "text": "When you really want something, you:"
+        },
+        {
+            "questionResult_name": "Are you a true Aries?",
+            "explanation": "Does your personality match up to your given Sun Sign? If not, you might be more in tune with your Rising or Moon Sign!",
+            "answers": [
+                {
+                    "text": "Ruby.",
+                    "indentifer": "5"
+                },
+                {
+                    "text": "Diamond.",
+                    "indentifer": "6"
+                },
+                {
+                    "text": "Opal.",
+                    "indentifer": "7"
+                },
+                {
+                    "text": "Turquoise.",
+                    "indentifer": "8"
+                }
+            ],
+            "image": "",
+            "text": "If you bought jewelry for yourself or someone else, what gemstone would you choose out of these four?"
+        },
+        {
+            "questionResult_name": "Are you a true Aries?",
+            "explanation": "Does your personality match up to your given Sun Sign? If not, you might be more in tune with your Rising or Moon Sign!",
+            "answers": [
+                {
+                    "text": "Battlefield.",
+                    "indentifer": "9"
+                },
+                {
+                    "text": "Mess.",
+                    "indentifer": "10"
+                },
+                {
+                    "text": "Party.",
+                    "indentifer": "11"
+                },
+                {
+                    "text": "Joke.",
+                    "indentifer": "12"
+                }
+            ],
+            "image": "",
+            "text": "Life is a ........... (complete the sentence with the word you'd most likely use)."
+        }
+    ]
+}

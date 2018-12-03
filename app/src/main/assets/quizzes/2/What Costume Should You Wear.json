@@ -1,0 +1,101 @@
+{
+    "subTopicImage": "What Costume Should You Wear.jpg",
+    "allQuestion": [
+  {
+    "questionResult_name": "What Costume Should You Wear?",
+    "explanation": "Find out what you should dress up as this Halloween...",
+    "answers": [
+      {
+        "text": "Shock.",
+        "indentifer": "1"
+      },
+      {
+        "text": "Awe.",
+        "indentifer": "2"
+      },
+      {
+        "text": "Lust.",
+        "indentifer": "3"
+      },
+      {
+        "text": "Confusion.",
+        "indentifer": "4"
+      }
+    ],
+    "image": "",
+    "text": "What kind of reaction do you want from others who see you dressed up?"
+  },
+  {
+    "questionResult_name": "What Costume Should You Wear?",
+    "explanation": "Find out what you should dress up as this Halloween...",
+    "answers": [
+      {
+        "text": "None to a few minutes to throw together what I already have.",
+        "indentifer": "5"
+      },
+      {
+        "text": "I want to spend little and be ready in under an hour.",
+        "indentifer": "6"
+      },
+      {
+        "text": "It's worth a few hours and some well-earned cash.",
+        "indentifer": "7"
+      },
+      {
+        "text": "The sky's the limit!",
+        "indentifer": "8"
+      }
+    ],
+    "image": "",
+    "text": "How much time and money do you want to spend?"
+  },
+  {
+    "questionResult_name": "What Costume Should You Wear?",
+    "explanation": "Find out what you should dress up as this Halloween...",
+    "answers": [
+      {
+        "text": "That's a must.",
+        "indentifer": "9"
+      },
+      {
+        "text": "Bring the pain! I'd rather look good.",
+        "indentifer": "10"
+      },
+      {
+        "text": "I can stand a little discomfort but not much.",
+        "indentifer": "11"
+      },
+      {
+        "text": "Sure, I can stand it for a few hours.",
+        "indentifer": "12"
+      }
+    ],
+    "image": "",
+    "text": "Do you want to be comfortable?"
+  },
+  {
+    "questionResult_name": "What Costume Should You Wear?",
+    "explanation": "Find out what you should dress up as this Halloween...",
+    "answers": [
+      {
+        "text": "A big party or event.",
+        "indentifer": "13"
+      },
+      {
+        "text": "At home or work.",
+        "indentifer": "14"
+      },
+      {
+        "text": "Everywhere.",
+        "indentifer": "15"
+      },
+      {
+        "text": "On a date or intimate gathering of friends.",
+        "indentifer": "16"
+      }
+    ],
+    "image": "",
+    "text": "Where will you wear it?"
+  }
+]
+}

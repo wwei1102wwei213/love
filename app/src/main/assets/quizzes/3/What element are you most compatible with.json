@@ -1,0 +1,101 @@
+{
+    "subTopicImage": "What element are you most compatible with.jpg",
+    "allQuestion": [
+        {
+            "questionResult_name": "What element are you most compatible with?",
+            "explanation": "Is your ideal mate a Fire Sign, Air Sign, Water Sign, or Earth Sign?",
+            "answers": [
+                {
+                    "text": "Team leader.",
+                    "indentifer": "1"
+                },
+                {
+                    "text": "Mediator.",
+                    "indentifer": "2"
+                },
+                {
+                    "text": "Hacker.",
+                    "indentifer": "3"
+                },
+                {
+                    "text": "Workhorse.",
+                    "indentifer": "4"
+                }
+            ],
+            "image": "",
+            "text": "AT WORK"
+        },
+        {
+            "questionResult_name": "What element are you most compatible with?",
+            "explanation": "Is your ideal mate a Fire Sign, Air Sign, Water Sign, or Earth Sign?",
+            "answers": [
+                {
+                    "text": "Task-oriented.",
+                    "indentifer": "5"
+                },
+                {
+                    "text": "Sleeping.",
+                    "indentifer": "6"
+                },
+                {
+                    "text": "Entertaining guests.",
+                    "indentifer": "7"
+                },
+                {
+                    "text": "Creating art.",
+                    "indentifer": "8"
+                }
+            ],
+            "image": "",
+            "text": "RELAXING AT HOME"
+        },
+        {
+            "questionResult_name": "What element are you most compatible with?",
+            "explanation": "Is your ideal mate a Fire Sign, Air Sign, Water Sign, or Earth Sign?",
+            "answers": [
+                {
+                    "text": "Romantic.",
+                    "indentifer": "9"
+                },
+                {
+                    "text": "Fun.",
+                    "indentifer": "10"
+                },
+                {
+                    "text": "Patient.",
+                    "indentifer": "11"
+                },
+                {
+                    "text": "Honest.",
+                    "indentifer": "12"
+                }
+            ],
+            "image": "",
+            "text": "WITH YOU"
+        },
+        {
+            "questionResult_name": "What element are you most compatible with?",
+            "explanation": "Is your ideal mate a Fire Sign, Air Sign, Water Sign, or Earth Sign?",
+            "answers": [
+                {
+                    "text": "Generous",
+                    "indentifer": "13"
+                },
+                {
+                    "text": "Haphazard.",
+                    "indentifer": "14"
+                },
+                {
+                    "text": "Responsible.",
+                    "indentifer": "15"
+                },
+                {
+                    "text": "Efficient.",
+                    "indentifer": "16"
+                }
+            ],
+            "image": "",
+            "text": "WITH MONEY"
+        }
+    ]
+}

@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "Are You Trashy.jpg",
+    "allQuestion": [
+  {
+    "questionResult_name": "Are You Trashy?",
+    "explanation": "Do you need to pull yourself together? Find out if you might need to improve your manners and collect your appearance.",
+    "answers": [
+      {
+        "text": "Super tight, printed stretch pants.",
+        "indentifer": "1"
+      },
+      {
+        "text": "Ugg-style boots.",
+        "indentifer": "2"
+      },
+      {
+        "text": "A mesh shirt.",
+        "indentifer": "3"
+      },
+      {
+        "text": "Body glitter.",
+        "indentifer": "4"
+      }
+    ],
+    "image": "",
+    "text": "Which of these styles would you be least embarrassed to wear?"
+  },
+  {
+    "questionResult_name": "Are You Trashy?",
+    "explanation": "Do you need to pull yourself together? Find out if you might need to improve your manners and collect your appearance.",
+    "answers": [
+      {
+        "text": "All the &^? time.",
+        "indentifer": "5"
+      },
+      {
+        "text": "Only if you¡¯re really ma",
+        "indentifer": "6"
+      },
+      {
+        "text": "Rarely, if ever.",
+        "indentifer": "7"
+      },
+      {
+        "text": "More than you should, but they just slip out!",
+        "indentifer": "8"
+      }
+    ],
+    "image": "",
+    "text": "How often do you swear?"
+  },
+  {
+    "questionResult_name": "Are You Trashy?",
+    "explanation": "Do you need to pull yourself together? Find out if you might need to improve your manners and collect your appearance.",
+    "answers": [
+      {
+        "text": "Light beer.",
+        "indentifer": "9"
+      },
+      {
+        "text": "Water.",
+        "indentifer": "10"
+      },
+      {
+        "text": "Wine, a microbrew, or a mixed drink.",
+        "indentifer": "11"
+      },
+      {
+        "text": "Shots or margaritas.",
+        "indentifer": "12"
+      }
+    ],
+    "image": "",
+    "text": "What¡¯s your drink of choice?"
+  }
+]
+}

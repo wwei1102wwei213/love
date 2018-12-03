@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "Are you a true Sagittarius.jpg",
+    "allQuestion": [
+        {
+            "questionResult_name": "Are you a true Sagittarius?",
+            "explanation": "Does your personality match up to your given Sun Sign? If not, you might be more in tune with your Rising or Moon Sign!",
+            "answers": [
+                {
+                    "text": "Along a carefully mapped out route of major highways.",
+                    "indentifer": "1"
+                },
+                {
+                    "text": "Wherever the road takes you.",
+                    "indentifer": "2"
+                },
+                {
+                    "text": "You pick a general direction and some landmarks you want to visit.",
+                    "indentifer": "3"
+                },
+                {
+                    "text": "Does a trip to the store count?",
+                    "indentifer": "4"
+                }
+            ],
+            "image": "",
+            "text": "Road trip! Where do you go?"
+        },
+        {
+            "questionResult_name": "Are you a true Sagittarius?",
+            "explanation": "Does your personality match up to your given Sun Sign? If not, you might be more in tune with your Rising or Moon Sign!",
+            "answers": [
+                {
+                    "text": "You freak out.",
+                    "indentifer": "5"
+                },
+                {
+                    "text": "You embrace it.",
+                    "indentifer": "6"
+                },
+                {
+                    "text": "You aren't too fond of it, but you deal.",
+                    "indentifer": "7"
+                },
+                {
+                    "text": "You think it's necessary.",
+                    "indentifer": "8"
+                }
+            ],
+            "image": "",
+            "text": "How do you deal with change?"
+        },
+        {
+            "questionResult_name": "Are you a true Sagittarius?",
+            "explanation": "Does your personality match up to your given Sun Sign? If not, you might be more in tune with your Rising or Moon Sign!",
+            "answers": [
+                {
+                    "text": "Is kind of clingy.",
+                    "indentifer": "9"
+                },
+                {
+                    "text": "Is hard to pin down.",
+                    "indentifer": "10"
+                },
+                {
+                    "text": "Is very outspoken.",
+                    "indentifer": "11"
+                },
+                {
+                    "text": "Is a flake.",
+                    "indentifer": "12"
+                }
+            ],
+            "image": "",
+            "text": "You'd rather be with a partner who:"
+        }
+    ]
+}

@@ -1,0 +1,101 @@
+{
+    "subTopicImage": "What first impression do you give.jpg",
+    "allQuestion": [
+  {
+    "questionResult_name": "What first impression do you give?",
+    "explanation": "Do people like you the first time they meet you, or do you come off as a bit intimidating? Find out with this quiz!",
+    "answers": [
+      {
+        "text": "Head-to-toe black.",
+        "indentifer": "1"
+      },
+      {
+        "text": "Bright colors.",
+        "indentifer": "2"
+      },
+      {
+        "text": "Neutral or subdued colors.",
+        "indentifer": "3"
+      },
+      {
+        "text": "Patterns.",
+        "indentifer": "4"
+      }
+    ],
+    "image": "",
+    "text": "You are most likely to wear:"
+  },
+  {
+    "questionResult_name": "What first impression do you give?",
+    "explanation": "Do people like you the first time they meet you, or do you come off as a bit intimidating? Find out with this quiz!",
+    "answers": [
+      {
+        "text": "Talk their ear off.",
+        "indentifer": "5"
+      },
+      {
+        "text": "Listen, but don't say much.",
+        "indentifer": "6"
+      },
+      {
+        "text": "Keep a casual conversation going.",
+        "indentifer": "7"
+      },
+      {
+        "text": "Ask questions to size them up.",
+        "indentifer": "8"
+      }
+    ],
+    "image": "",
+    "text": "When you meet new people, you:"
+  },
+  {
+    "questionResult_name": "What first impression do you give?",
+    "explanation": "Do people like you the first time they meet you, or do you come off as a bit intimidating? Find out with this quiz!",
+    "answers": [
+      {
+        "text": "You make polite small talk.",
+        "indentifer": "9"
+      },
+      {
+        "text": "Whatever is annoying you.",
+        "indentifer": "10"
+      },
+      {
+        "text": "You bring up obscure facts and observations.",
+        "indentifer": "11"
+      },
+      {
+        "text": "Light gossip about politicians and celebrities.",
+        "indentifer": "12"
+      }
+    ],
+    "image": "",
+    "text": "What do you usually talk about with people you don't know well?"
+  },
+  {
+    "questionResult_name": "What first impression do you give?",
+    "explanation": "Do people like you the first time they meet you, or do you come off as a bit intimidating? Find out with this quiz!",
+    "answers": [
+      {
+        "text": "Sorry.",
+        "indentifer": "13"
+      },
+      {
+        "text": "",
+        "indentifer": "14"
+      },
+      {
+        "text": "Awesome!",
+        "indentifer": "15"
+      },
+      {
+        "text": "Whoopsie!.",
+        "indentifer": "16"
+      }
+    ],
+    "image": "",
+    "text": "What are you most likely to say?"
+  }
+]
+}

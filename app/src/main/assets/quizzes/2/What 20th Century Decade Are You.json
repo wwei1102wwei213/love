@@ -1,0 +1,101 @@
+{
+    "subTopicImage": "What 20th Century Decade Are You.jpg",
+    "allQuestion": [
+  {
+    "questionResult_name": "What 20th Century Decade Are You?",
+    "explanation": "Do you roar in like the 20s or bop along 50s-style?",
+    "answers": [
+      {
+        "text": "A process - it's highly styled.",
+        "indentifer": "1"
+      },
+      {
+        "text": "Easy - you let it do what's natural.",
+        "indentifer": "2"
+      },
+      {
+        "text": "Pretty simple - just a bit of putting everything into place.",
+        "indentifer": "3"
+      },
+      {
+        "text": "Non-existent - you don't have enough hair to style anything.",
+        "indentifer": "4"
+      }
+    ],
+    "image": "",
+    "text": "Your hair grooming routine is:"
+  },
+  {
+    "questionResult_name": "What 20th Century Decade Are You?",
+    "explanation": "Do you roar in like the 20s or bop along 50s-style?",
+    "answers": [
+      {
+        "text": "Conservative.",
+        "indentifer": "5"
+      },
+      {
+        "text": "Democrat.",
+        "indentifer": "6"
+      },
+      {
+        "text": "Independent, a mix of values, or inactive.",
+        "indentifer": "7"
+      },
+      {
+        "text": "Extremist in one way or another.",
+        "indentifer": "8"
+      }
+    ],
+    "image": "",
+    "text": "What describes you best, politically?"
+  },
+  {
+    "questionResult_name": "What 20th Century Decade Are You?",
+    "explanation": "Do you roar in like the 20s or bop along 50s-style?",
+    "answers": [
+      {
+        "text": "Leather.",
+        "indentifer": "9"
+      },
+      {
+        "text": "Cotton.",
+        "indentifer": "10"
+      },
+      {
+        "text": "Velvet.",
+        "indentifer": "11"
+      },
+      {
+        "text": "Lace.",
+        "indentifer": "12"
+      }
+    ],
+    "image": "",
+    "text": "You'd rather wear..."
+  },
+  {
+    "questionResult_name": "What 20th Century Decade Are You?",
+    "explanation": "Do you roar in like the 20s or bop along 50s-style?",
+    "answers": [
+      {
+        "text": "People.",
+        "indentifer": "13"
+      },
+      {
+        "text": "Money or employment.",
+        "indentifer": "14"
+      },
+      {
+        "text": "Politics.",
+        "indentifer": "15"
+      },
+      {
+        "text": "Illness.",
+        "indentifer": "16"
+      }
+    ],
+    "image": "",
+    "text": "Your biggest fears involve:"
+  }
+]
+}

@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "In Your Next Life, You'll Be A....jpg",
+    "allQuestion": [
+        {
+            "questionResult_name": "In Your Next Life, You'll Be A...",
+            "explanation": "Discover how you're most likely to be reincarnated.",
+            "answers": [
+                {
+                    "text": "Dog or cat.",
+                    "indentifer": "1"
+                },
+                {
+                    "text": "Ferret or hamster.",
+                    "indentifer": "2"
+                },
+                {
+                    "text": "Pet rock.",
+                    "indentifer": "3"
+                },
+                {
+                    "text": "Snake or tarantula.",
+                    "indentifer": "4"
+                }
+            ],
+            "image": "",
+            "text": "If you had to choose one of these pets, you'd get a..."
+        },
+        {
+            "questionResult_name": "In Your Next Life, You'll Be A...",
+            "explanation": "Discover how you're most likely to be reincarnated.",
+            "answers": [
+                {
+                    "text": "Sit down and relax.",
+                    "indentifer": "5"
+                },
+                {
+                    "text": "Climb a tree.",
+                    "indentifer": "6"
+                },
+                {
+                    "text": "Go for a hike or run.",
+                    "indentifer": "7"
+                },
+                {
+                    "text": "Hide.",
+                    "indentifer": "8"
+                }
+            ],
+            "image": "",
+            "text": "You're in a forest. What are you most likely to do?"
+        },
+        {
+            "questionResult_name": "In Your Next Life, You'll Be A...",
+            "explanation": "Discover how you're most likely to be reincarnated.",
+            "answers": [
+                {
+                    "text": "Fun.",
+                    "indentifer": "9"
+                },
+                {
+                    "text": "Loyal.",
+                    "indentifer": "10"
+                },
+                {
+                    "text": "Interesting.",
+                    "indentifer": "11"
+                },
+                {
+                    "text": "Self-assured.",
+                    "indentifer": "12"
+                }
+            ],
+            "image": "",
+            "text": "Your friends probably like you most because you are:"
+        }
+    ]
+}

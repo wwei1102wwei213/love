@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "Are You A Master Of Seduction.jpg",
+    "allQuestion": [
+        {
+            "questionResult_name": "Are You A Master Of Seduction?",
+            "explanation": "Do you have the sultry moves to turn anyone on, or could you use a lesson in lust?",
+            "answers": [
+                {
+                    "text": "No. I like my natural scent.",
+                    "indentifer": "1"
+                },
+                {
+                    "text": "Just a little touch in a place like my wrists or behind my ears.",
+                    "indentifer": "2"
+                },
+                {
+                    "text": "A few sprays, yes.",
+                    "indentifer": "3"
+                },
+                {
+                    "text": "Only if I don't have time to shower.",
+                    "indentifer": "4"
+                }
+            ],
+            "image": "",
+            "text": "When you go on a date, do you wear perfume or cologne?"
+        },
+        {
+            "questionResult_name": "Are You A Master Of Seduction?",
+            "explanation": "Do you have the sultry moves to turn anyone on, or could you use a lesson in lust?",
+            "answers": [
+                {
+                    "text": "Let's get naked.",
+                    "indentifer": "5"
+                },
+                {
+                    "text": "I want you now.",
+                    "indentifer": "6"
+                },
+                {
+                    "text": "Do I look fat?",
+                    "indentifer": "7"
+                },
+                {
+                    "text": "Do you like me?",
+                    "indentifer": "8"
+                }
+            ],
+            "image": "",
+            "text": "Do you have the sultry moves to turn anyone on, or could you use a lesson in lust?"
+        },
+        {
+            "questionResult_name": "Are You A Master Of Seduction?",
+            "explanation": "Do you have the sultry moves to turn anyone on, or could you use a lesson in lust?",
+            "answers": [
+                {
+                    "text": "Quickly and with purpose.",
+                    "indentifer": "9"
+                },
+                {
+                    "text": "Slowly, then you turn and give a little smile.",
+                    "indentifer": "10"
+                },
+                {
+                    "text": "You are a bit clumsy and might stumble. You're nervous after all!",
+                    "indentifer": "11"
+                },
+                {
+                    "text": "You keep turning around and waving.",
+                    "indentifer": "12"
+                }
+            ],
+            "image": "",
+            "text": "You're parting ways with your love interest. How do you walk away?"
+        }
+    ]
+}

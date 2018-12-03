@@ -1,0 +1,101 @@
+{
+    "subTopicImage": "What Is Your Deadly Sin.jpg",
+    "allQuestion": [
+  {
+    "questionResult_name": "What Is Your Deadly Sin?",
+    "explanation": "Which of the seven deadly sins are you most guilty of?",
+    "answers": [
+      {
+        "text": "Extremely happy for your best frien",
+        "indentifer": "1"
+      },
+      {
+        "text": "So jealous that you're angry at him or her.",
+        "indentifer": "2"
+      },
+      {
+        "text": "You don't really care - good for your friend.",
+        "indentifer": "3"
+      },
+      {
+        "text": "Confuse You should have gotten that job.",
+        "indentifer": "4"
+      }
+    ],
+    "image": "",
+    "text": "Your best friend just landed YOUR dream job, with a nice salary. How do you honestly feel?"
+  },
+  {
+    "questionResult_name": "What Is Your Deadly Sin?",
+    "explanation": "Which of the seven deadly sins are you most guilty of?",
+    "answers": [
+      {
+        "text": "Way more than you know you'll eat. Hey, it's free!",
+        "indentifer": "5"
+      },
+      {
+        "text": "Exactly what you think you will eat every week.",
+        "indentifer": "6"
+      },
+      {
+        "text": "You limit yourself to a small quantity so you don't over-indulge.",
+        "indentifer": "7"
+      },
+      {
+        "text": "A little more than you think you need, so you can share it.",
+        "indentifer": "8"
+      }
+    ],
+    "image": "",
+    "text": "You win an unlimited supply of your favorite food, which you can order every week. How much do you order?"
+  },
+  {
+    "questionResult_name": "What Is Your Deadly Sin?",
+    "explanation": "Which of the seven deadly sins are you most guilty of?",
+    "answers": [
+      {
+        "text": "Flirt a little - it's harmless.",
+        "indentifer": "9"
+      },
+      {
+        "text": "Hook up eventually - the chemistry is too hard to resist.",
+        "indentifer": "10"
+      },
+      {
+        "text": "Let nature takes its course and see if it's meant to be.",
+        "indentifer": "11"
+      },
+      {
+        "text": "Nothing - this happens all the time. You're hot.",
+        "indentifer": "12"
+      }
+    ],
+    "image": "",
+    "text": "You meet someone you're very attracted to, but you're already in a relationship. What do you do?"
+  },
+  {
+    "questionResult_name": "What Is Your Deadly Sin?",
+    "explanation": "Which of the seven deadly sins are you most guilty of?",
+    "answers": [
+      {
+        "text": "You aren't surprised - of course you're fabulous.",
+        "indentifer": "13"
+      },
+      {
+        "text": "You get really embarrassed.",
+        "indentifer": "14"
+      },
+      {
+        "text": "You ask for more details about it.",
+        "indentifer": "15"
+      },
+      {
+        "text": "You figure they are confused or teasing you.",
+        "indentifer": "16"
+      }
+    ],
+    "image": "",
+    "text": "When someone gives you a compliment, how are you most likely to react?"
+  }
+]
+}

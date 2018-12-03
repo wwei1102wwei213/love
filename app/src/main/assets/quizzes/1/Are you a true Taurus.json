@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "Are you a true Taurus.jpg",
+    "allQuestion": [
+        {
+            "questionResult_name": "Are you a true Taurus?",
+            "explanation": "Does your personality match up to your given Sun Sign? If not, you might be more in tune with your Rising or Moon Sign!",
+            "answers": [
+                {
+                    "text": "A better person.",
+                    "indentifer": "1"
+                },
+                {
+                    "text": "Nervous.",
+                    "indentifer": "2"
+                },
+                {
+                    "text": "More sensual.",
+                    "indentifer": "3"
+                },
+                {
+                    "text": "Playful.",
+                    "indentifer": "4"
+                }
+            ],
+            "image": "",
+            "text": "Love makes you:"
+        },
+        {
+            "questionResult_name": "Are you a true Taurus?",
+            "explanation": "Does your personality match up to your given Sun Sign? If not, you might be more in tune with your Rising or Moon Sign!",
+            "answers": [
+                {
+                    "text": "Yes - and I do often!.",
+                    "indentifer": "5"
+                },
+                {
+                    "text": "Sometimes, for special occasions.",
+                    "indentifer": "6"
+                },
+                {
+                    "text": "Very rarely. I don't need fancy stuff.",
+                    "indentifer": "7"
+                },
+                {
+                    "text": "Never. I just want the basics.",
+                    "indentifer": "8"
+                }
+            ],
+            "image": "",
+            "text": "Do you like to splurge on luxury items?"
+        },
+        {
+            "questionResult_name": "Are you a true Taurus?",
+            "explanation": "Does your personality match up to your given Sun Sign? If not, you might be more in tune with your Rising or Moon Sign!",
+            "answers": [
+                {
+                    "text": "Type up a document.",
+                    "indentifer": "9"
+                },
+                {
+                    "text": "Brainstorm a creative concept.",
+                    "indentifer": "10"
+                },
+                {
+                    "text": "Build something.",
+                    "indentifer": "11"
+                },
+                {
+                    "text": "I'd rather avoid work altogether.",
+                    "indentifer": "12"
+                }
+            ],
+            "image": "",
+            "text": "What work task would you rather do?"
+        }
+    ]
+}

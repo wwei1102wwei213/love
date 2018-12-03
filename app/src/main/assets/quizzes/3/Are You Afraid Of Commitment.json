@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "Are You Afraid Of Commitment.jpg",
+    "allQuestion": [
+        {
+            "questionResult_name": "Are You Afraid Of Commitment?",
+            "explanation": "Ready to settle down into a stable lifestyle, or do you need to run wild and free?",
+            "answers": [
+                {
+                    "text": "A few.",
+                    "indentifer": "1"
+                },
+                {
+                    "text": "One or two.",
+                    "indentifer": "2"
+                },
+                {
+                    "text": "Does a magazine subscription count?",
+                    "indentifer": "3"
+                },
+                {
+                    "text": "No.",
+                    "indentifer": "4"
+                }
+            ],
+            "image": "",
+            "text": "Do you have any memberships/belong to any clubs?"
+        },
+        {
+            "questionResult_name": "Are You Afraid Of Commitment?",
+            "explanation": "Ready to settle down into a stable lifestyle, or do you need to run wild and free?",
+            "answers": [
+                {
+                    "text": "Owner.",
+                    "indentifer": "5"
+                },
+                {
+                    "text": "Renter.",
+                    "indentifer": "6"
+                },
+                {
+                    "text": "Guest.",
+                    "indentifer": "7"
+                },
+                {
+                    "text": "Solo wanderer.",
+                    "indentifer": "8"
+                }
+            ],
+            "image": "",
+            "text": "Your ideal living arrangement is:"
+        },
+        {
+            "questionResult_name": "Are You Afraid Of Commitment?",
+            "explanation": "Ready to settle down into a stable lifestyle, or do you need to run wild and free?",
+            "answers": [
+                {
+                    "text": "Married or formally committed.",
+                    "indentifer": "9"
+                },
+                {
+                    "text": "Living together.",
+                    "indentifer": "10"
+                },
+                {
+                    "text": "Dated exclusively.",
+                    "indentifer": "11"
+                },
+                {
+                    "text": "Light and no strings attached, or never had a romantic partner.",
+                    "indentifer": "12"
+                }
+            ],
+            "image": "",
+            "text": "How serious have you gotten with a romantic partner?"
+        }
+    ]
+}

@@ -1,0 +1,77 @@
+{
+    "subTopicImage": "Does Your Crush Like You.jpg",
+    "allQuestion": [
+        {
+            "questionResult_name": "Does Your Crush Like You?",
+            "explanation": "Could the object of your affections return your feelings, or is it a lost cause?",
+            "answers": [
+                {
+                    "text": "Rarely or never - not yet, at least!",
+                    "indentifer": "1"
+                },
+                {
+                    "text": "A lot. You seem to be the first person he or she tells things to.",
+                    "indentifer": "2"
+                },
+                {
+                    "text": "Pretty regularly.",
+                    "indentifer": "3"
+                },
+                {
+                    "text": "Sporadically - lots some days, then not at all others.",
+                    "indentifer": "4"
+                }
+            ],
+            "image": "",
+            "text": "How often does he or she talk to you?"
+        },
+        {
+            "questionResult_name": "Does Your Crush Like You?",
+            "explanation": "Could the object of your affections return your feelings, or is it a lost cause?",
+            "answers": [
+                {
+                    "text": "He or she keeps looking - but at you? Maybe you just happen to be where he or she is staring.",
+                    "indentifer": "5"
+                },
+                {
+                    "text": "Your crush blushes and quickly looks away.",
+                    "indentifer": "6"
+                },
+                {
+                    "text": "He or she holds your gaze and smiles.",
+                    "indentifer": "7"
+                },
+                {
+                    "text": "He or she looks away with no expression.",
+                    "indentifer": "8"
+                }
+            ],
+            "image": "",
+            "text": "Your crush is looking at you and you catch his or her gaze. What is his/her reaction?"
+        },
+        {
+            "questionResult_name": "Does Your Crush Like You?",
+            "explanation": "Could the object of your affections return your feelings, or is it a lost cause?",
+            "answers": [
+                {
+                    "text": "Say yes if he or she had no other plans.",
+                    "indentifer": "9"
+                },
+                {
+                    "text": "Give you a weird look and say 'no.'",
+                    "indentifer": "10"
+                },
+                {
+                    "text": "Excitedly say 'yes' and drop everything to do it.",
+                    "indentifer": "11"
+                },
+                {
+                    "text": "Ask when, where or why, but ultimately schedule a time to do it.",
+                    "indentifer": "12"
+                }
+            ],
+            "image": "",
+            "text": "If you asked your crush to do something with you, how do you think he or she would react?"
+        }
+    ]
+}
