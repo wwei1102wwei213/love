@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:id="@+id/v_result_img"
+        android:orientation="vertical" android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="3dp"
+        android:paddingRight="3dp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:background="@drawable/bg_card_result_radius"
+        android:layout_gravity="center_horizontal"
+        >
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:scaleType="centerCrop"
+            android:visibility="visible"
+            android:padding="3dp"
+            android:background="@drawable/bg_card_result_radius"
+            />
+        <ImageView
+            android:id="@+id/iv_real"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:scaleType="centerCrop"
+            android:visibility="invisible"
+            android:padding="3dp"
+            android:background="@drawable/bg_card_result_radius"
+            />
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="98dp"
+        android:layout_height="32dp"
+        android:textSize="@dimen/font13"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:text=""
+        android:maxLines="2"
+        android:ellipsize="end"
+        />
+</LinearLayout>

@@ -4,6 +4,9 @@
     <color name="colorPrimaryDark">#23B382</color>
     <color name="colorAccent">#23B382</color>
     <!--<color name="actionbar_default">#ff730b</color>-->
+
+    <color name="base_all">#23B382</color>
+
     <color name="actionbar_default">#23B382</color>
     <color name="actionbar_press">#239882</color>
     <color name="actionbar_enable">#3323B382</color>

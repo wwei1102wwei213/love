@@ -24,7 +24,9 @@ import com.fuyou.play.util.DensityUtils;
 import com.fuyou.play.util.LogCustom;
 import com.fuyou.play.util.UiUtils;
 import com.fuyou.play.view.BaseFragment;
+import com.fuyou.play.view.activity.CardDivinationActivity;
 import com.fuyou.play.view.activity.QuizzesListActivity;
+import com.fuyou.play.view.activity.TarotChooseTypeActivity;
 import com.fuyou.play.widget.pullwidget.elasticity.ElasticityHelper;
 import com.fuyou.play.widget.pullwidget.elasticity.ElasticityNestedScrollView;
 import com.fuyou.play.widget.pullwidget.pullrefresh.PullElasticityNestedScrollView;
@@ -96,6 +98,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
         list.add(entity);
         list.add(entity);
         for (int i=0;i<list.size();i++) {
+            final int temp = i;
             View v = LayoutInflater.from(context).inflate(R.layout.item_menu_home_top, v_menu, false);
             ImageView iv = (ImageView) v.findViewById(R.id.iv);
             Glide.with(context).load(list.get(i).getRes())
@@ -107,10 +110,16 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    showToast("Test");
+                    toMainMenu(temp);
                 }
             });
             v_menu.addView(v);
+        }
+    }
+
+    private void toMainMenu(int index) {
+        if (index==0) {
+            startActivity(TarotChooseTypeActivity.class);
         }
     }
 
@@ -262,7 +271,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener{
                 showToast("7");
                 break;
             case R.id.v_library_1:
-                showToast("7");
+                startActivity(CardDivinationActivity.class);
                 break;
             case R.id.v_library_2:
                 showToast("7");

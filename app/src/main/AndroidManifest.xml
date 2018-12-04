@@ -109,6 +109,30 @@
         <activity android:name=".view.activity.QuizzesDetailActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTop"/>
+        <!--卡牌选牌-->
+        <activity android:name=".view.activity.TarotTypeActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
+        <!--卡牌洗牌-->
+        <activity android:name=".view.activity.CardDivinationActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
+        <!--塔罗选择类型页面-->
+        <activity android:name=".view.activity.TarotChooseTypeActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
+        <!--塔罗YES OR NO-->
+        <activity android:name=".view.activity.TarotChooseOneActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
+        <!--塔罗过去 现在 未来-->
+        <activity android:name=".view.activity.TarotChooseFutureActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
+        <!--塔罗情感测试-->
+        <activity android:name=".view.activity.TarotChooseLoversActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
         <!--展示图片-->
         <activity android:name=".view.activity.TestActivity"
             android:screenOrientation="portrait"

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/my_content3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/my_ll_invite"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/my_ll_height"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/my_ll_padding_left"
+            android:paddingRight="@dimen/my_ll_padding_right">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/my_invite" />
+
+            <TextView
+                android:id="@+id/my_ll_invite_tv_left"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/my_ll_left_tv_margin_left"
+                android:layout_weight="1"
+                android:maxLines="1"
+                android:text="推广升级"
+                android:textColor="#333"
+                android:textSize="@dimen/my_ll_font_size" />
+
+            <TextView
+                android:id="@+id/my_ll_invite_tv_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:textColor="@color/actionbar_default"
+                android:textSize="@dimen/my_ll_font_size" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/my_ll_arrow_left"
+                android:src="@mipmap/my_arrow" />
+
+        </LinearLayout>
+
+        <View style="@style/my_spilt" />
+
+        <LinearLayout
+            android:id="@+id/my_ll_message"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/my_ll_height"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/my_ll_padding_left"
+            android:paddingRight="@dimen/my_ll_padding_right">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/my_message" />
+
+            <TextView
+                android:id="@+id/my_ll_message_tv_left"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/my_ll_left_tv_margin_left"
+                android:layout_weight="1"
+                android:maxLines="1"
+                android:text="我的消息"
+                android:textColor="#333"
+                android:textSize="@dimen/my_ll_font_size" />
+
+            <!--<ImageView
+                android:id="@+id/my_ll_message_img_dot"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/my_message_red_dot" />-->
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="9dp"
+                android:src="@mipmap/my_arrow" />
+
+        </LinearLayout>
+    </LinearLayout>
+</merge>

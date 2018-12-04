@@ -3,10 +3,14 @@ package com.doojaa.base.ui.activity;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 
 import com.doojaa.base.R;
 import com.doojaa.base.ui.BaseActivity;
+
+import java.lang.ref.WeakReference;
 
 
 /**
@@ -22,7 +26,7 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        setStatusBarTranslucent();
+//        setStatusBarTranslucent();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.base_activity_splash);
         SharedPreferences sp = getPreferences(MODE_PRIVATE);
@@ -38,6 +42,8 @@ public class SplashActivity extends BaseActivity {
         }
         LogCustom.show(TextUtils.isEmpty(CommonUtils.getUUID())?"User UUID is empty":"User UUID:"+CommonUtils.getUUID());*/
 //        DBHelper.getInstance().dropTable(ChatMessageBean.class);
+        MyHandler handler = new MyHandler(this);
+        handler.sendEmptyMessageDelayed(0, 1500);
     }
 
     private static final String IS_FIRST_RUN = "IsFirstRun";
@@ -47,10 +53,25 @@ public class SplashActivity extends BaseActivity {
         } else {
             toNext(MainActivity.class);
         }*/
+        toNext(MainActivity.class);
     }
 
     private void toNext(Class<? extends Activity> mClass){
         startActivity(mClass);
         finish();
     }
-}
+
+    private static class MyHandler extends Handler {
+        private WeakReference<SplashActivity> weak;
+        private MyHandler(SplashActivity activity) {
+            weak = new WeakReference<>(activity);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            if (weak!=null&&weak.get()!=null) {
+                weak.get().toNext();
+            }
+        }
+    }
+ }

@@ -1,14 +1,14 @@
 <resources>
-    <string name="app_name">快看小说</string>
+    <string name="app_name">点加</string>
     <string name="action_settings">Settings</string>
 
     <string name="format_splash_skip">跳过(%d秒)</string>
 
     <string name="provider_authorities">com.doojaa.base.fileprovider</string>
 
-    <string name="tab_text_recommend">推荐</string>
-    <string name="tab_text_bookcity">书城</string>
-    <string name="tab_text_bookshelf">书架</string>
+    <string name="tab_text_recommend">菜单2</string>
+    <string name="tab_text_bookcity">菜单3</string>
+    <string name="tab_text_bookshelf">菜单1</string>
     <string name="tab_text_me">我的</string>
 
     <string name="title_my_bookshelf">我的书架</string>

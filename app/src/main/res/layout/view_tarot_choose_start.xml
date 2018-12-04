@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/tarot_card_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/tarot_choose_card"/>
+
+    <com.hammerpark.microcubehoroscope.widget.tv.HeavyTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:lineSpacingExtra="10dp"
+        android:gravity="center_horizontal"
+        android:text="Stay Centered,\nYou may clearly see\nand know the Divine\nGuidance are\navailable for you now."
+        android:textColor="@color/white"
+        android:textSize="15sp"/>
+
+    <com.hammerpark.microcubehoroscope.widget.tv.HeavyTextView
+        android:id="@+id/next_btn"
+        android:layout_width="240dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="Next"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true" />
+
+</LinearLayout>

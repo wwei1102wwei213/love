@@ -85,5 +85,6 @@ dependencies {
     implementation project(':XRefreshView')
     //数据库管理
     implementation files('libs/thinkandroid-1.1-bin.jar')
-    //阿里云OSS对象存储)
+    //动画库
+    compile 'com.nineoldandroids:library:2.4.0'
 }

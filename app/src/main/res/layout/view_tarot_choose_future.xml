@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/second_iv"
+        android:layout_width="80dp"
+        android:layout_height="120dp"
+        android:background="@mipmap/tarot_choose_card"
+        android:layout_centerInParent="true"/>
+
+    <ImageView
+        android:id="@+id/first_iv"
+        android:layout_width="80dp"
+        android:layout_height="120dp"
+        android:background="@mipmap/tarot_choose_card"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@id/second_iv"
+        android:layout_marginRight="10dp"/>
+
+    <ImageView
+        android:id="@+id/third_iv"
+        android:layout_width="80dp"
+        android:layout_height="120dp"
+        android:background="@mipmap/tarot_choose_card"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/second_iv"
+        android:layout_marginLeft="10dp"/>
+
+</RelativeLayout>

@@ -325,7 +325,6 @@ public class QuizzesDetailActivity extends BaseActivity {
             Glide.with(this)
                     .load(url)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .placeholder(R.mipmap.default_user_icon)
                     .crossFade()
                     .into((ImageView) system_view.findViewById(R.id.circleImageView));
             final TextView tv = (TextView) system_view.findViewById(R.id.view_quizzes_detail_system_role_content_tv);
