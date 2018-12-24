@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/base_all">
+
+    <ImageView
+        android:id="@+id/back_button"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="20dp"
+        android:src="@mipmap/white_to_back"
+        android:scaleType="centerInside"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="80dp"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#5fffffff"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <ImageView
+                android:id="@+id/real_card_1_image"
+                android:layout_width="86dp"
+                android:layout_height="149dp"
+                android:layout_centerVertical="true"
+                android:visibility="invisible"
+                android:background="@mipmap/tarot_choose_card"/>
+
+            <ImageView
+                android:id="@+id/card_1_image"
+                android:layout_width="86dp"
+                android:layout_height="149dp"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/tarot_choose_card"/>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:requiresFadingEdge="vertical"
+                android:scrollbars="none"
+                android:layout_toRightOf="@id/real_card_1_image"
+                android:layout_marginLeft="20dp">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.fuyou.play.widget.tv.HeavyTextView
+                        android:id="@+id/card_1_title_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:maxLines="1"
+                        android:text="Will LOVER1 be my true love"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"/>
+
+                    <com.fuyou.play.widget.tv.HeavyTextView
+                        android:id="@+id/card_1_description_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="invisible"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"/>
+
+                </FrameLayout>
+
+            </ScrollView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#5fffffff"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <ImageView
+                android:id="@+id/real_card_2_image"
+                android:layout_width="86dp"
+                android:layout_height="149dp"
+                android:layout_centerVertical="true"
+                android:visibility="invisible"
+                android:background="@mipmap/tarot_choose_card"/>
+
+            <ImageView
+                android:id="@+id/card_2_image"
+                android:layout_width="86dp"
+                android:layout_height="149dp"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/tarot_choose_card"/>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:requiresFadingEdge="vertical"
+                android:scrollbars="none"
+                android:layout_toRightOf="@id/real_card_2_image"
+                android:layout_marginLeft="20dp">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.fuyou.play.widget.tv.HeavyTextView
+                        android:id="@+id/card_2_title_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:maxLines="1"
+                        android:text="What does your inner soul tells?"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"/>
+
+                    <com.fuyou.play.widget.tv.HeavyTextView
+                        android:id="@+id/card_2_description_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="invisible"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"/>
+
+                </FrameLayout>
+
+            </ScrollView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#5fffffff"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <ImageView
+                android:id="@+id/real_card_3_image"
+                android:layout_width="86dp"
+                android:layout_height="149dp"
+                android:layout_centerVertical="true"
+                android:visibility="invisible"
+                android:background="@mipmap/tarot_choose_card"/>
+
+            <ImageView
+                android:id="@+id/card_3_image"
+                android:layout_width="86dp"
+                android:layout_height="149dp"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/tarot_choose_card"/>
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:requiresFadingEdge="vertical"
+                android:scrollbars="none"
+                android:layout_toRightOf="@id/real_card_3_image"
+                android:layout_marginLeft="20dp">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.fuyou.play.widget.tv.HeavyTextView
+                        android:id="@+id/card_3_title_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:maxLines="1"
+                        android:text="Will LOVER2 be my true love"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"/>
+
+                    <com.fuyou.play.widget.tv.HeavyTextView
+                        android:id="@+id/card_3_description_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="invisible"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"/>
+
+                </FrameLayout>
+
+            </ScrollView>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_centerHorizontal="true"
+        android:maxLines="1"
+        android:text="Result"
+        android:textColor="@color/white"
+        android:textSize="20sp"/>
+
+</RelativeLayout>

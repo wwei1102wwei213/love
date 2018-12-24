@@ -35,11 +35,11 @@ android {
 
         abortOnError false
     }
+
     dexOptions {
         javaMaxHeapSize "4g"
         preDexLibraries true
         maxProcessCount 8
-        //http://teachcourse.cn/2385.html
     }
 }
 

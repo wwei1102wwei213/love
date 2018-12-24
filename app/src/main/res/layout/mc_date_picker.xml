@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f4f4f4"
+    android:padding="2dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    >
+
+
+
+    <com.fuyou.play.widget.choosetime.WheelView
+        android:id="@+id/month"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:itemNumber="5"
+        app:lineColor="@color/choose_time_line_space"
+        app:lineHeight="1px"
+        app:maskHight="32dp"
+        app:noEmpty="true"
+        app:normalTextColor="@color/choose_time_text_unselected"
+        app:normalTextSize="12sp"
+        app:selectedTextColor="@color/choose_time_text_selected"
+        app:selectedTextSize="20sp"
+        app:unitHight="43dp"
+        />
+
+    <com.fuyou.play.widget.choosetime.WheelView
+        android:id="@+id/day"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:itemNumber="5"
+        app:lineColor="@color/choose_time_line_space"
+        app:lineHeight="1px"
+        app:maskHight="32dp"
+        app:noEmpty="true"
+        app:normalTextColor="@color/choose_time_text_unselected"
+        app:normalTextSize="12sp"
+        app:selectedTextColor="@color/choose_time_text_selected"
+        app:selectedTextSize="20sp"
+        app:unitHight="43dp"
+        />
+
+    <com.fuyou.play.widget.choosetime.WheelView
+        android:id="@+id/year"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:itemNumber="5"
+        app:lineColor="@color/choose_time_line_space"
+        app:lineHeight="1px"
+        app:maskHight="32dp"
+        app:noEmpty="true"
+        app:normalTextColor="@color/choose_time_text_unselected"
+        app:normalTextSize="12sp"
+        app:selectedTextColor="@color/choose_time_text_selected"
+        app:selectedTextSize="20sp"
+        app:unitHight="43dp"
+        />
+
+</LinearLayout>

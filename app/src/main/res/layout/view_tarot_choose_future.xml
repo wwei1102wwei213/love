@@ -3,29 +3,60 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/second_iv"
-        android:layout_width="80dp"
-        android:layout_height="120dp"
-        android:background="@mipmap/tarot_choose_card"
-        android:layout_centerInParent="true"/>
+    <LinearLayout
+        android:id="@+id/v_second"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+        <ImageView
+            android:id="@+id/second_iv"
+            android:layout_width="@dimen/tarot_type_page_width"
+            android:layout_height="@dimen/tarot_type_page_height"
+            android:background="@mipmap/tarot_choose_card"
+            />
+        <TextView
+            style="@style/card_below_summary_text"
+            android:text="Present"/>
+    </LinearLayout>
 
-    <ImageView
-        android:id="@+id/first_iv"
-        android:layout_width="80dp"
-        android:layout_height="120dp"
-        android:background="@mipmap/tarot_choose_card"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_toLeftOf="@id/second_iv"
-        android:layout_marginRight="10dp"/>
+        android:layout_toLeftOf="@id/v_second"
+        android:layout_marginRight="10dp">
+        <ImageView
+            android:id="@+id/first_iv"
+            android:layout_width="@dimen/tarot_type_page_width"
+            android:layout_height="@dimen/tarot_type_page_height"
+            android:background="@mipmap/tarot_choose_card"
+            />
+        <TextView
+            style="@style/card_below_summary_text"
+            android:text="Past"/>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/v_second"
+        android:layout_marginLeft="10dp">
+        <ImageView
+            android:id="@+id/third_iv"
+            android:layout_width="@dimen/tarot_type_page_width"
+            android:layout_height="@dimen/tarot_type_page_height"
+            android:background="@mipmap/tarot_choose_card"
+            />
+        <TextView
+            style="@style/card_below_summary_text"
+            android:text="Future"/>
+    </LinearLayout>
 
-    <ImageView
-        android:id="@+id/third_iv"
-        android:layout_width="80dp"
-        android:layout_height="120dp"
-        android:background="@mipmap/tarot_choose_card"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@id/second_iv"
-        android:layout_marginLeft="10dp"/>
+
+
+
 
 </RelativeLayout>

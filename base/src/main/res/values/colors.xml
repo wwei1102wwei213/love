@@ -78,8 +78,9 @@
     <color name="bg_white_half">#80FFFFFF</color>
 
     <color name="ads_card_text">#B4854D</color>
-    <color name="ads_progress_selected">#ff0000</color>
-    <color name="ads_normal_text">#666666</color>
+    <color name="base_ads_progress_selected">#0c8f62</color>
+    <color name="base_ads_progress_unselected">#81d7ba</color>
+    <color name="base_invite_normal_text">#666666</color>
 
 
 

@@ -59,4 +59,8 @@
     <!--Quizzes-->
     <dimen name="base_margin_quizzes">20dp</dimen>
 
+    <!--塔罗选择-->
+    <dimen name="tarot_type_page_width">86dp</dimen>
+    <dimen name="tarot_type_page_height">149dp</dimen>
+
 </resources>

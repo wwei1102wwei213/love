@@ -85,21 +85,29 @@ public class BaseActivity extends FragmentActivity {
     //设置状态栏为透明
     public void setStatusBarTranslucent(){
         // 5.0以上系统状态栏透明
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(Color.TRANSPARENT);
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {//4.4以上
-            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                Window window = getWindow();
+                window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+                window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+                window.setStatusBarColor(Color.TRANSPARENT);
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {//4.4以上
+                getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            }
+        } catch (Exception e){
+            e.printStackTrace();
         }
     }
 
     //设置全屏样式
     public void setFullScreen(){
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        try {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     //获取状态栏高度
@@ -118,6 +126,19 @@ public class BaseActivity extends FragmentActivity {
             if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.KITKAT){
                 ViewGroup.LayoutParams params=v.getLayoutParams();
                 params.height=getStatusBarHeight();
+                v.setLayoutParams(params);
+            }
+        }catch (Exception e){
+            ExceptionUtils.ExceptionSend(e,"initStatusBar");
+        }
+    }
+
+    //设置状态栏
+    public void initStatusBar(View v, boolean half){
+        try {
+            if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.KITKAT){
+                ViewGroup.LayoutParams params=v.getLayoutParams();
+                params.height = half?getStatusBarHeight()/2:getStatusBarHeight();
                 v.setLayoutParams(params);
             }
         }catch (Exception e){

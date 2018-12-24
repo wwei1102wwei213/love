@@ -1,27 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center">
-
+    android:layout_height="match_parent">
+    <View
+        android:id="@+id/temp"
+        android:layout_width="1dp"
+        android:layout_height="1dp"
+        android:layout_centerInParent="true"/>
     <ImageView
         android:id="@+id/tarot_card_image"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@mipmap/tarot_choose_card"/>
+        android:src="@mipmap/tarot_choose_card"
+        android:layout_above="@id/temp"
+        android:layout_centerHorizontal="true"/>
 
-    <com.hammerpark.microcubehoroscope.widget.tv.HeavyTextView
+    <com.fuyou.play.widget.tv.HeavyTextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/temp"
         android:layout_marginTop="10dp"
-        android:lineSpacingExtra="10dp"
+        android:lineSpacingExtra="5dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        android:lineSpacingMultiplier="1.1"
         android:gravity="center_horizontal"
-        android:text="Stay Centered,\nYou may clearly see\nand know the Divine\nGuidance are\navailable for you now."
+        android:text="@string/tarot_next_summary"
         android:textColor="@color/white"
         android:textSize="15sp"/>
 
-    <com.hammerpark.microcubehoroscope.widget.tv.HeavyTextView
+    <com.fuyou.play.widget.tv.HeavyTextView
         android:id="@+id/next_btn"
         android:layout_width="240dp"
         android:layout_height="40dp"
@@ -29,7 +37,9 @@
         android:text="Next"
         android:textSize="16sp"
         android:textColor="@color/white"
-        android:layout_marginTop="50dp"
+        android:background="@drawable/bg_alpha_black"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
         android:layout_centerHorizontal="true" />
 
-</LinearLayout>
+</RelativeLayout>

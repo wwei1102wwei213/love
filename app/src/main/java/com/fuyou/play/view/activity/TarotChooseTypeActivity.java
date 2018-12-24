@@ -7,10 +7,12 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.fuyou.play.R;
 import com.fuyou.play.adapter.TarotChooseTypeAdapter;
 import com.fuyou.play.util.ExceptionUtils;
+import com.fuyou.play.util.tarot.TarotManager;
 import com.fuyou.play.view.BaseActivity;
 import com.fuyou.play.widget.tv.HeavyTextView;
 
@@ -27,30 +29,31 @@ public class TarotChooseTypeActivity extends BaseActivity {
     ViewPager mChooseTarotVp;
     ImageView mSelectBackIv;
     ImageView mSelectNextIv;
-    ImageView mBackBtn;
+//    ImageView mBackBtn;
     private TarotChooseTypeAdapter mTarotTypeAdapter;
     private List<View> mTarotViews = new ArrayList<>();
-    HeavyTextView textView1;
-    HeavyTextView textView2;
     HeavyTextView textView3;
-    HeavyTextView textView4;
 
-    String[] tv1 = new String[]{"Yes Or No One", "Past Prensent", "Love Triangle"};
-    String[] tv2 = new String[]{"Card", "Future", "Desicition"};
-    String[] tv4 = new String[]{"Generally Useful", "General Insight", "Weigh Two Choices"};
+    String[] tv1 = new String[]{"Yes or No", "Past Present Future", "Love triangle decision"};
+//    String[] tv4 = new String[]{"Generally Useful", "General Insight", "Weigh Two Choices"};
+    private TextView tv_title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setStatusBarTranslucent();
+//        setStatusBarTranslucent();
         setFullScreen();
         setContentView(R.layout.activity_tarot_choose_type);
         mContext = this;
+        TarotManager.getInstance().loadContent(getApplicationContext());
         initView();
         initListener();
     }
 
     private void initView() {
+        setBackViews(R.id.iv_back_base);
+        initStatusBar(findViewById(R.id.status_bar), true);
+        tv_title = findViewById(R.id.tv_title_base);
         mChooseTarotVp = (ViewPager) findViewById(R.id.choose_tarot_type_vp);
         View view1 = LayoutInflater.from(mContext).inflate(R.layout.view_tarot_choose_one, null);
         View view2 = LayoutInflater.from(mContext).inflate(R.layout.view_tarot_choose_future, null);
@@ -62,22 +65,14 @@ public class TarotChooseTypeActivity extends BaseActivity {
         mTarotTypeAdapter = new TarotChooseTypeAdapter(mContext, mTarotViews);
         mChooseTarotVp.setAdapter(mTarotTypeAdapter);
 
-        mBackBtn = (ImageView) findViewById(R.id.back_button);
         mSelectBackIv = (ImageView) findViewById(R.id.select_back_iv);
         mSelectNextIv = (ImageView) findViewById(R.id.select_next_iv);
-        textView1 = (HeavyTextView) findViewById(R.id.textView1);
-        textView2 = (HeavyTextView) findViewById(R.id.textView2);
+
         textView3 = (HeavyTextView) findViewById(R.id.textView3);
-        textView4 = (HeavyTextView) findViewById(R.id.textView4);
+//        textView4 = (HeavyTextView) findViewById(R.id.textView4);
     }
 
     private void initListener() {
-        mBackBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
 
         mSelectBackIv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,9 +108,17 @@ public class TarotChooseTypeActivity extends BaseActivity {
 
             @Override
             public void onPageSelected(int position) {
-                textView1.setText(tv1[position]);
-                textView2.setText(tv2[position]);
-                textView4.setText(tv4[position]);
+                tv_title.setText(tv1[position]);
+                if (position==0) {
+                    mSelectBackIv.setVisibility(View.INVISIBLE);
+                } else {
+                    mSelectBackIv.setVisibility(View.VISIBLE);
+                }
+                if (position==2){
+                    mSelectNextIv.setVisibility(View.INVISIBLE);
+                } else {
+                    mSelectNextIv.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
@@ -123,6 +126,8 @@ public class TarotChooseTypeActivity extends BaseActivity {
 
             }
         });
+
+        mChooseTarotVp.setCurrentItem(1);
 
         textView3.setOnClickListener(new View.OnClickListener() {
             @Override

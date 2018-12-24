@@ -51,13 +51,20 @@ package="com.doojaa.base">
         android:configChanges="orientation|screenSize"
         android:launchMode="singleTask"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+    <!--推广页面-->
+    <activity android:name=".ui.activity.InfoInviteActivity"
+        android:screenOrientation="portrait"
+        android:launchMode="singleTop"/>
+    <!--推广列表页面(我的推广)-->
+    <activity android:name=".ui.activity.InviteListActivity"
+        android:screenOrientation="portrait"
+        android:launchMode="singleTop"/>
     <!--Glide设置-->
     <meta-data
-        android:name=".util.GlideModelConfig"
+        android:name="com.doojaa.base.utils.glide.GlideModelConfig"
         android:value="GlideModule" />
     <!--下载服务-->
 
-    <service android:name=".service.DownloadService"/>
 
     <!--适配相册路径问题-->
     <provider

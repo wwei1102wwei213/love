@@ -7,7 +7,6 @@ import java.util.Stack;
 
 /**
  * Activity进出栈管理
- * Created by tankai on 2017/7/7.
  */
 
 public class AppManager {

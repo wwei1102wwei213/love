@@ -82,4 +82,9 @@
     <!--测试-->
     <color name="quizzes_detail_bg_vp">#b036fa</color>
     <color name="quizzes_text_yellow">#B69157</color>
+
+    <!--选择时间-->
+    <color name="choose_time_line_space">#eaeaea</color>
+    <color name="choose_time_text_selected">#ed1f8b</color>
+    <color name="choose_time_text_unselected">#666666</color>
 </resources>

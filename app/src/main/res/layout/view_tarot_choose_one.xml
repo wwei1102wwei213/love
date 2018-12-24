@@ -4,9 +4,14 @@
     android:layout_height="match_parent">
 
     <ImageView
-        android:layout_width="80dp"
-        android:layout_height="120dp"
+        android:id="@+id/temp"
+        android:layout_width="@dimen/tarot_type_page_width"
+        android:layout_height="@dimen/tarot_type_page_height"
         android:background="@mipmap/tarot_choose_card"
         android:layout_centerInParent="true"/>
-
+    <TextView
+        style="@style/card_below_summary_text"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/temp"
+        android:text="Yes or No"/>
 </RelativeLayout>

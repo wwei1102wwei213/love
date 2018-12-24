@@ -9,31 +9,61 @@
         android:layout_height="0dp"
         android:layout_centerInParent="true"/>
 
-    <ImageView
-        android:id="@+id/second_iv"
-        android:layout_width="80dp"
-        android:layout_height="120dp"
-        android:background="@mipmap/tarot_choose_card"
+
+    <LinearLayout
+        android:id="@+id/v_second"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:layout_below="@id/center_view"
-        android:layout_centerHorizontal="true"/>
-
-    <ImageView
-        android:id="@+id/first_iv"
-        android:layout_width="80dp"
-        android:layout_height="120dp"
-        android:background="@mipmap/tarot_choose_card"
-        android:layout_toLeftOf="@id/second_iv"
+        android:layout_centerHorizontal="true">
+        <ImageView
+            android:id="@+id/second_iv"
+            android:layout_width="@dimen/tarot_type_page_width"
+            android:layout_height="@dimen/tarot_type_page_height"
+            android:background="@mipmap/tarot_choose_card"
+            />
+        <TextView
+            style="@style/card_below_summary_text"
+            android:text="You"/>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/v_second"
         android:layout_marginRight="10dp"
-        android:layout_above="@id/center_view"/>
+        android:layout_above="@id/center_view">
+        <ImageView
+            android:id="@+id/first_iv"
+            android:layout_width="@dimen/tarot_type_page_width"
+            android:layout_height="@dimen/tarot_type_page_height"
+            android:background="@mipmap/tarot_choose_card"
+            />
+        <TextView
+            style="@style/card_below_summary_text"
+            android:text="Lover - 1"/>
+    </LinearLayout>
 
-    <ImageView
-        android:id="@+id/third_iv"
-        android:layout_width="80dp"
-        android:layout_height="120dp"
-        android:background="@mipmap/tarot_choose_card"
-        android:layout_toRightOf="@id/second_iv"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/v_second"
         android:layout_marginLeft="10dp"
-        android:layout_above="@id/center_view"/>
+        android:layout_above="@id/center_view">
+        <ImageView
+            android:id="@+id/third_iv"
+            android:layout_width="@dimen/tarot_type_page_width"
+            android:layout_height="@dimen/tarot_type_page_height"
+            android:background="@mipmap/tarot_choose_card"
+            />
+        <TextView
+            style="@style/card_below_summary_text"
+            android:text="Lover - 2"/>
+    </LinearLayout>
+
 
 
 </RelativeLayout>

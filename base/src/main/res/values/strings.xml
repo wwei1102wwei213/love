@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">点加</string>
+    <string name="app_name">DJ</string>
     <string name="action_settings">Settings</string>
 
     <string name="format_splash_skip">跳过(%d秒)</string>

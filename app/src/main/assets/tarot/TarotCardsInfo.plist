@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>past</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>The Fool</string>
+			<key>Upright</key>
+			<string>The risks you have taken and your original thinking have brought you success. By doing things in a new way, you have allowed for great potential. You felt that changing your daily routine sounds a lot easier and followed it, which is no doubt that!</string>
+			<key>Reversed</key>
+			<string>Evasive and unreliable, your co-workers or your love have ducked his/her responsibilities. Like the Fool, you might be so busy sightseeing and imagining the possibilities that you completely miss the fact that you&apos;re about to go right off a cliff! </string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Magician</string>
+			<key>Upright</key>
+			<string>The Magician means Revelation, positive transformation, and progress. With your effort, you have understood that which is already known and appreciated that which is already available. The card also indicated an interest in certain careers or someone who w already in one of those careers: a scientist, inventor or medical professional.</string>
+			<key>Reversed</key>
+			<string>In the past, there are some problems in you such as low self esteem, problems communicating and options are lacking. Progress was difficult, and opportunities overlooked.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The High Priestess</string>
+			<key>Upright</key>
+			<string>You have known what was going on and who needed to be in control, especially through gaining knowledge and working out the truth of a situation.  If you are lacking support in important areas of your life, you should consider the idea of investing your time in new people and new ideas.</string>
+			<key>Reversed</key>
+			<string>You lacked the ability to truly understand the situation as they appeared, because you have only relied on surface and superficial knowledge instead of your intuition.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Empress</string>
+			<key>Upright</key>
+			<string>The Empress&apos;s creative power and beauty have inspired you and given you power. You had become very gentle, affectionate and confident on your own skin, understanding that life is simple, and the simplest pleasures bring the most joy.</string>
+			<key>Reversed</key>
+			<string>You felt alone and were often a worrywart. You were desperate for love due to the fact that you were always looking for true love in wrong directions. In this case, it&apos;s not doubted that you felt emotionally drained and sensed a lot of negative energy around you.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Emperor</string>
+			<key>Upright</key>
+			<string>The Emperor denotes structure, order and reason. You had been ambitious and competitive, with a strong will just like the powerful emperor. You had created order out of chaos and made your own rule that had others obeyed them. </string>
+			<key>Reversed</key>
+			<string>You have been aggressive and offensive, naturally gaining power over others without any apologies for your behavior. You loved being in charge.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Hierophant</string>
+			<key>Upright</key>
+			<string>Taurus the Earthly bull may seem an odd sign for a holy man, but it makes sense if you understand that the Hierophant&apos;s purpose is to bring the spiritual down to Earth. Where the High Priestess connects to the esoteric with her secret, solitary rites, the Hierophant leads his flock in shared, communal rituals. The Hierophant indicated that religion has played a great role in shaping your life. You had assisted the world to spiritually attune itself by giving the people rules and guidelines.</string>
+			<key>Reversed</key>
+			<string>Like the Bull, you may have been stubborn and hidebound. You had felt lost in your way and the harmony you were always pursuing between you and others couldn&apos;t be achieved as you were only marching to your own drummer.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Love</string>
+			<key>Upright</key>
+			<string>You may experience this psychic attraction to something small like a pair of shoes you have to have, or a rock band whose music says all you ever wanted to say.</string>
+			<key>Reversed</key>
+			<string>Decisions are being made due to earthly desires and needs, much because it is practical, rather than because it makes you happy and fulfilled.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Chariot</string>
+			<key>Upright</key>
+			<string>Chariot tarot card represents your will-power and determination. You could channel external as well as internal energy and directed it through your own determination.</string>
+			<key>Reversed</key>
+			<string>Chariot tarot card represented that you struggled with reality and were moody and oversensitive. You were interested in so many things that you got lost and failed to choose a path for yourselves.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Strength</string>
+			<key>Upright</key>
+			<string>You were patient, balanced and passionate. You approached difficult situations with a balance of patience and conviction. The resolution of a recent conflict is approaching.</string>
+			<key>Reversed</key>
+			<string>Strength tarot card reversed denoted a lack of courage, lack of passion, fear, even timidity, and impatience. You were just like a sheep, losing your mojo. You were entangling yourself in negativity without changing.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Hermit</string>
+			<key>Upright</key>
+			<string>The Hermit Card symbolizes reflection wisdom and meditation. There are times in every life, when one must step back and make a careful examination of their situations and decisions. From your heart, the inner world was more important than the outer world.  You knew how to be immersed in dreams, visions and the world of the psyche without letting them overcome you.</string>
+			<key>Reversed</key>
+			<string>Hermit reversed indicates isolation and paranoia. You needed others to keep you intellectually stimulated and feel completely worthless and lonely when had left on their own. You come across as needy and had a lack of boundaries. Finding a spiritual guide will help you realize the full potential of your psychic or artistic abilities.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Wheel of Fortune</string>
+			<key>Upright</key>
+			<string>Symbolic of life&apos;s cycles, the Wheel of Fortune speaks to good beginnings. The actions of your past are the seeds of your future success. To make progress, you must accept the changes coming. If you are lacking support in important areas of your life, you should consider the idea of investing your time in new people and new ideas.</string>
+			<key>Reversed</key>
+			<string>In the Wheel of Fortune card, we find ourselves in a trippy world, a visual representation of the cosmically intertwined web of life. On a symbolic level, this can also show our fate changing from clarity to confusion, success to failure, and infinite other twists. You got the promotion just to experience hell in the new job environment. Getting what you want would get you deeper into trouble. Luck couldn&apos;t be trusted.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Justice</string>
+			<key>Upright</key>
+			<string>Justice was a very good card to find in your spread if you had acted with kindness and fairness toward others and, especially, if you had been a victim.</string>
+			<key>Reversed</key>
+			<string>The Justice figure seated or standing between pillars, scales in one hand (usually left), upraised sword in the other hand. Sometimes blindfolded. If you had been unfair, abusive, or otherwise shady and immoral in your dealings, though, pay heed.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Hanged Man</string>
+			<key>Upright</key>
+			<string>Letting go of some things from your past has brought new value to your spiritual life. In a world in which you must run as fast as you can to stay where you are, the Hanged Man tells you to stop struggling - and you can move forward.</string>
+			<key>Reversed</key>
+			<string>The lessons it offered were easy to understand but hard to accept when they applied to you. Keep in mind that the act of giving help was not more important than the person being helped.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Death</string>
+			<key>Upright</key>
+			<string>Letting go of some things from your past has brought new value to your spiritual life. That which you sacrificed must be seen in a new way. The Devil fed his egomania through his minions, bondage to bad behavior patterns, physical cravings, ego trips, or excessive sex without love, which is so deadening to the Spirit.</string>
+			<key>Reversed</key>
+			<string>When the card is reversed, the changes were not as disruptive or all consuming, they were smaller in nature. You might be unaware that anything was actually changing as it was happening so slowly.  It was dangerous to allow material things to become more important than your spirituality.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Temperance</string>
+			<key>Upright</key>
+			<string>Obviously this referred to relationships, but also to friendships, partnerships, and all kinds of compromises and committees. This could also take place on an internal level, when you confronted your deepest desires and your most irrational fears and, instead of getting rid of them and you incorporated them into yourself and grew stronger because of the temperance.</string>
+			<key>Reversed</key>
+			<string>The Temperance Reserved indicated that the balance between two opposing elements creating a third went terribly wrong. You were irritable and in a hot temper, unwilling to unify and mix in. You had tried to create a new business by merging two smaller companies but failed.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Devil</string>
+			<key>Upright</key>
+			<string>The Devil indicated addiction, obsession and manipulation. You allowed others to bind you and control your life because you had already lost your faith and always believed the worst.</string>
+			<key>Reversed</key>
+			<string>The Devil Card Reserved indicated that Devil might bring about release from an oppressive situation, leading you to face the shadow self and moving beyond it through spiritual understanding. </string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Tower</string>
+			<key>Upright</key>
+			<string>The Devil is about all things negative. Anger, violence, temptation, fear, and doubt are just some of the terrors associated with this card. One of the choices you&apos;ve made was wrong for you. Negative forces are slowing your development.</string>
+			<key>Reversed</key>
+			<string>When a building was old and decrepit, it must be demolished so that a new structure might stand in its place. Although the course of your life was beyond your knowing, this awareness would defeat your self-delusions.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Star</string>
+			<key>Upright</key>
+			<string>The Star had guided you to be truly fulfilled in your life. It shone its light on your blessings and joy in your old days. The right amount of help and encouragement brought harmony and happiness to any circles that you had come across.</string>
+			<key>Reversed</key>
+			<string>When The Star was reversed, you felt stuck, hopeless and lost with no way to go, or were not ready yet to open yourself to love and healing. Hope was blocked and you were unable to see any new opportunities. You might not have had negative thoughts yet, or still felt discouraged pessimistic and even defeated. Now is time to take a look at your past failures and mistakes and learn from them.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Moon</string>
+			<key>Upright</key>
+			<string>The Moon card stood for illusions, confusion and uncertain reality. Your imagination run high and your intuition moved forward. You would follow your instinct rather than rules and guidelines to make choices. </string>
+			<key>Reversed</key>
+			<string>The reversed card means that you might have escaped from reality and kept yourself in the dark for a very long time. Your imagination and creativity had been blocked and even a sexual block was possible.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Sun</string>
+			<key>Upright</key>
+			<string>The successes you had achieved in the past will set the stage for future joys. Continue developing your line of work or field of study and the rewards would come. There was an opportunity for new friendship or a relationship that would lead to happiness and contentment. Do not give up and you will be led to success.</string>
+			<key>Reversed</key>
+			<string>The Sun card reversed is somewhat obscured on the clarity of the upright side. You had refused to open your eyes to any possibilities. You lost yourself in a web of lies and hidden agendas, and must embrace your own inner light to be balanced.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Judgment</string>
+			<key>Upright</key>
+			<string>he Judgment card signified the resurrection and the unburdening of yourself. Your past is full of good work, but the process of your liberation from those experiences is ongoing. You are beginning a new chapter in your life as long as your head trusts in the wisdom of your heart for a change.</string>
+			<key>Reversed</key>
+			<string>Troubled or affected by the past, you were unable to change or progress. You might be also held back by others from releasing yourself from the negative situations.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The World</string>
+			<key>Upright</key>
+			<string>The path you are on will eventually bring you full circle. It may take a while to realize this, but the journey will allow you to accept new responsibilities and points of view.</string>
+			<key>Reversed</key>
+			<string>In the reversed position, the World card could signify incomplete, isolation and lack of vision. You&apos;re used to isolating yourself, suffering social anxiety and had a general lack of confidence.  Around people, you will feel awkward, even scared.</string>
+		</dict>
+	</array>
+	<key>current</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>The Fool</string>
+			<key>Upright</key>
+			<string>Free of burdens. Free of worries. Living in the now. At this moment, you have already all you need to do or be anything you want, you have only to stop and unpack. You are on your way to a brand new beginning.</string>
+			<key>Reversed</key>
+			<string>This childlike state can make one overly optimistic or naive. Will the Fool learn to pay attention to where he&apos;s going before it&apos;s too late? A Fool can be a Fool. That business opportunity might not be so surefire or amazing as it seems, and that new lover might not be so flawless.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Magician</string>
+			<key>Upright</key>
+			<string>At this moment, you&apos;re prone to fights of fancy in matters of mind. Magician represents your ability to communicate clearly, to &apos;sell&apos; yourself and to be innovative.</string>
+			<key>Reversed</key>
+			<string>At this moment, the persuasive powers of the Magician results in self deception. Remember that although the Magician is usually an agent of progress and growth, he is also capable of trickery and deception.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The High Priestess</string>
+			<key>Upright</key>
+			<string>At this moment, you can use your inner voice to navigate through life. This card also represents a psychic connection between people, a psychic person or someone who is a complete mystery to you.</string>
+			<key>Reversed</key>
+			<string>At this moment, you are less aware of the subconscious influences on your reality. You are prone to reveal secrets, which may cause embarrassment and hurt, rather than to share knowledge.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Empress</string>
+			<key>Upright</key>
+			<string>The Empress symbolizes fertility, abundance and sexuality.  At this moment, you are endlessly attractive and can attract what you need and want. Everything is wholesome and nurturing.</string>
+			<key>Reversed</key>
+			<string>It symbolizes too much mothering and overprotection. At this moment, you might want to take over the household. This might also indicate that you are at a time of stagnation and don&apos;t like to grow by yourself.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Emperor</string>
+			<key>Upright</key>
+			<string>The Emperor denotes energy, force and drive. At this moment, you feel fearless, confident. You love getting lots of attention from others. Sure of your own worth, you&apos;re ready to take charge of any situation. </string>
+			<key>Reversed</key>
+			<string>It symbolizes obstruction, immaturity and chaos. At this moment, you lack confidence and feel dissatisfied with your life situation. Confrontational by nature, you often exhibit anger issues and have a big ego.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Hierophant</string>
+			<key>Upright</key>
+			<string>At this moment, you strive to create harmony and peace in the midst of crisis. Such rituals, rites and traditions remind you of values of community. You share identity and the religious structure that gives your lives order and meaning.</string>
+			<key>Reversed</key>
+			<string>It symbolizes corruption and hypocrisy. At this moment, you might feel a decrease in security and there are unrecognizable differences between married couples.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Love</string>
+			<key>Upright</key>
+			<string>You are entering a time of renewal, but you may need the help of another. At this moment, you might feel passionate about something or someone. There may be a moment where someone falls in love with you and offers to help you and you are enlightened by what decisions to make.   </string>
+			<key>Reversed</key>
+			<string>The Love Card indicates that you are making a wrong decision or you just don&apos;t know how to achieve your goal. You might display obsessions about how you look and measure yourself by an external set of impossible standards. </string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Chariot</string>
+			<key>Upright</key>
+			<string>At this moment, you are getting your way and everything is in your control. If you apply will-power and motivation, you can create your own destiny.</string>
+			<key>Reversed</key>
+			<string>Chariot tarot card reversed indicates defeat and cowardice. The Seeker is too self-conscious to move forward. To get things done you need to be pressured by outside forces like an angry boss. You are motivated by a fear of failure rather than a hunger for success.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Strength</string>
+			<key>Upright</key>
+			<string>The strength means courage, power and self-control. Although your teeth are as sharp as a lion, that they could easily rip the things in half, you do not. Strength reminds us to follow our passions, to take the time to do the things that make us tick, which make us strong within ourselves and which builds confidence and self-worth.</string>
+			<key>Reversed</key>
+			<string> Rather than caring for others, you get drained by others company and much rather are by yourselves.  Beware the overly-dependant and remember those who follow behind you.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Hermit</string>
+			<key>Upright</key>
+			<string>While the Strength&apos;s ultimate ideal is &quot;doing,&quot; we see here the ultimate ideal of the Hermit is &quot;being.&quot; The Hermit Card symbolizes the immortality of the soul. You are in need of a period of inner reflection, away from the current demands of your position. The Hermit may also come as a warning of concealed facts or influences that are, or will be, important to you.</string>
+			<key>Reversed</key>
+			<string>You are restricted and obsessed by an idea or a belief system. At this moment, you feel very lonely and are &apos;losing&apos; your grip on reality due to the amount of time you spend by yourself. </string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Wheel of Fortune</string>
+			<key>Upright</key>
+			<string>We may not be able to untangle events to understand why they unfold the way they do, but there is an unfathomable system at work in the turning of the wheel. So at this moment you are in touch with your destiny and moving up in the world. </string>
+			<key>Reversed</key>
+			<string>Everything is connected through complex patterns. Be sure to tend to those things you can control with care and learn not to agonize over the ones you cannot.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Justice</string>
+			<key>Upright</key>
+			<string>With Libra as its ruling sign, Justice is about cold, objective balance through reason or natural force. Justice urges you to make adjustments, do whatever is necessary to bring things back into balance: physically, emotionally, socially, and spiritually. Justice also suggests that you should pay attention to promises, debts and obligations.</string>
+			<key>Reversed</key>
+			<string>The Fool thinks on this and realizes that he has spent his life achieving worldly ambitions and physical goods while leaving his spiritual self to starve. He ought to have given half his time and energy to his spiritual self, but he didn&apos;t. It&apos;s no wonder that he feels unbalanced. Thanking the woman, he heads out to restore equilibrium to his inner scales. At this moment, Justice also suggests that the seeker is not looking at the situation objectively.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Hanged Man</string>
+			<key>Upright</key>
+			<string>The Hanged Man card symbolizes humility, contemplation and greater understanding. If there is something being rushed, this may suggest that it is going to pause. At this moment, you are totally vulnerable to the world, but in you, vulnerability is where you find strength. You give up your old ways of looking at things and are blessed with new eyes.</string>
+			<key>Reversed</key>
+			<string>All change is a small kind of death, as the old must die to create the new. It may simply indicate upheaval or change in your future, perhaps beyond your control, but more likely a decision that, for good or ill, you will not be able to turn back from. At this moment, you become selfish, narrow-minded and unwilling to sacrifice, which will lock your perspective.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Death</string>
+			<key>Upright</key>
+			<string>The Death tarot card denotes you are stuck in negativity while you are longing for something better. You are lost in your aspirations and have become inflexible and possibly even bitter. When The Tower shows up in a reading, some aspect of your life is going to change suddenly, without any warning.  There will not be enough time to consider all the possible consequences right away, you will be bewildered by whatever change is thrust upon you, and need to clear you head to resolve whatever has happened.</string>
+			<key>Reversed</key>
+			<string>This is a card one does not really like to see in a reading. People influenced by the Devil are usually stuck in a spiral of negativity in their lives. This could take the form of an abusive relationship, drug and drinking addictions, a bout of depression, or feelings of hopelessness about life.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Temperance</string>
+			<key>Upright</key>
+			<string>The Temperance Card indicates harmony, renewal and emotional balance.   Now that old habits and beliefs are gone forever, new attitudes must be acquired to fill the gaps and make you whole again. Follow your intuition and you are headed towards the lasting contentment of success.</string>
+			<key>Reversed</key>
+			<string>If reversed, we usually find a lack of harmony and balance. At this moment, you are impatient and intolerant. You become hostile and are in the opposition with others. </string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Devil</string>
+			<key>Upright</key>
+			<string>The Devil can point to hedonistic tendencies, the enjoyment of food, drink, sex, material pleasures, but it often suggests over-indulgence or excessive behavior, such as addictions. It signifies a situation from which there is no escape, or a road leading to one. At this moment, you are obsessed with someone or something, and you are enslaved to this strange addiction.</string>
+			<key>Reversed</key>
+			<string>At this moment, you choose to let go of the materialism and find the way to free yourself of the Devil&apos;s bondage, which doesn&apos;t mean that you submit to the devil but to accept it as a shadow that there must be cast wherever there is light. Accept the shadow and you will see the light!</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Tower</string>
+			<key>Upright</key>
+			<string>At this moment, this is a difficult time where the Seeker might feel no one loves or cares for them. You do not want to give up your ideals, and you cling to them like a child to his precious security blanket. The time is coming that you have to find beauty within yourself and stop the projections you are casting on the world.</string>
+			<key>Reversed</key>
+			<string>The rest of the time, wisdom is blocked until it rages forth like a tidal wave and crushes anything in its path, including the recipient of the wisdom. Sometimes, when accepted and welcomed, divine wisdom and enlightenment flow freely like a calm river.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Star</string>
+			<key>Upright</key>
+			<string>The Star&apos;s presence signifies a period of respite and renewal for you. This renewal may be spiritual, physical, or both. The Star tells you that you are a Star right now, created to shine and be magnificent, to love and to be loved, and to be your own unique self.</string>
+			<key>Reversed</key>
+			<string>In the reserved position, the Star card symbolizes gloom, an unwillingness to adapt, and a bleak future. It was likely that you had little or no direction in life. Any hope or promise offered is going to be false. Consider balance and restraint when finding solutions to your current problems and you will approach the renewal of your life.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Moon</string>
+			<key>Upright</key>
+			<string>The happening or transformation that is taking place now may be unfamiliar, taking you someplace you have never been.  It&apos;s time to trust those inner feelings, and explore the inner places in the psyche that have yet to be explored. </string>
+			<key>Reversed</key>
+			<string>In the reversed position, the Moon card indicates that you are deceiving yourself. You are led astray instead of finding your way.  It is time to fully trust your intuition, it will lead the way.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Sun</string>
+			<key>Upright</key>
+			<string>Now it is the time to shine at whatever your best efforts have achieved. This is a time of great happiness, a time where everything about you is out in the open, and there is acceptance for whom you are and what you represent.</string>
+			<key>Reversed</key>
+			<string>Your enthusiasm and abilities are right there, but your focus is temporarily clouded which urges you to clear it up. At this time, you may not be honest with yourself. You are in the midst of a faith crisis, especially when repressing your psychic abilities.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Judgment</string>
+			<key>Upright</key>
+			<string>Your identification with the Judgment suggests you possess inherent good judgment, in the form of strong intuition. At this time, you gradually understand yourself and recognize your true vocation. You change and transform the order and structure that have already existed, and become the person you are always meant to be.</string>
+			<key>Reversed</key>
+			<string>Truths are revealed, mysteries are unraveled and responsibility is assigned. This is not the time for hasty judgment of yourself or others. This is the time to take stock of your life and make plans for your future by using new ideas and environments.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The World</string>
+			<key>Upright</key>
+			<string>The World is an indicator of a major and inexorable change, of tectonic breadth. The present moment will bring you the fulfillment of a wish or a long desired change in scenery.  Now it is time that all the knowledge and experience can be used to do great things.</string>
+			<key>Reversed</key>
+			<string>You are inexperienced and immature. You try to avoid challenges and taking responsibilities. You are just staying at home secluded within the comfort zones and are unable to finish what you started. To find the real satisfaction, you must realize the fact that it&apos;s time to accept the ideas of others to be as equally valid as your own.</string>
+		</dict>
+	</array>
+	<key>future</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>The Fool</string>
+			<key>Upright</key>
+			<string>Yon don&apos;t care what others think or say about you, because you know that what you are doing is right for your future. What others say can be justified, since your ignorance of the world can lead you to do things that more experienced people would never imagine, and thus you will find knowledge and enlightenment.</string>
+			<key>Reversed</key>
+			<string>The card carries a little bark of warning as well. However exciting new beginnings may be, you still have to watch your step.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Magician</string>
+			<key>Upright</key>
+			<string>The efforts you are putting forth to find a better way of doing things will definitely be worth it. Not only will they make your life more interesting, but others will also keep a certain someone more interested in finding out what you next move might be.</string>
+			<key>Reversed</key>
+			<string>The future before you is uncertain, presenting both risk and opportunity.  If you are not careful, you&apos;re in danger of suffering a nasty fall.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The High Priestess</string>
+			<key>Upright</key>
+			<string>The high priestess&apos;s appearance is often a sign that your own intuition is trying to send you a message. You are on course to receive real rewards, but only if you are patient and open to the whispers from within your mind. </string>
+			<key>Reversed</key>
+			<string>You will suffer indiscretion and betrayal soon because of your lack of insight and blocked psychic abilities. Your secrets are kept, answers that you are seeking will not be found and your instincts will be proven wrong.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Empress</string>
+			<key>Upright</key>
+			<string>Any delay in life is temporary. You will have good health, domestic stability and happiness, and you will reap the benefits of your efforts. In fact, your rewards will be greater than you ever anticipated.</string>
+			<key>Reversed</key>
+			<string>It symbolizes possible infertility, poor health and abandonment in the near future. You are so dependent on others that reluctance to take action, which will generate personal growth, comes to a standstill. It is important for you to be more patient and persistent.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Emperor</string>
+			<key>Upright</key>
+			<string>The Emperor Card symbolizes leadership and authority. You will be most satisfied with your work and achieve the best result when implementing structure and logic to your projects.</string>
+			<key>Reversed</key>
+			<string>You will feel confused to your enemies soon because of your lack of energy and poor leadership. You will become elusive and impulsive and come across as highly unpredictable.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Hierophant</string>
+			<key>Upright</key>
+			<string>Having faith may lead you closer to your goal, but only if you can remain in control of your emotion. No matter how chaotic and frightening the times, this can bring tranquility.</string>
+			<key>Reversed</key>
+			<string>The Hierophant tarot card reversed denotes prudence, silliness and hypocrisy. You will break the rules in the future. There are rules but no knowledge of why these rules are important. The ego is without guidance.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Love</string>
+			<key>Upright</key>
+			<string>The Love Card symbolizes intimacy, union and physical attraction. In the near future you will find your soul mate that provides you the feeling of being at home or what you have done will undoubtedly make you feel complete.</string>
+			<key>Reversed</key>
+			<string>The Lovers tarot card reversed indicates a breakup between partners, families and friends. You will be cruel to yourselves and to those who love you, being incapable of making a stable relationship with people.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Chariot</string>
+			<key>Upright</key>
+			<string>You are a strong-will person and are determined to succeed in this world and come across as quite fearless. The Chariot Card symbolizes victory and success, which denotes that you will use your power to accomplish your goal and get what you want.</string>
+			<key>Reversed</key>
+			<string>The projects that you are completing will be delayed mostly because of your low self-esteem and little control over your emotions. You will lose direction and become self-doubting.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Strength</string>
+			<key>Upright</key>
+			<string>The Strength card is quietly dominated by the presence of a lion. The lion faces straight forward. Like the Chariot, she is not one to shy away from problems. You know how to overcome adversity, maximize will-power and succeed against all odds.</string>
+			<key>Reversed</key>
+			<string>In some ways, this card reminds me of a young adult, someone who has certainly matured but may have a narrow view of their overall growth. Protecting your loved ones is important, but those in a leadership position must know how to compromise. There is a need to connect with life in a more spiritual way.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Hermit</string>
+			<key>Upright</key>
+			<string>The Hermit shows more of a firm-hand control and more of a patient mastery. Instead of the energy emanating from without and being channeled, as in the Magician, the energy is channeled inward and concentrated in this sphere. This brings to mind the ethereal energy of dreams, mysteries, and spiritual knowledge.</string>
+			<key>Reversed</key>
+			<string>There will be a problem with concentration, a lack of memory and mental ability as you have been isolated from the society and others for a long time. </string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Wheel of Fortune</string>
+			<key>Upright</key>
+			<string>The Wheel of Fortune indicates positive changes and unexpected turns of your life. You will be in need of new experiences and may wander somewhere outside of your comfort zone. You will discover your purpose of life and get what you want.</string>
+			<key>Reversed</key>
+			<string>Most likely, you will find the events foretold to be positive, but, being aspects of luck, they may also be beyond your control and influence. </string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Justice</string>
+			<key>Upright</key>
+			<string>You are on course to receive real rewards, but only if you continue your discipline and motivation. Also, you will receive some gift of advice or have a debt repaid to you. Your moral character will be justified, so maintain integrity and strive to balance yourself.</string>
+			<key>Reversed</key>
+			<string>It does suggest disregard for what is right, failure to be honest with one&apos;s self or with others, unfair or excessive criticism and possible legal problems. You will use the law inappropriately.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Hanged Man</string>
+			<key>Upright</key>
+			<string>You are about opening your mind and overcoming preconceptions and prejudices. To admit that you are afraid will give you the strength to conquer your fear. When you relinquish your desire for control, everything begins to work as it should. Acting at the right moment will get you ahead.</string>
+			<key>Reversed</key>
+			<string>Tell others to hang from a tree and it seems obvious; try to do it yourself and it will become impossible. The most obvious answer to a problem may be the simplest, but it is rarely the best. The Hanged Man, however, has hung himself, and sees how much wisdom he has found!</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Death</string>
+			<key>Upright</key>
+			<string>Although it is a hard time, often good things do come out of this situation.  You will be free, can now pick up your piece of life, and create positive habit and relationship, though it will take time.</string>
+			<key>Reversed</key>
+			<string>You will be stuck in situations of your own making, but be in denial and unable to see that clearly at this point. So you give the Devil his power, and allow him to dominate your live as you continue to let you spirits be crushed.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Temperance</string>
+			<key>Upright</key>
+			<string>An optimistic card, temperance encourages you to find moderation in your life and approach problems with a calm demeanor. Many things are unknown to you now, so you must make new goals and plan carefully. Acting at the right moment will get you ahead.</string>
+			<key>Reversed</key>
+			<string>The Temperance Reserved means exhaustion and recklessness. There is no middle ground and at least you are left feeling exhausted and drained. There will be a lack of substance to make the dream a reality.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Devil</string>
+			<key>Upright</key>
+			<string>The Devil is in the business of entrapment. When you submit to your inner Devil, you simultaneously submit to every other force in the outside world that would do you harm.</string>
+			<key>Reversed</key>
+			<string>In the near future, you will try to avoid any temptation and escape the danger of lack of ambition in order free yourself from whatever restrictions are holding you back.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Tower</string>
+			<key>Upright</key>
+			<string>Just as we never know exactly where lightning is going to strike, the upheaval this card can bring is usually sudden and unexpected.  This card denotes that there will events beyond your influence that will change your life. It is uncertain whether it is good or bad, but avoid extravagant behavior and be true to you.</string>
+			<key>Reversed</key>
+			<string>The Tower reserved symbolizes both shock and surprise. Most people are familiar with the image of The Tower and most of us prefer not to see it in our readings. However, the Tower breaks through false illusions, leaving no option but to let go and move forward.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Star</string>
+			<key>Upright</key>
+			<string>The Star tarot card represents hope, a bright future, joy, optimism, guidance, finding satisfying answers and feeling connected to the divine. You will feel quiet after the storm and inspired. The future waiting for you looks bright.</string>
+			<key>Reversed</key>
+			<string>In the reserved position, the Star card symbolizes despair, crushed dreams and bad luck. Your pessimistic thinking and arrogance are getting in the way of your personal growth and life opportunities and your poor judgment may bring about a loss. However, the positive energies are still there, only diminished, so in time she will reap their benefits.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Moon</string>
+			<key>Upright</key>
+			<string>It indicates that you need to be careful of a devious and deceitful person who may lead you astray. Don&apos;t let yours&apos; or someone else&apos;s fabricated notions cloud your judgment.</string>
+			<key>Reversed</key>
+			<string>The Moon card reversed in the future position forecasts that your intuition and psychic powers will be blocked and you will be lost in some kind of madness, often due to not allowing your creative abilities to surface. There will be pressure to conform which is the last thing you can handle. </string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Sun </string>
+			<key>Upright</key>
+			<string>As an inherently good influence, finding the Sun is a positive development. You will feel confident, being appreciated for your uniqueness and celebrated for your successes. Also, you will be the center of attention for whatever actions taken. </string>
+			<key>Reversed</key>
+			<string>The Sun card reversed is not entirely opposite. Somewhat it will be a temporary delay of success. This is a time to look at any offers that may be given to you from people who do not have your best interest at heart. Take full advantage of this time and you will achieve a future of endless possibility.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The Judgment</string>
+			<key>Upright</key>
+			<string>The Judgment tells a story of transition, but unlike Death or the Tower, it is not sudden change, or born of luck or intuition, but change that springs from reason. You will accept the past and throw off its burden. You will take your own responsibility and make the major decisions which result in major transformation.</string>
+			<key>Reversed</key>
+			<string>The Judgment card embodies those forces that require you to be accountable for your actions. You will have confrontation in business and relationships because you have been pointing the finger at others at the time when you are exactly the one who should be pointed at.</string>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>The World</string>
+			<key>Upright</key>
+			<string>Like the Sun, the World card brings good blessings to your set of personal cards. You will feel that your life has a purpose and finally accomplish what you set out to achieve.</string>
+			<key>Reversed</key>
+			<string>In the reversed position, the World card symbolizes unfinished business, stubbornness and deficiency. In the near future, you will experience failure or serious problems, with an overwhelming delay of gratification.</string>
+		</dict>
+	</array>
+</dict>
+</plist>

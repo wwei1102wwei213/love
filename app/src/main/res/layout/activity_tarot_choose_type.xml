@@ -4,7 +4,9 @@
     android:layout_height="match_parent"
     android:background="@color/base_all">
 
-    <ImageView
+
+
+    <!--<ImageView
         android:id="@+id/back_button"
         android:layout_width="44dp"
         android:layout_height="44dp"
@@ -12,7 +14,7 @@
         android:src="@mipmap/white_to_back"
         android:scaleType="centerInside"/>
 
-    <com.hammerpark.microcubehoroscope.widget.tv.HeavyTextView
+    <com.fuyou.play.widget.tv.HeavyTextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,9 +22,9 @@
         android:textSize="20sp"
         android:textColor="@color/white"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp" />
+        android:layout_marginTop="30dp" />-->
 
-    <com.hammerpark.microcubehoroscope.widget.tv.HeavyTextView
+    <!--<com.fuyou.play.widget.tv.HeavyTextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,21 +33,11 @@
         android:textColor="@color/white"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/textView1"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="5dp" />-->
 
-    <com.hammerpark.microcubehoroscope.widget.tv.HeavyTextView
-        android:id="@+id/textView3"
-        android:layout_width="240dp"
-        android:layout_height="40dp"
-        android:gravity="center"
-        android:text="GET A READING"
-        android:textSize="18sp"
-        android:textColor="@color/white"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
-        android:layout_centerHorizontal="true" />
+    <!--
 
-    <com.hammerpark.microcubehoroscope.widget.tv.HeavyTextView
+    <com.fuyou.play.widget.tv.HeavyTextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -54,35 +46,53 @@
         android:textColor="@color/white"
         android:layout_centerHorizontal="true"
         android:layout_above="@id/textView3"
-        android:layout_marginBottom="10dp" />
+        android:layout_marginBottom="10dp" />-->
+
+
 
     <android.support.v4.view.ViewPager
         android:id="@+id/choose_tarot_type_vp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_above="@id/textView3"
-        android:layout_below="@id/back_button">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true">
     </android.support.v4.view.ViewPager>
 
     <ImageView
         android:id="@+id/select_back_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/choose_tarot_type_vp"
-        android:layout_alignBottom="@id/choose_tarot_type_vp"
-        android:layout_marginLeft="10dp"
-        android:src="@mipmap/tarot_select_back"/>
+        android:layout_width="45dp"
+        android:layout_height="58dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="20dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        android:scaleType="centerInside"
+        android:src="@mipmap/tarot_select_back"
+        android:layout_centerVertical="true"/>
 
     <ImageView
         android:id="@+id/select_next_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@id/choose_tarot_type_vp"
-        android:layout_alignBottom="@id/choose_tarot_type_vp"
+        android:layout_width="45dp"
+        android:layout_height="58dp"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="20dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
         android:src="@mipmap/tarot_select_back"
+        android:scaleType="centerInside"
+        android:layout_centerVertical="true"
         android:rotation="180"/>
-
+    <include layout="@layout/base_title_layout"/>
+    <com.fuyou.play.widget.tv.HeavyTextView
+        android:id="@+id/textView3"
+        android:layout_width="240dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="START"
+        android:textSize="17sp"
+        android:textColor="@color/white"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/bg_alpha_black"/>
 </RelativeLayout>

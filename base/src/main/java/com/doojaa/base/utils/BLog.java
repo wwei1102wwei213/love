@@ -7,8 +7,6 @@ import com.orhanobut.logger.Logger;
 
 /**
  * 自定义Log输出
- *
- * @author wwei
  */
 public final class BLog {
 

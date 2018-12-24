@@ -1,1 +1,1 @@
-include ':app', ':XRefreshView', ':base'
+include ':app', ':XRefreshView', ':base', ':wlib'

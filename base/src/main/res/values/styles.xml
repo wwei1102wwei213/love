@@ -15,7 +15,7 @@
     </style>
 
     <style name="SplashAppTheme" parent="AppTheme">
-        <!--<item name="android:windowBackground">@drawable/xxxx_launch_adapter</item>-->
+        <item name="android:windowBackground">@drawable/base_bg_splash</item>
         <item name="android:windowIsTranslucent">false</item>
         <item name="android:windowFullscreen">true</item>
         <!--<item name="android:windowAnimationStyle">@null</item>

@@ -1,6 +1,7 @@
 package com.fuyou.play.view.activity;
 
 import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.LinearSnapHelper;
@@ -90,11 +91,11 @@ public class TarotChooseFutureActivity extends BaseActivity {
                     imageIds[i] = getResources().getIdentifier("tarot_card_" + (mCardIndexes[i] + 1), "mipmap", getPackageName());
                     descriptions[i] = TarotManager.getInstance().getTarotLover(mGroupIndexes[i], mCardIndexes[i]);
                 }
-                /*Intent intent = new Intent(TarotChooseFutureActivity.this, TarotThreeReadActivity.class);
+                Intent intent = new Intent(TarotChooseFutureActivity.this, TarotThreeReadActivity.class);
                 intent.putExtra(TarotThreeReadActivity.INTENT_CARD_IMAGE, imageIds);
                 intent.putExtra(TarotThreeReadActivity.INTENT_CARD_REVERSED, mCardReversed);
                 intent.putExtra(TarotThreeReadActivity.INTENT_CARD_DESCRIPTION, descriptions);
-                startActivity(intent);*/
+                startActivity(intent);
             }
         });
         mCurrentCardView = (ImageView) findViewById(R.id.current_card_view);

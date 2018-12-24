@@ -13,7 +13,6 @@ import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.doojaa.base.AppManager;
 import com.doojaa.base.R;
 import com.doojaa.base.ui.BaseActivity;
 import com.doojaa.base.ui.fragment.MyFragment;
@@ -155,7 +154,7 @@ public class MainActivity extends BaseActivity{
                 exitTime = System.currentTimeMillis();
                 showToast("再按一次退出");
             } else {
-                AppManager.getInstance().AppExit(getApplicationContext());
+                finish();
             }
             return true;
         }

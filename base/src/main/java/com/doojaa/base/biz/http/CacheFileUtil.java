@@ -15,7 +15,6 @@ import java.io.Serializable;
 
 /**
  * 缓存帮助类
- * @author wwei
  */
 public class CacheFileUtil {
 

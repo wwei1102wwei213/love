@@ -34,7 +34,7 @@
     </declare-styleable>
 
     <!--滑动选择器-->
-    <declare-styleable name="WheelView">
+    <!--<declare-styleable name="WheelView">
         <attr name="itemVisibleNum" format="integer"/>
 
         <attr name="textColorOuter" format="color" />
@@ -53,6 +53,21 @@
             <enum name="right" value="894"/>
         </attr>
 
+    </declare-styleable>-->
+
+    <!--滑动选择器-->
+    <declare-styleable name="WheelView">
+        <attr name="normalTextColor" format="color" />
+        <attr name="normalTextSize" format="dimension" />
+        <attr name="selectedTextColor" format="color" />
+        <attr name="selectedTextSize" format="dimension" />
+        <attr name="unitHight" format="dimension" />
+        <attr name="itemNumber" format="integer"/>
+        <attr name="lineColor" format="color" />
+        <attr name="lineHeight" format="dimension" />
+        <attr name="maskHight" format="dimension"/>
+        <attr name="noEmpty" format="boolean"/>
+        <attr name="isEnable" format="boolean"/>
     </declare-styleable>
 
     <declare-styleable name="PetalView">

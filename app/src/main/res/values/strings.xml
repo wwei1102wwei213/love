@@ -43,4 +43,7 @@
     <string name="cc_adapter_holder_index_tag_key">cc_adapter_holder_index_tag_key</string>
     <string name="best_match_played_count">%d Played today</string>
 
+    <!--时间控件-->
+    <string name="choose_time_title">Choose time</string>
+
 </resources>

@@ -1,5 +1,6 @@
 package com.doojaa.base.ui.fragment;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.doojaa.base.R;
 import com.doojaa.base.ui.BaseFragment;
+import com.doojaa.base.ui.activity.InfoInviteActivity;
 import com.doojaa.base.utils.BLog;
 import com.doojaa.base.utils.tools.DensityUtils;
 import com.doojaa.base.widget.pullwidget.elasticity.ElasticityHelper;
@@ -219,7 +221,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener {
             case R.id.tv_level_or_login:
             case R.id.v_invite_level:
             case R.id.my_ll_invite:
-//                context.startActivity(new Intent(context, InfoAdsActivity.class));
+                context.startActivity(new Intent(context, InfoInviteActivity.class));
                 break;
             case R.id.my_ll_feedback:
 

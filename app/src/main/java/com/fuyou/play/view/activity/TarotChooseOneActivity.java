@@ -1,6 +1,7 @@
 package com.fuyou.play.view.activity;
 
 import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.LinearSnapHelper;
@@ -122,12 +123,12 @@ public class TarotChooseOneActivity extends BaseActivity {
                                         int drawable = getResources().getIdentifier("tarot_card_" + (mRealCardIndex + 1), "mipmap", getPackageName());
                                         TarotYesOrNo tarotYesOrNo = TarotManager.getInstance().getTarotYesOrNo(mRealCardIndex);
                                         String[] content = tarotYesOrNo.getContent();
-                                        /*Intent intent = new Intent(TarotChooseOneActivity.this, TarotSingleReadActivity.class);
+                                        Intent intent = new Intent(TarotChooseOneActivity.this, TarotSingleReadActivity.class);
                                         intent.putExtra(TarotSingleReadActivity.INTENT_CARD_IMAGE, drawable);
                                         intent.putExtra(TarotSingleReadActivity.INTENT_CARD_REVERSED, content[0].equals(TarotYesOrNo.TAROT_NO));
                                         intent.putExtra(TarotSingleReadActivity.INTENT_CARD_TITLE, content[0]);
                                         intent.putExtra(TarotSingleReadActivity.INTENT_CARD_DESCRIPTION, content[1]);
-                                        startActivity(intent);*/
+                                        startActivity(intent);
                                     }catch (Exception e){
                                         ExceptionUtils.ExceptionSend(e, "TarotChooseOneActivity mFinalCardView onClick");
                                     }

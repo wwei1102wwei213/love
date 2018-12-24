@@ -44,7 +44,7 @@
             android:gravity="center_horizontal"
             android:orientation="vertical">
 
-            <com.hammerpark.microcubehoroscope.widget.tv.HeavyTextView
+            <com.fuyou.play.widget.tv.HeavyTextView
                 android:id="@+id/heavyTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
                 android:textSize="16sp"
                 android:layout_marginBottom="20dp"/>
 
-            <com.hammerpark.microcubehoroscope.widget.tv.HeavyTextView
+            <com.fuyou.play.widget.tv.HeavyTextView
                 android:id="@+id/current_card_index_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -85,7 +85,7 @@
         android:visibility="invisible"
         android:background="@mipmap/tarot_choose_card"/>
 
-    <com.hammerpark.microcubehoroscope.widget.custom.TarotAnimationView
+    <com.fuyou.play.widget.custom.TarotAnimationView
         android:id="@+id/animation_view"
         android:layout_width="match_parent"
         android:layout_height="400dp"

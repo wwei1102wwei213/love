@@ -133,6 +133,14 @@
         <activity android:name=".view.activity.TarotChooseLoversActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTop"/>
+        <!--塔罗单张结果-->
+        <activity android:name=".view.activity.TarotSingleReadActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
+        <!--塔罗3张结果-->
+        <activity android:name=".view.activity.TarotThreeReadActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
         <!--展示图片-->
         <activity android:name=".view.activity.TestActivity"
             android:screenOrientation="portrait"
