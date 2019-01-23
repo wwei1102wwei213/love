@@ -8,24 +8,25 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/base_bg_half_base">
+
         <ImageView
             android:id="@+id/iv_level_item"
             android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@mipmap/ic_level1_s"
+            android:layout_height="45dp"
+            android:layout_centerInParent="true"
             android:scaleType="centerInside"
-            android:layout_centerInParent="true"/>
+            android:src="@mipmap/ic_level1_s" />
     </RelativeLayout>
     <TextView
         android:id="@+id/tv_title_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/ads_menu_level_1"
-        android:textColor="@color/actionbar_default"
+        android:textColor="@color/invite_item_title_color"
         android:layout_toRightOf="@id/level_1"
         android:layout_marginLeft="8dp"
         android:textSize="15sp"
-        android:layout_marginTop="4dp"/>
+        android:layout_marginTop="2dp"/>
     <TextView
         android:id="@+id/tv_level_item"
         android:layout_width="wrap_content"

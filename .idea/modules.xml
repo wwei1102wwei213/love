@@ -6,7 +6,10 @@
       <module fileurl="file://$PROJECT_DIR$/XRefreshView/XRefreshView.iml" filepath="$PROJECT_DIR$/XRefreshView/XRefreshView.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/base/base.iml" filepath="$PROJECT_DIR$/base/base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jiaozivideoplayer/jiaozivideoplayer.iml" filepath="$PROJECT_DIR$/jiaozivideoplayer/jiaozivideoplayer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libtest/libtest.iml" filepath="$PROJECT_DIR$/libtest/libtest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/love.iml" filepath="$PROJECT_DIR$/.idea/love.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wlib/wlib.iml" filepath="$PROJECT_DIR$/wlib/wlib.iml" />
     </modules>
   </component>
 </project>

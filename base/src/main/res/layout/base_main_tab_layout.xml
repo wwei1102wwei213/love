@@ -8,13 +8,13 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:background="#cccccc"/>
+        android:background="@color/base_home_btn_line"/>
 
     <RadioGroup
         android:id="@+id/tab_rg_bar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ffffff"
+        android:background="@color/base_home_menu_ground"
         android:orientation="horizontal"
         android:gravity="center_vertical"
         android:paddingTop="5dp"
@@ -24,24 +24,24 @@
             android:id="@+id/tab_rb_bookshelf"
             style="@style/radiobutton_main_bottom_btn"
             android:drawableTop="@drawable/base_tab_selector_1"
-            android:text="@string/tab_text_bookshelf"/>
+            android:text="@string/tab_text_home"/>
         <RadioButton
             android:id="@+id/tab_rb_recommend"
             style="@style/radiobutton_main_bottom_btn"
             android:drawableTop="@drawable/base_tab_selector_2"
-            android:text="@string/tab_text_recommend"/>
+            android:text="@string/tab_text_channel"/>
 
         <RadioButton
             android:id="@+id/tab_rb_bookcity"
             style="@style/radiobutton_main_bottom_btn"
             android:drawableTop="@drawable/base_tab_selector_3"
-            android:text="@string/tab_text_bookcity"/>
+            android:text="@string/tab_text_discover"/>
 
         <RadioButton
             android:id="@+id/tab_rb_me"
             style="@style/radiobutton_main_bottom_btn"
             android:drawableTop="@drawable/base_tab_selector_4"
-            android:text="@string/tab_text_me"/>
+            android:text="@string/tab_text_mine"/>
 
     </RadioGroup>
 </LinearLayout>

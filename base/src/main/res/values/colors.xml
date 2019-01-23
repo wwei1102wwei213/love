@@ -1,31 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#23B382</color>
-    <color name="colorPrimaryDark">#23B382</color>
-    <color name="colorAccent">#23B382</color>
-    <!--<color name="actionbar_default">#ff730b</color>-->
-
-    <color name="base_all">#23B382</color>
-
-    <color name="actionbar_default">#23B382</color>
-    <color name="actionbar_press">#239882</color>
-    <color name="actionbar_enable">#3323B382</color>
-
-    <color name="actionbar_start">#2E5749</color>
-
-    <color name="base_half_color">#3323B382</color>
+    <!--标题栏状态栏颜色-->
+    <color name="colorPrimary">#26292F</color>
+    <color name="colorPrimaryDark">#26292F</color>
+    <color name="colorAccent">#26292F</color>
+<!--#CA9657-->
+    <!--主题色-->
+    <color name="base_all">#CA9657</color>
+    <color name="base_all_press">#239882</color>
+    <color name="base_all_enable">#3323B382</color>
+    <color name="base_half_color">#FFE5CB</color>
     <color name="base_half_color_dip">#6623B382</color>
-    <color name="author_text_color">#aa23B382</color>
-    <color name="vip_title_recommend">#a0f43530</color><!--#cd694d-->
-    <color name="book_label_text_1">#77bb9b</color><!--#e1bb9b-->
-    <color name="book_label_text_2">#9f9f9f</color><!--#9f9f9f-->
 
-    <color name="bg_color">#f2f2f2</color>
+    <!--背景色-->
+    <color name="bg_color">#171A1E</color>
+    <color name="base_bg_color">#f2f2f2</color>
+    <color name="base_bg_color_dark">#000000</color>
+    <color name="base_home_menu_ground">#2E2E30</color>
+    <color name="base_home_btn_line">#222222</color>
+    <color name="base_menu_ground">#2E2E30</color>
+    <color name="base_bg_white">#FFFFFF</color>
+    <color name="bg_white">#FFFFFF</color>
+    <color name="base_bg_black">#000000</color>
+    <color name="base_bg_white_half">#80FFFFFF</color>
+    <color name="bg_half_translucent">#40000000</color><!--背景半透明黑色-->
+    <color name="bg_translucent">#00000000</color><!--背景半透明黑色-->
 
+    <color name="black">#000000</color>
+
+    <!--分割线色-->
     <color name="split_color">#e2e2e2</color>
     <color name="split_0">#d5d5d5</color>
     <color name="split_my">#eeeeee</color>
+    <color name="line_f1f1f1">#f1f1f1</color>
+    <color name="line_eee">#eeeeee</color>
+    <color name="line_ddd">#dddddd</color>
+    <color name="line_black">#0D0E10</color>
 
+    <!--覆盖色-->
+    <color name="black_overlay">#66000000</color>
+
+    <color name="ads_card_text">#B4854D</color>
+    <color name="base_ads_progress_selected">#7F4F14</color>
+    <color name="base_ads_progress_unselected">#FFE7BA</color>
+    <color name="base_invite_normal_text">#26292F</color>
+
+    <color name="base_title_background">#26292F</color>
+    <!--主页-->
+    <color name="search_ground_color">#38383B</color>
+
+    <!--old colors-->
     <color name="text_1">#666666</color>
     <color name="text_2">#23B382</color>
     <color name="text_3">#f43530</color>
@@ -35,53 +59,63 @@
     <color name="text_7">#AFAFAF</color>
     <color name="text_8">#cccccc</color>
     <color name="text_9">#f09544</color>
-    <color name="text_10">#787878</color>
-    <color name="text_11">#333333</color>
-    <color name="text_12">#555555</color>
+    <color name="text_10">#999999</color>
+    <color name="text_11">#CCCCCC</color>
+    <color name="text_12">#CCCCCC</color>
     <color name="text_13">#929292</color>
     <color name="text_14">#888888</color>
     <color name="text_15">#c7c7c7</color>
 
+    <color name="text_white">#FFFFFF</color>
+    <color name="text_gray">#999999</color>
+
     <color name="tab_line_1">#23B382</color>
-    <color name="black_overlay">#66000000</color>
+    <color name="author_text_color">#aa23B382</color>
+    <color name="vip_title_recommend">#a0f43530</color><!--#cd694d-->
+    <color name="book_label_text_1">#77bb9b</color><!--#e1bb9b-->
+    <color name="book_label_text_2">#9f9f9f</color><!--#9f9f9f-->
+    <color name="actionbar_default">#CA9657</color>
 
-    <color name="line_f1f1f1">#f1f1f1</color>
-    <color name="line_eee">#eeeeee</color>
-    <color name="line_ddd">#dddddd</color>
+    <color name="actionbar_press">#239882</color>
+    <color name="actionbar_enable">#3323B382</color>
+    <color name="actionbar_start">#2E5749</color>
 
-    <color name="splash">#FDF2E2</color>
+    <color name="color_menu_my_setting">#E3F5FE</color>
 
-    <!--read-->
-    <color name="nb.read.bg_1">#CEC29C</color>
-    <color name="nb.read.bg_2">#CCEBCC</color>
-    <color name="nb.read.bg_3">#AAAAAA</color>
-    <color name="nb.read.bg_4">#D1CEC5</color>
-    <color name="nb.read.bg_5">#001C27</color>
-    <color name="nb.read.bg_6">#DDCEC29C</color>
+    <!--视频详情-->
+    <color name="video_detail_menu_title">#999999</color>
+    <color name="video_label_item_text">#666666</color>
+    <color name="video_like_item_text">#CCCCCC</color>
+    <color name="video_like_item_num">#999999</color>
 
+    <!--频道-->
+    <color name="channel_menu_title_text">#CCCCCC</color>
+    <color name="channel_menu_more_text">#808080</color>
+    <color name="channel_recommend_title_text">#CCCCCC</color>
 
-    <color name="nb.read.font_1">#2C2C2C</color>
-    <color name="nb.read.font_2">#2F332D</color>
-    <color name="nb.read.font_3">#92918C</color>
-    <color name="nb.read.font_4">#383429</color>
-    <color name="nb.read.font_5">#627176</color>
+    <color name="base_default_gray">#666666</color>
+    <color name="base_default_dark">#333333</color>
 
-    <color name="nb.read.bg.night">#000000</color>
-    <color name="nb.read.font_night">#7f7f7f</color>
+    <color name="name_text_color">#999999</color>
 
-    <color name="nb.read.menu.bg">#191919</color>
-    <color name="nb.read.menu.text">#CBCBCB</color>
-    <color name="nb.read.bar.translucent">#88000000</color>
+    <color name="base_title_color">#E3B88E</color>
+    <color name="classify_tag_default">#999999</color>
 
-    <color name="bg_half_translucent">#40000000</color>
-    <color name="bg_white">#FFFFFF</color>
-    <color name="bg_white_half">#80FFFFFF</color>
+    <color name="classify_tag_header_bg">#202429</color>
+    <color name="base_left_int">#EEC8A3</color>
 
-    <color name="ads_card_text">#B4854D</color>
-    <color name="base_ads_progress_selected">#0c8f62</color>
-    <color name="base_ads_progress_unselected">#81d7ba</color>
-    <color name="base_invite_normal_text">#666666</color>
+    <color name="discover_line_space">#202429</color>
 
+    <color name="home_menu_title_color">#CCCCCC</color>
 
+    <color name="base_label_bg">#AA8969</color>
 
+    <color name="invite_card_text_color">#7F4F14</color>
+
+    <color name="base_menu_title_color">#E6994E</color>
+
+    <!--推广-->
+    <color name="invite_time_line_color">#FFC489</color>
+    <color name="invite_item_level_bg">#FFE5CB</color>
+    <color name="invite_item_title_color">#E6994E</color>
 </resources>

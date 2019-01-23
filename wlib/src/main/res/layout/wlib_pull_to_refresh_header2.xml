@@ -74,7 +74,7 @@
                 android:gravity="center"
                 android:indeterminate="true"
                 android:indeterminateDuration="700"
-                android:indeterminateDrawable="@anim/update_loading_progressbar_anim"
+                android:indeterminateDrawable="@anim/wlib_progressbar_loading_anim"
                 android:visibility="invisible"/>
         </FrameLayout>
     </RelativeLayout>

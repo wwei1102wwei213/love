@@ -1,85 +1,282 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-package="com.doojaa.base">
+    package="com.yyspbfq.filmplay">
 
-<uses-permission android:name="android.permission.INTERNET"/>
-<uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-<uses-permission android:name="android.permission.CAMERA"/>
-<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-<uses-permission android:name="android.permission.READ_LOGS" />
+    <!-- Required -->
+    <permission
+        android:name="com.yyspbfq.filmplay.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" />
+    <!-- 官方定义的权限，允许应用接收JPUSH内部代码发送的广播消息。 -->
+    <uses-permission android:name="com.yyspbfq.filmplay.permission.JPUSH_MESSAGE" />
 
-<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-<uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
-<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-<uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- 允许应用在手机屏幕关闭后后台进程仍然运行 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!-- ##########################################可选权限########################################## -->
+    <!-- 允许应用获取近期或正在运行的任务相关信息 -->
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <!-- 允许应用在系统完成引导后立即自动启动 -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
-<!--重力加速度传感器权限 -->
-<uses-permission android:name="android.hardware.sensor.accelerometer"/>
-<!--震动权限-->
-<uses-permission android:name="android.permission.VIBRATE" />
-
-<application
-    android:name=".BaseApplication"
-    android:allowBackup="true"
-    android:icon="@mipmap/ic_launcher"
-    android:label="@string/app_name"
-    android:supportsRtl="true"
-    android:resizeableActivity="true"
-    android:theme="@style/AppTheme"
-    >
-    <!--闪屏页-->
-    <activity android:name=".ui.activity.SplashActivity"
-        android:screenOrientation="portrait"
-        android:configChanges="orientation|screenSize"
-        android:launchMode="singleTop"
-        android:theme="@style/SplashAppTheme">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-    </activity>
-    <!--主页-->
-    <activity android:name=".ui.activity.MainActivity"
-        android:screenOrientation="portrait"
-        android:configChanges="orientation|screenSize"
-        android:launchMode="singleTask"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-    <!--推广页面-->
-    <activity android:name=".ui.activity.InfoInviteActivity"
-        android:screenOrientation="portrait"
-        android:launchMode="singleTop"/>
-    <!--推广列表页面(我的推广)-->
-    <activity android:name=".ui.activity.InviteListActivity"
-        android:screenOrientation="portrait"
-        android:launchMode="singleTop"/>
-    <!--Glide设置-->
-    <meta-data
-        android:name="com.doojaa.base.utils.glide.GlideModelConfig"
-        android:value="GlideModule" />
-    <!--下载服务-->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!-- 允许应用发送持久广播 -->
+    <uses-permission android:name="android.permission.BROADCAST_STICKY" />
 
 
-    <!--适配相册路径问题-->
-    <provider
-        android:name="android.support.v4.content.FileProvider"
-        android:authorities="@string/provider_authorities"
-        android:exported="false"
-        android:grantUriPermissions="true">
-        <!--提供共享路径-->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <!-- -允许应用修改系统设置 -->
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <!--重力加速度传感器权限 -->
+    <uses-permission android:name="android.hardware.sensor.accelerometer"/>
+    <!--震动权限-->
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+
+
+    <application
+        android:name=".BaseApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:resizeableActivity="true"
+        android:theme="@style/AppTheme"
+        >
+        <!--闪屏页-->
+        <activity android:name=".ui.activity.SplashActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize"
+            android:launchMode="singleTop"
+            android:theme="@style/SplashAppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <!--主页-->
+        <activity android:name=".ui.activity.MainActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize"
+            android:launchMode="singleTask"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <!--推广页面-->
+        <activity android:name=".ui.activity.InfoInviteActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
+        <!--推广列表页面(我的推广)-->
+        <activity android:name=".ui.activity.InviteListActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
+        <!--视频播放页面-->
+        <activity android:name=".ui.activity.VideoPlayActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:launchMode="singleTop"/>
+        <!--下载列表页面-->
+        <activity android:name=".ui.activity.DownloadListActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
+        <!--Web展示页面-->
+        <activity android:name=".ui.activity.ShowWebActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
+        <!--栏目列表页面-->
+        <activity android:name=".ui.activity.ChannelListActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
+        <!--栏目详情页面-->
+        <activity android:name=".ui.activity.ChannelDetailActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
+        <!--视频分类页面-->
+        <activity android:name=".ui.activity.VideoClassifyActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
+        <!--视频搜索页面-->
+        <activity android:name=".ui.activity.VideoSearchActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
+        <!--视频标签页面-->
+        <activity android:name=".ui.activity.VideoLabelActivity"
+            android:screenOrientation="portrait"/>
+        <!--推广码页面-->
+        <activity android:name=".ui.activity.InviteCodeActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
+
+        <!--Glide设置-->
         <meta-data
-            android:name="android.support.FILE_PROVIDER_PATHS"
-            android:resource="@xml/provider_paths"/>
-    </provider>
-    <!--适配全面屏手机-->
-    <meta-data android:name="android.max_aspect"
-        android:value="ratio_float"/>
-</application>
+            android:name="com.yyspbfq.filmplay.utils.glide.GlideModelConfig"
+            android:value="GlideModule" />
+        <!--下载服务-->
+
+
+        <!--J PUSH-->
+        <!-- Required SDK核心功能 -->
+        <service
+            android:name="cn.jpush.android.service.PushService"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTER" />
+                <action android:name="cn.jpush.android.intent.REPORT" />
+                <action android:name="cn.jpush.android.intent.PushService" />
+                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
+            </intent-filter>
+        </service>
+
+
+        <!-- Required SDK 核心功能 -->
+        <!-- 可配置android:process参数将PushService放在其他进程中 -->
+        <!--<service
+            android:name="cn.jpush.android.service.PushService"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTER" />
+                <action android:name="cn.jpush.android.intent.REPORT" />
+                <action android:name="cn.jpush.android.intent.PushService" />
+                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
+            </intent-filter>
+        </service>-->
+
+        <!-- since 1.8.0 option 可选项。用于同一设备中不同应用的JPush服务相互拉起的功能。 -->
+        <!-- 若不启用该功能可删除该组件，将不拉起其他应用也不能被其他应用拉起 -->
+        <service
+            android:name="cn.jpush.android.service.DaemonService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.DaemonService" />
+
+                <category android:name="com.yyspbfq.filmplay" />
+            </intent-filter>
+        </service>
+
+        <!-- Required SDK核心功能 -->
+        <receiver
+            android:name="cn.jpush.android.service.PushReceiver"
+            android:enabled="true">
+            <intent-filter android:priority="1000">
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />
+
+                <category android:name="com.yyspbfq.filmplay" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <!-- Optional -->
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+
+        <!-- Required SDK核心功能 -->
+        <activity
+            android:name="cn.jpush.android.ui.PushActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:theme="@android:style/Theme.NoTitleBar">
+            <intent-filter>
+                <action android:name="cn.jpush.android.ui.PushActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="com.yyspbfq.filmplay" />
+            </intent-filter>
+        </activity>
+        <!-- SDK核心功能 -->
+        <activity
+            android:name="cn.jpush.android.ui.PopWinActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:exported="false"
+            android:theme="@style/MyDialogStyle">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="com.yyspbfq.filmplay" />
+            </intent-filter>
+        </activity>
+
+        <!-- Required  SDK核心功能 -->
+        <service
+            android:name="cn.jpush.android.service.DownloadService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <!-- Required SDK核心功能 -->
+        <receiver
+            android:name="cn.jpush.android.service.AlarmReceiver"
+            android:exported="false" />
+
+        <receiver
+            android:name=".service.JPushReceiver"
+            android:enabled="true"
+            android:exported="false">
+            <intent-filter>
+
+                <!-- Required 用户注册SDK的intent -->
+                <action android:name="cn.jpush.android.intent.REGISTRATION" />
+                <!-- Required 用户接收SDK消息的intent -->
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />
+                <!-- Required 用户接收SDK通知栏信息的intent -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" />
+                <!-- Required 用户打开自定义通知栏的intent -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
+                <!-- 接收网络变化 连接/断开 since 1.6.3 -->
+                <action android:name="cn.jpush.android.intent.CONNECTION" />
+
+                <category android:name="com.yyspbfq.filmplay" />
+            </intent-filter>
+        </receiver>
+
+        <!--JPush自定义消息处理页面-->
+        <activity android:name=".service.IPushHandleActivity"
+            android:screenOrientation="portrait"/>
+
+        <meta-data android:name="JPUSH_CHANNEL" android:value="${CHANNEL_VALUE}"/>
+        <meta-data android:name="JPUSH_APPKEY" android:value="964415854bf8de9c0fe341ec" /> <!--  </>值来自开发者平台取得的AppKey-->
+
+        <!-- ##########################################友盟########################################## -->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="5c374110f1f556baf3000ed5" />
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="${CHANNEL_VALUE}" />
+        <!-- ##########################################友盟########################################## -->
+
+        <!--适配相册路径问题-->
+        <!--<provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="@string/provider_authorities"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            &lt;!&ndash;提供共享路径&ndash;&gt;
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
+        &lt;!&ndash;适配全面屏手机&ndash;&gt;
+        <meta-data android:name="android.max_aspect"
+            android:value="ratio_float"/>-->
+    </application>
 
 </manifest>

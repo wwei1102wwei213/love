@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color"
+    >
+
+    <LinearLayout
+        android:id="@+id/v_title"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/base_title_background">
+        <View
+            android:id="@+id/status_bar"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/discover_title_height">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:textColor="@color/base_title_color"
+                android:text="@string/tab_text_channel"
+                android:textStyle="bold"
+                android:textSize="@dimen/discover_title_size" />
+
+            <ImageView
+                android:id="@+id/iv_search"
+                android:layout_width="@dimen/discover_title_height"
+                android:layout_height="@dimen/discover_title_height"
+                android:src="@mipmap/icon_search"
+                android:scaleType="centerInside"
+                android:layout_alignParentRight="true"
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/v_title">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                >
+                <View
+                    android:layout_width="4dp"
+                    android:layout_height="18dp"
+                    android:background="@color/base_left_int"
+                    android:layout_gravity="center_vertical"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/channel_menu_recommend"
+                    android:layout_gravity="center_vertical"
+
+                    android:textColor="@color/channel_menu_title_text"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:layout_marginLeft="7dp"
+                    />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/ll_recommend"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                >
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@color/line_black"/>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                >
+                <View
+                    android:layout_width="4dp"
+                    android:layout_height="18dp"
+                    android:background="@color/base_left_int"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/channel_menu_hot"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="7dp"
+                    android:textColor="@color/channel_menu_title_text"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/more_hot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/home_menu_more_btn"
+                    android:gravity="center_vertical"
+                    android:textSize="13sp"
+                    android:textColor="@color/channel_menu_more_text"
+                    android:drawableRight="@mipmap/menu_right"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    />
+            </LinearLayout>
+
+            <GridView
+                android:id="@+id/gv_hot"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:numColumns="4"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@color/line_black"
+                android:layout_marginTop="10dp"/>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                >
+                <View
+                    android:layout_width="4dp"
+                    android:layout_height="18dp"
+                    android:background="@color/base_left_int"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/channel_menu_human"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="7dp"
+                    android:textColor="@color/channel_menu_title_text"
+                    android:textSize="18sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:id="@+id/more_human"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="@string/home_menu_more_btn"
+                    android:gravity="center_vertical"
+                    android:textSize="13sp"
+                    android:textColor="@color/channel_menu_more_text"
+                    android:drawableRight="@mipmap/menu_right"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_human"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="10dp"
+                >
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+</RelativeLayout>

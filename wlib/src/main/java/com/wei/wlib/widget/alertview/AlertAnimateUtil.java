@@ -20,11 +20,11 @@ public class AlertAnimateUtil {
     static int getAnimationResource(int gravity, boolean isInAnimation) {
         switch (gravity) {
             case Gravity.BOTTOM:
-                return isInAnimation ? R.anim.slide_in_bottom : R.anim.slide_out_bottom;
+                return isInAnimation ? R.anim.wlib_alert_slide_in_bottom : R.anim.wlib_alert_slide_out_bottom;
             case Gravity.CENTER:
-                return isInAnimation ? R.anim.fade_in_center : R.anim.fade_out_center;
+                return isInAnimation ? R.anim.wlib_alert_fade_in_center : R.anim.wlib_alert_fade_out_center;
             case Gravity.TOP:
-                return isInAnimation ? R.anim.activity_in_from_right : R.anim.activity_translate_down;
+                return isInAnimation ? R.anim.wlib_alert_activity_in_from_right : R.anim.wlib_alert_translate_down;
         }
         return INVALID;
     }

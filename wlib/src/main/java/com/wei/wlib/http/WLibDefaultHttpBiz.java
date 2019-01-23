@@ -1,8 +1,5 @@
 package com.wei.wlib.http;
 
-import android.os.Handler;
-import android.os.Message;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;
 import com.wei.wlib.util.WLibLog;
@@ -13,7 +10,6 @@ import com.zhy.http.okhttp.builder.PostFormBuilder;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.lang.ref.WeakReference;
 import java.util.Map;
 
 import okhttp3.Call;
@@ -21,15 +17,13 @@ import okhttp3.Call;
 
 public class WLibDefaultHttpBiz implements IWLibHttpBiz {
 
-    private int flag;
-    private Object tag;
+    protected int flag;
+    protected Object tag;
     private String OkTag;
     private Gson mGson;
-//    private WeakReference<WLibHttpListener> weak;
     private Class<?> mClass;
-    private int codeType = -1;
-    private WLibHttpListener callback;
-    private MyHandler mHandler;
+    private int codeType = WLibHttpFlag.RESULT_DATA_FORMAT;
+    protected WLibHttpListener callback;
 
     public WLibDefaultHttpBiz(int flag, Object tag, WLibHttpListener callback, Class<?> mClass) {
         this.flag = flag;
@@ -38,7 +32,6 @@ public class WLibDefaultHttpBiz implements IWLibHttpBiz {
         mGson = new Gson();
         this.mClass = mClass;
         OkTag = flag + "-" + System.currentTimeMillis();
-//        mHandler = new MyHandler(this);
     }
 
     public WLibDefaultHttpBiz(int flag, Object tag, WLibHttpListener callback, Class<?> mClass, int codeType) {
@@ -49,7 +42,6 @@ public class WLibDefaultHttpBiz implements IWLibHttpBiz {
         this.mClass = mClass;
         OkTag = flag + "-" + System.currentTimeMillis();
         this.codeType = codeType;
-//        mHandler = new MyHandler(this);
     }
 
     @Override
@@ -74,7 +66,6 @@ public class WLibDefaultHttpBiz implements IWLibHttpBiz {
                 cancel();
             }
         });
-//        WLibThreadPoolManager.execute(new HttpRunnable(mHandler, postUrl(), params,"POST"));
     }
 
     @Override
@@ -99,7 +90,6 @@ public class WLibDefaultHttpBiz implements IWLibHttpBiz {
                 cancel();
             }
         });
-//        WLibThreadPoolManager.execute(new HttpRunnable(mHandler, getUrl(), params,"GET"));
     }
 
     @Override
@@ -125,7 +115,7 @@ public class WLibDefaultHttpBiz implements IWLibHttpBiz {
             callback.handleLoading(flag, tag, false);
             try {
                 if (response != null) {
-                    if (codeType!=-1) {
+                    if (codeType!=WLibHttpFlag.RESULT_DATA_FORMAT) {
                         callback.handleResp(response, flag, tag, response, null);
                     } else {
                         JSONObject resJson = new JSONObject(response);
@@ -229,30 +219,8 @@ public class WLibDefaultHttpBiz implements IWLibHttpBiz {
         }
         try {
             OkHttpUtils.getInstance().cancelTag(OkTag);
-//            mHandler.removeCallbacksAndMessages(null);
-//            mHandler = null;
         } catch (Exception e){
             WLibLog.e(e);
-        }
-    }
-
-    private static class MyHandler extends Handler {
-
-        private WeakReference<WLibDefaultHttpBiz> weak;
-
-        private MyHandler(WLibDefaultHttpBiz biz) {
-            weak = new WeakReference<>(biz);
-        }
-
-        @Override
-        public void handleMessage(Message msg) {
-            if (weak.get()!=null) {
-                if (msg.what==1) {
-                    weak.get().handleResponse((String) msg.obj);
-                } else if (msg.what==2) {
-                    weak.get().handleError(0, null, null);
-                }
-            }
         }
     }
 

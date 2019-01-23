@@ -8,13 +8,13 @@ import java.util.concurrent.TimeUnit;
 public class WLibThreadPoolManager {
 
     //核心线程数
-    private static final int CORE_POOL_SIZE = 3;
+    private static final int CORE_POOL_SIZE = 8;
     //最大线程数
-    private static final int MAX_POOL_SIZE = 16;
+    private static final int MAX_POOL_SIZE = 64;
     //线程池中超过corePoolSize数目的空闲线程最大存活时间；可以allowCoreThreadTimeOut(true)使得核心线程有效时间
     private static final int KEEP_ALIVE_TIME = 1;
     //任务队列
-    private static BlockingQueue<Runnable> workQueue = new ArrayBlockingQueue<>(16);
+    private static BlockingQueue<Runnable> workQueue = new ArrayBlockingQueue<>(64);
     private static ThreadPoolExecutor mPool;
 
     /**

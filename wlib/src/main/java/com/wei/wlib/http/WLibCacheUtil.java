@@ -2,7 +2,7 @@ package com.wei.wlib.http;
 
 import android.content.Context;
 
-import com.wei.wlib.util.Md5Util;
+import com.wei.wlib.util.WLibMd5;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,15 +19,15 @@ import java.io.Serializable;
 public class WLibCacheUtil {
 
     public static void saveJSONWithURL(Context context, String jsonStr, String url){
-        saveObject(context, jsonStr, Md5Util.getMD5(url));
+        saveObject(context, jsonStr, WLibMd5.getMD5(url));
     }
 
     public static String getJSONWithURL(Context context, String url){
-        return (String) readObject(context, Md5Util.getMD5(url));
+        return (String) readObject(context, WLibMd5.getMD5(url));
     }
 
     public static boolean deleteWithURL(Context context, String url) {
-        File data = context.getFileStreamPath(Md5Util.getMD5(url));
+        File data = context.getFileStreamPath(WLibMd5.getMD5(url));
         return data.exists() && data.delete();
     }
 

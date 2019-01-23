@@ -127,7 +127,7 @@ public class UpdateAppBiz {
         SPLongUtils.saveString(context, Const.SP_VERSION_CONFIG, "");
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
             LogCustom.show("downloadApk");
-            String downloadDir = Environment.getExternalStorageDirectory().getPath() + "/Download/APK";
+            String downloadDir = Environment.getExternalStorageDirectory().getPath() + DownloadService.DOWNLOAD_APK_DIR;
             String apkName = TextUtils.isEmpty(mUrl) ? "milu.apk" : mUrl.substring(mUrl.lastIndexOf("/"));
             File file = new File(downloadDir);
             if (!file.exists()) {

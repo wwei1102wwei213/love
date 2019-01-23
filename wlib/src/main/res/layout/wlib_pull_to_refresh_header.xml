@@ -24,7 +24,7 @@
                 android:layout_alignParentTop="true"
                 android:text="@string/pull_to_refresh_header_hint_normal"
                 android:textSize="14sp" 
-                android:textColor="#999999"/>
+                android:textColor="#CCCCCC"/>
             <TextView
                 android:id="@+id/pull_to_refresh_last_update_time_text"
                 android:layout_width="wrap_content"
@@ -33,7 +33,7 @@
                 android:layout_marginTop="@dimen/picture_pull_to_refresh_last_update_time_top_margin"
                 android:text="@string/pull_to_refresh_header_last_time"
                 android:textSize="@dimen/picture_pull_to_refresh_last_update_time_text_size" 
-                android:textColor="#999999"/>
+                android:textColor="#CCCCCC"/>
             <TextView
                 android:id="@+id/pull_to_refresh_header_time"
                 android:layout_width="wrap_content"
@@ -44,7 +44,7 @@
                 android:layout_marginTop="@dimen/picture_pull_to_refresh_last_update_time_top_margin"
                 android:layout_marginLeft="2dp"
                 android:textSize="@dimen/picture_pull_to_refresh_last_update_time_text_size"
-                android:textColor="#999999"/>
+                android:textColor="#CCCCCC"/>
         </RelativeLayout>
 
         <ImageView
@@ -66,7 +66,7 @@
             android:layout_toLeftOf="@id/pull_to_refresh_header_text"
             android:layout_centerVertical="true"
             android:layout_marginRight="8dp"
-            android:indeterminateDrawable="@anim/loading_refresh_anim"
+            android:indeterminateDrawable="@anim/wlib_progressbar_loading_anim"
             android:visibility="invisible"/>
     </RelativeLayout>
 </LinearLayout>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line_eee"
+        android:layout_marginLeft="10dp"
+        android:visibility="visible"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
+        <com.wei.wlib.widget.CircleImageView
+            android:id="@+id/civ"
+            android:layout_width="40dp"
+            android:layout_height="40dp" />
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="名称"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:textSize="15sp"
+            android:textColor="@color/base_title_color"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/civ"/>
+
+        <TextView
+            android:id="@+id/tv_remark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="简介简介简介"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textSize="13sp"
+            android:textColor="#999999"
+            android:layout_marginLeft="8dp"
+            android:layout_toRightOf="@id/civ"
+            android:layout_marginTop="8dp"
+            android:layout_below="@id/tv_name"/>
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_human_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"/>
+</LinearLayout>

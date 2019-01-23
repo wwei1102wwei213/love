@@ -22,6 +22,7 @@
     <color name="wlib_white">#FFFFFF</color>
     <color name="wlib_white_half">#80FFFFFF</color>
     <color name="wlib_line_eee">#eeeeee</color>
+    <color name="wlib_line_ddd">#dddddd</color>
 
     <color name="wlib_progress_selected">#0c8f62</color>
     <color name="wlib_progress_unselected">#81d7ba</color>
@@ -38,4 +39,6 @@
     <color name="wlib_collapsible_body">#222222</color>
     <color name="wlib_collapsible_control">#666666</color>
 
+    <!--TabLayout-->
+    <color name="wlib_tab_layout_selected">#23B382</color>
 </resources>

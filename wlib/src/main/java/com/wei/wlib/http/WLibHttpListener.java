@@ -33,7 +33,7 @@ public interface WLibHttpListener {
      */
 
     //处理返回数据
-    void handleResp(Object data, int flag, Object tag, String response, String hint);
+    void handleResp(Object formatData, int flag, Object tag, String response, String hint);
 
     /**
      * 处理请求中loading操作

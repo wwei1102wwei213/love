@@ -37,7 +37,7 @@ public class DrawCircleView extends View {
 		this.count = count;
 		if(this.r == 0) this.r = 10;
 		if(this.hollow == 0) this.hollow = Color.parseColor("#FFFFFF");
-		if(this.solid == 0) this.solid = Color.parseColor("#000000");
+		if(this.solid == 0) this.solid = Color.parseColor("#333333");
 		if(this.count== 0) this.count = 3;
 	}	
 	@Override

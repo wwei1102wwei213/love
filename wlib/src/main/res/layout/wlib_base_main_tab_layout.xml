@@ -20,7 +20,7 @@
         android:paddingTop="5dp"
         android:paddingBottom="2dp">
 
-        <RadioButton
+        <!--<RadioButton
             android:id="@+id/tab_rb_bookshelf"
             style="@style/radiobutton_main_bottom_btn"
             android:drawableTop="@drawable/base_tab_selector_1"
@@ -41,7 +41,7 @@
             android:id="@+id/tab_rb_me"
             style="@style/radiobutton_main_bottom_btn"
             android:drawableTop="@drawable/base_tab_selector_4"
-            android:text="@string/tab_text_me"/>
+            android:text="@string/tab_text_me"/>-->
 
     </RadioGroup>
 </LinearLayout>

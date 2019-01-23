@@ -67,9 +67,9 @@ public class CustomTabLayout extends LinearLayout {
         /*try {
             View v;
             if (flag){
-                v = LayoutInflater.from(getContext()).inflate(R.layout.item_custom_tab_weight, this, false);
+                v = LayoutInflater.from(getContext()).inflate(R.layout.wlib_item_custom_tab_weight, this, false);
             } else {
-                v = LayoutInflater.from(getContext()).inflate(R.layout.item_custom_tab, this, false);
+                v = LayoutInflater.from(getContext()).inflate(R.layout.wlib_item_custom_tab, this, false);
             }
             TextView tv = (TextView) v.findViewById(R.id.tv);
             tv.setText(tabTile);

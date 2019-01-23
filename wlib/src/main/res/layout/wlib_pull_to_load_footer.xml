@@ -17,7 +17,7 @@
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:visibility="visible"
-            android:indeterminateDrawable="@anim/update_loading_progressbar_anim"
+            android:indeterminateDrawable="@anim/wlib_progressbar_loading_anim"
             android:gravity="center"
             android:layout_marginRight="8dp" />
 
@@ -26,8 +26,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/pull_to_refresh_header_hint_loading"
-            android:textColor="#999999" 
-            android:textSize="14dp"/>
+            android:textColor="#cccccc"
+            android:textSize="14sp"/>
 
         <Button
             android:id="@+id/pull_to_load_footer_btn_reload"

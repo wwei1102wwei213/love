@@ -2,15 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/bg_color">
     <include layout="@layout/base_title_layout"/>
     <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/v_base_title">
-
-        <com.doojaa.base.widget.pullwidget.pullrefresh.ElasticityListView
+        <ListView
             android:id="@+id/lv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -18,6 +18,41 @@
             android:listSelector="@android:color/transparent"
             android:divider="@null"
             android:dividerHeight="0dp"/>
+        <LinearLayout
+            android:id="@+id/v_no_data"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal">
+            <ImageView
+                android:id="@+id/iv_temp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/my_mytg_nodata_pic"
+                android:layout_marginTop="95dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/invite_no_data_hint"
+                android:textColor="#ff999999"
+                android:textSize="13sp"
+                android:layout_marginTop="31dp"
+                />
+            <TextView
+                android:id="@+id/tv_invite"
+                android:layout_width="match_parent"
+                android:layout_marginLeft="60dp"
+                android:layout_marginRight="60dp"
+                android:layout_height="38dp"
+                android:text="@string/invite_friend"
+                android:textColor="@color/text_white"
+                android:background="@drawable/base_btn_default"
+                android:textSize="17sp"
+                android:gravity="center"
+                android:layout_marginTop="31dp"
+                />
+        </LinearLayout>
 
     </RelativeLayout>
 
@@ -25,6 +60,6 @@
         android:id="@+id/pb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center" />
+        android:layout_centerInParent="true" />
 
 </RelativeLayout>

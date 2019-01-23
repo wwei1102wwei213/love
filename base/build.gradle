@@ -1,16 +1,36 @@
 apply plugin: 'com.android.application'
 
+//定义时间
+def releaseTime() {
+    return new Date().format("yyyyMMddHHmm", TimeZone.getDefault())
+}
+
 android {
     compileSdkVersion 26
     buildToolsVersion '26.0.2'
     defaultConfig {
 
-        applicationId "com.doojaa.base"
-        minSdkVersion 14
+        applicationId "com.yyspbfq.filmplay"
+        minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
+
+        ndk {
+            //选择要添加的对应 cpu 类型的 .so 库。
+            abiFilters 'armeabi', 'x86'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : applicationId,
+                JPUSH_APPKEY : "964415854bf8de9c0fe341ec", //JPush 上注册的包名对应的 Appkey.
+                JPUSH_CHANNEL : "default", //暂时填写默认值即可.
+                CHANNEL_VALUE : "default" //暂时填写默认值即可.
+        ]
     }
 
     buildTypes {
@@ -20,24 +40,77 @@ android {
         }
     }
 
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ["libs"]
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
+    lintOptions {
+        abortOnError false
+    }
+
+    lintOptions {
+        disable 'MissingTranslation'    // 忽略翻译检查
+    }
+
+    flavorDimensions "default"
+    productFlavors {
+        "2001" { dimension "default"}
+    }
+
+    productFlavors.all {
+        flavor -> flavor.manifestPlaceholders = [CHANNEL_VALUE: name]
+    }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "player_${defaultConfig.versionName}_${defaultConfig.versionCode}_${releaseTime()}_${variant.productFlavors[0].name}.apk"
+        }
+    }
+
+}
+
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
+    implementation 'com.android.support:multidex:1.0.3'
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support:design:26.1.0'
     //注解框架
     implementation 'com.jakewharton:butterknife:8.8.1'
-    //网络请求
-    implementation 'com.squareup.okhttp:okhttp:2.7.2'
-    implementation 'com.github.bumptech.glide:glide:3.8.0'
-    implementation 'com.github.bumptech.glide:okhttp-integration:1.4.0@aar'
-    //打印框架
-    implementation 'com.orhanobut:logger:2.1.1'
     //JSON格式化
     implementation 'com.google.code.gson:gson:2.8.1'
+    //网络请求,图片处理
+    implementation 'com.github.bumptech.glide:glide:3.8.0'
+    implementation 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
+    implementation 'com.zhy:okhttputils:2.6.2'
+    //日志打印
+    implementation 'com.orhanobut:logger:2.1.1'
     //各页面和组件通讯
     implementation 'org.greenrobot:eventbus:3.0.0'
+    //二维码
+    implementation 'com.google.zxing:core:3.3.0'
+    //视频播放
+    implementation 'com.danikula:videocache:2.7.0'
+    implementation project(':jiaozivideoplayer')
+    implementation project(':wlib')
+    //    implementation "com.google.guava:guava:23.0-android"
+    implementation files('libs/thinkandroid-1.1-bin.jar')
+    //UMeng
+    implementation 'com.umeng.analytics:analytics:6.1.4'
+    //JPUSH
+    implementation files('libs/jcore-android_v1.1.3.jar')
+    implementation files('libs/jpush-android_v3.0.6.jar')
 }
 

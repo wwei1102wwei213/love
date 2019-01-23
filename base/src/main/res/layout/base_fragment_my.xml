@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.doojaa.base.widget.pullwidget.pullrefresh.PullElasticityScrollView
+        <com.wei.wlib.pullrefresh.PullElasticityScrollView
             android:id="@+id/pull_refresh_scroll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -22,7 +22,7 @@
         android:id="@+id/status_bar"
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/actionbar_default"
+        android:background="@color/bg_color"
         android:alpha="0"/>
 
 </RelativeLayout>

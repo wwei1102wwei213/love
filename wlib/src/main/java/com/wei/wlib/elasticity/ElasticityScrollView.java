@@ -2,8 +2,6 @@ package com.wei.wlib.elasticity;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.animation.Animation;
-import android.view.animation.DecelerateInterpolator;
 import android.view.animation.ScaleAnimation;
 import android.widget.ScrollView;
 
@@ -44,7 +42,7 @@ public class ElasticityScrollView extends ScrollView {
         }
     }
 
-    protected boolean overScrollBy(int deltaX, int deltaY, int scrollX, int scrollY, int scrollRangeX, int scrollRangeY, int maxOverScrollX, int maxOverScrollY, boolean isTouchEvent) {
+    /*protected boolean overScrollBy(int deltaX, int deltaY, int scrollX, int scrollY, int scrollRangeX, int scrollRangeY, int maxOverScrollX, int maxOverScrollY, boolean isTouchEvent) {
         int overScrollMode = getOverScrollMode();
         boolean canScrollHorizontal = computeHorizontalScrollRange() > computeHorizontalScrollExtent();
         boolean canScrollVertical = computeVerticalScrollRange() > computeVerticalScrollExtent();
@@ -111,5 +109,5 @@ public class ElasticityScrollView extends ScrollView {
             this.topAnim.setRepeatMode(2);
         }
         return this.topAnim;
-    }
+    }*/
 }

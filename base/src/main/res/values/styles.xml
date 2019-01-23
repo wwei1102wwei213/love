@@ -269,4 +269,13 @@
         <item name="android:layout_marginRight">@dimen/my_ll_split_margin_right</item>
     </style>
 
+    <style name="tv_menu_my_invite">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/text_10</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_marginTop">8dp</item>
+    </style>
+
 </resources>

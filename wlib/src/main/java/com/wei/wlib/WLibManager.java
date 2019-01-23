@@ -6,7 +6,6 @@ import com.wei.wlib.http.persistentcookiejar.PersistentCookieJar;
 import com.wei.wlib.http.persistentcookiejar.cache.SetCookieCache;
 import com.wei.wlib.http.persistentcookiejar.persistence.SharedPrefsCookiePersistor;
 import com.wei.wlib.thread.WLibThreadPoolManager;
-import com.wei.wlib.util.WLibLog;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.https.HttpsUtils;
 
@@ -25,16 +24,24 @@ import okhttp3.OkHttpClient;
  */
 public class WLibManager {
 
+    private WLibManager(){}
+
     private static WLibManager instance;
     private PersistentCookieJar cookieJar;//序列化cookie
 
-    public static void init(Context context) {
-        WLibHelper helper = WLibHelper.getInstance(context);
-        if (helper==null) {
-            WLibLog.e("初始化失败！");
-        } else {
-
+    public static WLibManager getInstance() {
+        if (instance==null) {
+            synchronized (WLibManager.class) {
+                if (instance==null) {
+                    instance = new WLibManager();
+                }
+            }
         }
+        return instance;
+    }
+
+    public void init() {
+
     }
 
     public void initOkHttp() {

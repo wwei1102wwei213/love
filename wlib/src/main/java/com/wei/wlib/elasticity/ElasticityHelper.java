@@ -54,7 +54,8 @@ public class ElasticityHelper {
     }
 
     public static IElasticity setUpOverScroll(ScrollView scrollView) {
-        return setUpOverScroll(scrollView, 1.2f);
+        return null;
+//        return setUpOverScroll(scrollView, 1.2f);
     }
 
     public static IElasticity setUpOverScroll(HorizontalScrollView scrollView, float scaleFactor) {

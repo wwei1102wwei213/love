@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="wrap_content"
+    android:layout_height="@dimen/video_classify_menu_height"
+    android:paddingRight="12dp">
+    <View
+        android:id="@+id/v_space"
+        android:layout_width="12dp"
+        android:layout_height="match_parent"
+        android:visibility="visible"/>
+    <TextView
+        android:id="@+id/tv_classify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="分类名称"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/selector_classify_item_choose"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"/>
+</LinearLayout>

@@ -26,7 +26,7 @@ public class DownloadService extends Service {
 
     public static final String DOWNLOAD_APK_NAME = "download_apk_name";
     public static final String DOWNLOAD_APK_URL = "download_apk_url";
-    private static final String DOWNLOAD_APK_DIR = "/Download/APK";
+    public static final String DOWNLOAD_APK_DIR = "/Download/APK";
 
     private static DownloadManager mDm;
     private BroadcastReceiver mReceiver;
