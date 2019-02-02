@@ -13,7 +13,7 @@
         <ListView
             android:id="@+id/lv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:overScrollMode="never"
             android:listSelector="@android:color/transparent"
             android:divider="@null"
@@ -41,9 +41,7 @@
                 />
             <TextView
                 android:id="@+id/tv_invite"
-                android:layout_width="match_parent"
-                android:layout_marginLeft="60dp"
-                android:layout_marginRight="60dp"
+                android:layout_width="240dp"
                 android:layout_height="38dp"
                 android:text="@string/invite_friend"
                 android:textColor="@color/text_white"
@@ -51,6 +49,7 @@
                 android:textSize="17sp"
                 android:gravity="center"
                 android:layout_marginTop="31dp"
+                android:layout_gravity="center_horizontal"
                 />
         </LinearLayout>
 
@@ -60,6 +59,7 @@
         android:id="@+id/pb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true" />
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
 
 </RelativeLayout>

@@ -1,6 +1,6 @@
 package com.yyspbfq.filmplay.utils;
 
-import java.util.Random;
+import android.text.TextUtils;
 
 /**
  * 邀请码生成器，算法原理：<br/>
@@ -48,9 +48,9 @@ public class ShareCodeUtils {
         if(str.length() < s) {
             StringBuilder sb=new StringBuilder();
             sb.append(b);
-            Random rnd=new Random();
-            for(int i=1; i < s - str.length(); i++) {
-                sb.append(r[rnd.nextInt(binLen)]);
+//            Random rnd=new Random();
+            for(int i=0; i < s - str.length() -1 ; i++) {
+                sb.append(r[i]);
             }
             str+=sb.toString();
         }
@@ -58,26 +58,33 @@ public class ShareCodeUtils {
     }
 
     public static long codeToId(String code) {
+        if (TextUtils.isEmpty(code)) return 0;
+        if (code.length()<6) return 0;
+        code = code.toLowerCase();
         char chs[]=code.toCharArray();
         long res=0L;
-        for(int i=0; i < chs.length; i++) {
-            int ind=0;
-            for(int j=0; j < binLen; j++) {
-                if(chs[i] == r[j]) {
-                    ind=j;
+        try {
+            for(int i=0; i < chs.length; i++) {
+                int ind=0;
+                for(int j=0; j < binLen; j++) {
+                    if(chs[i] == r[j]) {
+                        ind=j;
+                        break;
+                    }
+                }
+                if(chs[i] == b) {
                     break;
                 }
+                if(i > 0) {
+                    res=res * binLen + ind;
+                } else {
+                    res=ind;
+                }
+                // System.out.println(ind + "-->" + res);
             }
-            if(chs[i] == b) {
-                break;
-            }
-            if(i > 0) {
-                res=res * binLen + ind;
-            } else {
-                res=ind;
-            }
-            // System.out.println(ind + "-->" + res);
+        } catch (Exception e){
         }
+
         return res;
     }
 }

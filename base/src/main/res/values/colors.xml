@@ -34,6 +34,7 @@
     <color name="split_my">#eeeeee</color>
     <color name="line_f1f1f1">#f1f1f1</color>
     <color name="line_eee">#eeeeee</color>
+    <color name="line_2a">#2A2E32</color>
     <color name="line_ddd">#dddddd</color>
     <color name="line_black">#0D0E10</color>
 
@@ -98,6 +99,8 @@
 
     <color name="name_text_color">#999999</color>
 
+    <color name="base_item_text_color">#CCCCCC</color>
+
     <color name="base_title_color">#E3B88E</color>
     <color name="classify_tag_default">#999999</color>
 
@@ -118,4 +121,11 @@
     <color name="invite_time_line_color">#FFC489</color>
     <color name="invite_item_level_bg">#FFE5CB</color>
     <color name="invite_item_title_color">#E6994E</color>
+
+    <color name="level_rechange_summary">#E3B88E</color>
+    <color name="bg_half_translucent_dark">#80000000</color>
+
+
+    <color name="info_message_space_line">#2A2E32</color>
+    <color name="base_line_gray">#2A2E32</color>
 </resources>

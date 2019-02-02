@@ -1,28 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/bg_color"
+    android:fitsSystemWindows="true">
     <View
         android:id="@+id/status_bar"
         android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/base_home_menu_ground"/>
+        android:layout_height="1px"/>
     <RelativeLayout
         android:id="@+id/v_play_parent"
         android:layout_width="match_parent"
         android:layout_height="202dp"
         android:background="@color/base_home_menu_ground">
-        <com.yyspbfq.filmplay.player.MyJzvdStd
+        <cn.jzvd.JzvdStd
             android:id="@+id/jvd"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </RelativeLayout>
 
+    <LinearLayout
+        android:id="@+id/v_bottom"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:gravity="center_vertical"
+        android:layout_alignParentBottom="true"
+        android:background="#25282D">
+        <TextView
+            android:id="@+id/v_comment"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="34dp"
+            android:layout_marginLeft="12dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/bg_comment_input_hint"
+            android:drawableLeft="@mipmap/play_pinglun_icon"
+            android:paddingLeft="12dp"
+            android:text="@string/search_hint_text"
+            android:textSize="14sp"
+            android:gravity="center_vertical"
+            android:layout_marginTop="11dp"
+            android:textColor="#999999"
+            android:drawablePadding="8dp"/>
+        <ImageView
+            android:id="@+id/iv_collection"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:scaleType="centerInside"
+            android:src="@mipmap/play_bottom_ilike"/>
+        <ImageView
+            android:id="@+id/iv_download"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:scaleType="centerInside"
+            android:src="@mipmap/play_bottom_download"/>
+        <ImageView
+            android:id="@+id/iv_share"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:scaleType="centerInside"
+            android:src="@mipmap/play_bottom_share"
+            android:layout_marginRight="8dp"/>
+    </LinearLayout>
+
     <RelativeLayout
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/v_play_parent">
+        android:layout_below="@id/v_play_parent"
+        android:layout_above="@id/v_bottom">
 
         <com.wei.wlib.pullrefresh.PullToRefreshListView
             android:id="@+id/plv"
@@ -32,6 +80,60 @@
 
     </RelativeLayout>
 
+    <!--<com.wei.wlib.widget.SoftKeyLayout
+        android:id="@+id/skl"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+        <View
+            android:id="@+id/skl_space"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+        <LinearLayout
+            android:id="@+id/layout_bottom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:minHeight="56dp"
+            android:visibility="visible"
+            android:orientation="horizontal">
 
+            <EditText
+                android:id="@+id/edit_txt"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:maxHeight="160dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_weight="1"
+                android:background="@color/bg_white"
+                android:hint="内容"
+                android:padding="8dp"
+                android:textColorHint="#ccc"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/send_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="8dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:text="发送"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:background="@drawable/selector_level_exchange_btn"
+                android:textColor="@color/selector_comment_send_btn"
+                android:visibility="visible" />
+        </LinearLayout>
+    </com.wei.wlib.widget.SoftKeyLayout>-->
 
 </RelativeLayout>

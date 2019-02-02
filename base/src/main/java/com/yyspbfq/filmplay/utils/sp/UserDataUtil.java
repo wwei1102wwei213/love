@@ -11,11 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/8/29 0029.
- *
  * 用户基本信息帮助类
  *
- * @author wwei
  */
 public class UserDataUtil {
 
@@ -76,6 +73,14 @@ public class UserDataUtil {
         initUserInfo(context);
     }
 
+    public static void  saveMessageLastTime(Context context, String lastTime) {
+        SharePrefUtil.saveString(context, "film_msg_last_time", lastTime);
+    }
+
+    public static String getMessageLastTime(Context context) {
+        return SharePrefUtil.getString(context, "film_msg_last_time", "0");
+    }
+
     public static <T> void saveDataList(Context context, String key, List<T> list){
         SharePrefUtil.saveDataList(context, key, list);
     }
@@ -92,6 +97,7 @@ public class UserDataUtil {
 
     public static void clearUserData(Context context){
         LoginType = null;
+        mUserInfo = null;
         SharePrefUtil.clear(context);
     }
 

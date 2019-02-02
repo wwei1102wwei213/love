@@ -13,18 +13,20 @@ import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ListView;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import com.wei.wlib.http.WLibHttpFlag;
 import com.wei.wlib.http.WLibHttpListener;
+import com.wei.wlib.pullrefresh.PullToRefreshBase;
 import com.wei.wlib.pullrefresh.PullToRefreshListView;
 import com.yyspbfq.filmplay.R;
 import com.yyspbfq.filmplay.adapter.DiscoverAdapter;
+import com.yyspbfq.filmplay.bean.DiscoverDataBean;
 import com.yyspbfq.filmplay.biz.Factory;
 import com.yyspbfq.filmplay.biz.http.HttpFlag;
 import com.yyspbfq.filmplay.db.VideoEntity;
 import com.yyspbfq.filmplay.ui.BaseFragment;
 import com.yyspbfq.filmplay.ui.activity.VideoSearchActivity;
 import com.yyspbfq.filmplay.utils.BLog;
+import com.yyspbfq.filmplay.utils.tools.TimeUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,6 +40,7 @@ public class DiscoverFragment extends BaseFragment implements WLibHttpListener{
     private PullToRefreshListView plv;
     private ListView lv;
     private DiscoverAdapter adapter;
+    private List<VideoEntity> mData;
     SensorManager sensorManager;
     Jzvd.JZAutoFullscreenListener sensorEventListener;
 
@@ -58,23 +61,37 @@ public class DiscoverFragment extends BaseFragment implements WLibHttpListener{
         lv.setDivider(null);
         lv.setSelector(new ColorDrawable(Color.TRANSPARENT));
         lv.setVerticalScrollBarEnabled(false);
-        List<String> list = new ArrayList<>();
-        adapter = new DiscoverAdapter(context, null);
+        mData = new ArrayList<>();
+        adapter = new DiscoverAdapter(context, mData);
         lv.setAdapter(adapter);
         //关闭下拉
-        plv.setPullRefreshEnabled(false);
+        plv.setPullRefreshEnabled(true);
         //关闭加载更多
-        plv.setScrollLoadEnabled(false);
+        plv.setScrollLoadEnabled(true);
 
         lv.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
-
+                if (plv.isReadyForPullUp() && plv.hasMoreData()) {
+                    scrollLoadMore();
+                }
             }
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                 Jzvd.onScrollAutoTiny(view, firstVisibleItem, visibleItemCount, totalItemCount);
+            }
+        });
+
+        plv.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
+            @Override
+            public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
+                loadData();
+            }
+
+            @Override
+            public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+
             }
         });
 
@@ -89,22 +106,55 @@ public class DiscoverFragment extends BaseFragment implements WLibHttpListener{
         });
     }
 
+    private boolean isLoading = false;
+
+    private void loadData() {
+        if (isLoading) return;
+        isLoading = true;
+        page = 0;
+        initData();
+    }
+
+    private void scrollLoadMore(){
+        if (isLoading) return;
+        isLoading = true;
+        page++;
+        initData();
+    }
+
     private int page = 0;
     private void initData() {
         Map<String, String> map = new HashMap<>();
         map.put("page", page+"");
-        Factory.resp(this, HttpFlag.FLAG_MAIN_DISCOVER, page, null).post(map);
+        map.put("size", "10");
+        Factory.resp(this, HttpFlag.FLAG_MAIN_DISCOVER, page, DiscoverDataBean.class).post(map);
     }
 
     @Override
     public void handleResp(Object formatData, int flag, Object tag, String response, String hint) {
         if (flag == HttpFlag.FLAG_MAIN_DISCOVER) {
             try {
-                List<VideoEntity> data = new Gson().fromJson(formatData.toString(), new TypeToken<List<VideoEntity>>(){}.getType());
-                if (data!=null&&data.size()>0) {
-                    adapter.update(data);
+                DiscoverDataBean bean = (DiscoverDataBean) formatData;
+                List<VideoEntity> list = bean.getData();
+                if (list==null||list.size()==0) {
+                    if (page>0) {
+                        page--;
+                        plv.setHasMoreData(false);
+                    }
+                } else {
+                    if (page==0) {
+                        mData.clear();
+                    }
+                    mData.addAll(list);
+                    adapter.update(mData);
+                    if (list.size()<bean.getSize()) {
+                        plv.setHasMoreData(false);
+                    } else {
+                        plv.setHasMoreData(true);
+                    }
                 }
             } catch (Exception e){
+                handleError(flag, tag, WLibHttpFlag.HTTP_ERROR_OTHER, null, null);
                 BLog.e(e);
             }
         }
@@ -117,12 +167,28 @@ public class DiscoverFragment extends BaseFragment implements WLibHttpListener{
 
     @Override
     public void handleError(int flag, Object tag, int errorType, String response, String hint) {
-
+        if (flag == HttpFlag.FLAG_MAIN_DISCOVER) {
+            try {
+                if (page>0) {
+                    page--;
+                    if (errorType== WLibHttpFlag.HTTP_ERROR_DATA_EMPTY) plv.setHasMoreData(false);
+                }
+            } catch (Exception e){
+                BLog.e(e);
+            }
+        }
     }
 
     @Override
     public void handleAfter(int flag, Object tag) {
+        if (flag == HttpFlag.FLAG_MAIN_DISCOVER) {
+            isLoading = false;
+            if ((int) tag == 0) {
+                plv.setLastUpdatedLabel(TimeUtils.getCurrentTimeInString(TimeUtils.DATE_FORMAT_DATE_2));
+                plv.onPullDownRefreshComplete();
+            }
 
+        }
     }
 
     @Override

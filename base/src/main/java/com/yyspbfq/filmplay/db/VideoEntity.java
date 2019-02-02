@@ -1,5 +1,7 @@
 package com.yyspbfq.filmplay.db;
 
+import android.text.TextUtils;
+
 public class VideoEntity {
 
 /*
@@ -52,6 +54,24 @@ public class VideoEntity {
     private int canDown;
     private int canCollection;
     private int canLoveOrHate;
+    private String c_date;
+    private String watch_time;
+
+    public String getC_date() {
+        return c_date;
+    }
+
+    public void setC_date(String c_date) {
+        this.c_date = c_date;
+    }
+
+    public String getWatch_time() {
+        return watch_time;
+    }
+
+    public void setWatch_time(String watch_time) {
+        this.watch_time = watch_time;
+    }
 
     public String getId() {
         return id;
@@ -179,5 +199,37 @@ public class VideoEntity {
 
     public int getCanLoveOrHate() {
         return canLoveOrHate;
+    }
+
+    public void setCanWatch(int canWatch) {
+        this.canWatch = canWatch;
+    }
+
+    public void setCanDown(int canDown) {
+        this.canDown = canDown;
+    }
+
+    public void setCanCollection(int canCollection) {
+        this.canCollection = canCollection;
+    }
+
+    public void setCanLoveOrHate(int canLoveOrHate) {
+        this.canLoveOrHate = canLoveOrHate;
+    }
+
+    public long getVideoSize() {
+        if (TextUtils.isEmpty(video_time)) return 0;
+        long r = 0;
+        try {
+            String[] args = video_time.split(":");
+            if (args.length==2) {
+                r = Integer.parseInt(args[0])*60 + Integer.parseInt(args[1]);
+            } else if (args.length==3) {
+                r = Integer.parseInt(args[0])*3600 + Integer.parseInt(args[1])*60 + Integer.parseInt(args[2]);
+            }
+        } catch (Exception e){
+
+        }
+        return r;
     }
 }

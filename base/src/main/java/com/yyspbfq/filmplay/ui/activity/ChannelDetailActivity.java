@@ -123,7 +123,7 @@ public class ChannelDetailActivity extends BaseActivity implements WLibHttpListe
     private void setHeaderView(ChannelDefaultBean bean) {
         if (bean==null) return;
         try {
-            Glide.with(this).load(bean.getThumb()).crossFade().into(iv_top);
+            Glide.with(this).load(bean.getPic()).crossFade().into(iv_top);
             tv_remark.setText(bean.getRemark()==null?"没有介绍":bean.getRemark());
             tv_name.setText(bean.getTitle()==null?"未知专题":bean.getTitle());
             adapter.notifyDataSetChanged();
@@ -227,7 +227,7 @@ public class ChannelDetailActivity extends BaseActivity implements WLibHttpListe
     @Override
     public void handleAfter(int flag, Object tag) {
         if (flag==HttpFlag.FLAG_CHANNEL_DETAIL_LIST) {
-            isLoading = true;
+            isLoading = false;
         } else if (flag==HttpFlag.FLAG_CHANNEL_DETAIL) {
 
         }

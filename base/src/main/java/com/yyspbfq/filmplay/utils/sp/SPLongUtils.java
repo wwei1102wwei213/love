@@ -22,6 +22,25 @@ public class SPLongUtils {
 
     private final static String SP_NAME = "filmplay_long_config";
 
+    public static boolean isFirst(Context context) {
+        try {
+            SharedPreferences sp = context.getSharedPreferences(SP_NAME, 0);
+            return sp.getBoolean("filmplay_first_run", true);
+        }catch (Exception e){
+            BLog.e(e);
+        }
+        return true;
+    }
+
+    public static void saveFirst(Context context, boolean isFirst) {
+        try {
+            SharedPreferences sp = context.getSharedPreferences(SP_NAME, 0);
+            sp.edit().putBoolean("filmplay_first_run", isFirst).apply();
+        }catch (Exception e){
+            BLog.e(e);
+        }
+    }
+
     /**
      * 保存字符串
      *
@@ -79,6 +98,20 @@ public class SPLongUtils {
             BLog.e(e);
         }
         return defValue;
+    }
+
+    private static final String KEY_INVITE_CODE_URL = "key_invite_code_url";
+    public static void saveInviteCodeUrl(Context context, String url) {
+        if (url==null) return;
+        try {
+            saveString(context, KEY_INVITE_CODE_URL, url);
+        } catch (Exception e){
+            BLog.e(e);
+        }
+    }
+
+    public static String getInviteCodeUrl(Context context) {
+        return getString(context, KEY_INVITE_CODE_URL, "");
     }
 
     private static final String KEY_SEARCH_RECORD = "key_search_record";

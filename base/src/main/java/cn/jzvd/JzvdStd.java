@@ -1,5 +1,6 @@
 package cn.jzvd;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.BroadcastReceiver;
@@ -13,7 +14,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
@@ -24,7 +24,10 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.orhanobut.logger.Logger;
 import com.yyspbfq.filmplay.R;
+import com.yyspbfq.filmplay.ui.activity.FeedbackActivity;
+import com.yyspbfq.filmplay.utils.BLog;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -47,10 +50,14 @@ public class JzvdStd extends Jzvd {
     public LinearLayout batteryTimeLayout;
     public ImageView batteryLevel;
     public TextView videoCurrentTime;
-    public TextView replayTextView;
+    public View replayTextView;
+
     public TextView clarity;
     public PopupWindow clarityPopWindow;
     public TextView mRetryBtn;
+    public TextView tv_contact_us;
+
+    public View v_seek_loading;
     public LinearLayout mRetryLayout;
 
     protected DismissControlViewTimerTask mDismissControlViewTimerTask;
@@ -108,8 +115,11 @@ public class JzvdStd extends Jzvd {
         batteryLevel = findViewById(R.id.battery_level);
         videoCurrentTime = findViewById(R.id.video_current_time);
         replayTextView = findViewById(R.id.replay_text);
+
         clarity = findViewById(R.id.clarity);
         mRetryBtn = findViewById(R.id.retry_btn);
+        tv_contact_us = findViewById(R.id.tv_contact_us);
+        v_seek_loading = findViewById(R.id.v_seek_loading);
         mRetryLayout = findViewById(R.id.retry_layout);
 
         thumbImageView.setOnClickListener(this);
@@ -117,6 +127,9 @@ public class JzvdStd extends Jzvd {
         tinyBackImageView.setOnClickListener(this);
         clarity.setOnClickListener(this);
         mRetryBtn.setOnClickListener(this);
+        tv_contact_us.setOnClickListener(this);
+
+
     }
 
     public void setUp(JZDataSource jzDataSource, int screen) {
@@ -137,7 +150,12 @@ public class JzvdStd extends Jzvd {
         } else if (currentScreen == SCREEN_WINDOW_NORMAL
                 || currentScreen == SCREEN_WINDOW_LIST) {
             fullscreenButton.setImageResource(R.drawable.jz_enlarge);
-            backButton.setVisibility(View.GONE);
+            //todo
+            if (currentScreen == SCREEN_WINDOW_LIST) {
+                backButton.setVisibility(View.GONE);
+            } else {
+                backButton.setVisibility(View.VISIBLE);
+            }
             tinyBackImageView.setVisibility(View.INVISIBLE);
             changeStartButtonSize((int) getResources().getDimension(R.dimen.jz_start_button_w_h_normal));
             batteryTimeLayout.setVisibility(View.GONE);
@@ -157,15 +175,17 @@ public class JzvdStd extends Jzvd {
             JzvdMgr.setFirstFloor(this);
             backPress();
         }
+
     }
 
     public void changeStartButtonSize(int size) {
-        ViewGroup.LayoutParams lp = startButton.getLayoutParams();
+//        iv_replay.setVisibility(GONE);
+        /*ViewGroup.LayoutParams lp = startButton.getLayoutParams();
         lp.height = size;
         lp.width = size;
         lp = loadingProgressBar.getLayoutParams();
         lp.height = size;
-        lp.width = size;
+        lp.width = size;*/
     }
 
     @Override
@@ -177,12 +197,14 @@ public class JzvdStd extends Jzvd {
     public void onStateNormal() {
         super.onStateNormal();
         changeUiToNormal();
+        Logger.e("onStateNormal ");
     }
 
     @Override
     public void onStatePreparing() {
         super.onStatePreparing();
         changeUiToPreparing();
+        Logger.e("onStatePreparing ");
     }
 
     @Override
@@ -205,7 +227,9 @@ public class JzvdStd extends Jzvd {
     @Override
     public void onStatePlaying() {
         super.onStatePlaying();
+        handleSeekLoading();
         changeUiToPlayingClear();
+        Logger.e("onStatePlaying ");
     }
 
     @Override
@@ -213,12 +237,14 @@ public class JzvdStd extends Jzvd {
         super.onStatePause();
         changeUiToPauseShow();
         cancelDismissControlViewTimer();
+        Logger.e("onStatePause ");
     }
 
     @Override
     public void onStateError() {
         super.onStateError();
         changeUiToError();
+        Logger.e("onStateError ");
     }
 
     @Override
@@ -227,6 +253,7 @@ public class JzvdStd extends Jzvd {
         changeUiToComplete();
         cancelDismissControlViewTimer();
         bottomProgressBar.setProgress(100);
+        Logger.e("onStateAutoComplete ");
     }
 
     @Override
@@ -280,6 +307,7 @@ public class JzvdStd extends Jzvd {
                     showWifiDialog();
                     return;
                 }
+                //todo
                 startVideo();
                 onEvent(JZUserActionStd.ON_CLICK_START_THUMB);//开始的事件应该在播放之后，此处特殊
             } else if (currentState == CURRENT_STATE_AUTO_COMPLETE) {
@@ -288,7 +316,15 @@ public class JzvdStd extends Jzvd {
         } else if (i == R.id.surface_container) {
             startDismissControlViewTimer();
         } else if (i == R.id.back) {
-            backPress();
+            if (currentScreen == Jzvd.SCREEN_WINDOW_FULLSCREEN) {
+                backPress();
+            } else {
+                try {
+                    ((Activity) getContext()).finish();
+                } catch (Exception e){
+                    BLog.e(e);
+                }
+            }
         } else if (i == R.id.back_tiny) {
             if (JzvdMgr.getFirstFloor().currentScreen == Jzvd.SCREEN_WINDOW_LIST) {
                 quitFullscreenOrTinyWindow();
@@ -353,6 +389,8 @@ public class JzvdStd extends Jzvd {
             JZMediaManager.setDataSource(jzDataSource);
             onStatePreparing();
             onEvent(JZUserAction.ON_CLICK_START_ERROR);
+        } else if (i == R.id.tv_contact_us) {
+            getContext().startActivity(new Intent(getContext(), FeedbackActivity.class));
         }
     }
 
@@ -489,6 +527,7 @@ public class JzvdStd extends Jzvd {
     }
 
     public void changeUiToNormal() {
+        Logger.e("changeUiToNormal ");
         switch (currentScreen) {
             case SCREEN_WINDOW_NORMAL:
             case SCREEN_WINDOW_LIST:
@@ -507,6 +546,7 @@ public class JzvdStd extends Jzvd {
     }
 
     public void changeUiToPreparing() {
+        Logger.e("changeUiToPreparing ");
         switch (currentScreen) {
             case SCREEN_WINDOW_NORMAL:
             case SCREEN_WINDOW_LIST:
@@ -522,6 +562,7 @@ public class JzvdStd extends Jzvd {
     }
 
     public void changeUiToPlayingShow() {
+        Logger.e("changeUiToPlayingShow ");
         switch (currentScreen) {
             case SCREEN_WINDOW_NORMAL:
             case SCREEN_WINDOW_LIST:
@@ -541,6 +582,7 @@ public class JzvdStd extends Jzvd {
     }
 
     public void changeUiToPlayingClear() {
+        Logger.e("changeUiToPlayingClear ");
         switch (currentScreen) {
             case SCREEN_WINDOW_NORMAL:
             case SCREEN_WINDOW_LIST:
@@ -558,6 +600,7 @@ public class JzvdStd extends Jzvd {
     }
 
     public void changeUiToPauseShow() {
+        Logger.e("changeUiToPauseShow ");
         switch (currentScreen) {
             case SCREEN_WINDOW_NORMAL:
             case SCREEN_WINDOW_LIST:
@@ -576,6 +619,7 @@ public class JzvdStd extends Jzvd {
     }
 
     public void changeUiToPauseClear() {
+        Logger.e("changeUiToPauseClear ");
         switch (currentScreen) {
             case SCREEN_WINDOW_NORMAL:
             case SCREEN_WINDOW_LIST:
@@ -593,6 +637,7 @@ public class JzvdStd extends Jzvd {
     }
 
     public void changeUiToComplete() {
+        Logger.e("changeUiToComplete ");
         switch (currentScreen) {
             case SCREEN_WINDOW_NORMAL:
             case SCREEN_WINDOW_LIST:
@@ -612,6 +657,7 @@ public class JzvdStd extends Jzvd {
     }
 
     public void changeUiToError() {
+        Logger.e("changeUiToError ");
         switch (currentScreen) {
             case SCREEN_WINDOW_NORMAL:
             case SCREEN_WINDOW_LIST:
@@ -651,12 +697,13 @@ public class JzvdStd extends Jzvd {
             replayTextView.setVisibility(GONE);
         } else if (currentState == CURRENT_STATE_AUTO_COMPLETE) {
             startButton.setVisibility(VISIBLE);
-            startButton.setImageResource(R.drawable.jz_click_replay_selector);
+//            startButton.setImageResource(R.drawable.jz_click_replay_selector);
             replayTextView.setVisibility(VISIBLE);
         } else {
             startButton.setImageResource(R.drawable.jz_click_play_selector);
             replayTextView.setVisibility(GONE);
         }
+        updateReplayImage();
     }
 
     @Override
@@ -820,6 +867,29 @@ public class JzvdStd extends Jzvd {
                     bottomProgressBar.setVisibility(View.VISIBLE);
                 }
             });
+        }
+    }
+
+    //onSeekComplete
+
+
+    @Override
+    public void onSeekComplete() {
+        super.onSeekComplete();
+
+    }
+
+    private void handleSeekLoading(){
+        if (v_seek_loading!=null&&v_seek_loading.getVisibility()!=View.INVISIBLE) {
+            v_seek_loading.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    @Override
+    public void onSeekLoading() {
+        super.onSeekLoading();
+        if (v_seek_loading!=null&&v_seek_loading.getVisibility()!=View.VISIBLE) {
+            v_seek_loading.setVisibility(View.VISIBLE);
         }
     }
 

@@ -9,14 +9,25 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.orhanobut.logger.Logger;
+import com.wei.wlib.http.WLibHttpListener;
+import com.yyspbfq.filmplay.BaseApplication;
 import com.yyspbfq.filmplay.R;
+import com.yyspbfq.filmplay.bean.InviteCodeBean;
 import com.yyspbfq.filmplay.bean.MessageEvent;
+import com.yyspbfq.filmplay.bean.UserInfoBean;
+import com.yyspbfq.filmplay.biz.Factory;
+import com.yyspbfq.filmplay.biz.http.HttpFlag;
+import com.yyspbfq.filmplay.db.DBHelper;
+import com.yyspbfq.filmplay.db.VideoEntity;
 import com.yyspbfq.filmplay.ui.BaseActivity;
 import com.yyspbfq.filmplay.ui.fragment.ChannelFragment;
 import com.yyspbfq.filmplay.ui.fragment.DiscoverFragment;
@@ -24,6 +35,8 @@ import com.yyspbfq.filmplay.ui.fragment.HomeFragment;
 import com.yyspbfq.filmplay.ui.fragment.MyFragment;
 import com.yyspbfq.filmplay.utils.BLog;
 import com.yyspbfq.filmplay.utils.Const;
+import com.yyspbfq.filmplay.utils.sp.SPLongUtils;
+import com.yyspbfq.filmplay.utils.sp.UserDataUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -38,7 +51,7 @@ import cn.jpush.android.api.JPushInterface;
 import cn.jpush.android.api.TagAliasCallback;
 import cn.jzvd.Jzvd;
 
-public class MainActivity extends BaseActivity{
+public class MainActivity extends BaseActivity implements WLibHttpListener{
 
     public static final String TAB_CHANGE = "tag_change";
     public static final String BASE_MAIN_TAG_1 = "BASE_MAIN_TAG_1";
@@ -57,6 +70,7 @@ public class MainActivity extends BaseActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.base_activity_main);
         initViews(savedInstanceState);
+        //todo
         JPushInterface.setAlias(getApplicationContext(), "10086", new TagAliasCallback() {
             @Override
             public void gotResult(int i, String s, Set<String> set) {
@@ -67,6 +81,9 @@ public class MainActivity extends BaseActivity{
             handleJpush(getIntent());
         }
         EventBus.getDefault().register(this);
+//        UserHelper.getInstance().getUserInfo(this);
+        Factory.resp(this, HttpFlag.FLAG_USER_INFO, null, UserInfoBean.class).post(null);
+        Factory.resp(this, HttpFlag.FLAG_INVITE_CODE_MSG, null, InviteCodeBean.class).post(null);
     }
 
     private void initViews(Bundle savedInstanceState) {
@@ -163,6 +180,56 @@ public class MainActivity extends BaseActivity{
         }
     }
 
+    @Override
+    public void handleResp(Object formatData, int flag, Object tag, String response, String hint) {
+        if (flag == HttpFlag.FLAG_USER_INFO) {
+            Log.e("MAIN", "FLAG_USER_INFO");
+            try {
+                UserInfoBean bean = (UserInfoBean) formatData;
+                UserDataUtil.saveLoginType(this, bean.getType()+"");
+                UserDataUtil.saveUserData(this, bean.getData());
+            } catch (Exception e){
+                BLog.e(e);
+            }
+        } else if (flag == HttpFlag.FLAG_SYNC_VIDEO_RECORD) {
+            try {
+                List<VideoEntity> list = new Gson().fromJson(formatData.toString(), new TypeToken<List<VideoEntity>>(){}.getType());
+                if (list!=null&&list.size()>0) {
+                    DBHelper.getInstance().syncVideoRecord(BaseApplication.getInstance(), list);
+                }
+            } catch (Exception e){
+                BLog.e(e);
+            }
+        } else if (flag == HttpFlag.FLAG_INVITE_CODE_MSG) {
+            try {
+                InviteCodeBean bean = (InviteCodeBean) formatData;
+                SPLongUtils.saveInviteCodeUrl(this, bean.getExtension()==null?bean.getUrl():bean.getExtension());
+            } catch (Exception e){
+                BLog.e(e);
+            }
+        }
+    }
+
+    @Override
+    public void handleLoading(int flag, Object tag, boolean isShow) {
+
+    }
+
+    @Override
+    public void handleError(int flag, Object tag, int errorType, String response, String hint) {
+        if (flag == HttpFlag.FLAG_USER_INFO) {
+            Log.e("MAIN", "FLAG_USER_INFO ERROR");
+        }
+    }
+
+    @Override
+    public void handleAfter(int flag, Object tag) {
+        if (flag == HttpFlag.FLAG_USER_INFO) {
+            Factory.resp(this, HttpFlag.FLAG_SYNC_VIDEO_RECORD, null, null).post(null);
+            Log.e("MAIN", "FLAG_SYNC_VIDEO_RECORD");
+        }
+    }
+
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void handleEvent(MessageEvent messageEvent) {
         Logger.e("handleEvent:"+messageEvent.getMessage());
@@ -170,7 +237,10 @@ public class MainActivity extends BaseActivity{
             try {
                 MyFragment fragment = (MyFragment) mFragmentManager.findFragmentByTag(BASE_MAIN_TAG_4);
                 //刷新我的页面
-                if (fragment != null) fragment.setUserView();
+                if (fragment != null) {
+                    fragment.setUserView();
+                    fragment.getCollections();
+                }
             } catch (Exception e){
                 BLog.e(e);
             }

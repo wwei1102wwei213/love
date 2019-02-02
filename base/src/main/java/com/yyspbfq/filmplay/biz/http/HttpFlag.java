@@ -17,20 +17,16 @@ public class HttpFlag {
 
 
     //------------------------------- web地址  start ----------------------------------------------
-    //首单支付失败跳转页面
-    public static final String URL_PAY_FAILED = BASE_URL + "ios/first_pay_failed";
+
     //升级地址
     public static String URL_UPDATE = "http://47.107.94.24:86/android/update.json";
-    //福利中心
-    public static final String URL_FULI = BASE_URL + "my/fuli";
     //评论协议
     public static final String URL_USER_COMMENT_PROTOCOL = BASE_URL + "ios/xieyi";
-    //领取连续签到奖励
-    public static final int FLAG_SIGN_RECEIVE_REWARD = 2;
-    public static final String URL_SIGN_RECEIVE_REWARD = BASE_URL + "/user/getSignReward";
+
+
     //上传头像
     public static final int FLAG_UPLOAD_IMG = 3;
-    public static final String URL_UPLOAD_IMG = "http://47.107.94.24:80/upload.php";
+    public static final String URL_UPLOAD_IMG = "http://47.107.94.24:90/upload.php";
 
     //登陆
     public static final int FLAG_LOGIN_MOBILE = 11;
@@ -116,9 +112,66 @@ public class HttpFlag {
     //获取二维码信息
     public static final int FLAG_INVITE_CODE_MSG = 38;
     public static final String URL_INVITE_CODE_MSG = BASE_URL + "user/getExtension";
-
-
-
+    //VIP等级兑换
+    public static final int FLAG_LEVEL_EXCHANGE = 39;
+    public static final String URL_LEVEL_EXCHANGE = BASE_URL + "user/exchangeLevel";
+    //意见反馈
+    public static final int FLAG_FEEDBACK_SEND = 40;
+    public static final String URL_FEEDBACK_SEND = BASE_URL + "Feedback/sent";
+    //用户退出
+    public static final int FLAG_USER_EXIT = 41;
+    public static final String URL_USER_EXIT = BASE_URL + "login/loginOut";
+    //广告 - 闪屏页
+    public static final int FLAG_ADVERT_FIRST_SCREEN = 42;
+    public static final String URL_ADVERT_FIRST_SCREEN = BASE_URL + "Advert/getFirstScreen";
+    //广告 - 首页
+    public static final int FLAG_ADVERT_INDEX = 43;
+    public static final String URL_ADVERT_INDEX = BASE_URL + "Advert/getIndex";
+    //广告 - 用户中心
+    public static final int FLAG_ADVERT_USER_CENTER = 44;
+    public static final String URL_ADVERT_USER_CENTER = BASE_URL + "Advert/getUser";
+    //广告 - 视频上
+    public static final int FLAG_ADVERT_VIDEO_ABOVE = 45;
+    public static final String URL_ADVERT_VIDEO_ABOVE = BASE_URL + "Advert/getVideo";
+    //广告 - 视频详情
+    public static final int FLAG_ADVERT_VIDEO_DETAIL = 46;
+    public static final String URL_ADVERT_VIDEO_DETAIL = BASE_URL + "Advert/getDetail";
+    //修改用户信息
+    public static final int FLAG_UPDATE_INFO = 47;
+    public static final String URL_UPDATE_INFO = BASE_URL + "user/updateInfo";
+    //系统消息
+    public static final int FLAG_MESSAGE_SHOW = 48;
+    public static final String URL_MESSAGE_SHOW = BASE_URL + "message/show";
+    //收藏列表
+    public static final int FLAG_INFO_COLLATION = 49;
+    public static final String URL_INFO_COLLATION = BASE_URL + "user/getCollectionList";
+    //删除收藏
+    public static final int FLAG_DELETE_COLLATION = 50;
+    public static final String URL_DELETE_COLLATION = BASE_URL + "user/delCollection";
+    //删除播放记录
+    public static final int FLAG_DELETE_VIDEO_RECORD = 51;
+    public static final String URL_DELETE_VIDEO_RECORD = BASE_URL + "user/delViewRecord";
+    //设置播放记录
+    public static final int FLAG_SET_VIDEO_RECORD = 52;
+    public static final String URL_SET_VIDEO_RECORD = BASE_URL + "user/setViewRecord";
+    //同步播放记录
+    public static final int FLAG_SYNC_VIDEO_RECORD = 53;
+    public static final String URL_SYNC_VIDEO_RECORD = BASE_URL + "user/syncViewRecord";
+    //扣除播放次数
+    public static final int FLAG_DEDUCTION_COIN = 54;
+    public static final String URL_DEDUCTION_COIN = BASE_URL + "video/deductionVideoNum";
+    //评论列表
+    public static final int FLAG_COMMENT_LIST = 55;
+    public static final String URL_COMMENT_LIST = BASE_URL + "Comment/show";
+    //发表评论
+    public static final int FLAG_COMMENT_SENT = 56;
+    public static final String URL_COMMENT_SENT = BASE_URL + "Comment/sent";
+    //发表评论
+    public static final int FLAG_COMMENT_LIKE = 57;
+    public static final String URL_COMMENT_LIKE = BASE_URL + "Comment/zan";
+    //帮组与反馈
+    public static final int FLAG_INFO_HELP = 58;
+    public static final String URL_INFO_HELP = BASE_URL + "help/show";
 
 
 

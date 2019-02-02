@@ -1,8 +1,9 @@
 package com.yyspbfq.filmplay.db;
 
 import com.google.gson.Gson;
-import com.yyspbfq.filmplay.bean.UserInfo;
 import com.yyspbfq.filmplay.utils.BLog;
+
+import java.util.TimeZone;
 
 public class VideoRecordBean {
 
@@ -68,4 +69,17 @@ public class VideoRecordBean {
         }
         return new VideoEntity();
     }
+
+    public int getTodayType() {
+        long current = System.currentTimeMillis();
+        long zero=current/(1000*3600*24)*(1000*3600*24)- TimeZone.getDefault().getRawOffset();
+        if (update_time>=zero) {
+            return 1;
+        }
+        if (update_time >= zero-1000*3600*24*6 ){
+            return 2;
+        }
+        return 3;
+    }
+
 }

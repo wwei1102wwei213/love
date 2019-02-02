@@ -15,7 +15,6 @@ import android.webkit.JavascriptInterface;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -27,8 +26,6 @@ import com.yyspbfq.filmplay.utils.BLog;
 import com.yyspbfq.filmplay.utils.CommonUtils;
 import com.yyspbfq.filmplay.widget.AdvancedWebView;
 import com.yyspbfq.filmplay.widget.custom.CommonExceptionView;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.net.URISyntaxException;
 import java.util.HashMap;
@@ -42,7 +39,7 @@ public class ShowWebActivity extends BaseActivity{
     private AdvancedWebView mWebView;
     private String currentUrl;
     private ProgressBar mProgressBar;
-    private LinearLayout actionbar_close;
+//    private LinearLayout actionbar_close;
     private TextView actionbar_title;
     private CommonExceptionView mExceptionView;
 
@@ -99,13 +96,13 @@ public class ShowWebActivity extends BaseActivity{
                 reloadUrl();
             }
         });
-        EventBus.getDefault().register(this);
-        actionbar_close.setOnClickListener(new View.OnClickListener() {
+
+        /*actionbar_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
-        });
+        });*/
         mWebView.setWebViewClient(webViewClient);
         mWebView.setWebChromeClient(webChromeClient);
         load();

@@ -59,6 +59,7 @@ public class InviteListActivity extends BaseActivity implements WLibHttpListener
                 toInvite();
             }
         });
+        tv_right.setVisibility(View.VISIBLE);
         findViewById(R.id.tv_invite).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,7 +69,7 @@ public class InviteListActivity extends BaseActivity implements WLibHttpListener
     }
 
     private void toInvite() {
-
+        InviteCodeActivity.actionStart(this);
     }
 
     private void initData() {
@@ -83,14 +84,14 @@ public class InviteListActivity extends BaseActivity implements WLibHttpListener
         if (flag == HttpFlag.FLAG_INVITE_LIST) {
             try {
                 InviteListBean bean = (InviteListBean) formatData;
-                mData = bean.getData();
-                if (mData==null||mData.size()==0) {
+                List<UserInvitee> list = bean.getData();
+                if (list==null||list.size()==0) {
                     lv.setVisibility(View.GONE);
                     v_no_data.setVisibility(View.VISIBLE);
                 } else {
                     v_no_data.setVisibility(View.GONE);
                     lv.setVisibility(View.VISIBLE);
-                    mAdapter.notifyDataSetChanged();
+                    mAdapter.update(list);
                 }
             } catch (Exception e){
                 BLog.e(e);

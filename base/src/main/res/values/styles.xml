@@ -166,7 +166,7 @@
 
     <style name="radiobutton_edit_sex_btn">
         <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
         <item name="android:background">@null</item>
         <item name="android:gravity">start|center_vertical</item>
@@ -227,6 +227,29 @@
         <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
     </style>
 
+    <!-- 对话框样式 -->
+    <style name="dialog_comment_style" parent="android:style/Theme.Dialog">
+        <!-- Dialog的windowFrame框为无-->
+        <item name="android:windowFrame">@null</item>
+        <!-- 是否不显示标题-->
+        <item name="android:windowNoTitle">true</item>
+        <!-- 是否浮现在activity之上,在屏幕中间显示-->
+        <item name="android:windowIsFloating">true</item>
+        <!-- 是否半透明-->
+        <item name="android:windowIsTranslucent">true</item>
+        <!-- 外面点击关闭-->
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <!-- 窗口背景颜色-->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 去除顶部阴影 -->
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- dialog暗淡背景浮层-->
+        <item name="android:backgroundDimEnabled">false</item>
+        <!-- 进出动画-->
+        <item name="android:windowAnimationStyle">@null</item>
+        <item name="android:windowSoftInputMode">stateAlwaysVisible</item><!--显示软件盘-->
+    </style>
+
     <style name="dialog_style_no_dim" parent="dialog_base_style">
         <item name="android:backgroundDimEnabled">false</item>
     </style>
@@ -278,4 +301,16 @@
         <item name="android:layout_marginTop">8dp</item>
     </style>
 
+
+    <style name="split_horizontal">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">@color/split_color</item>
+    </style>
+
+    <style name="split_vertical">
+        <item name="android:layout_width">0.5dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/split_color</item>
+    </style>
 </resources>

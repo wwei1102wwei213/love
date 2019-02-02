@@ -56,10 +56,15 @@ public class ListInviteeAdapter extends BaseAdapter {
 
         final UserInvitee userInvitee = mData.get(position);
         holder.name.setText(userInvitee.name==null?"":userInvitee.name);
-        holder.mobile.setText(getMobile(userInvitee.mobile));
+        holder.mobile.setText(userInvitee.mobile);
         holder.time.setText(userInvitee.cdate);
 
         return convertView;
+    }
+
+    public void update(List<UserInvitee> data) {
+        this.mData = data;
+        notifyDataSetChanged();
     }
 
     private String getMobile(String mobile ) {

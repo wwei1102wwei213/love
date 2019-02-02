@@ -23,6 +23,8 @@ public class PullElasticityNestedScrollView extends PullToRefreshBase<Elasticity
         return new ElasticityNestedScrollView(context);
     }
 
+
+
     protected boolean isReadyForPullDown() {
         return ((ElasticityNestedScrollView) this.mRefreshableView).getScrollY() == 0;
     }

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp">
+
+
+    <TextView
+        android:id="@+id/v_finish_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="已缓存"
+        android:textSize="15sp"
+        android:textColor="#999"
+        android:gravity="center_vertical"
+        android:layout_gravity="center_vertical"
+        android:paddingTop="16dp"
+        android:paddingBottom="11dp"
+        android:visibility="gone"
+        />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="81dp">
+
+        <View
+            android:id="@+id/v_check"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:background="@drawable/selector_item_check"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="12dp"
+            android:visibility="gone"
+            />
+
+        <RelativeLayout
+            android:layout_width="131dp"
+            android:layout_height="81dp">
+            <ImageView
+                android:id="@+id/iv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:background="@mipmap/base_default_image"
+                />
+            <TextView
+                android:id="@+id/tv_video_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="00:01:19"
+                android:textColor="#ffe3b88e"
+                android:textSize="10sp"
+                android:layout_marginLeft="9dp"
+                android:layout_marginBottom="6dp"
+                android:layout_alignParentBottom="true"
+                />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="81dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentBottom="true">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="16dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="3dp">
+                    <TextView
+                        android:id="@+id/tv_state"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#999999"
+                        android:textSize="12sp"
+                        android:text="等待开始"
+                        android:layout_centerVertical="true"
+                        />
+                    <TextView
+                        android:id="@+id/tv_progress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#999999"
+                        android:textSize="12sp"
+                        android:text="22M/113M"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentRight="true"
+                        />
+                </RelativeLayout>
+                <ProgressBar
+                    android:id="@+id/pb_download"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:progressDrawable="@drawable/download_iten_progress"
+                    android:progress="0"
+                    android:layout_marginBottom="3dp"
+                    android:visibility="gone"
+                    />
+
+
+
+            </LinearLayout>
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:ellipsize="end"
+                android:textColor="#ffcccccc"
+                android:textSize="16sp"
+                android:text="SDFASDGF"
+                android:paddingLeft="10dp"
+                android:maxLines="2"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_above="@id/tv_watch_time"
+                />
+        </RelativeLayout>
+
+    </LinearLayout>
+    <View
+        android:id="@+id/v_space"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:visibility="gone"/>
+
+</LinearLayout>

@@ -1,23 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <ImageView
-        android:id="@+id/iv_splash"
+        android:id="@+id/iv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"/>
     <TextView
         android:id="@+id/tv"
-        android:layout_width="60dp"
-        android:layout_height="30dp"
-        android:background="@drawable/base_bg_splash_skip"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/bg_splash_skip"
         android:textColor="@android:color/white"
         android:gravity="center"
         android:text=""
         android:textSize="12sp"
-        android:layout_gravity="right"
-        android:layout_marginTop="20dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:layout_alignParentRight="true"
+        android:minWidth="40dp"
+        android:layout_marginTop="30dp"
         android:layout_marginRight="20dp"
         android:visibility="gone"/>
+    <ImageView
+        android:id="@+id/iv_close"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@mipmap/start_ad_close_btn"
+        android:scaleType="centerInside"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/bg_splash_skip"
+        android:visibility="gone"/>
 
-</FrameLayout>
+</RelativeLayout>

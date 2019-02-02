@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_color">
+    android:background="@color/bg_color"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
     <include layout="@layout/base_title_layout"/>
     <LinearLayout
         android:orientation="vertical"
@@ -12,6 +14,55 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:text="规则说明"
+            android:textColor="@color/text_white"
+            android:background="@drawable/bg_level_rechange_tag"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:gravity="center"
+            android:layout_marginTop="12dp"/>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/level_rechange_summary_text"
+            android:textColor="@color/level_rechange_summary"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:layout_marginTop="14dp"
+            android:lineSpacingExtra="4dp"
+            android:lineSpacingMultiplier="1.1"
+            android:textSize="14sp"
+            />
     </LinearLayout>
+    
+    <EditText
+        android:id="@+id/et"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/bg_radius_white_5"
+        android:hint="@string/level_input_hint"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textColor="#333333"
+        />
+    <TextView
+        android:id="@+id/tv_btn"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/selector_level_exchange_btn"
+        android:textColor="@color/selector_level_exchange_text"
+        android:text="立即兑换"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        />
 </LinearLayout>

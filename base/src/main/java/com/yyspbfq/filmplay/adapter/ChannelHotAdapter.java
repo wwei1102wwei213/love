@@ -55,7 +55,7 @@ public class ChannelHotAdapter extends BaseAdapter{
         }
         String title = list.get(position).getTitle();
         vh.tv.setText(title==null?"":title);
-        Glide.with(context).load(list.get(position).getThumb()).placeholder(R.mipmap.default_error_img).into(vh.iv);
+        Glide.with(context).load(list.get(position).getThumb()).crossFade().into(vh.iv);
         return convertView;
     }
 

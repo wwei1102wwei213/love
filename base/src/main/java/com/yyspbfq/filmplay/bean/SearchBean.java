@@ -9,31 +9,31 @@ import java.util.List;
 
 public class SearchBean {
 
-    private List<VideoEntity> searchData;
-    private String searchCount;
+    private List<VideoEntity> data;
+    private String count;
     private int size;
 
     public List<VideoEntity> getSearchData() {
-        return searchData;
+        return data;
     }
 
     public void setSearchData(List<VideoEntity> searchData) {
-        this.searchData = searchData;
+        this.data = searchData;
     }
 
     public String getSearchCount() {
-        return searchCount;
+        return count;
     }
 
     public void setSearchCount(String searchCount) {
-        this.searchCount = searchCount;
+        this.count = searchCount;
     }
 
     public int getCount() {
-        if (TextUtils.isEmpty(searchCount)) return 0;
+        if (TextUtils.isEmpty(count)) return 0;
         int result = 0;
         try {
-            result = Integer.parseInt(searchCount);
+            result = Integer.parseInt(count);
         } catch (Exception e){
             BLog.e(e);
         }

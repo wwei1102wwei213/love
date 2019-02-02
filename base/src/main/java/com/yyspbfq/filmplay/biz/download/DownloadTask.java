@@ -2,9 +2,15 @@ package com.yyspbfq.filmplay.biz.download;
 
 import android.util.Log;
 
-import com.yyspbfq.filmplay.utils.tools.FileUtils;
 import com.wei.wlib.downloader.JFileDownloadListener;
 import com.wei.wlib.util.WLibLog;
+import com.yyspbfq.filmplay.BaseApplication;
+import com.yyspbfq.filmplay.bean.MessageEvent;
+import com.yyspbfq.filmplay.db.DBHelper;
+import com.yyspbfq.filmplay.db.VideoDownloadBean;
+import com.yyspbfq.filmplay.utils.tools.FileUtils;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.io.File;
 import java.io.IOException;
@@ -23,18 +29,26 @@ public class DownloadTask implements Runnable, JFileDownloadListener{
     public static final int TASK_STATUS_CANCEL = 3;
     public static final int TASK_STATUS_COMPLETED = 4;
 
+
+    public static final int DOWNLOAD_HANDLE_PROGRESS = 1;
+    public static final int DOWNLOAD_HANDLE_CANCEL = 2;
+    public static final int DOWNLOAD_HANDLE_PAUSE = 3;
+    public static final int DOWNLOAD_HANDLE_COMPLETED = 4;
+    public static final int DOWNLOAD_HANDLE_CHANGE_COUNT = 5;
+
+
     private static final String TEMP_END_STR = ".cld";
     private boolean isCanceled=false;
     private boolean isPaused=false;
     private boolean isWork = false;
-    private int status = TASK_STATUS_INIT;
-    private Object tag;
+    private int status;
+    private VideoDownloadBean tag;
     private String url;
     private String fileName;
 
-    public DownloadTask(String url, String fileName, Object tag) {
+    public DownloadTask(String url, String fileName, VideoDownloadBean tag) {
         this.url = url;
-        this.fileName = fileName;
+        this.fileName = fileName + url.substring(url.lastIndexOf("."), url.length());
         this.tag = tag;
         status = TASK_STATUS_INIT;
     }
@@ -76,6 +90,11 @@ public class DownloadTask implements Runnable, JFileDownloadListener{
                     tempFile.renameTo(file);
                     downloadCompleted(file, 0);
                 } else {
+                    long startTime = System.currentTimeMillis();
+                    if (tag.getVideo_size()!=contentLength) {
+                        tag.setVideo_size(contentLength);
+                        DBHelper.getInstance().updateDownloadDataSize(BaseApplication.getInstance(), tag);
+                    }
                     OkHttpClient client=new OkHttpClient();
                     /**
                      * HTTP请求是有一个Header的，里面有个Range属性是定义下载区域的，它接收的值是一个区间范围，
@@ -93,7 +112,7 @@ public class DownloadTask implements Runnable, JFileDownloadListener{
                             is=response.body().byteStream();
                             savedFile=new RandomAccessFile(tempFile,"rw");
                             savedFile.seek(downloadLength);//跳过已经下载的字节
-                            byte[] b=new byte[1024*1024];
+                            byte[] b=new byte[8*1024];
                             int total=0;
                             int len;
                             while((len=is.read(b))!=-1){
@@ -110,8 +129,9 @@ public class DownloadTask implements Runnable, JFileDownloadListener{
                                     //可以调用publishProgress()方法完成。
                                     if (progress>=100) {
                                         tempFile.renameTo(file);
-                                        downloadCompleted(file, 0);
+                                        downloadCompleted(file, System.currentTimeMillis() - startTime);
                                     } else {
+                                        tag.setCurrent_size(total+downloadLength);
                                         downloadProgress(progress, 0, 0);
                                     }
 
@@ -143,7 +163,18 @@ public class DownloadTask implements Runnable, JFileDownloadListener{
             onFail();
             WLibLog.e(e);
         }
-
+        /*if (isCanceled) {
+            MessageEvent event = new MessageEvent();
+            event.setMessage(MessageEvent.MSG_DOWNLOAD_VIDEO);
+            event.setFlag(DOWNLOAD_HANDLE_CANCEL);
+            EventBus.getDefault().post(event);
+        }*/
+        if (isPaused) {
+            MessageEvent event = new MessageEvent();
+            event.setMessage(MessageEvent.MSG_DOWNLOAD_VIDEO);
+            event.setFlag(DOWNLOAD_HANDLE_PAUSE);
+            EventBus.getDefault().post(event);
+        }
         isWork = false;
         DownloadTaskManager.getInstance().changeTaskNum(false);
     }
@@ -174,6 +205,10 @@ public class DownloadTask implements Runnable, JFileDownloadListener{
         return status;
     }
 
+    public VideoDownloadBean getTag() {
+        return tag;
+    }
+
     /**
      * 得到下载内容的大小
      * @param downloadUrl
@@ -201,16 +236,37 @@ public class DownloadTask implements Runnable, JFileDownloadListener{
     @Override
     public void downloadProgress(int progress, double speed, long remainTime) {
         if (progress!=oldProgress) {
-            Log.e(TAG,"downloadProgress====> progress:"+progress+", speed:"+speed+", remainTime:"+remainTime);
+//            Log.e(TAG,"downloadProgress====> progress:"+progress+", speed:"+speed+", remainTime:"+remainTime);
             oldProgress = progress;
+            MessageEvent event = new MessageEvent();
+            event.setMessage(MessageEvent.MSG_DOWNLOAD_VIDEO);
+            event.setFlag(DOWNLOAD_HANDLE_PROGRESS);
+            EventBus.getDefault().post(event);
         }
     }
 
     @Override
     public void downloadCompleted(File file, long downloadTime) {
         isWork = false;
+        Log.e(TAG,"downloadCompleted:");
         status = TASK_STATUS_COMPLETED;
-        Log.e(TAG,"downloadCompleted====> downloadTime:"+downloadTime);
+        if (downloadTime!=0) {
+            tag.setState(99);
+            tag.setFinish_time(System.currentTimeMillis());
+            tag.setPatch(file.getAbsolutePath());
+            DBHelper.getInstance().updateDownloadState(BaseApplication.getInstance(), tag);
+        } else {
+            tag.setVideo_size(file.length());
+            tag.setState(99);
+            tag.setFinish_time(System.currentTimeMillis());
+            tag.setPatch(file.getAbsolutePath());
+            DBHelper.getInstance().updateDownloadState(BaseApplication.getInstance(), tag);
+        }
+        MessageEvent event = new MessageEvent();
+        event.setMessage(MessageEvent.MSG_DOWNLOAD_VIDEO);
+        event.setFlag(DOWNLOAD_HANDLE_COMPLETED);
+        EventBus.getDefault().post(event);
+//        Log.e(TAG,"downloadCompleted====> downloadTime:"+downloadTime);
     }
 
     @Override

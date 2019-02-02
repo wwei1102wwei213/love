@@ -90,7 +90,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="今日剩余书币"
+                        android:text="今日剩余观影次数"
                         android:textSize="13sp"
                         android:textColor="@color/base_invite_normal_text"
                         android:gravity="center_horizontal"

@@ -30,7 +30,7 @@ public class WatchRecordAdapter extends  RecyclerView.Adapter<WatchRecordAdapter
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_home_like_rv, parent, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.item_watch_record_rv, parent, false);
         return new ViewHolder(view);
     }
 

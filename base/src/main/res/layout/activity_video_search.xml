@@ -84,7 +84,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="12dp"
-                android:paddingRight="10dp">
+                android:paddingRight="10dp"
+                android:layout_marginTop="12dp">
                 <com.wei.wlib.widget.FlowLayout
                     android:id="@+id/fl_search_hot"
                     android:layout_width="match_parent"

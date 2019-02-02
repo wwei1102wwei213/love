@@ -23,10 +23,25 @@ public class ElasticityNestedScrollView extends NestedScrollView {
 
     public ElasticityNestedScrollView(Context context) {
         super(context);
+        /*setFocusable(true);
+        setFocusableInTouchMode(true);
+        setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);*/
     }
 
     public ElasticityNestedScrollView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        /*setFocusable(true);
+        setFocusableInTouchMode(true);
+        setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);*/
+    }
+
+    private OnScrollListener listener;
+    public interface OnScrollListener {
+        void onElasticityScrollChanged(int i, int i2, int i3, int i4);
+    }
+
+    public void setListener(OnScrollListener listener) {
+        this.listener = listener;
     }
 
     public ElasticityNestedScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -35,6 +50,9 @@ public class ElasticityNestedScrollView extends NestedScrollView {
 
     protected void onScrollChanged(int l, int t, int oldl, int oldt) {
         super.onScrollChanged(l, t, oldl, oldt);
+        if (this.listener != null) {
+            this.listener.onElasticityScrollChanged(l, t, oldl, oldt);
+        }
     }
 
     protected void onOverScrolled(int scrollX, int scrollY, boolean clampedX, boolean clampedY) {

@@ -83,7 +83,7 @@ public class InfoInviteActivity extends BaseActivity  implements WLibHttpListene
             ImageView iv2 = (ImageView) findViewById(R.id.iv_v2);
             String v2Url = userInfo.grade.next.thumb;;
             Glide.with(this).load(TextUtils.isEmpty(v2Url)?R.mipmap.ic_level0:v2Url).into(iv2);
-            ((TextView) findViewById(R.id.tv_name)).setText(userInfo.name);
+            ((TextView) findViewById(R.id.tv_name)).setText(UserDataUtil.isLogin(this)?userInfo.name:"游客");
             ((TextView) findViewById(R.id.tv_code)).setText(
                     String.format(getString(R.string.ads_invite_code), userInfo.getShareCodeID()));
             ((TextView) findViewById(R.id.tv_v1)).setText(userInfo.getNowLevelName());
@@ -94,10 +94,12 @@ public class InfoInviteActivity extends BaseActivity  implements WLibHttpListene
             int now = userInfo.getNowNum();
             int next = userInfo.getNextNum();
             String hintString = "";
+            ProgressBar bar = (ProgressBar) findViewById(R.id.pb);
             if (next!=0&&next==now) {
                 hintString = "您已达到最高等级！";
+                bar.setProgress(100);
             } else {
-                ProgressBar bar = (ProgressBar) findViewById(R.id.pb);
+
                 bar.setProgress(now*100/next);
                 hintString = String.format(getString(R.string.mine_invite_level), ""+(next-now));
             }

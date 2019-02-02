@@ -8,7 +8,7 @@
         android:layout_width="155dp"
         android:layout_height="90dp"
         android:scaleType="centerCrop"
-        android:background="@mipmap/default_error_img"
+        android:background="@mipmap/base_default_image"
         />
     <TextView
         android:id="@+id/tv_title"
@@ -22,7 +22,7 @@
         android:text=""
         android:layout_marginLeft="10dp"
         android:lineSpacingExtra="2.4dp"
-        android:paddingTop="5dp"
+        android:paddingTop="1dp"
         android:paddingBottom="5dp"
         android:lineSpacingMultiplier="1.05"
         />
@@ -38,7 +38,7 @@
         android:text="153次播放"
         android:layout_marginLeft="10dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="2dp"
+        android:layout_marginBottom="3dp"
         />
     <RelativeLayout
         android:layout_toRightOf="@id/iv"

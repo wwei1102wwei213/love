@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.wei.wlib.widget.SoftKeyLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/skl"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="bottom">
+
+    <!--<View
+        android:id="@+id/skl_space"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>-->
+    <LinearLayout
+        android:id="@+id/layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:visibility="visible"
+        android:gravity="center_vertical"
+        android:layout_gravity="bottom"
+        android:background="#25282D"
+        android:orientation="horizontal">
+
+        <!--<EditText
+            android:id="@+id/edit_txt"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:maxHeight="160dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:layout_weight="1"
+            android:background="@color/bg_white"
+            android:hint="内容"
+            android:padding="8dp"
+            android:textColorHint="#ccc"
+            android:textSize="14sp" />-->
+        <EditText
+            android:id="@+id/et"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="34dp"
+            android:layout_marginLeft="12dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/bg_comment_input_hint"
+            android:drawableLeft="@mipmap/play_pinglun_icon"
+            android:paddingLeft="12dp"
+            android:hint="@string/comment_hint_text"
+            android:textSize="14sp"
+            android:gravity="center_vertical"
+            android:layout_marginTop="11dp"
+            android:layout_marginBottom="11dp"
+            android:textColor="#ccc"
+            android:textColorHint="#666"
+            android:maxLines="1"
+
+            android:drawablePadding="8dp"/>
+        <!--android:scrollHorizontally = "true"
+
+android:focusable = "true"
+
+android:ellipsize = "marquee"
+
+android:marqueeRepeatLimit ="marquee_forever"-->
+        <TextView
+            android:id="@+id/send_message"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            android:text="发送"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:background="@drawable/selector_level_exchange_btn"
+            android:textColor="@color/selector_comment_send_btn"
+            android:visibility="visible" />
+    </LinearLayout>
+    <View
+        android:id="@+id/v_space"
+        android:layout_width="match_parent"
+        android:layout_height="1px"/>
+</com.wei.wlib.widget.SoftKeyLayout>

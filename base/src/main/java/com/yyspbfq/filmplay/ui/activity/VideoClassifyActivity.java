@@ -270,12 +270,31 @@ public class VideoClassifyActivity extends BaseActivity implements WLibHttpListe
 
     @Override
     public void handleError(int flag, Object tag, int errorType, String response, String hint) {
-
+        try {
+            if (errorType== WLibHttpFlag.HTTP_ERROR_DATA_EMPTY) {
+                if (page==0) {
+                    if (!TextUtils.isEmpty(hint)) showToast(hint);
+                } else {
+                    page--;
+                    plv.setHasMoreData(false);
+                }
+            } else {
+                if (page>0) {
+                    page--;
+                }
+            }
+        } catch (Exception e){
+            BLog.e(e);
+        }
     }
 
     @Override
     public void handleAfter(int flag, Object tag) {
-
+        try {
+            isLoading = false;
+        } catch (Exception e){
+            BLog.e(e);
+        }
     }
 
 }

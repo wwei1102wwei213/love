@@ -270,7 +270,6 @@ public class VideoSearchActivity extends BaseActivity implements WLibHttpListene
                     if (page==0) {
                         mData.clear();
                         SPLongUtils.saveSearchRecord(this, tag.toString());
-                        hideHeyBoard();
                     }
                     mData.addAll(list);
                     adapter.update(mData);
@@ -334,6 +333,9 @@ public class VideoSearchActivity extends BaseActivity implements WLibHttpListene
         if (flag==HttpFlag.FLAG_SEARCH_KEYWORD) {
             try {
                 isLoading = false;
+                if (page==0) {
+                    hideHeyBoard();
+                }
             } catch (Exception e){
                 BLog.e(e);
             }

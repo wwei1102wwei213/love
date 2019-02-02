@@ -75,4 +75,8 @@ public class WLibManager {
         WLibThreadPoolManager.shutdown();
     }
 
+    public void clearCookieJar() {
+        if (cookieJar!=null) cookieJar.clear();
+    }
+
 }

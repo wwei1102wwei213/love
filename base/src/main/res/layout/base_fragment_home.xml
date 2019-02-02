@@ -239,14 +239,21 @@
                     android:padding="10dp">
 
                 </android.support.v7.widget.RecyclerView>
-
+                <View
+                    android:id="@+id/line_adv"
+                    android:layout_width="match_parent"
+                    android:layout_height="8dp"
+                    android:background="@color/base_bg_color_dark"
+                    android:visibility="gone"
+                    />
                 <ImageView
                     android:id="@+id/iv_adv"
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
+                    android:layout_height="150dp"
                     android:scaleType="centerCrop"
                     android:background="@mipmap/default_error_img"
-                    android:layout_marginTop="10dp"/>
+                    android:visibility="gone"
+                    />
 
                 <LinearLayout
                     android:id="@+id/ll_column"

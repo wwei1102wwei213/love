@@ -24,6 +24,7 @@ import com.wei.wlib.widget.coverflow.core.PageItemClickListener;
 import com.wei.wlib.widget.coverflow.core.PagerContainer;
 import com.yyspbfq.filmplay.R;
 import com.yyspbfq.filmplay.adapter.HomeLikeAdapter;
+import com.yyspbfq.filmplay.bean.AdvertBean;
 import com.yyspbfq.filmplay.bean.HomeClassifyBean;
 import com.yyspbfq.filmplay.bean.HomeColumnBean;
 import com.yyspbfq.filmplay.bean.SlideBean;
@@ -31,7 +32,9 @@ import com.yyspbfq.filmplay.bean.VideoShortBean;
 import com.yyspbfq.filmplay.biz.Factory;
 import com.yyspbfq.filmplay.biz.http.HttpFlag;
 import com.yyspbfq.filmplay.ui.BaseFragment;
+import com.yyspbfq.filmplay.ui.activity.DownloadListActivity;
 import com.yyspbfq.filmplay.ui.activity.VideoClassifyActivity;
+import com.yyspbfq.filmplay.ui.activity.VideoRecordActivity;
 import com.yyspbfq.filmplay.ui.activity.VideoSearchActivity;
 import com.yyspbfq.filmplay.utils.BLog;
 import com.yyspbfq.filmplay.utils.CommonUtils;
@@ -47,6 +50,7 @@ public class HomeFragment extends BaseFragment implements WLibHttpListener{
     private int indexBanner;
     private MyHandler mHandler;
     private static int CHANGE_BANNER = 1;
+    private AdvertBean mAdvertBean;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -75,12 +79,14 @@ public class HomeFragment extends BaseFragment implements WLibHttpListener{
     private HomeLikeAdapter likeAdapter;
     private MyPagerAdapter pagerAdapter;
     private DrawCircleView dcv;
+    private ImageView iv_adv;
     private void initViews() {
 
         ll_classify = (LinearLayout) findViewById(R.id.ll_classify);
         ll_newest = (LinearLayout) findViewById(R.id.ll_newest);
         ll_hot = (LinearLayout) findViewById(R.id.ll_hot);
         ll_column = (LinearLayout) findViewById(R.id.ll_column);
+        iv_adv = (ImageView) findViewById(R.id.iv_adv);
 
         rv_like = (RecyclerView) findViewById(R.id.rv_like);
         LinearLayoutManager manager = new LinearLayoutManager(context);
@@ -131,6 +137,19 @@ public class HomeFragment extends BaseFragment implements WLibHttpListener{
                 VideoSearchActivity.actionStart(context);
             }
         });
+        findViewById(R.id.iv_search_download).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DownloadListActivity.actionStart(context);
+            }
+        });
+        findViewById(R.id.iv_search_record).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                VideoRecordActivity.actionStart(context);
+
+            }
+        });
 
         findViewById(R.id.more_newest).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -145,6 +164,12 @@ public class HomeFragment extends BaseFragment implements WLibHttpListener{
             }
         });
 //        mHandler.sendEmptyMessageDelayed(CHANGE_BANNER, 4000);
+        iv_adv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UiUtils.handleAdvert(context, mAdvertBean);
+            }
+        });
     }
 
     private void initData() {
@@ -154,6 +179,7 @@ public class HomeFragment extends BaseFragment implements WLibHttpListener{
         Factory.resp(this, HttpFlag.FLAG_HOME_NEWEST_VIDEO, null, null).post(null);
         Factory.resp(this, HttpFlag.FLAG_HOME_HOT_VIDEO, null, null).post(null);
         Factory.resp(this, HttpFlag.FLAG_HOME_CLASSIFY_LIST, null, null).post(null);
+        Factory.resp(this, HttpFlag.FLAG_ADVERT_INDEX, null, AdvertBean.class).post(null);
     }
 
     private boolean isPause = false;
@@ -209,6 +235,20 @@ public class HomeFragment extends BaseFragment implements WLibHttpListener{
                     pagerAdapter.update(datas);
                     indexBanner = datas.size();
                     pager.setCurrentItem(datas.size());
+                }
+            } catch (Exception e){
+                BLog.e(e);
+            }
+        } else if (flag == HttpFlag.FLAG_ADVERT_INDEX) {
+            try {
+                mAdvertBean = (AdvertBean) formatData;
+                if (mAdvertBean.getThumb()!=null) {
+                    findViewById(R.id.line_adv).setVisibility(View.VISIBLE);
+                    iv_adv.setVisibility(View.VISIBLE);
+                    Glide.with(context).load(mAdvertBean.getThumb()+"").crossFade().into(iv_adv);
+                } else {
+                    findViewById(R.id.line_adv).setVisibility(View.GONE);
+                    iv_adv.setVisibility(View.GONE);
                 }
             } catch (Exception e){
                 BLog.e(e);

@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <com.kkmfxs.reade.view.webview.AdvancedWebView
+            <com.yyspbfq.filmplay.widget.AdvancedWebView
                 android:id="@+id/adWebview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />

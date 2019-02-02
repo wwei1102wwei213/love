@@ -179,8 +179,8 @@ public class SystemUtils {
      */
 
     public static String getChannelFromClip(Context context) {
-        //格式
-        //kksx_invitation_code:123456
+        //邀请解析格式
+        //video_invitation_code:123456
         String channel = "";
         ClipboardManager clipboardManager = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         if (clipboardManager == null) return channel;
@@ -194,10 +194,11 @@ public class SystemUtils {
             if (item != null && !TextUtils.isEmpty(item.getText())) {
                 String text = item.getText().toString();
                 //todo
-                if (!TextUtils.isEmpty(text) && text.contains("kksx_invitation_code:")) {
+                if (!TextUtils.isEmpty(text) && text.contains("video_invitation_code:")) {
                     String[] strings = text.split(":");
                     if (strings.length > 1) {
-                        return strings[1].trim();
+                        long temp = ShareCodeUtils.codeToId(strings[1].trim().toLowerCase());
+                        return temp==-1?"":(temp+"");
                     }
                 }
             }

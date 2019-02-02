@@ -2,10 +2,12 @@ package com.yyspbfq.filmplay.biz.login;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.text.TextUtils;
 
 import com.orhanobut.logger.Logger;
 import com.wei.wlib.http.WLibHttpListener;
 import com.wei.wlib.ui.WLibDialogHelper;
+import com.yyspbfq.filmplay.BaseApplication;
 import com.yyspbfq.filmplay.R;
 import com.yyspbfq.filmplay.bean.MessageEvent;
 import com.yyspbfq.filmplay.bean.UserInfoBean;
@@ -14,6 +16,7 @@ import com.yyspbfq.filmplay.biz.http.HttpFlag;
 import com.yyspbfq.filmplay.utils.BLog;
 import com.yyspbfq.filmplay.utils.CommonUtils;
 import com.yyspbfq.filmplay.utils.SystemUtils;
+import com.yyspbfq.filmplay.utils.sp.SPLongUtils;
 import com.yyspbfq.filmplay.utils.sp.UserDataUtil;
 import com.yyspbfq.filmplay.utils.tools.ToastUtils;
 
@@ -74,8 +77,8 @@ public class UserHelper {
             public void handleResp(Object formatData, int flag, Object tag, String response, String hint) {
                 try {
                     UserInfoBean bean = (UserInfoBean) formatData;
-                    UserDataUtil.saveLoginType(mContext, bean.getType()+"");
-                    UserDataUtil.saveUserData(mContext, bean.getData());
+                    UserDataUtil.saveLoginType(BaseApplication.getInstance(), bean.getType()+"");
+                    UserDataUtil.saveUserData(BaseApplication.getInstance(), bean.getData());
                     MessageEvent event = new MessageEvent();
                     event.setMessage(MessageEvent.MSG_GET_USER_INFO);
                     EventBus.getDefault().post(event);
@@ -99,6 +102,41 @@ public class UserHelper {
             public void handleAfter(int flag, Object tag) {
                 if (isLoading)
                     WLibDialogHelper.dismiss(userProgressDialog);
+            }
+        }, HttpFlag.FLAG_USER_INFO, null, UserInfoBean.class).post(null);
+
+    }
+
+    public void getUserInfo() {
+        Logger.d("网络刷新用户信息");
+        Factory.resp(new WLibHttpListener() {
+            @Override
+            public void handleResp(Object formatData, int flag, Object tag, String response, String hint) {
+                try {
+                    UserInfoBean bean = (UserInfoBean) formatData;
+                    UserDataUtil.saveLoginType(BaseApplication.getInstance(), bean.getType()+"");
+                    UserDataUtil.saveUserData(BaseApplication.getInstance(), bean.getData());
+                    MessageEvent event = new MessageEvent();
+                    event.setMessage(MessageEvent.MSG_GET_USER_INFO);
+                    EventBus.getDefault().post(event);
+                } catch (Exception e){
+                    BLog.e(e);
+                }
+            }
+
+            @Override
+            public void handleLoading(int flag, Object tag, boolean isShow) {
+
+            }
+
+            @Override
+            public void handleError(int flag, Object tag, int errorType, String response, String hint) {
+
+            }
+
+            @Override
+            public void handleAfter(int flag, Object tag) {
+
             }
         }, HttpFlag.FLAG_USER_INFO, null, UserInfoBean.class).post(null);
 
@@ -190,13 +228,11 @@ public class UserHelper {
         params.put("verifyCode", code);
         params.put("device", CommonUtils.getUUID());
         params.put("channel", CommonUtils.getChannelName());
-        params.put("invite", invite_code==null?"":invite_code);
-        /*String mInviteCode = SystemUtils.getChannelFromClip(mContext);
-        if (!TextUtils.isEmpty(mInviteCode)) {
-            params.put("invite", mInviteCode);
-        } else {
-            params.put("invite", PreferencesUtils.getString(mContext, "kkxs_channel_code", ""));
-        }*/
+        String temp = SystemUtils.getChannelFromClip(mContext);
+        if (TextUtils.isEmpty(temp)) {
+            temp = SPLongUtils.getString(mContext, "video_invite_code_clip", "");
+        }
+        params.put("invite", TextUtils.isEmpty(temp)?"": temp);
         Factory.resp(new WLibHttpListener() {
             @Override
             public void handleResp(Object response, int flag, Object obj, String source, String hint) {

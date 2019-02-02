@@ -6,9 +6,15 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.ta.TAApplication;
 import com.ta.util.db.TASQLiteDatabase;
+import com.yyspbfq.filmplay.biz.Factory;
+import com.yyspbfq.filmplay.biz.http.HttpFlag;
+import com.yyspbfq.filmplay.utils.BLog;
+import com.yyspbfq.filmplay.utils.tools.FileUtils;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2016/3/30.
@@ -118,6 +124,61 @@ public class DBHelper {
     }
 
     /**
+     *
+     * @param application
+     * @param list
+     */
+    public void syncVideoRecord(TAApplication application, List<VideoEntity> list) {
+        try {
+            TASQLiteDatabase tasqLiteDatabase = application.getSQLiteDatabasePool().getSQLiteDatabase();
+            if (tasqLiteDatabase.hasTable(VideoRecordBean.class)) {
+                tasqLiteDatabase.dropTable(VideoRecordBean.class);
+                Log.e("DBHelper", VideoRecordBean.class.getSimpleName()+"表已创建");
+            }
+            tasqLiteDatabase.creatTable(VideoRecordBean.class);
+            for (VideoEntity entity:list) {
+                VideoRecordBean bean = new VideoRecordBean();
+                bean.setVid(entity.getId());
+                bean.setLast_progress(Long.parseLong(entity.getWatch_time()));
+                bean.setUpdate_time(Long.parseLong(entity.getC_date()));
+                bean.setDetail(new Gson().toJson(entity));
+                tasqLiteDatabase.insert(bean);
+            }
+            application.getSQLiteDatabasePool().releaseSQLiteDatabase(tasqLiteDatabase);
+        } catch (Exception e){
+            BLog.e(e);
+        }
+    }
+
+    /**
+     *
+     * @param application
+     * @param list
+     */
+    public void deleteVideoRecord(TAApplication application, List<VideoRecordBean> list) {
+        if (list==null||list.size()==0) return;
+        try {
+            TASQLiteDatabase tasqLiteDatabase = application.getSQLiteDatabasePool().getSQLiteDatabase();
+            if (!tasqLiteDatabase.hasTable(VideoRecordBean.class)) {
+                tasqLiteDatabase.creatTable(VideoRecordBean.class);
+                Log.e("DBHelper", VideoRecordBean.class.getSimpleName()+"表已创建");
+            }
+            for (VideoRecordBean entity:list) {
+                String where = "vid="+entity.getVid();
+                try {
+                    tasqLiteDatabase.delete(VideoRecordBean.class, where);
+                } catch (Exception e){
+
+                }
+                FileUtils.deleteFileById(entity.getVid());
+            }
+            application.getSQLiteDatabasePool().releaseSQLiteDatabase(tasqLiteDatabase);
+        } catch (Exception e){
+            BLog.e(e);
+        }
+    }
+
+    /**
      * 更新视频播放进度
      * @param application
      * @param object
@@ -131,20 +192,29 @@ public class DBHelper {
             }
             String where = "vid="+object.getVid();
             Log.e("DBHelper", "updateVideoRecord:"+new Gson().toJson(object) +"\nwhere:"+where);
-            List<VideoRecordBean> find = tasqLiteDatabase.query(
+            /*List<VideoRecordBean> find = tasqLiteDatabase.query(
                     VideoRecordBean.class, false, where, null, null, null, null);
             if (find!=null&&find.size()>0) {
                 tasqLiteDatabase.delete(VideoRecordBean.class, where);
+            }*/
+            try {
+                tasqLiteDatabase.delete(VideoRecordBean.class, where);
+            } catch (Exception e){
+
             }
             tasqLiteDatabase.insert(object);
             application.getSQLiteDatabasePool().releaseSQLiteDatabase(tasqLiteDatabase);
+            Map<String, String> map = new HashMap<>();
+            map.put("vid", object.getVid());
+            map.put("watchTime", object.getLast_progress()+"");
+            Factory.resp(null, HttpFlag.FLAG_SET_VIDEO_RECORD, null, null).post(map);
         } catch (Exception e){
-            Log.e("DBHelper", e.getMessage());
+            BLog.e(e);
         }
     }
 
     /**
-     * 更新视频播放进度
+     * 获取视频播放进度
      * @param application
      * @param
      */
@@ -157,13 +227,13 @@ public class DBHelper {
                 Log.e("DBHelper", VideoRecordBean.class.getSimpleName()+"表已创建");
             }
             List<VideoRecordBean> find = tasqLiteDatabase.query(
-                    VideoRecordBean.class, false, null, null, null, null, limit+"");
+                    VideoRecordBean.class, false, null, null, null, "update_time desc", limit+"");
             if (find!=null&&find.size()>0) {
                 result.addAll(find);
             }
             application.getSQLiteDatabasePool().releaseSQLiteDatabase(tasqLiteDatabase);
         } catch (Exception e){
-            Log.e("DBHelper", e.getMessage());
+            BLog.e(e);
         }
         return result;
     }
@@ -191,9 +261,212 @@ public class DBHelper {
             }
             application.getSQLiteDatabasePool().releaseSQLiteDatabase(tasqLiteDatabase);
         } catch (Exception e){
-            Log.e("DBHelper", e.getMessage());
+            BLog.e(e);
         }
         return result;
+    }
+
+    /**
+     * 获取缓存列表
+     * @param application
+     * @param
+     */
+    public List<VideoDownloadBean> getDownloadRecord(TAApplication application)  {
+        List<VideoDownloadBean> result = new ArrayList<>();
+        try {
+            TASQLiteDatabase tasqLiteDatabase = application.getSQLiteDatabasePool().getSQLiteDatabase();
+            if (!tasqLiteDatabase.hasTable(VideoDownloadBean.class)) {
+                tasqLiteDatabase.creatTable(VideoDownloadBean.class);
+                Log.e("DBHelper", VideoDownloadBean.class.getSimpleName()+"表已创建");
+            }
+            List<VideoDownloadBean> find = tasqLiteDatabase.query(
+                    VideoDownloadBean.class, false, null, null, null, "create_time desc", null);
+            if (find!=null&&find.size()>0) {
+                result.addAll(find);
+            }
+            application.getSQLiteDatabasePool().releaseSQLiteDatabase(tasqLiteDatabase);
+        } catch (Exception e){
+            BLog.e(e);
+        }
+        return result;
+    }
+
+    /**
+     * 获取缓存列表
+     * @param application
+     * @param
+     */
+    public List<VideoDownloadBean> getDownloadRecordCompleted(TAApplication application, int limit)  {
+        List<VideoDownloadBean> result = new ArrayList<>();
+        try {
+            TASQLiteDatabase tasqLiteDatabase = application.getSQLiteDatabasePool().getSQLiteDatabase();
+            if (!tasqLiteDatabase.hasTable(VideoDownloadBean.class)) {
+                tasqLiteDatabase.creatTable(VideoDownloadBean.class);
+                Log.e("DBHelper", VideoDownloadBean.class.getSimpleName()+"表已创建");
+            }
+            List<VideoDownloadBean> find = tasqLiteDatabase.query(
+                    VideoDownloadBean.class, false, "state=99", null, null, "create_time desc", limit+"");
+            if (find!=null&&find.size()>0) {
+                result.addAll(find);
+            }
+            application.getSQLiteDatabasePool().releaseSQLiteDatabase(tasqLiteDatabase);
+        } catch (Exception e){
+            BLog.e(e);
+        }
+        return result;
+    }
+
+    /**
+     * 获取视频播放进度
+     * @param application
+     * @param
+     */
+    public VideoDownloadBean getDownloadRecordByKey(TAApplication application, String key)  {
+        try {
+            TASQLiteDatabase tasqLiteDatabase = application.getSQLiteDatabasePool().getSQLiteDatabase();
+            if (!tasqLiteDatabase.hasTable(VideoDownloadBean.class)) {
+                tasqLiteDatabase.creatTable(VideoDownloadBean.class);
+                Log.e("DBHelper", VideoDownloadBean.class.getSimpleName()+"表已创建");
+            }
+            List<VideoDownloadBean> find = tasqLiteDatabase.query(
+                    VideoDownloadBean.class, false, "vid="+key, null, null, "create_time desc", null);
+            if (find!=null&&find.size()>0) {
+                return find.get(0);
+            }
+            application.getSQLiteDatabasePool().releaseSQLiteDatabase(tasqLiteDatabase);
+        } catch (Exception e){
+            BLog.e(e);
+        }
+        return null;
+    }
+
+    /**
+     * 插入下载视频资料
+     * @param application
+     * @param object
+     */
+    public void insertDownloadRecord(TAApplication application, VideoDownloadBean object)  {
+        try {
+            TASQLiteDatabase tasqLiteDatabase = application.getSQLiteDatabasePool().getSQLiteDatabase();
+            if (!tasqLiteDatabase.hasTable(VideoDownloadBean.class)) {
+                tasqLiteDatabase.creatTable(VideoDownloadBean.class);
+                Log.e("DBHelper", VideoDownloadBean.class.getSimpleName()+"表已创建");
+            }
+            String where = "vid="+object.getVid();
+            Log.e("DBHelper", "VideoDownloadBean:"+new Gson().toJson(object) +"\nwhere:"+where);
+            List<VideoDownloadBean> find = tasqLiteDatabase.query(
+                    VideoDownloadBean.class, false, where, null, null, null, null);
+            if (find==null||find.size()==0) {
+                tasqLiteDatabase.insert(object);
+            }
+            application.getSQLiteDatabasePool().releaseSQLiteDatabase(tasqLiteDatabase);
+        } catch (Exception e){
+            BLog.e(e);
+        }
+    }
+
+    /**
+     * 更新下载视频总大小
+     * @param application
+     * @param object
+     */
+    public void updateDownloadDataSize(TAApplication application, VideoDownloadBean object)  {
+        try {
+            TASQLiteDatabase tasqLiteDatabase = application.getSQLiteDatabasePool().getSQLiteDatabase();
+            if (!tasqLiteDatabase.hasTable(VideoDownloadBean.class)) {
+                tasqLiteDatabase.creatTable(VideoDownloadBean.class);
+                Log.e("DBHelper", VideoDownloadBean.class.getSimpleName()+"表已创建");
+            }
+            String where = "vid="+object.getVid();
+            Log.e("DBHelper", "VideoDownloadBean:"+new Gson().toJson(object) +"\nwhere:"+where);
+            try {
+                tasqLiteDatabase.delete(VideoDownloadBean.class, where);
+            } catch (Exception e){
+
+            }
+            tasqLiteDatabase.insert(object);
+            application.getSQLiteDatabasePool().releaseSQLiteDatabase(tasqLiteDatabase);
+
+        } catch (Exception e){
+            BLog.e(e);
+        }
+    }
+
+    /**
+     * 更新下载视频总大小
+     * @param application
+     * @param object
+     */
+    public void updateDownloadState(TAApplication application, VideoDownloadBean object)  {
+        try {
+            TASQLiteDatabase tasqLiteDatabase = application.getSQLiteDatabasePool().getSQLiteDatabase();
+            if (!tasqLiteDatabase.hasTable(VideoDownloadBean.class)) {
+                tasqLiteDatabase.creatTable(VideoDownloadBean.class);
+                Log.e("DBHelper", VideoDownloadBean.class.getSimpleName()+"表已创建");
+            }
+            String where = "vid="+object.getVid();
+            Log.e("DBHelper", "VideoDownloadBean:"+new Gson().toJson(object) +"\nwhere:"+where);
+            try {
+                tasqLiteDatabase.delete(VideoDownloadBean.class, where);
+            } catch (Exception e){
+
+            }
+            tasqLiteDatabase.insert(object);
+            application.getSQLiteDatabasePool().releaseSQLiteDatabase(tasqLiteDatabase);
+
+        } catch (Exception e){
+            BLog.e(e);
+        }
+    }
+
+    /**
+     *
+     * @param application
+     * @param list
+     */
+    public void deleteDownloadRecord(TAApplication application, List<String> list) {
+        if (list==null||list.size()==0) return;
+        try {
+            TASQLiteDatabase tasqLiteDatabase = application.getSQLiteDatabasePool().getSQLiteDatabase();
+            if (!tasqLiteDatabase.hasTable(VideoDownloadBean.class)) {
+                tasqLiteDatabase.creatTable(VideoDownloadBean.class);
+                Log.e("DBHelper", VideoDownloadBean.class.getSimpleName()+"表已创建");
+            }
+            for (String key:list) {
+                String where = "vid="+key;
+                try {
+                    tasqLiteDatabase.delete(VideoDownloadBean.class, where);
+                } catch (Exception e){
+
+                }
+            }
+            application.getSQLiteDatabasePool().releaseSQLiteDatabase(tasqLiteDatabase);
+        } catch (Exception e){
+            BLog.e(e);
+        }
+    }
+
+    /**
+     *
+     * @param application
+     */
+    public void deleteDownloadRecord(TAApplication application, String key) {
+        if (key == null) return;
+        try {
+            TASQLiteDatabase tasqLiteDatabase = application.getSQLiteDatabasePool().getSQLiteDatabase();
+            if (!tasqLiteDatabase.hasTable(VideoDownloadBean.class)) {
+                tasqLiteDatabase.creatTable(VideoDownloadBean.class);
+                Log.e("DBHelper", VideoDownloadBean.class.getSimpleName()+"表已创建");
+            }
+            try {
+                tasqLiteDatabase.delete(VideoDownloadBean.class, "vid="+key);
+            } catch (Exception e){
+
+            }
+            application.getSQLiteDatabasePool().releaseSQLiteDatabase(tasqLiteDatabase);
+        } catch (Exception e){
+            BLog.e(e);
+        }
     }
 
     /**

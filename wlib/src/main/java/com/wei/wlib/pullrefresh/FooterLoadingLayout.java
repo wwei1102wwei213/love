@@ -70,13 +70,13 @@ public class FooterLoadingLayout extends LoadingLayout {
     }
 
     protected void onRefreshing() {
-        this.mProgressBar.setVisibility(GONE);
-        this.mHintView.setVisibility(GONE);
+        this.mProgressBar.setVisibility(VISIBLE);
+        this.mHintView.setVisibility(VISIBLE);
         this.mHintView.setText(R.string.pull_to_refresh_header_hint_loading);
     }
 
     protected void onNoMoreData() {
-        this.mHintView.setVisibility(GONE);
+        this.mHintView.setVisibility(VISIBLE);
         this.mHintView.setText(R.string.pushmsg_center_no_more_msg);
     }
 

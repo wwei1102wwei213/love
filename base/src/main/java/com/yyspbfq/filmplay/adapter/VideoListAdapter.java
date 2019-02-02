@@ -83,7 +83,6 @@ public class VideoListAdapter extends BaseAdapter{
         flowLayout.removeAllViews();
         if (TextUtils.isEmpty(labels)) return;
         try {
-            labels = "test,哈哈哈,呵呵呵,啊啊啊,oooooooooooooo,大大大阿双方高度是否";
             String[] args = labels.split(",");
             for (String label:args) {
                 if (!TextUtils.isEmpty(label)) {

@@ -85,8 +85,9 @@
         <!--视频播放页面-->
         <activity android:name=".ui.activity.VideoPlayActivity"
             android:screenOrientation="portrait"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            android:launchMode="singleTop"/>
+            android:configChanges="orientation|screenSize"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustResize"/>
         <!--下载列表页面-->
         <activity android:name=".ui.activity.DownloadListActivity"
             android:screenOrientation="portrait"
@@ -116,6 +117,35 @@
             android:screenOrientation="portrait"/>
         <!--推广码页面-->
         <activity android:name=".ui.activity.InviteCodeActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
+        <!--VIP兑换-->
+        <activity android:name=".ui.activity.LevelExchangeActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
+        <!--意见反馈-->
+        <activity android:name=".ui.activity.FeedbackActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="stateHidden|adjustResize"/>
+        <!--意见反馈-->
+        <activity android:name=".ui.activity.VideoHelpActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
+        <!--系统设置-->
+        <activity android:name=".ui.activity.SettingActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
+        <!--我的消息-->
+        <activity android:name=".ui.activity.InfoMessageActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
+        <!--用户收藏-->
+        <activity android:name=".ui.activity.InfoCollationActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
+        <!--播放记录-->
+        <activity android:name=".ui.activity.VideoRecordActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTop"/>
 

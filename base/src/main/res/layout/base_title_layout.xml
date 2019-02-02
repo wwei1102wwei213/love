@@ -50,7 +50,8 @@
             android:layout_height="@dimen/base_title_height"
             android:src="@mipmap/icon_search"
             android:scaleType="centerInside"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            android:layout_alignParentRight="true"/>
     </RelativeLayout>
 
 </LinearLayout>

@@ -60,11 +60,11 @@ public class VideoLabelActivity extends BaseActivity implements WLibHttpListener
         initData();
     }
 
-    private View v_result, v_no_data;
+    private View v_no_data;
     private TextView tv_hint_search, tv_hint_no_data;
     private void initViews() {
 
-        v_result = findViewById(R.id.v_result);
+//        v_result = findViewById(R.id.v_result);
         v_no_data = findViewById(R.id.v_no_data);
 
         tv_hint_search = findViewById(R.id.tv_hint_search);
@@ -127,10 +127,9 @@ public class VideoLabelActivity extends BaseActivity implements WLibHttpListener
                 if (list==null||list.size()==0) {
                     if (page==0) {
                         plv.setVisibility(View.GONE);
-                        v_result.setVisibility(View.VISIBLE);
                         v_no_data.setVisibility(View.VISIBLE);
                         tv_hint_no_data.setText(Html.fromHtml(String.format(nodataFormat, tag.toString())));
-                        tv_hint_search.setText(Html.fromHtml("搜索“<font color=#AA8969>"+tag.toString()+"</font>”,共有0条结果"));
+                        tv_hint_search.setText(Html.fromHtml("搜索“<font color=#AA8969>"+mLabel+"</font>”,共有0条结果"));
                     } else {
                         page--;
                         plv.setHasMoreData(false);
@@ -146,10 +145,8 @@ public class VideoLabelActivity extends BaseActivity implements WLibHttpListener
                     } else {
                         plv.setHasMoreData(true);
                     }
-                    tv_hint_search.setText(Html.fromHtml("搜索“<font color=#AA8969>"+tag.toString()+"</font>”,共有"+bean.getSearchCount()+"条结果"));
-                    if (v_result.getVisibility()!=View.VISIBLE) {
-                        v_result.setVisibility(View.VISIBLE);
-                    }
+                    tv_hint_search.setText(Html.fromHtml("搜索“<font color=#AA8969>"+mLabel+"</font>”,共有"+bean.getSearchCount()+"条结果"));
+
                     if (v_no_data.getVisibility()!=View.GONE) {
                         v_no_data.setVisibility(View.GONE);
                     }
@@ -177,7 +174,6 @@ public class VideoLabelActivity extends BaseActivity implements WLibHttpListener
                 if (errorType== WLibHttpFlag.HTTP_ERROR_DATA_EMPTY) {
                     if (page==0) {
                         plv.setVisibility(View.GONE);
-                        v_result.setVisibility(View.VISIBLE);
                         v_no_data.setVisibility(View.VISIBLE);
                         tv_hint_no_data.setText(Html.fromHtml(String.format(nodataFormat, tag.toString())));
                         tv_hint_search.setText(Html.fromHtml("搜索“<font color=#AA8969>"+tag.toString()+"</font>”,共有0条结果"));

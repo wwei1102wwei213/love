@@ -17,21 +17,7 @@ public class HttpRespBiz extends WLibDefaultHttpBiz{
     protected String getUrl() {
         String result = null;
         switch (flag) {
-            /*case HttpFlag.FLAG_LOGIN_MOBILE:
-                result = HttpFlag.URL_LOGIN_MOBILE;
-                break;
-            case HttpFlag.FLAG_VIDEO_DETAIL:
-                result = HttpFlag.URL_VIDEO_DETAIL;
-                break;
-            case HttpFlag.FLAG_VIDEO_DETAIL_LIKE:
-                result = HttpFlag.URL_VIDEO_DETAIL_LIKE;
-                break;
-            case HttpFlag.FLAG_VIDEO_COLLECTION:
-                result = HttpFlag.URL_VIDEO_COLLECTION;
-                break;
-            case HttpFlag.FLAG_VIDEO_SET_LIKE:
-                result = HttpFlag.URL_VIDEO_SET_LIKE;
-                break;*/
+
         }
         return result;
     }
@@ -40,6 +26,9 @@ public class HttpRespBiz extends WLibDefaultHttpBiz{
     protected String postUrl() {
         String result = null;
         switch (flag) {
+            case HttpFlag.FLAG_UPLOAD_IMG:
+                result = HttpFlag.URL_UPLOAD_IMG;
+                break;
             case HttpFlag.FLAG_LOGIN_MOBILE:
                 result = HttpFlag.URL_LOGIN_MOBILE;
                 break;
@@ -123,6 +112,66 @@ public class HttpRespBiz extends WLibDefaultHttpBiz{
                 break;
             case HttpFlag.FLAG_INVITE_CODE_MSG:
                 result = HttpFlag.URL_INVITE_CODE_MSG;
+                break;
+            case HttpFlag.FLAG_LEVEL_EXCHANGE:
+                result = HttpFlag.URL_LEVEL_EXCHANGE;
+                break;
+            case HttpFlag.FLAG_FEEDBACK_SEND:
+                result = HttpFlag.URL_FEEDBACK_SEND;
+                break;
+            case HttpFlag.FLAG_USER_EXIT:
+                result = HttpFlag.URL_USER_EXIT;
+                break;
+            case HttpFlag.FLAG_ADVERT_FIRST_SCREEN:
+                result = HttpFlag.URL_ADVERT_FIRST_SCREEN;
+                break;
+            case HttpFlag.FLAG_ADVERT_INDEX:
+                result = HttpFlag.URL_ADVERT_INDEX;
+                break;
+            case HttpFlag.FLAG_ADVERT_USER_CENTER:
+                result = HttpFlag.URL_ADVERT_USER_CENTER;
+                break;
+            case HttpFlag.FLAG_ADVERT_VIDEO_ABOVE:
+                result = HttpFlag.URL_ADVERT_VIDEO_ABOVE;
+                break;
+            case HttpFlag.FLAG_ADVERT_VIDEO_DETAIL:
+                result = HttpFlag.URL_ADVERT_VIDEO_DETAIL;
+                break;
+            case HttpFlag.FLAG_UPDATE_INFO:
+                result = HttpFlag.URL_UPDATE_INFO;
+                break;
+            case HttpFlag.FLAG_MESSAGE_SHOW:
+                result = HttpFlag.URL_MESSAGE_SHOW;
+                break;
+            case HttpFlag.FLAG_INFO_COLLATION:
+                result = HttpFlag.URL_INFO_COLLATION;
+                break;
+            case HttpFlag.FLAG_DELETE_COLLATION:
+                result = HttpFlag.URL_DELETE_COLLATION;
+                break;
+            case HttpFlag.FLAG_DELETE_VIDEO_RECORD:
+                result = HttpFlag.URL_DELETE_VIDEO_RECORD;
+                break;
+            case HttpFlag.FLAG_SET_VIDEO_RECORD:
+                result = HttpFlag.URL_SET_VIDEO_RECORD;
+                break;
+            case HttpFlag.FLAG_SYNC_VIDEO_RECORD:
+                result = HttpFlag.URL_SYNC_VIDEO_RECORD;
+                break;
+            case HttpFlag.FLAG_DEDUCTION_COIN:
+                result = HttpFlag.URL_DEDUCTION_COIN;
+                break;
+            case HttpFlag.FLAG_COMMENT_LIST:
+                result = HttpFlag.URL_COMMENT_LIST;
+                break;
+            case HttpFlag.FLAG_COMMENT_SENT:
+                result = HttpFlag.URL_COMMENT_SENT;
+                break;
+            case HttpFlag.FLAG_COMMENT_LIKE:
+                result = HttpFlag.URL_COMMENT_LIKE;
+                break;
+            case HttpFlag.FLAG_INFO_HELP:
+                result = HttpFlag.URL_INFO_HELP;
                 break;
         }
         return result;

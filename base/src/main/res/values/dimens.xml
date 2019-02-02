@@ -42,8 +42,8 @@
     <!--视频详情-->
     <dimen name="video_detail_space_horizontal">10dp</dimen>
     <dimen name="video_detail_space_vertical">10dp</dimen>
-    <dimen name="video_detail_line_height">0.5dp</dimen>
-    <dimen name="video_menu_hot_comment_height">36dp</dimen>
+    <dimen name="video_detail_line_height">1dp</dimen>
+    <dimen name="video_menu_hot_comment_height">32dp</dimen>
 
     <!--全部分类页面-->
     <dimen name="video_classify_menu_height">44dp</dimen>

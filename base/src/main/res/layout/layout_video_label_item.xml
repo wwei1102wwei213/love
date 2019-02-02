@@ -8,7 +8,7 @@
     android:paddingBottom="2dp"
     android:text="haha"
     android:textSize="11sp"
-    android:textColor="@color/base_title_color"
+    android:textColor="#8D7156"
     android:background="@drawable/bg_label_ground">
 
 </TextView>
