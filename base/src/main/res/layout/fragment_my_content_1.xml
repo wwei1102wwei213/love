@@ -178,15 +178,15 @@
                     android:layout_height="75dp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="0dp"
-                    app:border_color="#fff"
-                    app:border_width="2dp"
+                    app:border_color="@color/base_title_color"
+                    app:border_width="1dp"
                     android:background="@mipmap/default_user_icon"/>
 
                 <ImageView
                     android:id="@+id/iv_level_info"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:src="@mipmap/ic_level1_s"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@mipmap/ic_level0"
                     android:scaleType="centerInside"
                     android:layout_alignParentBottom="true"
                     android:layout_centerHorizontal="true"/>

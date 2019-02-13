@@ -21,7 +21,25 @@
         android:layout_alignParentBottom="true"
         android:background="#000000"
         android:scaleType="centerCrop" />
-
+    <LinearLayout
+        android:id="@+id/layout_left"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_centerVertical="true">
+        <TextView
+            android:id="@+id/btn_vol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/jz_vol_selector"/>
+        <TextView
+            android:id="@+id/btn_lock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/jz_lock_selector"
+            android:layout_marginTop="17dp"/>
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/layout_bottom"
         android:layout_width="match_parent"

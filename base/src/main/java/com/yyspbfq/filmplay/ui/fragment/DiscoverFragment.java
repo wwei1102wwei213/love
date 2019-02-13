@@ -1,9 +1,7 @@
 package com.yyspbfq.filmplay.ui.fragment;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.hardware.Sensor;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -95,8 +93,8 @@ public class DiscoverFragment extends BaseFragment implements WLibHttpListener{
             }
         });
 
-        sensorManager = (SensorManager) (context.getSystemService(Context.SENSOR_SERVICE));
-        sensorEventListener = new Jzvd.JZAutoFullscreenListener();
+        /*sensorManager = (SensorManager) (context.getSystemService(Context.SENSOR_SERVICE));
+        sensorEventListener = new Jzvd.JZAutoFullscreenListener();*/
 
         findViewById(R.id.iv_search).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -194,16 +192,25 @@ public class DiscoverFragment extends BaseFragment implements WLibHttpListener{
     @Override
     public void onResume() {
         super.onResume();
-        Sensor accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        sensorManager.registerListener(sensorEventListener, accelerometerSensor, SensorManager.SENSOR_DELAY_NORMAL);
+
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        sensorManager.unregisterListener(sensorEventListener);
-        Jzvd.releaseAllVideos();
+
     }
 
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden) {
+//            sensorManager.unregisterListener(sensorEventListener);
+            Jzvd.releaseAllVideos();
 
+        } else {
+            /*Sensor accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+            sensorManager.registerListener(sensorEventListener, accelerometerSensor, SensorManager.SENSOR_DELAY_NORMAL);*/
+        }
+    }
 }

@@ -7,10 +7,12 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.wei.wlib.http.WLibHttpListener;
 import com.wei.wlib.pullrefresh.PullToRefreshListView;
 import com.yyspbfq.filmplay.BaseApplication;
@@ -53,8 +55,13 @@ public class VideoRecordActivity extends BaseActivity implements WLibHttpListene
     private RecordListAdapter adapter;
     private List<VideoRecordBean> mData;
     private TextView tv_select_all, tv_delete;
-    private View v_edit;
+    private View v_edit, v_no_data;
     private void initViews() {
+
+        v_no_data = findViewById(R.id.v_no_data);
+
+        ((TextView) findViewById(R.id.tv_hint_no_data)).setText(getString(R.string.record_list_no_data));
+
         tv_delete = findViewById(R.id.tv_delete);
         tv_select_all = findViewById(R.id.tv_select_all);
         v_edit = findViewById(R.id.v_edit);
@@ -114,6 +121,10 @@ public class VideoRecordActivity extends BaseActivity implements WLibHttpListene
         List<VideoRecordBean> list = DBHelper.getInstance().getVideoRecord(BaseApplication.getInstance(), 100);
         if (list!=null&&list.size()>0) {
             adapter.update(list);
+            Log.e("VideoRecordBean","list:"+new Gson().toJson(list));
+        } else {
+            plv.setVisibility(View.GONE);
+            v_no_data.setVisibility(View.VISIBLE);
         }
     }
 
@@ -140,6 +151,13 @@ public class VideoRecordActivity extends BaseActivity implements WLibHttpListene
                 adapter.deleteSelect();
                 showToast("删除成功");
                 DBHelper.getInstance().deleteVideoRecord(BaseApplication.getInstance(), (List<VideoRecordBean>) tag);
+                if (adapter.getCount()==0) {
+                    tv_right.setText("编辑");
+                    v_edit.setVisibility(View.GONE);
+                    plv.setVisibility(View.GONE);
+                    v_no_data.setVisibility(View.VISIBLE);
+                    adapter.setMODEL(0);
+                }
             } catch (Exception e){
                 BLog.e(e);
             }

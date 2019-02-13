@@ -260,7 +260,7 @@ public class UiUtils {
                 item = (LinearLayout)LayoutInflater.from(context).inflate(R.layout.layout_channel_humen_item, ll, false);
                 CircleImageView iv = (CircleImageView) item.findViewById(R.id.civ);
                 Glide.with(context).load(list.get(i).getThumb()).crossFade().into(iv);
-                iv.setOnClickListener(new View.OnClickListener() {
+                item.findViewById(R.id.v_human_top).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         ChannelDetailActivity.actionStart(context, list.get(index).getId());

@@ -173,6 +173,9 @@ public class HttpRespBiz extends WLibDefaultHttpBiz{
             case HttpFlag.FLAG_INFO_HELP:
                 result = HttpFlag.URL_INFO_HELP;
                 break;
+            case HttpFlag.FLAG_DEL_COLLECTION_BY_ID:
+                result = HttpFlag.URL_DEL_COLLECTION_BY_ID;
+                break;
         }
         return result;
     }

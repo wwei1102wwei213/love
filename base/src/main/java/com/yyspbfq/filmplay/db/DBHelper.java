@@ -151,7 +151,7 @@ public class DBHelper {
     }
 
     /**
-     *
+     * 删除播放记录
      * @param application
      * @param list
      */
@@ -170,7 +170,6 @@ public class DBHelper {
                 } catch (Exception e){
 
                 }
-                FileUtils.deleteFileById(entity.getVid());
             }
             application.getSQLiteDatabasePool().releaseSQLiteDatabase(tasqLiteDatabase);
         } catch (Exception e){
@@ -188,15 +187,8 @@ public class DBHelper {
             TASQLiteDatabase tasqLiteDatabase = application.getSQLiteDatabasePool().getSQLiteDatabase();
             if (!tasqLiteDatabase.hasTable(VideoRecordBean.class)) {
                 tasqLiteDatabase.creatTable(VideoRecordBean.class);
-                Log.e("DBHelper", VideoRecordBean.class.getSimpleName()+"表已创建");
             }
             String where = "vid="+object.getVid();
-            Log.e("DBHelper", "updateVideoRecord:"+new Gson().toJson(object) +"\nwhere:"+where);
-            /*List<VideoRecordBean> find = tasqLiteDatabase.query(
-                    VideoRecordBean.class, false, where, null, null, null, null);
-            if (find!=null&&find.size()>0) {
-                tasqLiteDatabase.delete(VideoRecordBean.class, where);
-            }*/
             try {
                 tasqLiteDatabase.delete(VideoRecordBean.class, where);
             } catch (Exception e){
@@ -214,7 +206,7 @@ public class DBHelper {
     }
 
     /**
-     * 获取视频播放进度
+     * 获取视频播放记录
      * @param application
      * @param
      */
@@ -224,7 +216,7 @@ public class DBHelper {
             TASQLiteDatabase tasqLiteDatabase = application.getSQLiteDatabasePool().getSQLiteDatabase();
             if (!tasqLiteDatabase.hasTable(VideoRecordBean.class)) {
                 tasqLiteDatabase.creatTable(VideoRecordBean.class);
-                Log.e("DBHelper", VideoRecordBean.class.getSimpleName()+"表已创建");
+                BLog.e("DBHelper", VideoRecordBean.class.getSimpleName()+"表已创建");
             }
             List<VideoRecordBean> find = tasqLiteDatabase.query(
                     VideoRecordBean.class, false, null, null, null, "update_time desc", limit+"");
@@ -245,17 +237,10 @@ public class DBHelper {
             TASQLiteDatabase tasqLiteDatabase = application.getSQLiteDatabasePool().getSQLiteDatabase();
             if (!tasqLiteDatabase.hasTable(VideoRecordBean.class)) {
                 tasqLiteDatabase.creatTable(VideoRecordBean.class);
-                Log.e("DBHelper", VideoRecordBean.class.getSimpleName()+"表已创建");
             }
-            Log.e("DBHelper","vid="+id);
             String where = "vid="+id;
             List<VideoRecordBean> find = tasqLiteDatabase.query(
                     VideoRecordBean.class, false, where, null, null, null, null);
-            if (find!=null) {
-                Log.e("DBHelper","find="+new Gson().toJson(find));
-            } else {
-                Log.e("DBHelper","find is empty"+id+",where:"+where);
-            }
             if (find!=null&&find.size()>0) {
                 result = find.get(0);
             }
@@ -317,7 +302,7 @@ public class DBHelper {
     }
 
     /**
-     * 获取视频播放进度
+     * 获取key获取下载记录
      * @param application
      * @param
      */
@@ -341,7 +326,7 @@ public class DBHelper {
     }
 
     /**
-     * 插入下载视频资料
+     * 插入下载记录
      * @param application
      * @param object
      */
@@ -439,6 +424,7 @@ public class DBHelper {
                 } catch (Exception e){
 
                 }
+                FileUtils.deleteFileById(key);
             }
             application.getSQLiteDatabasePool().releaseSQLiteDatabase(tasqLiteDatabase);
         } catch (Exception e){

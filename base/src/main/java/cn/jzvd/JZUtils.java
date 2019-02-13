@@ -128,6 +128,7 @@ public class JZUtils {
 
     public static void saveProgress(Context context, Object url, long progress, VideoEntity entity) {
         if (!Jzvd.SAVE_PROGRESS) return;
+        Log.e(TAG, "saveProgress: " + progress+"\nvideo:"+new Gson().toJson(entity));
         if (entity==null||TextUtils.isEmpty(entity.getId())) return;
 
         if (progress < 5000) {
@@ -140,10 +141,10 @@ public class JZUtils {
         bean.setUpdate_time(System.currentTimeMillis());
         bean.setDetail(new Gson().toJson(entity));
         DBHelper.getInstance().updateVideoRecord((TAApplication) context.getApplicationContext(), bean);
-        /*SharedPreferences spn = context.getSharedPreferences("JZVD_PROGRESS",
+        SharedPreferences spn = context.getSharedPreferences("JZVD_PROGRESS",
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = spn.edit();
-        editor.putLong("newVersion:" + url.toString(), progress).apply();*/
+        editor.putLong("newVersion:" + url.toString(), progress).apply();
     }
 
     public static long getSavedProgress(Context context, Object url) {

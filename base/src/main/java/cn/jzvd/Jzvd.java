@@ -122,6 +122,8 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     public TextView currentTimeTextView, totalTimeTextView;
     public ViewGroup textureViewContainer;
     public ViewGroup topContainer, bottomContainer;
+    public View leftContainer;
+    public TextView btnVol, btnLock;
     public int widthRatio = 0;
     public int heightRatio = 0;
     public JZDataSource jzDataSource;
@@ -144,6 +146,10 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     boolean tmp_test_back = false;
 
     protected boolean isFull = false;
+
+    protected boolean isLock = false;
+
+    protected boolean isVolQuiet = false;
 
     public void setFull(boolean full) {
         isFull = full;
@@ -397,6 +403,12 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         textureViewContainer = findViewById(R.id.surface_container);
         topContainer = findViewById(R.id.layout_top);
 
+        leftContainer = findViewById(R.id.layout_left);
+        btnVol = findViewById(R.id.btn_vol);
+        btnLock = findViewById(R.id.btn_lock);
+        btnVol.setOnClickListener(this);
+        btnLock.setOnClickListener(this);
+
         startButton.setOnClickListener(this);
         iv_replay.setOnClickListener(this);
         fullscreenButton.setOnClickListener(this);
@@ -439,7 +451,8 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     }
 
     public void setUp(String url, String title, VideoEntity entity,int screen) {
-        url = "https://video-dev.github.io/streams/x36xhzz/x36xhzz.m3u8";
+//        url = "https://video-dev.github.io/streams/x36xhzz/x36xhzz.m3u8";
+        Logger.e("播放地址:"+url);
         setUp(new JZDataSource(url, title, entity), screen);
     }
 
@@ -525,7 +538,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
             }
             if (currentState == CURRENT_STATE_AUTO_COMPLETE) {
                 onEvent(JZUserAction.ON_CLICK_START_AUTO_COMPLETE);
-                startVideo();
+                toStart();
             } else if (currentState == CURRENT_STATE_NORMAL) {
                 if (!jzDataSource.getCurrentUrl().toString().startsWith("file") && !
                         jzDataSource.getCurrentUrl().toString().startsWith("/") &&
@@ -536,11 +549,30 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
                 onEvent(JZUserAction.ON_CLICK_START_ICON);
                 startVideo();
             }
+        } else if (i == R.id.btn_vol) {
+            changeVoice();
+        } else if (i == R.id.btn_lock) {
+            isLock = !isLock;
+            btnLock.setSelected(isLock);
+            setLockModel();
         }
+    }
+
+    protected void setLockModel() {
+
+    }
+
+    protected void changeVoice() {
+        isVolQuiet = !isVolQuiet;
+        btnVol.setSelected(isVolQuiet);
+        JZMediaManager.instance().jzMediaInterface.setVolume(isVolQuiet?0f:1f, isVolQuiet?0f:1f);
     }
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
+        if (isLock&&currentScreen == SCREEN_WINDOW_FULLSCREEN) {
+            return true;
+        }
         float x = event.getX();
         float y = event.getY();
         int id = v.getId();
@@ -599,7 +631,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
                     }
                     if (mChangePosition) {
                         long totalTimeDuration = getDuration();
-                        mSeekTimePosition = (int) (mGestureDownPosition + deltaX * totalTimeDuration / mScreenWidth);
+                        mSeekTimePosition = (int) (mGestureDownPosition + (deltaX * totalTimeDuration / mScreenWidth)/8);
                         if (mSeekTimePosition > totalTimeDuration)
                             mSeekTimePosition = totalTimeDuration;
                         String seekTime = JZUtils.stringForTime(mSeekTimePosition);
@@ -659,6 +691,16 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         return false;
     }
 
+    public void autoPlay() {
+        if (!jzDataSource.getCurrentUrl().toString().startsWith("file") && !
+                jzDataSource.getCurrentUrl().toString().startsWith("/") &&
+                !JZUtils.isWifiConnected(getContext()) && !WIFI_TIP_DIALOG_SHOWED) {
+            showWifiDialog();
+            return;
+        }
+        toStart();
+    }
+
     public void startVideo() {
 
         Map<String, String> map = new HashMap<>();
@@ -702,7 +744,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
 
     }
 
-    private void toStart() {
+    public void toStart() {
         JzvdMgr.completeAll();
         JLog.d(TAG, "startVideo [" + this.hashCode() + "] ");
         initTextureView();
@@ -726,6 +768,11 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
             isReplayFirst = false;
         }
         onStatePlaying();
+    }
+
+    public void onPreparing() {
+        BLog.i(TAG, "onPreparing " + " [" + this.hashCode() + "] ");
+        onSeekLoading();
     }
 
     public void setState(int state) {
@@ -759,13 +806,13 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     }
 
     public void onStateNormal() {
-        BLog.i(TAG, "onStateNormal " + " [" + this.hashCode() + "] ");
+//        BLog.i(TAG, "onStateNormal " + " [" + this.hashCode() + "] ");
         currentState = CURRENT_STATE_NORMAL;
         cancelProgressTimer();
     }
 
     public void onStatePreparing() {
-        BLog.i(TAG, "onStatePreparing " + " [" + this.hashCode() + "] ");
+//        BLog.i(TAG, "onStatePreparing " + " [" + this.hashCode() + "] ");
         currentState = CURRENT_STATE_PREPARING;
         resetProgressAndTime();
     }
@@ -812,25 +859,25 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     }
 
     public void onStatePlaying() {
-        BLog.i(TAG, "onStatePlaying " + " [" + this.hashCode() + "] ");
+//        BLog.i(TAG, "onStatePlaying " + " [" + this.hashCode() + "] ");
         currentState = CURRENT_STATE_PLAYING;
         startProgressTimer();
     }
 
     public void onStatePause() {
-        BLog.i(TAG, "onStatePause " + " [" + this.hashCode() + "] ");
+//        BLog.i(TAG, "onStatePause " + " [" + this.hashCode() + "] ");
         currentState = CURRENT_STATE_PAUSE;
         startProgressTimer();
     }
 
     public void onStateError() {
-        BLog.i(TAG, "onStateError " + " [" + this.hashCode() + "] ");
+//        BLog.i(TAG, "onStateError " + " [" + this.hashCode() + "] ");
         currentState = CURRENT_STATE_ERROR;
         cancelProgressTimer();
     }
 
     public void onStateAutoComplete() {
-        BLog.i(TAG, "onStateAutoComplete " + " [" + this.hashCode() + "] ");
+//        BLog.i(TAG, "onStateAutoComplete " + " [" + this.hashCode() + "] ");
         currentState = CURRENT_STATE_AUTO_COMPLETE;
         cancelProgressTimer();
         progressBar.setProgress(100);
@@ -838,11 +885,11 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     }
 
     public void onInfo(int what, int extra) {
-        JLog.d(TAG, "onInfo what - " + what + " extra - " + extra);
+//        JLog.d(TAG, "onInfo what - " + what + " extra - " + extra);
     }
 
     public void onError(int what, int extra) {
-        JLog.e(TAG, "onError " + what + " - " + extra + " [" + this.hashCode() + "] ");
+//        JLog.e(TAG, "onError " + what + " - " + extra + " [" + this.hashCode() + "] ");
         if (what != 38 && extra != -38 && what != -38 && extra != 38 && extra != -19) {
             onStateError();
             if (isCurrentPlay()) {
@@ -914,6 +961,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
             JZMediaManager.savedSurfaceTexture.release();
         JZMediaManager.textureView = null;
         JZMediaManager.savedSurfaceTexture = null;
+        isLock = false;
     }
 
     public void release() {
@@ -1206,7 +1254,9 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         if (currentState == CURRENT_STATE_NORMAL) {
             if (isReplayFirst&&currentScreen != SCREEN_WINDOW_FULLSCREEN) {
                 iv_replay.setVisibility(VISIBLE);
-                isReplayFirst = false;
+                if (currentScreen != SCREEN_WINDOW_LIST) {
+                    isReplayFirst = false;
+                }
             } else {
                 iv_replay.setVisibility(GONE);
             }

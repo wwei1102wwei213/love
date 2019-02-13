@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Html;
@@ -20,10 +21,12 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.orhanobut.logger.Logger;
 import com.wei.wlib.http.WLibHttpFlag;
 import com.wei.wlib.http.WLibHttpListener;
 import com.wei.wlib.pullrefresh.PullToRefreshListView;
 import com.wei.wlib.widget.FlowLayout;
+import com.yyspbfq.filmplay.BaseApplication;
 import com.yyspbfq.filmplay.R;
 import com.yyspbfq.filmplay.adapter.CommentListAdapter;
 import com.yyspbfq.filmplay.bean.AdvertBean;
@@ -34,17 +37,22 @@ import com.yyspbfq.filmplay.biz.Factory;
 import com.yyspbfq.filmplay.biz.download.DownloadTaskManager;
 import com.yyspbfq.filmplay.biz.http.HttpFlag;
 import com.yyspbfq.filmplay.biz.login.UserHelper;
+import com.yyspbfq.filmplay.db.DBHelper;
+import com.yyspbfq.filmplay.db.VideoDownloadBean;
 import com.yyspbfq.filmplay.db.VideoEntity;
 import com.yyspbfq.filmplay.player.MyJzvdStd;
 import com.yyspbfq.filmplay.ui.BaseActivity;
 import com.yyspbfq.filmplay.ui.dialog.CommentDialog;
+import com.yyspbfq.filmplay.ui.dialog.LoginDialog;
 import com.yyspbfq.filmplay.ui.dialog.NormalDialog;
 import com.yyspbfq.filmplay.utils.BLog;
 import com.yyspbfq.filmplay.utils.Const;
 import com.yyspbfq.filmplay.utils.SystemUtils;
 import com.yyspbfq.filmplay.utils.UiUtils;
 import com.yyspbfq.filmplay.utils.sp.SPLongUtils;
+import com.yyspbfq.filmplay.utils.sp.UserDataUtil;
 import com.yyspbfq.filmplay.utils.tools.DensityUtils;
+import com.yyspbfq.filmplay.utils.tools.FileUtils;
 import com.yyspbfq.filmplay.utils.tools.TimeUtils;
 import com.yyspbfq.filmplay.utils.tools.ToastUtils;
 
@@ -53,6 +61,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cn.jzvd.JZExoPlayer;
 import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
 
@@ -60,6 +69,7 @@ public class VideoPlayActivity extends BaseActivity implements MyJzvdStd.PlayerL
 
     private JzvdStd jvd;
     private String mVid;
+    private boolean isLocation = false;
 
     public static void actionStart(Context context, String id) {
         Intent intent = new Intent(context, VideoPlayActivity.class);
@@ -74,10 +84,36 @@ public class VideoPlayActivity extends BaseActivity implements MyJzvdStd.PlayerL
         setContentView(R.layout.activity_video_play);
         mVid = getIntent().getStringExtra(Const.INTENT_KEY_VIDEO_ID);
         initViews();
+        Jzvd.setMediaInterface(new JZExoPlayer());
         initData();
     }
 
     private void initData() {
+        isLocation = FileUtils.isVideoExist(mVid);
+        Logger.e("mVid:"+mVid+"\nisLocation:"+isLocation);
+        if (isLocation) {
+            VideoDownloadBean mDownloadData = DBHelper.getInstance().getDownloadRecordByKey(BaseApplication.getInstance(), mVid);
+            if (mDownloadData==null||TextUtils.isEmpty(mDownloadData.getVid())) {
+                isLocation = false;
+            } else {
+                Uri uri = Uri.parse(FileUtils.getVideoFileAbsolutePathWithMp4(mVid));
+                Logger.e("URI:"+uri.toString());
+                try {
+                    jvd.setUp(uri.toString()
+                            , mDownloadData.getName(), mDownloadData.getVideo(),  JzvdStd.SCREEN_WINDOW_NORMAL);
+                    Glide.with(this).
+                            load(mDownloadData.getVideo_thumb()).
+                            into(jvd.thumbImageView);
+                    jvd.autoPlay();
+                } catch (Exception e){
+                    BLog.e(e);
+                }
+            }
+        }
+        initVideoData();
+    }
+
+    private void initVideoData() {
         Map<String, String> map = new HashMap<>();
         map.put("vid", mVid);
         Factory.resp(this, HttpFlag.FLAG_VIDEO_DETAIL, null, VideoEntity.class).post(map);
@@ -138,7 +174,6 @@ public class VideoPlayActivity extends BaseActivity implements MyJzvdStd.PlayerL
             @Override
             public void onClick(View v) {
                 toDownload();
-
             }
         });
         iv_collection.setOnClickListener(new View.OnClickListener() {
@@ -157,6 +192,10 @@ public class VideoPlayActivity extends BaseActivity implements MyJzvdStd.PlayerL
 
     private CommentDialog dialog;
     private void showCommentDialog() {
+        if (!UserDataUtil.isLogin(this)) {
+            new LoginDialog(this).show();
+            return;
+        }
         if (dialog ==null) {
             dialog = new CommentDialog(this);
             dialog.setVid(mVid);
@@ -233,6 +272,7 @@ public class VideoPlayActivity extends BaseActivity implements MyJzvdStd.PlayerL
 
     }
 
+    //切换显示简介
     private void showIntro() {
         if (tv_intro.getVisibility()==View.VISIBLE) {
             tv_intro.setVisibility(View.GONE);
@@ -330,10 +370,37 @@ public class VideoPlayActivity extends BaseActivity implements MyJzvdStd.PlayerL
             temp_title.setText(entity.getName());
             temp_watch.setText(entity.getWatch_num()+"次播放");
             setLabelView(entity.getLabel(), temp_fl);
+            iv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    toChangePlayVideo(entity);
+                }
+            });
+            temp_title.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    toChangePlayVideo(entity);
+                }
+            });
             ll_like.addView(view);
         } catch (Exception e){
             BLog.e(e);
         }
+    }
+
+    private void toChangePlayVideo(VideoEntity entity) {
+        if (TextUtils.isEmpty(entity.getId())) {
+            showToast("视频数据错误");
+            return;
+        }
+        mVid = entity.getId();
+        Jzvd.releaseAllVideos();
+        try {
+            lv.smoothScrollToPosition(0);
+        } catch (Exception e){
+            BLog.e(e);
+        }
+        initData();
     }
 
     private void addLikeMore(){
@@ -400,6 +467,11 @@ public class VideoPlayActivity extends BaseActivity implements MyJzvdStd.PlayerL
     }
 
     private void toDownload(){
+        VideoDownloadBean temp = DBHelper.getInstance().getDownloadRecordByKey(BaseApplication.getInstance(), mVid);
+        if (temp!=null&&temp.getState()==99) {
+            ToastUtils.showToast("已缓存过该视频");
+            return;
+        }
         Map<String, String> map = new HashMap<>();
         map.put("vid", mVid);
         map.put("type", "2");
@@ -407,13 +479,18 @@ public class VideoPlayActivity extends BaseActivity implements MyJzvdStd.PlayerL
     }
 
     private void toCollection() {
-        if (canColl==0) {
+        if (!UserDataUtil.isLogin(this)) {
+            new LoginDialog(this).show();
+            return;
+        }
+        Map<String, String> map = new HashMap<>();
+        map.put("vid", mVid);
+        Factory.resp(this, canColl==0?HttpFlag.FLAG_VIDEO_COLLECTION:HttpFlag.FLAG_DEL_COLLECTION_BY_ID, null, null).post(map);
+        /*if (canColl==0) {
             showToast("已收藏过该视频");
         } else {
-            Map<String, String> map = new HashMap<>();
-            map.put("vid", mVid);
-            Factory.resp(this, HttpFlag.FLAG_VIDEO_COLLECTION, null, null).post(map);
-        }
+
+        }*/
     }
 
     private VideoEntity mVideoData;
@@ -430,12 +507,19 @@ public class VideoPlayActivity extends BaseActivity implements MyJzvdStd.PlayerL
 //                        "  <span style=\"color: rgb(255, 0, 0);\">"+bean.getWatch_num()+"</span>次播放"));
 
                 setLabelView(bean.getLabel());
-                jvd.setUp(bean.getVideo_url()
+                if (!isLocation) {
+                    jvd.setUp(bean.getVideo_url()
+                            , bean.getName(), bean,  JzvdStd.SCREEN_WINDOW_NORMAL);
+                    Glide.with(this).
+                            load(bean.getVideo_thump()).
+                            into(jvd.thumbImageView);
+                    jvd.autoPlay();
+                }
+                /*jvd.setUp(bean.getVideo_url()
                         , bean.getName(), bean,  JzvdStd.SCREEN_WINDOW_NORMAL);
                 Glide.with(this).
                         load(bean.getVideo_thump()).
-                        into(jvd.thumbImageView);
-
+                        into(jvd.thumbImageView);*/
                 int p = getPercentHot(bean.getLove_num(), bean.getHate_num());
                 pb_zan.setProgress(p);
                 tv_zan_summary.setText(p+"%觉得很赞");
@@ -530,7 +614,7 @@ public class VideoPlayActivity extends BaseActivity implements MyJzvdStd.PlayerL
             } catch (Exception e){
                 handleError(flag, tag, WLibHttpFlag.HTTP_ERROR_OTHER, null, null);
                 BLog.e(e);
-            }
+            }//HttpFlag.FLAG_DEL_COLLECTION_BY_ID
         } else if (flag == HttpFlag.FLAG_VIDEO_COLLECTION) {
             try {
                 iv_collection.setImageResource(R.mipmap.icon_ilike_select);
@@ -550,6 +634,13 @@ public class VideoPlayActivity extends BaseActivity implements MyJzvdStd.PlayerL
                     NormalDialog normalDialog = new NormalDialog(this);
                     normalDialog.show();
                 }
+            } catch (Exception e){
+                BLog.e(e);
+            }
+        } else if (flag == HttpFlag.FLAG_DEL_COLLECTION_BY_ID) {
+            try {
+                iv_collection.setImageResource(R.mipmap.icon_ilike_default);
+                if (!TextUtils.isEmpty(hint)) showToast(hint);
             } catch (Exception e){
                 BLog.e(e);
             }
@@ -602,6 +693,10 @@ public class VideoPlayActivity extends BaseActivity implements MyJzvdStd.PlayerL
     }
 
     private void clickZanOrHate(boolean isHate) {
+        if (!UserDataUtil.isLogin(this)) {
+            new LoginDialog(this).show();
+            return;
+        }
         if (iv_zan.isSelected()||iv_hate.isSelected()) {
             showToast("您已经"+(iv_zan.isSelected()?"赞":"踩")+"过了");
             return;

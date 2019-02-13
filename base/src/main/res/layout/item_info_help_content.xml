@@ -5,10 +5,7 @@
     android:layout_height="wrap_content"
     android:paddingLeft="12dp"
     android:paddingRight="12dp"
-    android:paddingBottom="24dp"
     android:textColor="#ccc"
-    android:textSize="16sp"
-    android:lineSpacingExtra="3dp"
-    android:lineSpacingMultiplier="1.1">
+    android:textSize="14sp">
 
 </TextView>

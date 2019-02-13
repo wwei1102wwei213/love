@@ -16,7 +16,9 @@ import com.yyspbfq.filmplay.R;
 import com.yyspbfq.filmplay.bean.CommentEntity;
 import com.yyspbfq.filmplay.biz.Factory;
 import com.yyspbfq.filmplay.biz.http.HttpFlag;
+import com.yyspbfq.filmplay.ui.dialog.LoginDialog;
 import com.yyspbfq.filmplay.utils.BLog;
+import com.yyspbfq.filmplay.utils.sp.UserDataUtil;
 import com.yyspbfq.filmplay.utils.tools.ToastUtils;
 
 import java.util.ArrayList;
@@ -81,8 +83,12 @@ public class CommentListAdapter extends BaseAdapter{
             vh.iv_comment_zan.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    if (!UserDataUtil.isLogin(context)) {
+                        new LoginDialog(context).show();
+                        return;
+                    }
                     if (zanLists.contains(position)) {
-//                        ToastUtils.showToast("");
+                        ToastUtils.showToast("您已经赞过了");
                     } else {
                         toCommentZan(entity, position);
                     }

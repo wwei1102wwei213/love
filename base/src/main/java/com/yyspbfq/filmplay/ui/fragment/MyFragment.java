@@ -67,7 +67,6 @@ import java.util.Map;
 public class MyFragment extends BaseFragment implements View.OnClickListener, WLibHttpListener{
 
     public static final String TAG = MyFragment.class.getSimpleName();
-    private boolean isPull = false;
     private View content;
     private PullElasticityScrollView mPullScrollView;
     private ElasticityScrollView mScrollView;
@@ -79,7 +78,6 @@ public class MyFragment extends BaseFragment implements View.OnClickListener, WL
     private TextView tv_level_next;
     private ImageView iv_icon_level,iv_level_info;
     private View statusBar;
-    private View iv_invite;
     private View v_red_dot;
     private View tv_no_read_record;
 
@@ -105,7 +103,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener, WL
 
         statusBar = findViewById(R.id.status_bar);
         Height_Top = DensityUtils.dp2px(context, 100);
-        initStatusBar(findViewById(R.id.status_bar));
+        initStatusBar(statusBar);
 
         content = LayoutInflater.from(context).inflate(R.layout.fragment_my_content, null);
         content.setVisibility(View.VISIBLE);
@@ -118,7 +116,6 @@ public class MyFragment extends BaseFragment implements View.OnClickListener, WL
         mPullScrollView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ElasticityScrollView>() {
             @Override
             public void onPullDownToRefresh(PullToRefreshBase<ElasticityScrollView> refreshView) {
-                isPull = true;
                 initData();
             }
 
@@ -135,10 +132,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener, WL
         myNameTv = (TextView) content.findViewById(R.id.my_name_tv);
         tv_level_next = (TextView) content.findViewById(R.id.tv_level_next);
         myCoinTv = (TextView) content.findViewById(R.id.my_coin_tv);
-//        v_history_read = content.findViewById(R.id.v_history_read);
         v_red_dot = content.findViewById(R.id.my_ll_message_img_dot);
-//        boolean hasRed = PreferencesUtils.getBoolean(mContext, Constant.MY_MESSAGE_HAS_RED, false);
-//        v_red_dot.setVisibility(hasRed?View.VISIBLE:View.GONE);
         tv_level_or_login = (TextView) content.findViewById(R.id.tv_level_or_login);
         iv_adv = content.findViewById(R.id.iv_adv);
 
@@ -271,10 +265,10 @@ public class MyFragment extends BaseFragment implements View.OnClickListener, WL
                 tv_level_or_login.setText(levelName);
                 tv_level_next.setText(levelSpace);
                 Glide.with(context).load(userInfo.avatar).diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .error(R.mipmap.default_error_img).into(myHeadImg);
+                        .error(R.mipmap.default_user_icon).into(myHeadImg);
             } else {
                 myNameTv.setText("请登录");
-                Glide.with(context).load(R.mipmap.default_error_img).into(myHeadImg);
+                Glide.with(context).load(R.mipmap.default_user_icon).into(myHeadImg);
                 tv_level_or_login.setText("请登录");
                 tv_level_next.setText("去推广升级吧");
             }
@@ -300,7 +294,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener, WL
                 rv_history.setVisibility(View.VISIBLE);
                 if (tv_no_read_record!=null) tv_no_read_record.setVisibility(View.GONE);
             } else {
-                rv_history.setVisibility(View.INVISIBLE);
+                rv_history.setVisibility(View.GONE);
                 if (tv_no_read_record!=null) tv_no_read_record.setVisibility(View.VISIBLE);
             }
         } catch (Exception e){
@@ -312,7 +306,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener, WL
                 if (downloadAdapter!=null) downloadAdapter.update(list);
                 rv_download.setVisibility(View.VISIBLE);
             } else {
-                rv_download.setVisibility(View.INVISIBLE);
+                rv_download.setVisibility(View.GONE);
             }
         } catch (Exception e){
             BLog.e(e);
@@ -332,13 +326,13 @@ public class MyFragment extends BaseFragment implements View.OnClickListener, WL
                 context.startActivity(new Intent(context, SettingActivity.class));
                 break;
             case R.id.v_menu_3:
-                /*if ("2".equals(UserDataUtil.getLoginType(context))) {
-
-                } else {
+                if (!UserDataUtil.isLogin(context)) {
                     new LoginDialog(context).show();
-                }*/
-                InfoMessageActivity.actionStart(context);
-                v_red_dot.setVisibility(View.GONE);
+                    return;
+                } else {
+                    InfoMessageActivity.actionStart(context);
+                    v_red_dot.setVisibility(View.GONE);
+                }
                 break;
             case R.id.tv_level_or_login:
                 if (!UserDataUtil.isLogin(context)) {
@@ -364,20 +358,20 @@ public class MyFragment extends BaseFragment implements View.OnClickListener, WL
                 }
                 break;
             case R.id.tv_level_exchange:
-                LevelExchangeActivity.actionStart(context);
-                /*if ("2".equals(UserDataUtil.getLoginType(context))) {
-                    LevelExchangeActivity.actionStart(context);
-                } else {
+                if (!UserDataUtil.isLogin(context)) {
                     new LoginDialog(context).show();
-                }*/
+                    return;
+                } else {
+                    LevelExchangeActivity.actionStart(context);
+                }
                 break;
             case R.id.v_history_menu:
-                startActivity(new Intent(getActivity(), VideoRecordActivity.class));
-                /*if ("2".equals(UserDataUtil.getLoginType(context))) {
-                    startActivity(new Intent(getActivity(), VideoRecordActivity.class));
-                } else {
+                if (!UserDataUtil.isLogin(context)) {
                     new LoginDialog(context).show();
-                }*/
+                    return;
+                } else {
+                    startActivity(new Intent(getActivity(), VideoRecordActivity.class));
+                }
                 break;
             case R.id.iv_adv:
                 UiUtils.handleAdvert(context, mAdvertBean);
@@ -443,7 +437,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener, WL
                     collectionRAdapter.update(list);
                     rv_collection.setVisibility(View.VISIBLE);
                 } else {
-                    rv_collection.setVisibility(View.INVISIBLE);
+                    rv_collection.setVisibility(View.GONE);
                 }
             } catch (Exception e){
                 BLog.e(e);

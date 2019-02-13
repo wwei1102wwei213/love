@@ -16,6 +16,35 @@
             android:layout_height="match_parent">
 
         </com.wei.wlib.pullrefresh.PullToRefreshListView>
+
+        <LinearLayout
+            android:id="@+id/v_no_data"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/search_nodata_pic"
+                android:layout_marginTop="36dp"
+                android:layout_gravity="center_horizontal"/>
+            <TextView
+                android:id="@+id/tv_hint_no_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/text_gray"
+                android:textSize="14sp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:lineSpacingExtra="2.5dp"
+                android:lineSpacingMultiplier="1.2"
+                android:text="@string/download_list_no_data"
+                android:gravity="center"
+                android:layout_marginTop="5dp"
+                />
+        </LinearLayout>
+
     </RelativeLayout>
     <LinearLayout
         android:id="@+id/v_edit"

@@ -167,6 +167,18 @@ public class VideoSearchActivity extends BaseActivity implements WLibHttpListene
                 et.setText("");
             }
         });
+
+        tv_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    fl_history.removeAllViews();
+                    SPLongUtils.clearSearchRecord(VideoSearchActivity.this);
+                } catch (Exception e){
+                    BLog.e(e);
+                }
+            }
+        });
     }
 
     private String keyword = "";
@@ -186,6 +198,7 @@ public class VideoSearchActivity extends BaseActivity implements WLibHttpListene
         map.put("page", page+"");
         map.put("keyword", keyword);
         Factory.resp(this, HttpFlag.FLAG_SEARCH_KEYWORD, keyword, SearchBean.class).post(map);
+        SPLongUtils.saveSearchRecord(this, keyword);
     }
 
     private void getList(String label) {
@@ -224,18 +237,11 @@ public class VideoSearchActivity extends BaseActivity implements WLibHttpListene
         List<String> temp = SPLongUtils.getSearchRecord(this);
         if (temp.size()>0) {
             setLabelView(temp, fl_history);
+            ll_history.setVisibility(View.VISIBLE);
+        } else {
+            ll_history.setVisibility(View.GONE);
         }
-        tv_delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    fl_history.removeAllViews();
-                    SPLongUtils.clearSearchRecord(VideoSearchActivity.this);
-                } catch (Exception e){
-                    BLog.e(e);
-                }
-            }
-        });
+
     }
 
     private void initData() {
@@ -269,7 +275,6 @@ public class VideoSearchActivity extends BaseActivity implements WLibHttpListene
                 } else {
                     if (page==0) {
                         mData.clear();
-                        SPLongUtils.saveSearchRecord(this, tag.toString());
                     }
                     mData.addAll(list);
                     adapter.update(mData);

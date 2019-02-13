@@ -23,6 +23,10 @@ public class CollationListAdapter extends BaseAdapter{
     private EditModelListener listener;
     private int MODEL = 0;
 
+    public void setMODEL(int MODEL) {
+        this.MODEL = MODEL;
+    }
+
     public interface EditModelListener {
         void modeChangeListener();
     }

@@ -53,8 +53,11 @@ public class InfoCollationActivity extends BaseActivity implements WLibHttpListe
     private CollationListAdapter adapter;
     private List<VideoEntity> mData;
     private TextView tv_select_all, tv_delete;
-    private View v_edit;
+    private View v_edit, v_no_data;
     private void initViews() {
+
+        v_no_data = findViewById(R.id.v_no_data);
+
         tv_delete = findViewById(R.id.tv_delete);
         tv_select_all = findViewById(R.id.tv_select_all);
         v_edit = findViewById(R.id.v_edit);
@@ -169,9 +172,15 @@ public class InfoCollationActivity extends BaseActivity implements WLibHttpListe
                         page--;
                         plv.setHasMoreData(false);
                     }
+                    if (page==0) {
+                        plv.setVisibility(View.GONE);
+                        v_no_data.setVisibility(View.VISIBLE);
+                    }
                 } else {
                     if (page==0) {
                         mData.clear();
+                        v_no_data.setVisibility(View.GONE);
+                        plv.setVisibility(View.VISIBLE);
                     }
                     mData.addAll(list);
                     adapter.update(mData);
@@ -189,6 +198,13 @@ public class InfoCollationActivity extends BaseActivity implements WLibHttpListe
             try {
                 adapter.deleteSelect();
                 showToast("删除成功");
+                if (adapter.getCount()==0) {
+                    tv_right.setText("编辑");
+                    v_edit.setVisibility(View.GONE);
+                    plv.setVisibility(View.GONE);
+                    v_no_data.setVisibility(View.VISIBLE);
+                    adapter.setMODEL(0);
+                }
             } catch (Exception e){
                 BLog.e(e);
             }

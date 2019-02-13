@@ -314,6 +314,12 @@ public class MainActivity extends BaseActivity implements WLibHttpListener{
     }
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        Jzvd.releaseAllVideos();
+    }
+
+    @Override
     protected void onDestroy() {
         EventBus.getDefault().unregister(this);
         super.onDestroy();

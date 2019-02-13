@@ -60,7 +60,7 @@ public class DownloadListActivity extends BaseActivity{
     private DownloadListAdapter adapter;
     private List<VideoDownloadBean> mData;
     private TextView tv_select_all, tv_delete;
-    private View v_edit;
+    private View v_edit, headView, v_no_data, v_head;
     private TextView tv_download_num;
     private void initViews() {
 
@@ -71,6 +71,7 @@ public class DownloadListActivity extends BaseActivity{
         tv_delete = findViewById(R.id.tv_delete);
         tv_select_all = findViewById(R.id.tv_select_all);
         v_edit = findViewById(R.id.v_edit);
+        v_no_data = findViewById(R.id.v_no_data);
 
         plv = (PullToRefreshListView) findViewById(R.id.plv);
         lv = plv.getRefreshableView();
@@ -78,8 +79,10 @@ public class DownloadListActivity extends BaseActivity{
         lv.setDividerHeight(DensityUtils.dp2px(this, 10));
         lv.setSelector(new ColorDrawable(Color.TRANSPARENT));
         lv.setVerticalScrollBarEnabled(false);
-        View headView = LayoutInflater.from(this).inflate(R.layout.head_download_list_lv, lv, false);
+        headView = LayoutInflater.from(this).inflate(R.layout.head_download_list_lv, lv, false);
+
         tv_download_num = headView.findViewById(R.id.tv_download_num);
+        v_head = headView.findViewById(R.id.v_head);
         lv.addHeaderView(headView);
         mData = new ArrayList<>();
         adapter = new DownloadListAdapter(this, null, new DownloadListAdapter.EditModelListener() {
@@ -134,26 +137,44 @@ public class DownloadListActivity extends BaseActivity{
                         if (v1.getState()!=v2.getState()) {
                             return v1.getState() - v2.getState();
                         } else {
-                            if (v1.getState()==99) {
-                                if (v1.getFinish_time()>v2.getFinish_time()) {
-                                    return 1;
-                                } else {
-                                    return -1;
-                                }
+                            if (v1.getCreate_time()<v2.getCreate_time()) {
+                                return 1;
                             } else {
-                                if (v1.getCreate_time()>v2.getCreate_time()) {
-                                    return 1;
-                                } else {
-                                    return -1;
-                                }
+                                return -1;
                             }
                         }
                     }
                 });
+//                int d = DownloadTaskManager.getInstance().getCurrentCount();
+                boolean all = true;
+                for (VideoDownloadBean bean : list) {
+                    if (bean.getState()!=99) {
+                        all = false;
+                        break;
+                    }
+                }
+                if (!all) {
+                    if (tv_download_num!=null) {
+                        tv_download_num.setText("同时缓存个数 "+ DownloadTaskManager.getInstance().getCurrentCount());
+                    }
+                    v_head.setVisibility(View.VISIBLE);
+                } else {
+                    v_head.setVisibility(View.GONE);
+                }
+                adapter.update(list);
+                if (plv.getVisibility()!=View.VISIBLE) {
+                    plv.setVisibility(View.VISIBLE);
+                }
+                if (v_no_data.getVisibility()!=View.GONE) {
+                    v_no_data.setVisibility(View.GONE);
+                }
+            } else {
+                plv.setVisibility(View.GONE);
+                v_no_data.setVisibility(View.VISIBLE);
+                tv_right.setText("编辑");
+                v_edit.setVisibility(View.GONE);
+                adapter.setMODEL(0);
             }
-            if (tv_download_num!=null)
-                tv_download_num.setText("同时缓存个数 "+ DownloadTaskManager.getInstance().getCurrentCount());
-            adapter.update(list);
         } catch (Exception e){
             BLog.e(e);
         }
@@ -164,6 +185,7 @@ public class DownloadListActivity extends BaseActivity{
         if (isDeleting) return;
         isDeleting = true;
         DownloadTaskManager.getInstance().cancelTask(adapter.getSelects());
+
     }
 
     private void changeEditMode() {

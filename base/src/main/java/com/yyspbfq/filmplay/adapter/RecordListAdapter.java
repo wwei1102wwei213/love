@@ -148,6 +148,10 @@ public class RecordListAdapter extends BaseAdapter{
         notifyDataSetChanged();
     }
 
+    public void setMODEL(int MODEL) {
+        this.MODEL = MODEL;
+    }
+
     public List<VideoRecordBean> getSelects() {
         return selects;
     }

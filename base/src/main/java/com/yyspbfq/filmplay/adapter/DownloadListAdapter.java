@@ -33,6 +33,10 @@ public class DownloadListAdapter extends BaseAdapter{
         void modeChangeListener();
     }
 
+    public void setMODEL(int MODEL) {
+        this.MODEL = MODEL;
+    }
+
     public DownloadListAdapter(Context context, List<VideoDownloadBean> list, EditModelListener listener) {
         this.context = context;
         if (list==null) list = new ArrayList<>();

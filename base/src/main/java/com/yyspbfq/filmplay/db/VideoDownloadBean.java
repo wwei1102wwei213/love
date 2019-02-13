@@ -109,4 +109,14 @@ public class VideoDownloadBean {
         if (result.startsWith(".")) result = "0" + result;
         return result;
     }
+
+    public VideoEntity getVideo() {
+        VideoEntity entity = new VideoEntity();
+        entity.setId(vid);
+        entity.setVideo_thump(video_thumb);
+        entity.setName(name);
+        entity.setVideo_time(video_time);
+        return entity;
+    }
+
 }

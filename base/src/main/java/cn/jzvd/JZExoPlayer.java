@@ -228,13 +228,17 @@ public class JZExoPlayer extends JZMediaInterface implements Player.EventListene
             if (JzvdMgr.getCurrentJzvd() != null) {
                 switch (playbackState) {
                     case Player.STATE_IDLE: {
+                        Logger.e("PlayerStateChanged:STATE_IDLE");
                     }
                     break;
                     case Player.STATE_BUFFERING: {
+                        Logger.e("PlayerStateChanged:STATE_BUFFERING");
                         mainHandler.post(callback);
+                        JzvdMgr.getCurrentJzvd().onPreparing();
                     }
                     break;
                     case Player.STATE_READY: {
+                        Logger.e("PlayerStateChanged:STATE_READY+"+playWhenReady);
                         if (playWhenReady) {
                             JzvdMgr.getCurrentJzvd().onPrepared();
                         } else {
@@ -242,6 +246,7 @@ public class JZExoPlayer extends JZMediaInterface implements Player.EventListene
                     }
                     break;
                     case Player.STATE_ENDED: {
+                        Logger.e("PlayerStateChanged:STATE_ENDED");
                         JzvdMgr.getCurrentJzvd().onAutoCompletion();
                     }
                     break;
@@ -277,7 +282,7 @@ public class JZExoPlayer extends JZMediaInterface implements Player.EventListene
 
     @Override
     public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {
-
+        Log.e(TAG, "onPlaybackParametersChanged:" + playbackParameters.speed+", pitch:"+playbackParameters.pitch);
     }
 
     @Override

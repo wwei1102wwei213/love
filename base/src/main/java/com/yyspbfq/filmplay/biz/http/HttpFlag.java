@@ -172,6 +172,9 @@ public class HttpFlag {
     //帮组与反馈
     public static final int FLAG_INFO_HELP = 58;
     public static final String URL_INFO_HELP = BASE_URL + "help/show";
+    //通过视频ID删除影片
+    public static final int FLAG_DEL_COLLECTION_BY_ID = 59;
+    public static final String URL_DEL_COLLECTION_BY_ID = BASE_URL + "user/delCollectionById";
 
 
 

@@ -137,5 +137,7 @@
     <string name="invite_code_image_summary">保存这张图片到本地，如遇到APP无法打开时请扫描二维码或者输入官网地址重新下载即可</string>
     <string name="level_rechange_summary_text">1、一个兑换码只能兑换一次；\n2、一个账号每天只能兑换一次；\n3、兑换后立即获得对应等级的VIP服务。</string>
     <string name="level_input_hint">请输入兑换码</string>
-
+    <string name="download_list_no_data">还没有缓存的影片~\n在详情页可点击下载按钮缓存影片</string>
+    <string name="record_list_no_data">您还没有播放记录\n快开始您的观影之旅吧！</string>
+    <string name="collation_list_no_data">您还没有收藏的视频~\n在详情页可点击喜欢按钮收藏喜欢的影片！</string>
 </resources>

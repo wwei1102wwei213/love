@@ -36,9 +36,11 @@ import com.yyspbfq.filmplay.ui.activity.DownloadListActivity;
 import com.yyspbfq.filmplay.ui.activity.VideoClassifyActivity;
 import com.yyspbfq.filmplay.ui.activity.VideoRecordActivity;
 import com.yyspbfq.filmplay.ui.activity.VideoSearchActivity;
+import com.yyspbfq.filmplay.ui.dialog.LoginDialog;
 import com.yyspbfq.filmplay.utils.BLog;
 import com.yyspbfq.filmplay.utils.CommonUtils;
 import com.yyspbfq.filmplay.utils.UiUtils;
+import com.yyspbfq.filmplay.utils.sp.UserDataUtil;
 import com.yyspbfq.filmplay.utils.tools.DensityUtils;
 
 import java.lang.ref.WeakReference;
@@ -146,8 +148,11 @@ public class HomeFragment extends BaseFragment implements WLibHttpListener{
         findViewById(R.id.iv_search_record).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                VideoRecordActivity.actionStart(context);
-
+                if (UserDataUtil.isLogin(context)) {
+                    VideoRecordActivity.actionStart(context);
+                } else {
+                    new LoginDialog(context).show();
+                }
             }
         });
 

@@ -145,4 +145,17 @@ public class FileUtils {
             WLibLog.e(e);
         }
     }
+
+    public static boolean isVideoExist(String id) {
+        if (TextUtils.isEmpty(id)) return false;
+        try {
+            File file = new File(getVideoFileAbsolutePathWithMp4(id));
+            if (file.exists()) {
+                return true;
+            }
+        } catch (Exception e){
+            WLibLog.e(e);
+        }
+        return false;
+    }
 }

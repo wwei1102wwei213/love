@@ -52,7 +52,7 @@ public class BaseFragment extends Fragment {
                 v.setLayoutParams(params);
             }
         }catch (Exception e){
-            BLog.e(e, "initStatusBar BaseZYFragment");
+            BLog.e(e, "initStatusBar BaseFragment");
         }
     }
 

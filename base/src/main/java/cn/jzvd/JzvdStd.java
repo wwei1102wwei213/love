@@ -8,7 +8,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.net.TrafficStats;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -210,6 +213,7 @@ public class JzvdStd extends Jzvd {
     @Override
     public void changeUrl(int urlMapIndex, long seekToInAdvance) {
         super.changeUrl(urlMapIndex, seekToInAdvance);
+        Logger.e("onStateChangeUrl ");
         startButton.setVisibility(INVISIBLE);
         replayTextView.setVisibility(View.GONE);
         mRetryLayout.setVisibility(View.GONE);
@@ -218,6 +222,7 @@ public class JzvdStd extends Jzvd {
     @Override
     public void changeUrl(JZDataSource jzDataSource, long seekToInAdvance) {
         super.changeUrl(jzDataSource, seekToInAdvance);
+        Logger.e("onStateChangeUrl ");
         titleTextView.setText(jzDataSource.title);
         startButton.setVisibility(INVISIBLE);
         replayTextView.setVisibility(View.GONE);
@@ -259,6 +264,22 @@ public class JzvdStd extends Jzvd {
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         int id = v.getId();
+        if (isLock&&currentScreen == SCREEN_WINDOW_FULLSCREEN) {
+            if (id == R.id.surface_container) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        startDismissControlViewTimer();
+                        setLockModel();
+//                        leftContainer.setVisibility(VISIBLE);
+                        break;
+                }
+            }
+            return true;
+        }
         if (id == R.id.surface_container) {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
@@ -680,11 +701,32 @@ public class JzvdStd extends Jzvd {
                                         int thumbImg, int bottomPro, int retryLayout) {
         topContainer.setVisibility(topCon);
         bottomContainer.setVisibility(bottomCon);
+        leftContainer.setVisibility(bottomCon);
+        if (bottomCon==VISIBLE) {
+            if (currentScreen == SCREEN_WINDOW_FULLSCREEN) {
+                btnLock.setVisibility(VISIBLE);
+                btnLock.setVisibility(isLock?GONE:VISIBLE);
+            } else {
+                btnLock.setVisibility(GONE);
+                btnVol.setVisibility(VISIBLE);
+            }
+        }
         startButton.setVisibility(startBtn);
         loadingProgressBar.setVisibility(loadingPro);
         thumbImageView.setVisibility(thumbImg);
         bottomProgressBar.setVisibility(bottomPro);
         mRetryLayout.setVisibility(retryLayout);
+    }
+
+    @Override
+    protected void setLockModel() {
+        topContainer.setVisibility(isLock?GONE:VISIBLE);
+        bottomContainer.setVisibility(isLock?GONE:VISIBLE);
+        leftContainer.setVisibility(VISIBLE);
+        btnLock.setVisibility(VISIBLE);
+        btnVol.setVisibility(isLock?GONE:VISIBLE);
+        //TODO
+//        loadingProgressBar.setVisibility(GONE);
     }
 
     public void updateStartImage() {
@@ -859,6 +901,7 @@ public class JzvdStd extends Jzvd {
             post(() -> {
                 bottomContainer.setVisibility(View.INVISIBLE);
                 topContainer.setVisibility(View.INVISIBLE);
+                leftContainer.setVisibility(View.INVISIBLE);
                 startButton.setVisibility(View.INVISIBLE);
                 if (clarityPopWindow != null) {
                     clarityPopWindow.dismiss();
@@ -890,8 +933,26 @@ public class JzvdStd extends Jzvd {
         super.onSeekLoading();
         if (v_seek_loading!=null&&v_seek_loading.getVisibility()!=View.VISIBLE) {
             v_seek_loading.setVisibility(View.VISIBLE);
+
         }
     }
+
+    private Runnable mSpeedRunnable = new Runnable() {
+        @Override
+        public void run() {
+             try {
+                 long speed = getUidRxBytes();
+                 Logger.e("mSpeedRunnable:"+speed);
+//                 if ()
+             } catch (Exception e){
+                 BLog.e(e);
+             }
+        }
+    };
+
+    private boolean isLoading = false;
+
+
 
     public class DismissControlViewTimerTask extends TimerTask {
 
@@ -899,5 +960,17 @@ public class JzvdStd extends Jzvd {
         public void run() {
             dissmissControlView();
         }
+    }
+
+    public long getUidRxBytes() { //获取总的接受字节数，包含Mobile和WiFi等
+        PackageManager pm = getContext().getPackageManager();
+        ApplicationInfo ai = null;
+        try {
+            ai = pm.getApplicationInfo("com.yyspbfq.filmplay", 0);
+        } catch (PackageManager.NameNotFoundException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
+        return TrafficStats.getUidRxBytes(ai.uid) == TrafficStats.UNSUPPORTED ? 0 : (TrafficStats.getTotalRxBytes() / 1024);
     }
 }

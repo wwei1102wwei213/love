@@ -20,6 +20,7 @@ import com.yyspbfq.filmplay.utils.BLog;
 import com.yyspbfq.filmplay.utils.SystemUtils;
 import com.yyspbfq.filmplay.utils.sp.SPLongUtils;
 import com.yyspbfq.filmplay.utils.sp.UserDataUtil;
+import com.yyspbfq.filmplay.utils.tools.FileUtils;
 import com.yyspbfq.filmplay.utils.tools.ToastUtils;
 
 import java.util.ArrayList;
@@ -72,7 +73,8 @@ public class DiscoverAdapter extends BaseAdapter{
         }
         final VideoEntity entity = list.get(position);
         try {
-            vh.jzvd.setUp(entity.getVideo_url()
+            boolean isLocal = FileUtils.isVideoExist(entity.getId());
+            vh.jzvd.setUp(isLocal?FileUtils.getVideoFileAbsolutePathWithMp4(entity.getId()):entity.getVideo_url()
                     , entity.getName(), entity,  JzvdStd.SCREEN_WINDOW_LIST);
             Glide.with(context).
                     load(entity.getVideo_thump()).

@@ -73,10 +73,10 @@ public class VideoRecordBean {
     public int getTodayType() {
         long current = System.currentTimeMillis();
         long zero=current/(1000*3600*24)*(1000*3600*24)- TimeZone.getDefault().getRawOffset();
-        if (update_time>=zero) {
+        if (update_time*1000>=zero) {
             return 1;
         }
-        if (update_time >= zero-1000*3600*24*6 ){
+        if (update_time*1000>= zero-1000*3600*24*6 ){
             return 2;
         }
         return 3;
