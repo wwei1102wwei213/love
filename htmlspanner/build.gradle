@@ -1,0 +1,43 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 22
+    }
+}
+
+android {
+    lintOptions {
+         abortOnError false
+    }
+}
+
+dependencies {
+    compile 'net.sourceforge.htmlcleaner:htmlcleaner:2.16'
+    compile 'com.osbcp.cssparser:cssparser:1.5'
+}
+
+/*apply plugin: 'sonar-runner'
+
+sonarRunner {
+    sonarProperties {
+        property "sonar.sourceEncoding", "UTF-8"
+//        property "sonar.profile", "Android Lint"
+        property "sonar.sources", "src"
+        property "sonar.binaries", file("${project.buildDir}/intermediates/classes/debug") 
+       // property "sonar.libraries", "android.sourceSets.main.runtimeClasspath"
+    }
+}
+
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+artifacts {
+    archives sourcesJar
+}*/

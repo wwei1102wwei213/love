@@ -25,7 +25,7 @@
     <dimen name="my_ll_split_margin_right">15dp</dimen>
 
     <!--主页-->
-    <dimen name="home_banner_margin">-30dp</dimen>
+    <dimen name="home_banner_margin">-40dp</dimen>
     <!--统一标题高度-->
     <dimen name="base_search_layout_height">44dp</dimen>
     <dimen name="base_search_menu_size">40dp</dimen>

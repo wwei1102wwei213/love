@@ -19,7 +19,7 @@
         android:id="@+id/iv_base_back"
         android:layout_width="@dimen/base_title_height"
         android:layout_height="@dimen/base_title_height"
-        android:src="@mipmap/base_white_back"
+        android:src="@mipmap/channel_spec_view_back"
         android:scaleType="centerInside"
         android:layout_below="@id/status_bar"/>
 </RelativeLayout>

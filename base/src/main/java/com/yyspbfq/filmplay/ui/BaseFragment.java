@@ -9,9 +9,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.yyspbfq.filmplay.utils.BLog;
+import com.yyspbfq.filmplay.utils.tools.ToastUtils;
 
 /**
  * Created by Administrator on yd
@@ -40,7 +40,8 @@ public class BaseFragment extends Fragment {
     }
 
     protected void showToast(String str){
-        Toast.makeText(context, str, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(context, str, Toast.LENGTH_SHORT).show();
+        ToastUtils.showToast(str);
     }
 
     //设置状态栏

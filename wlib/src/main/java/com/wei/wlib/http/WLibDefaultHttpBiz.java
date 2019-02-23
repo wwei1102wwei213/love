@@ -10,6 +10,8 @@ import com.zhy.http.okhttp.builder.PostFormBuilder;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import okhttp3.Call;
@@ -24,6 +26,11 @@ public class WLibDefaultHttpBiz implements IWLibHttpBiz {
     private Class<?> mClass;
     private int codeType = WLibHttpFlag.RESULT_DATA_FORMAT;
     protected WLibHttpListener callback;
+    private List<String> urls;
+    private String currentUrl;
+    private String currentBaseUrl;
+    private boolean IsChangeBase = false;
+    private boolean checkUrl = false;
 
     public WLibDefaultHttpBiz(int flag, Object tag, WLibHttpListener callback, Class<?> mClass) {
         this.flag = flag;
@@ -44,24 +51,70 @@ public class WLibDefaultHttpBiz implements IWLibHttpBiz {
         this.codeType = codeType;
     }
 
+    public WLibDefaultHttpBiz(int flag, Object tag, WLibHttpListener callback, Class<?> mClass, boolean checkUrl) {
+        this.flag = flag;
+        this.tag = tag;
+        this.callback = callback;
+        mGson = new Gson();
+        this.mClass = mClass;
+        OkTag = flag + "-" + System.currentTimeMillis();
+        this.checkUrl = checkUrl;
+    }
+
+
     @Override
     public void post(final Map<String, String> params) {
         if (callback!=null) callback.handleLoading(flag, tag, true);
-        PostFormBuilder builder = OkHttpUtils.post().url(postUrl());
+        currentBaseUrl = WLibHttpFlag.BASE_URL;
+        currentUrl = postUrl();
+        handlePost(params);
+    }
+
+    private void handlePost(final Map<String, String> params) {
+        PostFormBuilder builder = OkHttpUtils.post().url(currentUrl);
         if (params!=null&&params.size()>0) {
             builder.params(params);
         }
         builder.tag(OkTag).build().execute(new WLibStringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
-                WLibLog.h("请求地址："+postUrl()+",FLAG:"+flag + ",错误信息:"+e.getMessage()+",请求参数："+mGson.toJson(params));
-                handleError(WLibHttpFlag.HTTP_ERROR_DISCONNECT, null, null);
-                cancel();
+                WLibLog.h("请求地址："+currentUrl+",FLAG:"+flag + ",错误信息:"+e.getMessage()+",请求参数："+mGson.toJson(params));
+                if (checkUrl) {
+                    if (urls==null) {
+                        urls = new ArrayList<>();
+                        urls.add("http://47.107.94.24:92/");
+                        urls.add("http://47.107.94.24:93/");
+                        urls.add("http://47.107.94.24:94/");
+                        urls.add("http://47.107.94.24:95/");
+                        urls.add("http://47.107.94.24:88/");
+                    }
+                    urls.remove(currentBaseUrl);
+                    if (urls.size()>0) {
+                        IsChangeBase = true;
+                        currentUrl = currentUrl.replace(currentBaseUrl, urls.get(0));
+                        currentBaseUrl = urls.get(0);
+                        WLibLog.h("替换后："+currentUrl+",BASE:"+currentBaseUrl);
+                        handlePost(params);
+                    } else {
+                        if (callback!=null) callback.handleLoading(flag, tag, false);
+                        handleError(WLibHttpFlag.HTTP_ERROR_DISCONNECT, null, null);
+                        cancel();
+                    }
+                } else {
+                    if (callback!=null) callback.handleLoading(flag, tag, false);
+                    handleError(WLibHttpFlag.HTTP_ERROR_DISCONNECT, null, null);
+                    cancel();
+                }
             }
 
             @Override
             public void onResponse(String response, int id) {
-                WLibLog.h("请求地址："+postUrl()+"(POST)\n请求参数："+mGson.toJson(params)+ "\n请求数据："+response);
+                WLibLog.h("请求地址："+currentUrl+"(POST)\n请求参数："+mGson.toJson(params)+ "\n请求数据："+response);
+                if (checkUrl&&IsChangeBase) {
+                    WLibHttpFlag.BASE_URL = currentBaseUrl;
+                    changeBaseUrl();
+                    if (callback!=null) callback.handleError(flag, tag, WLibHttpFlag.HTTP_ERROR_BASE_URL_CHANGED, currentBaseUrl, null);
+                }
                 handleResponse(response);
                 cancel();
             }
@@ -71,6 +124,12 @@ public class WLibDefaultHttpBiz implements IWLibHttpBiz {
     @Override
     public void get(final Map<String, String> params) {
         if (callback!=null) callback.handleLoading(flag, tag, true);
+        currentBaseUrl = WLibHttpFlag.BASE_URL;
+        currentUrl = getUrl();
+        handleGet(params);
+    }
+
+    private void handleGet(final Map<String, String> params) {
         GetBuilder builder = OkHttpUtils.get().url(getUrl());
         if (params!=null&&params.size()>0) {
             builder.params(params);
@@ -78,14 +137,43 @@ public class WLibDefaultHttpBiz implements IWLibHttpBiz {
         builder.tag(OkTag).build().execute(new WLibStringCallback() {
             @Override
             public void onError(Call call, Exception e, int id) {
-                WLibLog.h("请求地址："+getUrl()+",FLAG:"+flag + ",错误信息:"+e.getMessage()+",请求参数："+mGson.toJson(params));
-                handleError(WLibHttpFlag.HTTP_ERROR_DISCONNECT, null, null);
-                cancel();
+                WLibLog.h("请求地址："+currentUrl+",FLAG:"+flag + ",错误信息:"+e.getMessage()+",请求参数："+mGson.toJson(params));
+                if (checkUrl) {
+                    if (urls==null) {
+                        urls = new ArrayList<>();
+                        urls.add("http://47.107.94.24:88/");
+                        urls.add("http://47.107.94.24:92/");
+                        urls.add("http://47.107.94.24:93/");
+                        urls.add("http://47.107.94.24:94/");
+                        urls.add("http://47.107.94.24:95/");
+                    }
+                    urls.remove(currentBaseUrl);
+                    if (urls.size()>0) {
+                        IsChangeBase = true;
+                        currentUrl = currentUrl.replace(currentBaseUrl, urls.get(0));
+                        currentBaseUrl = urls.get(0);
+                        WLibLog.h("替换后："+currentUrl+",BASE:"+currentBaseUrl);
+                        handleGet(params);
+                    } else {
+                        if (callback!=null) callback.handleLoading(flag, tag, false);
+                        handleError(WLibHttpFlag.HTTP_ERROR_DISCONNECT, null, null);
+                        cancel();
+                    }
+                } else {
+                    if (callback!=null) callback.handleLoading(flag, tag, false);
+                    handleError(WLibHttpFlag.HTTP_ERROR_DISCONNECT, null, null);
+                    cancel();
+                }
             }
 
             @Override
             public void onResponse(String response, int id) {
-                WLibLog.h("请求地址："+getUrl()+"(GET)\n请求参数："+mGson.toJson(params)+ "\n请求数据："+response);
+                WLibLog.h("请求地址："+currentUrl+"(GET)\n请求参数："+mGson.toJson(params)+ "\n请求数据："+response);
+                if (checkUrl&&IsChangeBase) {
+                    WLibHttpFlag.BASE_URL = currentBaseUrl;
+                    changeBaseUrl();
+                    if (callback!=null) callback.handleError(flag, tag, WLibHttpFlag.HTTP_ERROR_BASE_URL_CHANGED, currentBaseUrl, null);
+                }
                 handleResponse(response);
                 cancel();
             }
@@ -109,6 +197,8 @@ public class WLibDefaultHttpBiz implements IWLibHttpBiz {
     protected String postUrl() {
         return null;
     }
+
+    protected void changeBaseUrl() {}
 
     private void handleResponse(String response) {
         if (callback!=null) {

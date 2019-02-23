@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.orhanobut.logger.Logger;
 import com.wei.wlib.http.WLibHttpFlag;
 import com.wei.wlib.http.WLibHttpListener;
 import com.wei.wlib.pullrefresh.PullToRefreshListView;
@@ -49,6 +50,7 @@ public class VideoClassifyActivity extends BaseActivity implements WLibHttpListe
     private List<VideoShortBean> mData;
     private ChannelDetailAdapter adapter;
     private View mHeaderView;
+    private TextView tv_hint;
     private String tid = "0";
     private int sort = 0;
     private final int size = 12;
@@ -56,6 +58,12 @@ public class VideoClassifyActivity extends BaseActivity implements WLibHttpListe
     public static void actionStart(Context context, String classifyId) {
         Intent intent = new Intent(context, VideoClassifyActivity.class);
         intent.putExtra("Classify_id", classifyId);
+        context.startActivity(intent);
+    }
+
+    public static void actionStart(Context context, int sort) {
+        Intent intent = new Intent(context, VideoClassifyActivity.class);
+        intent.putExtra("Sort_id", sort);
         context.startActivity(intent);
     }
 
@@ -71,11 +79,13 @@ public class VideoClassifyActivity extends BaseActivity implements WLibHttpListe
         if (TextUtils.isEmpty(tid)) {
             tid = "0";
         }
+        sort = getIntent().getIntExtra("Sort_id", 0);
         initViews();
         initData();
     }
 
     private void initViews() {
+        tv_hint = findViewById(R.id.tv_hint);
         plv = (PullToRefreshListView) findViewById(R.id.plv);
         lv = plv.getRefreshableView();
         lv.setDivider(null);
@@ -92,7 +102,7 @@ public class VideoClassifyActivity extends BaseActivity implements WLibHttpListe
         //关闭下拉
         plv.setPullRefreshEnabled(false);
         //关闭加载更多
-        plv.setScrollLoadEnabled(false);
+        plv.setScrollLoadEnabled(true);
         //设置滑动加载监听
         plv.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
@@ -104,7 +114,8 @@ public class VideoClassifyActivity extends BaseActivity implements WLibHttpListe
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-
+                Logger.e("onScrollLv:"+firstVisibleItem+","+visibleItemCount+","+totalItemCount);
+                handleHintView(firstVisibleItem);
             }
         });
 
@@ -126,7 +137,7 @@ public class VideoClassifyActivity extends BaseActivity implements WLibHttpListe
         rv.setLayoutManager(manager);
         tadDatas = new ArrayList<>();
         HomeClassifyBean temp = new HomeClassifyBean();
-        temp.setId("-1");
+        temp.setId("0");
         temp.setTname("全部");
         tadDatas.add(temp);
         tagAdapter = new ClassifyChooseAdapter(this, tadDatas, new ClassifyChooseAdapter.ClassifyTagSelectListener() {
@@ -137,6 +148,7 @@ public class VideoClassifyActivity extends BaseActivity implements WLibHttpListe
         });
         rv.setAdapter(tagAdapter);
         RadioGroup rg = mHeaderView.findViewById(R.id.rg);
+
         CompoundButton.OnCheckedChangeListener checkedChangeListener = new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -161,7 +173,7 @@ public class VideoClassifyActivity extends BaseActivity implements WLibHttpListe
 
         for (int i = 0; i < rg.getChildCount(); i++) {
             RadioButton radioButton = (RadioButton) rg.getChildAt(i);
-            if (i==0) radioButton.setChecked(true);
+            if (i==sort) radioButton.setChecked(true);
             radioButton.setOnCheckedChangeListener(checkedChangeListener);
         }
     }
@@ -173,6 +185,7 @@ public class VideoClassifyActivity extends BaseActivity implements WLibHttpListe
 
     private void changeTag(HomeClassifyBean bean, int position) {
         page = 0;
+
         tid = bean.getId();
         scrollTag(position);
         getList();
@@ -193,6 +206,7 @@ public class VideoClassifyActivity extends BaseActivity implements WLibHttpListe
     private void changeSort(int sort) {
         if (this.sort == sort) return;
         this.sort = sort;
+
         page = 0;
         getList();
     }
@@ -216,6 +230,30 @@ public class VideoClassifyActivity extends BaseActivity implements WLibHttpListe
         isLoading = true;
         page++;
         getList();
+    }
+
+    private void handleHintView(int first) {
+        try {
+            if (first==0&&tv_hint.getVisibility()==View.VISIBLE) {
+                tv_hint.setVisibility(View.GONE);
+            }
+            if (first>0&&tv_hint.getVisibility()!=View.VISIBLE) {
+                String sortText;
+                if (sort==1) {
+                    sortText = "最多播放";
+                } else if (sort==2) {
+                    sortText = "最近更新";
+                } else if (sort==3) {
+                    sortText = "最多喜欢";
+                } else {
+                    sortText = "全部";
+                }
+                tv_hint.setText(tagAdapter.getItemText() + " · " + sortText);
+                tv_hint.setVisibility(View.VISIBLE);
+            }
+        } catch (Exception e){
+            BLog.e(e);
+        }
     }
 
     @Override
@@ -249,6 +287,7 @@ public class VideoClassifyActivity extends BaseActivity implements WLibHttpListe
                 } else {
                     if (page==0) {
                         mData.clear();
+                        plv.setHasMoreData(true);
                     }
                     mData.addAll(list);
                     adapter.update(mData);

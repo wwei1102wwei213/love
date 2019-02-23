@@ -70,6 +70,10 @@ public class ClassifyChooseAdapter extends RecyclerView.Adapter<ClassifyChooseAd
         return list.size();
     }
 
+    public String getItemText() {
+        return list.get(selectIndex).getTname();
+    }
+
     public void update(List<HomeClassifyBean> list) {
         this.list = list;
         notifyDataSetChanged();

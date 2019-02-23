@@ -9,8 +9,9 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/XRefreshView" />
-            <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/base" />
+            <option value="$PROJECT_DIR$/fuyou" />
+            <option value="$PROJECT_DIR$/htmlspanner" />
             <option value="$PROJECT_DIR$/jiaozivideoplayer" />
             <option value="$PROJECT_DIR$/libtest" />
             <option value="$PROJECT_DIR$/wlib" />

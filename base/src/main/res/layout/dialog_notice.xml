@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="263dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/public_tips_gonggao_bg">
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="18dp"
+            android:textSize="17sp"
+            android:textColor="@color/text_white"
+            android:maxLength="10"
+            android:text="公告"
+            />
+        <TextView
+            android:id="@+id/tv_sub_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="#428FE5"
+            android:textSize="14sp"
+            android:layout_marginTop="12dp"
+            android:text=""
+            android:gravity="center_horizontal"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:lineSpacingExtra="2dp"
+            android:lineSpacingMultiplier="1.04"
+            android:visibility="gone"
+            />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+
+                >
+                <TextView
+                    android:id="@+id/tv_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#333333"
+                    android:textSize="14sp"
+                    android:maxHeight="200dp"
+                    android:lineSpacingExtra="2dp"
+                    android:lineSpacingMultiplier="1.04"
+                    />
+            </ScrollView>
+
+
+
+
+        <TextView
+            android:id="@+id/tv_sure"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textColor="@color/text_white"
+            android:textSize="14sp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="15dp"
+            android:text="知道了"
+            android:gravity="center"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/shape_bg_notice_btn"
+            />
+    </LinearLayout>
+
+</LinearLayout>

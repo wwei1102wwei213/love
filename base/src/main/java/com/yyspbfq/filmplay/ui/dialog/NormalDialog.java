@@ -10,7 +10,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.yyspbfq.filmplay.R;
-import com.yyspbfq.filmplay.ui.activity.InviteCodeActivity;
+import com.yyspbfq.filmplay.ui.activity.InfoInviteActivity;
 
 public class NormalDialog extends Dialog {
 
@@ -47,7 +47,7 @@ public class NormalDialog extends Dialog {
         tvOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                InviteCodeActivity.actionStart(mContext);
+                InfoInviteActivity.actionStart(mContext);
                 dismiss();
             }
         });

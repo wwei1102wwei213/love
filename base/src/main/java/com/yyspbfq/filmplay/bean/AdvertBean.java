@@ -9,7 +9,7 @@ public class AdvertBean {
         "showtime": 3, // 显示几秒 （秒数）
         "isclose": 1 // 是否可关闭 1:可以 0:不可以*/
     private Object thumb;
-    private String url;
+    private String url, title;
     private int space, type, showtime, isclose;
 
     public Object getThumb() {
@@ -58,5 +58,13 @@ public class AdvertBean {
 
     public void setIsclose(int isclose) {
         this.isclose = isclose;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

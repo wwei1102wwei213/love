@@ -2,6 +2,7 @@ package com.yyspbfq.filmplay.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +16,15 @@ import com.yyspbfq.filmplay.R;
 import com.yyspbfq.filmplay.biz.download.DownloadTask;
 import com.yyspbfq.filmplay.biz.download.DownloadTaskManager;
 import com.yyspbfq.filmplay.db.VideoDownloadBean;
-import com.yyspbfq.filmplay.ui.activity.VideoPlayActivity;
+import com.yyspbfq.filmplay.db.VideoEntity;
 import com.yyspbfq.filmplay.utils.BLog;
+import com.yyspbfq.filmplay.utils.tools.FileUtils;
+import com.yyspbfq.filmplay.utils.tools.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import cn.jzvd.JzvdStd;
 
 public class DownloadListAdapter extends BaseAdapter{
 
@@ -95,7 +100,7 @@ public class DownloadListAdapter extends BaseAdapter{
                     @Override
                     public void onClick(View v) {
                         if (MODEL==0) {
-                            VideoPlayActivity.actionStart(context, bean.getVid());
+                            startFullScreen(bean);
                         } else {
                             if (selects.contains(bean.getVid())) {
                                 selects.remove(bean.getVid());
@@ -110,16 +115,25 @@ public class DownloadListAdapter extends BaseAdapter{
                 vh.pb.setVisibility(View.VISIBLE);
                 int status = DownloadTaskManager.getInstance().checkState(bean.getVid());
                 if (status == DownloadTask.TASK_STATUS_INIT) {
-                    vh.tv_state.setText("正在排队");
+                    vh.tv_state.setText("正在排队...");
                     vh.tv_state.setTextColor(context.getResources().getColor(R.color.name_text_color));
                 } else if (status == DownloadTask.TASK_STATUS_WORKING) {
                     vh.tv_state.setTextColor(Color.GREEN);
                     vh.tv_state.setText("下载中");
+                } else if (status == DownloadTask.TASK_STATUS_RESTART) {
+                    vh.tv_state.setTextColor(Color.RED);
+                    vh.tv_state.setText("正在重连...");
+                } else if (status == DownloadTask.TASK_STATUS_ERROR) {
+                    vh.tv_state.setTextColor(Color.RED);
+                    vh.tv_state.setText("下载出错");
                 } else if (status == DownloadTask.TASK_STATUS_PAUSE) {
                     vh.tv_state.setTextColor(Color.RED);
                     vh.tv_state.setText("已暂停");
+                } else if (status == DownloadTask.TASK_STATUS_PAUSE_ING) {
+                    vh.tv_state.setTextColor(Color.RED);
+                    vh.tv_state.setText("正在暂停...");
                 } else if (status == DownloadTask.TASK_STATUS_CANCEL) {
-                    vh.tv_state.setText("正在取消");
+                    vh.tv_state.setText("正在取消...");
                     vh.tv_state.setTextColor(context.getResources().getColor(R.color.name_text_color));
                 } else {
                     vh.tv_state.setTextColor(context.getResources().getColor(R.color.name_text_color));
@@ -144,27 +158,33 @@ public class DownloadListAdapter extends BaseAdapter{
                 vh.v.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (MODEL==0) {
-                            if (status == DownloadTask.TASK_STATUS_INIT) {
+                        try {
+                            if (MODEL==0) {
+                                int status = DownloadTaskManager.getInstance().checkState(bean.getVid());
+                                Log.e("DownloadTaskManager","DownloadTaskManager====>status:"+status);
+                                if (status == DownloadTask.TASK_STATUS_INIT) {
 
-                            } else if (status == DownloadTask.TASK_STATUS_WORKING) {
-                                DownloadTaskManager.getInstance().pauseTask(bean.getVid());
-                            } else if (status == DownloadTask.TASK_STATUS_PAUSE) {
-                                DownloadTaskManager.getInstance().addTask(bean.getVid(), bean.getDownload_url(), bean.getVid(), bean);
-                            } else if (status == DownloadTask.TASK_STATUS_CANCEL) {
-
-                            } else {
-                                if (status==-1) {
+                                } else if (status == DownloadTask.TASK_STATUS_WORKING) {
+                                    DownloadTaskManager.getInstance().pauseTask(bean.getVid());
+                                } else if (status == DownloadTask.TASK_STATUS_PAUSE || status == DownloadTask.TASK_STATUS_ERROR) {
                                     DownloadTaskManager.getInstance().addTask(bean.getVid(), bean.getDownload_url(), bean.getVid(), bean);
+                                } else if (status == DownloadTask.TASK_STATUS_CANCEL) {
+
+                                } else {
+                                    if (status==-1) {
+                                        DownloadTaskManager.getInstance().addTask(bean.getVid(), bean.getDownload_url(), bean.getVid(), bean);
+                                    }
                                 }
-                            }
-                        } else {
-                            if (selects.contains(bean.getVid())) {
-                                selects.remove(bean.getVid());
                             } else {
-                                selects.add(bean.getVid());
+                                if (selects.contains(bean.getVid())) {
+                                    selects.remove(bean.getVid());
+                                } else {
+                                    selects.add(bean.getVid());
+                                }
+                                notifyDataSetChanged();
                             }
-                            notifyDataSetChanged();
+                        } catch (Exception e){
+                            BLog.e(e);
                         }
                     }
                 });
@@ -247,6 +267,24 @@ public class DownloadListAdapter extends BaseAdapter{
     public void deleteSelect() {
         this.list.removeAll(selects);
         notifyDataSetChanged();
+    }
+
+    private void startFullScreen(VideoDownloadBean bean) {
+        try {
+            boolean isExist = FileUtils.isVideoExist(bean.getVid());
+            if (!isExist) {
+                ToastUtils.showToast("文件不存在");
+                return;
+            }
+            VideoEntity entity = new VideoEntity();
+            entity.setId(bean.getVid());
+            entity.setName(bean.getName());
+            entity.setVideo_thump(bean.getVideo_thumb());
+            entity.setVideo_time(bean.getVideo_time());
+            JzvdStd.startFullscreen(context, JzvdStd.class, FileUtils.getVideoFileAbsolutePathWithMp4(bean.getVid()), bean.getName(), entity);
+        } catch (Exception e){
+            BLog.e(e);
+        }
     }
 
     private int finishIndex;

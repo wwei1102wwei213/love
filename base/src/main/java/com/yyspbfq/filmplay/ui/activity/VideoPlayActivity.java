@@ -4,8 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.text.Html;
 import android.text.TextUtils;
@@ -33,6 +34,7 @@ import com.yyspbfq.filmplay.bean.AdvertBean;
 import com.yyspbfq.filmplay.bean.CommentDataBean;
 import com.yyspbfq.filmplay.bean.CommentEntity;
 import com.yyspbfq.filmplay.bean.DeductionCoinBean;
+import com.yyspbfq.filmplay.bean.ThumbEntity;
 import com.yyspbfq.filmplay.biz.Factory;
 import com.yyspbfq.filmplay.biz.download.DownloadTaskManager;
 import com.yyspbfq.filmplay.biz.http.HttpFlag;
@@ -40,7 +42,6 @@ import com.yyspbfq.filmplay.biz.login.UserHelper;
 import com.yyspbfq.filmplay.db.DBHelper;
 import com.yyspbfq.filmplay.db.VideoDownloadBean;
 import com.yyspbfq.filmplay.db.VideoEntity;
-import com.yyspbfq.filmplay.player.MyJzvdStd;
 import com.yyspbfq.filmplay.ui.BaseActivity;
 import com.yyspbfq.filmplay.ui.dialog.CommentDialog;
 import com.yyspbfq.filmplay.ui.dialog.LoginDialog;
@@ -56,6 +57,8 @@ import com.yyspbfq.filmplay.utils.tools.FileUtils;
 import com.yyspbfq.filmplay.utils.tools.TimeUtils;
 import com.yyspbfq.filmplay.utils.tools.ToastUtils;
 
+import java.io.File;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -65,11 +68,15 @@ import cn.jzvd.JZExoPlayer;
 import cn.jzvd.Jzvd;
 import cn.jzvd.JzvdStd;
 
-public class VideoPlayActivity extends BaseActivity implements MyJzvdStd.PlayerListener, WLibHttpListener{
+public class VideoPlayActivity extends BaseActivity implements  WLibHttpListener{
 
     private JzvdStd jvd;
     private String mVid;
     private boolean isLocation = false;
+    private MyHandler mHandler;
+    private boolean isHasAdvertAbove = false;
+    private boolean isSyncDetail = false;
+    private boolean isSyncAdvert = false;
 
     public static void actionStart(Context context, String id) {
         Intent intent = new Intent(context, VideoPlayActivity.class);
@@ -83,39 +90,27 @@ public class VideoPlayActivity extends BaseActivity implements MyJzvdStd.PlayerL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_play);
         mVid = getIntent().getStringExtra(Const.INTENT_KEY_VIDEO_ID);
+        mHandler = new MyHandler(this);
         initViews();
         Jzvd.setMediaInterface(new JZExoPlayer());
         initData();
     }
 
     private void initData() {
-        isLocation = FileUtils.isVideoExist(mVid);
-        Logger.e("mVid:"+mVid+"\nisLocation:"+isLocation);
-        if (isLocation) {
-            VideoDownloadBean mDownloadData = DBHelper.getInstance().getDownloadRecordByKey(BaseApplication.getInstance(), mVid);
-            if (mDownloadData==null||TextUtils.isEmpty(mDownloadData.getVid())) {
-                isLocation = false;
-            } else {
-                Uri uri = Uri.parse(FileUtils.getVideoFileAbsolutePathWithMp4(mVid));
-                Logger.e("URI:"+uri.toString());
-                try {
-                    jvd.setUp(uri.toString()
-                            , mDownloadData.getName(), mDownloadData.getVideo(),  JzvdStd.SCREEN_WINDOW_NORMAL);
-                    Glide.with(this).
-                            load(mDownloadData.getVideo_thumb()).
-                            into(jvd.thumbImageView);
-                    jvd.autoPlay();
-                } catch (Exception e){
-                    BLog.e(e);
-                }
-            }
-        }
+
         initVideoData();
     }
 
     private void initVideoData() {
+        isSyncAdvert = false;
+        isSyncDetail = false;
+        isHasAdvertAbove = false;
+        isJump = false;
+
+//        tv_ads_num.setText("5s");
         Map<String, String> map = new HashMap<>();
         map.put("vid", mVid);
+        Factory.resp(this, HttpFlag.FLAG_ADVERT_VIDEO_ABOVE, null, AdvertBean.class).post(null);
         Factory.resp(this, HttpFlag.FLAG_VIDEO_DETAIL, null, VideoEntity.class).post(map);
         Factory.resp(this, HttpFlag.FLAG_VIDEO_DETAIL_LIKE, null, null).post(map);
         Factory.resp(this, HttpFlag.FLAG_ADVERT_VIDEO_DETAIL, null, AdvertBean.class).post(map);
@@ -188,12 +183,22 @@ public class VideoPlayActivity extends BaseActivity implements MyJzvdStd.PlayerL
                 showCommentDialog();
             }
         });
+
+        v_ads = findViewById(R.id.v_ads);
+        tv_ads_num = findViewById(R.id.tv_adv_num);
+        iv_ads_above = findViewById(R.id.iv_ads_above);
+        findViewById(R.id.iv_ads_back).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private CommentDialog dialog;
     private void showCommentDialog() {
         if (!UserDataUtil.isLogin(this)) {
-            new LoginDialog(this).show();
+            showLoginDialog();
             return;
         }
         if (dialog ==null) {
@@ -222,6 +227,9 @@ public class VideoPlayActivity extends BaseActivity implements MyJzvdStd.PlayerL
     private View v_video_intro;
     private ImageView iv_intro;
     private TextView tv_sort_newest, tv_sort_hot;
+    private View v_ads;
+    private TextView tv_ads_num;
+    private ImageView iv_ads_above;
     private void initHeadView(View view) {
         iv_adv = view.findViewById(R.id.iv_adv);
         tv_video_name = view.findViewById(R.id.tv_video_name);
@@ -269,7 +277,6 @@ public class VideoPlayActivity extends BaseActivity implements MyJzvdStd.PlayerL
                 changeSort(2);
             }
         });
-
     }
 
     //切换显示简介
@@ -278,11 +285,6 @@ public class VideoPlayActivity extends BaseActivity implements MyJzvdStd.PlayerL
             tv_intro.setVisibility(View.GONE);
             iv_intro.setRotation(0);
         } else {
-            String temp = "暂无介绍";
-            if (mVideoData!=null&&!TextUtils.isEmpty(mVideoData.getIntro())) {
-                temp = mVideoData.getIntro();
-            }
-            tv_intro.setText(temp);
             iv_intro.setRotation(180);
             tv_intro.setVisibility(View.VISIBLE);
         }
@@ -467,6 +469,10 @@ public class VideoPlayActivity extends BaseActivity implements MyJzvdStd.PlayerL
     }
 
     private void toDownload(){
+        if (TextUtils.isEmpty(mVideoData.getDown_url())) {
+            showToast("没有下载地址");
+            return;
+        }
         VideoDownloadBean temp = DBHelper.getInstance().getDownloadRecordByKey(BaseApplication.getInstance(), mVid);
         if (temp!=null&&temp.getState()==99) {
             ToastUtils.showToast("已缓存过该视频");
@@ -480,12 +486,12 @@ public class VideoPlayActivity extends BaseActivity implements MyJzvdStd.PlayerL
 
     private void toCollection() {
         if (!UserDataUtil.isLogin(this)) {
-            new LoginDialog(this).show();
+            showLoginDialog();
             return;
         }
         Map<String, String> map = new HashMap<>();
         map.put("vid", mVid);
-        Factory.resp(this, canColl==0?HttpFlag.FLAG_VIDEO_COLLECTION:HttpFlag.FLAG_DEL_COLLECTION_BY_ID, null, null).post(map);
+        Factory.resp(this, canColl==0?HttpFlag.FLAG_DEL_COLLECTION_BY_ID:HttpFlag.FLAG_VIDEO_COLLECTION, null, null).post(map);
         /*if (canColl==0) {
             showToast("已收藏过该视频");
         } else {
@@ -507,19 +513,7 @@ public class VideoPlayActivity extends BaseActivity implements MyJzvdStd.PlayerL
 //                        "  <span style=\"color: rgb(255, 0, 0);\">"+bean.getWatch_num()+"</span>次播放"));
 
                 setLabelView(bean.getLabel());
-                if (!isLocation) {
-                    jvd.setUp(bean.getVideo_url()
-                            , bean.getName(), bean,  JzvdStd.SCREEN_WINDOW_NORMAL);
-                    Glide.with(this).
-                            load(bean.getVideo_thump()).
-                            into(jvd.thumbImageView);
-                    jvd.autoPlay();
-                }
-                /*jvd.setUp(bean.getVideo_url()
-                        , bean.getName(), bean,  JzvdStd.SCREEN_WINDOW_NORMAL);
-                Glide.with(this).
-                        load(bean.getVideo_thump()).
-                        into(jvd.thumbImageView);*/
+
                 int p = getPercentHot(bean.getLove_num(), bean.getHate_num());
                 pb_zan.setProgress(p);
                 tv_zan_summary.setText(p+"%觉得很赞");
@@ -545,6 +539,16 @@ public class VideoPlayActivity extends BaseActivity implements MyJzvdStd.PlayerL
                 canColl = bean.getCanCollection();
                 if (canColl==0) {
                     iv_collection.setImageResource(R.mipmap.icon_ilike_select);
+                }
+                String temp = "暂无介绍";
+                if (mVideoData!=null&&!TextUtils.isEmpty(mVideoData.getIntro())) {
+                    temp = mVideoData.getIntro();
+                }
+                tv_intro.setText(temp);
+                if (TextUtils.isEmpty(bean.getDown_url())) {
+                    findViewById(R.id.iv_download).setVisibility(View.GONE);
+                } else {
+                    findViewById(R.id.iv_download).setVisibility(View.VISIBLE);
                 }
             } catch (Exception e){
                 BLog.e(e);
@@ -617,6 +621,7 @@ public class VideoPlayActivity extends BaseActivity implements MyJzvdStd.PlayerL
             }//HttpFlag.FLAG_DEL_COLLECTION_BY_ID
         } else if (flag == HttpFlag.FLAG_VIDEO_COLLECTION) {
             try {
+                canColl = 0;
                 iv_collection.setImageResource(R.mipmap.icon_ilike_select);
                 if (!TextUtils.isEmpty(hint)) showToast(hint);
             } catch (Exception e){
@@ -639,8 +644,26 @@ public class VideoPlayActivity extends BaseActivity implements MyJzvdStd.PlayerL
             }
         } else if (flag == HttpFlag.FLAG_DEL_COLLECTION_BY_ID) {
             try {
+                canColl = 1;
                 iv_collection.setImageResource(R.mipmap.icon_ilike_default);
                 if (!TextUtils.isEmpty(hint)) showToast(hint);
+            } catch (Exception e){
+                BLog.e(e);
+            }
+        } else if (flag == HttpFlag.FLAG_ADVERT_VIDEO_ABOVE) {
+            try {
+                AdvertBean bean = (AdvertBean) formatData;
+                List<ThumbEntity> thumb = new Gson().fromJson(new Gson().toJson(bean.getThumb()), new TypeToken<List<ThumbEntity>>(){}.getType());
+                if (thumb!=null&&thumb.size()>0) {
+                    Glide.with(this).load(thumb.get(0).getUrl()).crossFade().into(iv_ads_above);
+                    iv_ads_above.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            UiUtils.handleAdvert(VideoPlayActivity.this, bean);
+                        }
+                    });
+                    isHasAdvertAbove = true;
+                }
             } catch (Exception e){
                 BLog.e(e);
             }
@@ -651,6 +674,51 @@ public class VideoPlayActivity extends BaseActivity implements MyJzvdStd.PlayerL
         try {
             SystemUtils.copyTextToClip(this, SPLongUtils.getInviteCodeUrl(this));
             ToastUtils.showToast("复制成功，快去分享吧");
+        } catch (Exception e){
+            BLog.e(e);
+        }
+    }
+
+    private void toPlay() {
+        try {
+            if (mBaseExit) return;
+            isLocation = FileUtils.isVideoExist(mVid);
+            String url;
+            if (isLocation) {
+                url = FileUtils.getVideoFileAbsolutePathWithMp4(mVid);
+                VideoDownloadBean mDownloadData = DBHelper.getInstance().getDownloadRecordByKey(BaseApplication.getInstance(), mVid);
+                if (mDownloadData==null||TextUtils.isEmpty(mDownloadData.getVid())) {
+                    mDownloadData = new VideoDownloadBean();
+                    mDownloadData.setVid(mVid);
+                    mDownloadData.setVideo_size(new File(url).length());
+                    mDownloadData.setPatch(url);
+                    long temp = System.currentTimeMillis();
+                    mDownloadData.setFinish_time(temp);
+                    mDownloadData.setName(mVideoData.getName());
+                    mDownloadData.setVideo_thumb(mVideoData.getVideo_thump());
+                    mDownloadData.setCreate_time(temp-1);
+                    mDownloadData.setVideo_time(mVideoData.getVideo_time());
+                    mDownloadData.setDownload_url(mVideoData.getDown_url());
+                    mDownloadData.setState(99);
+                    DBHelper.getInstance().insertDownloadRecord(BaseApplication.getInstance(), mDownloadData);
+                }
+            } else {
+                url = mVideoData.getVideo_url();
+            }
+            try {
+                if (TextUtils.isEmpty(url)) {
+                    showToast("播放地址错误");
+                    return;
+                }
+                Logger.e("mVid:"+mVid+"\nisLocation:"+isLocation+"\nurl:"+url);
+                jvd.setUp(url, mVideoData.getName(), mVideoData,  JzvdStd.SCREEN_WINDOW_NORMAL);
+                Glide.with(this).
+                        load(mVideoData.getVideo_thump()).
+                        into(jvd.thumbImageView);
+                jvd.autoPlay();
+            } catch (Exception e){
+                BLog.e(e);
+            }
         } catch (Exception e){
             BLog.e(e);
         }
@@ -689,12 +757,32 @@ public class VideoPlayActivity extends BaseActivity implements MyJzvdStd.PlayerL
     public void handleAfter(int flag, Object tag) {
         if (flag == HttpFlag.FLAG_COMMENT_LIST) {
             isLoading = false;
+        } else if (flag == HttpFlag.FLAG_ADVERT_VIDEO_ABOVE) {
+            if (isHasAdvertAbove) {
+                v_ads.setVisibility(View.VISIBLE);
+                mHandler.sendEmptyMessage(5);
+            } else {
+                v_ads.setVisibility(View.GONE);
+                isSyncAdvert = true;
+                syncPlay();
+            }
+        } else if (flag == HttpFlag.FLAG_VIDEO_DETAIL) {
+            isSyncDetail = true;
+            if (isSyncAdvert) {
+                syncPlay();
+            }
+        }
+    }
+
+    private void syncPlay() {
+        if (isSyncAdvert&&isSyncDetail) {
+            toPlay();
         }
     }
 
     private void clickZanOrHate(boolean isHate) {
         if (!UserDataUtil.isLogin(this)) {
-            new LoginDialog(this).show();
+            showLoginDialog();
             return;
         }
         if (iv_zan.isSelected()||iv_hate.isSelected()) {
@@ -741,9 +829,10 @@ public class VideoPlayActivity extends BaseActivity implements MyJzvdStd.PlayerL
         return map;
     }
 
-    @Override
-    public void OnPlayerListener(int flag) {
-        setFullScreen();
+    private void showLoginDialog() {
+        LoginDialog dialog = new LoginDialog(this);
+        dialog.setFullModel();
+        dialog.show();
     }
 
     @Override
@@ -763,8 +852,59 @@ public class VideoPlayActivity extends BaseActivity implements MyJzvdStd.PlayerL
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        clearHandler();
         if (jvd!=null) {
             jvd.setFull(false);
+        }
+    }
+
+    @Override
+    public void finish() {
+        mBaseExit = true;
+        super.finish();
+    }
+
+    private boolean isJump = false;
+    private void clearHandler() {
+        isJump = true;
+        try {
+            if (mHandler!=null) {
+                mHandler.removeCallbacksAndMessages(null);
+                mHandler = null;
+            }
+        } catch (Exception e){
+            BLog.e(e);
+        }
+    }
+
+    //处理信息
+    private void handleMsg(int what) {
+        try {
+            if (mBaseExit) return;
+            if (isJump) return;
+            if (what>0) {
+                tv_ads_num.setText(what+"s");
+                if (mHandler!=null) mHandler.sendEmptyMessageDelayed(what-1, 1000);
+            } else {
+                v_ads.setVisibility(View.GONE);
+                toPlay();
+            }
+        } catch (Exception e){
+            BLog.e(e);
+        }
+    }
+
+    private static class MyHandler extends Handler {
+        private WeakReference<VideoPlayActivity> weak;
+        private MyHandler(VideoPlayActivity activity) {
+            weak = new WeakReference<>(activity);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            if (weak!=null&&weak.get()!=null) {
+                weak.get().handleMsg(msg.what);
+            }
         }
     }
 }

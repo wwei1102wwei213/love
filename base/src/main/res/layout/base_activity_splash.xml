@@ -35,5 +35,23 @@
         android:layout_marginRight="20dp"
         android:background="@drawable/bg_splash_skip"
         android:visibility="gone"/>
+    <TextView
+        android:id="@+id/tv_hint_loading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="正在选择通道,请稍等..."
+        android:textColor="@color/text_white"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:layout_marginLeft="36dp"
+        android:layout_marginRight="36dp"
+        android:background="@drawable/shape_bg_splash_loading"
+        android:layout_centerInParent="true"
+        android:paddingTop="30dp"
+        android:paddingBottom="30dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:lineSpacingMultiplier="1.5"
+        android:visibility="gone"/>
 
 </RelativeLayout>

@@ -16,7 +16,7 @@
     <color name="bg_color">#171A1E</color>
     <color name="base_bg_color">#f2f2f2</color>
     <color name="base_bg_color_dark">#000000</color>
-    <color name="base_home_menu_ground">#2E2E30</color>
+    <color name="base_home_menu_ground">#171a1e</color>
     <color name="base_home_btn_line">#222222</color>
     <color name="base_menu_ground">#2E2E30</color>
     <color name="base_bg_white">#FFFFFF</color>
@@ -48,7 +48,7 @@
 
     <color name="base_title_background">#26292F</color>
     <!--主页-->
-    <color name="search_ground_color">#38383B</color>
+    <color name="search_ground_color">#343840</color>
 
     <!--old colors-->
     <color name="text_1">#666666</color>

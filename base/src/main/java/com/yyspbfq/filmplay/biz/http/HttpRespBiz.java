@@ -13,6 +13,15 @@ public class HttpRespBiz extends WLibDefaultHttpBiz{
         super(flag, tag, callback, mClass, codeType);
     }
 
+    public HttpRespBiz(int flag, Object tag, WLibHttpListener callback, Class<?> mClass, boolean checkUrl) {
+        super(flag, tag, callback, mClass, checkUrl);
+    }
+
+    @Override
+    protected void changeBaseUrl() {
+        HttpFlag.changeBaseUrl();
+    }
+
     @Override
     protected String getUrl() {
         String result = null;
@@ -175,6 +184,9 @@ public class HttpRespBiz extends WLibDefaultHttpBiz{
                 break;
             case HttpFlag.FLAG_DEL_COLLECTION_BY_ID:
                 result = HttpFlag.URL_DEL_COLLECTION_BY_ID;
+                break;
+            case HttpFlag.FLAG_NOTICE_SHOW:
+                result = HttpFlag.URL_NOTICE_SHOW;
                 break;
         }
         return result;

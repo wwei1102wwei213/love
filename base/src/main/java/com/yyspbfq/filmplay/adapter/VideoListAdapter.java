@@ -14,6 +14,7 @@ import com.wei.wlib.widget.FlowLayout;
 import com.yyspbfq.filmplay.R;
 import com.yyspbfq.filmplay.db.VideoEntity;
 import com.yyspbfq.filmplay.ui.activity.VideoLabelActivity;
+import com.yyspbfq.filmplay.ui.activity.VideoPlayActivity;
 import com.yyspbfq.filmplay.utils.BLog;
 import com.yyspbfq.filmplay.utils.UiUtils;
 
@@ -37,7 +38,7 @@ public class VideoListAdapter extends BaseAdapter{
     }
 
     @Override
-    public Object getItem(int position) {
+    public VideoEntity getItem(int position) {
         return list.get(position);
     }
 
@@ -57,11 +58,12 @@ public class VideoListAdapter extends BaseAdapter{
             vh.tv_title = convertView.findViewById(R.id.tv_title);
             vh.tv_watch = convertView.findViewById(R.id.tv_watch);
             vh.space = convertView.findViewById(R.id.space);
+            vh.body = convertView.findViewById(R.id.v_item_body);
             convertView.setTag(vh);
         } else {
             vh = (ViewHolder) convertView.getTag();
         }
-        VideoEntity entity = list.get(position);
+        final VideoEntity entity = list.get(position);
         vh.tv_watch.setText(UiUtils.handlePlayNum(entity.getWatch_num()));
         vh.tv_title.setText(TextUtils.isEmpty(entity.getName())?"未知影片":entity.getName());
         Glide.with(context).load(entity.getVideo_thump()).crossFade().into(vh.iv);
@@ -71,6 +73,12 @@ public class VideoListAdapter extends BaseAdapter{
         } else {
             vh.space.setVisibility(View.GONE);
         }
+        vh.body.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                VideoPlayActivity.actionStart(context, entity.getId());
+            }
+        });
         return convertView;
     }
 
@@ -108,5 +116,6 @@ public class VideoListAdapter extends BaseAdapter{
         ImageView iv;
         FlowLayout fl;
         View space;
+        View body;
     }
 }

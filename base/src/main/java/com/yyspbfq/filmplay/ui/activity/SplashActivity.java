@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
 import android.util.DisplayMetrics;
 import android.view.KeyEvent;
 import android.view.View;
@@ -21,8 +22,10 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.orhanobut.logger.Logger;
+import com.wei.wlib.http.WLibHttpFlag;
 import com.wei.wlib.http.WLibHttpListener;
 import com.wei.wlib.service.DownloadService;
+import com.yyspbfq.filmplay.BaseApplication;
 import com.yyspbfq.filmplay.R;
 import com.yyspbfq.filmplay.bean.AdvertBean;
 import com.yyspbfq.filmplay.bean.ThumbEntity;
@@ -30,8 +33,11 @@ import com.yyspbfq.filmplay.biz.Factory;
 import com.yyspbfq.filmplay.biz.http.HttpFlag;
 import com.yyspbfq.filmplay.ui.BaseActivity;
 import com.yyspbfq.filmplay.utils.BLog;
+import com.yyspbfq.filmplay.utils.CommonUtils;
 import com.yyspbfq.filmplay.utils.SystemUtils;
 import com.yyspbfq.filmplay.utils.sp.SPLongUtils;
+
+import net.nightwhistler.htmlspanner.HtmlSpanner;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
@@ -51,12 +57,11 @@ public class SplashActivity extends BaseActivity implements WLibHttpListener{
     private TextView tv;
     private ImageView iv_close;
     private int time, jumpAble;
+    private TextView tv_hint_loading;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-//        setStatusBarTranslucent();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.base_activity_splash);
-
         if (SPLongUtils.isFirst(this)) {
             String invite_code = SystemUtils.getChannelFromClip(this);
             SPLongUtils.saveFirst(this, false);
@@ -64,21 +69,10 @@ public class SplashActivity extends BaseActivity implements WLibHttpListener{
                 SPLongUtils.saveString(this, "video_invite_code_clip", invite_code);
             }
         }
-
-        // 是否是第一次启动
-        /*if (!isFirstRun) {
-            SharedPreferences.Editor spe = getPreferences(MODE_PRIVATE).edit();
-            spe.putBoolean(IS_FIRST_RUN, true);
-            spe.apply();
-            toNext(GuideScrollActivity.class);
-        } else {
-            Factory.getHttpRespBiz(this, HttpFlag.CHECK, null).post();
-        }
-        LogCustom.show(TextUtils.isEmpty(CommonUtils.getUUID())?"User UUID is empty":"User UUID:"+CommonUtils.getUUID());*/
-//        DBHelper.getInstance().dropTable(ChatMessageBean.class);
-//        Glide.with(this).load(thumb).preload();
+        tv_hint_loading = findViewById(R.id.tv_hint_loading);
         mHandler = new MyHandler(this);
-        Factory.resp(this, HttpFlag.FLAG_ADVERT_FIRST_SCREEN, null, AdvertBean.class).post(null);
+        checkBaseUrl();
+        Factory.resp(this, HttpFlag.FLAG_ADVERT_FIRST_SCREEN, null, AdvertBean.class, true).post(null);
     }
 
     private static final String IS_FIRST_RUN = "IsFirstRun";
@@ -296,12 +290,39 @@ public class SplashActivity extends BaseActivity implements WLibHttpListener{
 
     @Override
     public void handleLoading(int flag, Object tag, boolean isShow) {
-
+        if (flag==HttpFlag.FLAG_ADVERT_FIRST_SCREEN) {
+            try {
+                tv_hint_loading.setVisibility(isShow?View.VISIBLE:View.GONE);
+            } catch (Exception e){
+                BLog.e(e);
+            }
+        }
     }
 
+    private boolean enterError = false;
     @Override
     public void handleError(int flag, Object tag, int errorType, String response, String hint) {
+        if (flag==HttpFlag.FLAG_ADVERT_FIRST_SCREEN) {
+            if (errorType == WLibHttpFlag.HTTP_ERROR_BASE_URL_CHANGED) {
+                SPLongUtils.saveString(this, "mevideo_base_url", WLibHttpFlag.BASE_URL);
+            } else if (errorType == WLibHttpFlag.HTTP_ERROR_DISCONNECT) {
+                try {
+                    enterError = true;
+                    if (CommonUtils.IsNetWorkEnable(BaseApplication.getInstance())) {
+                        HtmlSpanner spanner = new HtmlSpanner();
+                        String temp = "请至官网重新下载最新版本\n<a href=\"http://www.baidu.com\"><span style=\"color:#ffffff\">http://www.baidu.com</span></a>";
+                        tv_hint_loading.setText(spanner.fromHtml(temp));
+                        tv_hint_loading.setMovementMethod(LinkMovementMethod.getInstance());
+                        tv_hint_loading.setVisibility(View.VISIBLE);
+                    } else {
+                        tv_hint_loading.setText("请检查网络连接");
+                        tv_hint_loading.setVisibility(View.VISIBLE);
+                    }
+                } catch (Exception e){
 
+                }
+            }
+        }
     }
 
     @Override
@@ -311,7 +332,7 @@ public class SplashActivity extends BaseActivity implements WLibHttpListener{
             toFinish();
         } else if (flag==HttpFlag.FLAG_ADVERT_FIRST_SCREEN) {
             if (advertBean==null) {
-                enterMain();
+                if (!enterError) enterMain();
             } else {
                 toNext();
             }
@@ -320,8 +341,9 @@ public class SplashActivity extends BaseActivity implements WLibHttpListener{
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_HOME)
-            return true;
+        if (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_HOME) {
+            if (!enterError) return true;
+        }
         return super.onKeyDown(keyCode, event);
     }
 

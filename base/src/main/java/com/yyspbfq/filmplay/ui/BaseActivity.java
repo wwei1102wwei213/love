@@ -14,11 +14,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import com.umeng.analytics.MobclickAgent;
+import com.wei.wlib.http.WLibHttpFlag;
 import com.yyspbfq.filmplay.R;
+import com.yyspbfq.filmplay.biz.http.HttpFlag;
 import com.yyspbfq.filmplay.utils.BLog;
+import com.yyspbfq.filmplay.utils.sp.SPLongUtils;
+import com.yyspbfq.filmplay.utils.tools.ToastUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -46,7 +49,8 @@ public class BaseActivity extends FragmentActivity {
     }
 
     protected void showToast(String str){
-        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, str, Toast.LENGTH_SHORT).show();
+        ToastUtils.showToast(str);
     }
 
     protected void startActivity(Class<? extends Activity> activityClass) {
@@ -84,9 +88,49 @@ public class BaseActivity extends FragmentActivity {
         }
     }
 
+    //设置状态栏为透明
+    public void setStatusBarTranslucent(int res){
+        // 5.0以上系统状态栏透明
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(getResources().getColor(res));
+        }
+    }
+
+    public void clearLoginFullModel() {
+        // 5.0以上系统状态栏透明
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.clearFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            setFullScreen();
+        }
+    }
+
+    public void setStatusBarColor() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.setStatusBarColor(getResources().getColor(R.color.base_title_background));
+        }
+    }
+
+    public void clearStatusBarColor() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.setStatusBarColor(Color.TRANSPARENT);
+        }
+    }
+
     //设置全屏样式
     public void setFullScreen(){
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        try {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        } catch (Exception e){
+
+        }
     }
 
     //获取状态栏高度
@@ -122,6 +166,18 @@ public class BaseActivity extends FragmentActivity {
             }
         }catch (Exception e){
             BLog.e(e, "initStatusBar");
+        }
+    }
+
+    public void checkBaseUrl() {
+        try {
+            String baseUrl = SPLongUtils.getString(this, "mevideo_base_url", "");
+            if (!TextUtils.isEmpty(baseUrl)&&!baseUrl.equals(WLibHttpFlag.BASE_URL)) {
+                WLibHttpFlag.BASE_URL = baseUrl;
+                HttpFlag.changeBaseUrl();
+            }
+        } catch (Exception e){
+
         }
     }
 

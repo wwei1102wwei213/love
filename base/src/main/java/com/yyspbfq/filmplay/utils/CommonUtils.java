@@ -1,15 +1,22 @@
 package com.yyspbfq.filmplay.utils;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Build;
+import android.os.Environment;
+import android.os.StatFs;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
 import com.yyspbfq.filmplay.BaseApplication;
 
+import java.text.DecimalFormat;
 import java.util.Locale;
 
 /**
@@ -30,6 +37,7 @@ public class CommonUtils {
     //版本CODE
     private static final String AD_CODE = "VIDEO/android";
 
+    //获取语言
     public static String getLanguage(){
         if (LANGUAGE==null){
             try {
@@ -42,12 +50,15 @@ public class CommonUtils {
         return LANGUAGE;
     }
 
+    //获取版本号(对外方法)
     public static String getVersionNum() {
         if (VersionNum==null) {
             VersionNum = getVersion(BaseApplication.getInstance());
         }
         return VersionNum;
     }
+
+    //获取版本CODE(对外方法)
     public static String getVersionCodeStr() {
         if (VersionCodeStr==null) {
             VersionCodeStr = getVersionCode(BaseApplication.getInstance());
@@ -55,6 +66,7 @@ public class CommonUtils {
         return VersionCodeStr;
     }
 
+    //获取唯一标识
     public static String getUUID() {
         if (UUID==null) {
             UUID = new DeviceUuidFactory(BaseApplication.getInstance()).getUuid();
@@ -62,6 +74,7 @@ public class CommonUtils {
         return UUID;
     }
 
+    //获取渠道名称
     public static String getChannelName(){
         if (ChannelName==null){
             try {
@@ -76,6 +89,7 @@ public class CommonUtils {
         return ChannelName;
     }
 
+    //获取屏幕宽度
     public static int getDeviceWidth(Context context) {
         if (DeviceWidth==0) {
             if (context instanceof Activity) {
@@ -87,6 +101,7 @@ public class CommonUtils {
         return DeviceWidth;
     }
 
+    //拼接UserAgent
     public static String getUserAgent() {
         if (TextUtils.isEmpty(UserAgent)) {
             UserAgent = ";device_id:" + getUUID() + ";"+AD_CODE+"_" + getVersionCodeStr();
@@ -94,6 +109,7 @@ public class CommonUtils {
         return UserAgent;
     }
 
+    //获取版本号
     private static String getVersion(Context context) {
         String version = "1.0.0";
         try {
@@ -105,6 +121,8 @@ public class CommonUtils {
         }
         return version;
     }
+
+    //获取版本CODE
     private static String getVersionCode(Context context) {
         int versionCode = 1;
         try {
@@ -116,4 +134,66 @@ public class CommonUtils {
         }
         return versionCode+"";
     }
+
+    //判断SD卡是否可用
+    public static boolean isSDCardEnable() {
+        return Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
+    }
+
+    //获取SD卡剩余空间
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR2)
+    public static String getFreeSpace() {
+        if (!isSDCardEnable()) return "SD卡不能使用";
+        try {
+            StatFs stat = new StatFs(Environment.getExternalStorageDirectory().getPath());
+            long blockSize, availableBlocks;
+            availableBlocks = stat.getAvailableBlocksLong();
+            blockSize = stat.getBlockSizeLong();
+            double d = availableBlocks * blockSize / 1024L;
+            d = d/1024;
+            d = d/1024;
+            DecimalFormat df = new DecimalFormat("#.00");
+            String result = df.format(d) + "GB";
+            if (result.contains(".00")) {
+                result.replace(".00", "");
+            } else {
+                if (result.contains(".0")) {
+                    result.replace(".0", "");
+                }
+            }
+            return result;
+        } catch (Exception e) {
+
+        }
+        return "SD卡加载出错";
+    }
+
+    /**
+     * 网络是否可用
+     *
+     * @param context
+     * @return
+     */
+    public static boolean IsNetWorkEnable(Context context) {
+        try {
+            ConnectivityManager connectivity = (ConnectivityManager) context
+                    .getSystemService(Context.CONNECTIVITY_SERVICE);
+            if (connectivity == null) {
+                return false;
+            }
+
+            NetworkInfo info = connectivity.getActiveNetworkInfo();
+            if (info != null && info.isConnected()) {
+                // 判断当前网络是否已经连接
+                if (info.getState() == NetworkInfo.State.CONNECTED) {
+                    return true;
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
 }

@@ -44,7 +44,7 @@ public class ChannelDetailActivity extends BaseActivity implements WLibHttpListe
     private String mId;
     private int page = 0;
     private final int size = 12;
-    private int SORT_TYPE = 1;//排序 1:最后更新 2:最多播放
+    private int SORT_TYPE = 1;//排序 1:最新 2:最热
 
     public static void actionStart(Context context, String id) {
         Intent intent = new Intent(context, ChannelDetailActivity.class);

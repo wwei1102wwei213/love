@@ -146,7 +146,7 @@ public class InviteCodeActivity extends BaseActivity implements WLibHttpListener
             findViewById(R.id.iv_base_back).setVisibility(View.VISIBLE);
         } else {
             tempSave = tv_index.getText().toString();
-            tv_index.setText("扫描上面二维码, 下载快看小说\n"+tempSave);
+            tv_index.setText("扫描上面二维码, 下载"+getString(R.string.app_name)+"\n"+tempSave);
             findViewById(R.id.v_btns).setVisibility(View.GONE);
             findViewById(R.id.tv_summary).setVisibility(View.VISIBLE);
             findViewById(R.id.iv_base_back).setVisibility(View.INVISIBLE);

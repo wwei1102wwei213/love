@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color">
+    <include layout="@layout/base_title_layout"/>
+    <RelativeLayout
+        android:id="@+id/v_1"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="20dp"
+            android:text="1个"
+            android:gravity="center_vertical"
+            android:textColor="#ccc"
+            android:textSize="13sp"
+            />
+        <ImageView
+            android:id="@+id/iv1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/down_select_number_icon"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:layout_centerVertical="true"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#2A2E32"/>
+    <RelativeLayout
+        android:id="@+id/v_2"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="20dp"
+            android:text="2个"
+            android:gravity="center_vertical"
+            android:textColor="#ccc"
+            android:textSize="13sp"
+            />
+        <ImageView
+            android:id="@+id/iv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/down_select_number_icon"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:layout_centerVertical="true"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#2A2E32"/>
+    <RelativeLayout
+        android:id="@+id/v_3"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:paddingLeft="20dp"
+            android:text="3个"
+            android:gravity="center_vertical"
+            android:textColor="#ccc"
+            android:textSize="13sp"
+            />
+        <ImageView
+            android:id="@+id/iv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/down_select_number_icon"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:layout_centerVertical="true"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#2A2E32"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hint_title_download_count"
+        android:textColor="#ccc"
+        android:textSize="15sp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_marginTop="27dp"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/hint_content_download_count"
+        android:textColor="#999"
+        android:textSize="12sp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_marginTop="14dp"
+        android:lineSpacingExtra="3dp"
+        android:lineSpacingMultiplier="1.15"
+        />
+
+</LinearLayout>

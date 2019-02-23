@@ -30,6 +30,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import cn.jzvd.JZExoPlayer;
+import cn.jzvd.Jzvd;
+
 public class InfoCollationActivity extends BaseActivity implements WLibHttpListener{
 
 
@@ -135,6 +138,7 @@ public class InfoCollationActivity extends BaseActivity implements WLibHttpListe
                 }
             }
         });
+        Jzvd.setMediaInterface(new JZExoPlayer());
     }
 
     private int page = 0;
@@ -285,10 +289,21 @@ public class InfoCollationActivity extends BaseActivity implements WLibHttpListe
 
     @Override
     public void onBackPressed() {
+        if (Jzvd.backPress()) {
+            return;
+        }
         if (adapter!=null&&adapter.getMODEL()!=0) {
             setEditModel(false);
         } else {
             super.onBackPressed();
         }
+    }
+
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Jzvd.releaseAllVideos();
     }
 }

@@ -128,7 +128,7 @@
                     />
             </LinearLayout>
 
-            <GridView
+            <com.wei.wlib.widget.common.NestedGridView
                 android:id="@+id/gv_hot"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

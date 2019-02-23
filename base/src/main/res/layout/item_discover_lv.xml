@@ -2,24 +2,54 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
+    <View
+        android:id="@+id/v_space"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:background="#0D0E10"
+        />
     <RelativeLayout
         android:id="@+id/v_play_parent"
         android:layout_width="match_parent"
         android:layout_height="202dp"
-        android:background="@color/base_home_menu_ground">
-        <com.yyspbfq.filmplay.player.MyJzvdStd
-            android:id="@+id/jvd"
+        android:background="@color/discover_line_space">
+        <RelativeLayout
+            android:id="@+id/v_detail"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-        <TextView
-            android:id="@+id/tv_title"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/iv_thumb"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@mipmap/video_mengban"
+                />
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:textColor="@color/text_white"
+                android:maxLines="1"
+                android:padding="12dp"
+                />
+            <View
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/jz_play_normal"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+
+        <FrameLayout
+            android:id="@+id/v_play"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="17sp"
-            android:textColor="@color/text_white"
-            android:maxLines="1"
-            android:padding="12dp"
-            />
+            android:layout_height="202dp">
+
+        </FrameLayout>
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"

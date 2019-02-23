@@ -26,6 +26,15 @@ public class MessageEvent {
 
     private int status;
 
+    private boolean needSync;
+
+    public boolean isNeedSync() {
+        return needSync;
+    }
+
+    public void setNeedSync(boolean needSync) {
+        this.needSync = needSync;
+    }
 
     public MessageEvent() {
     }

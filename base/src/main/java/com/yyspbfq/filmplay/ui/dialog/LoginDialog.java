@@ -1,23 +1,29 @@
 package com.yyspbfq.filmplay.ui.dialog;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.Typeface;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.Display;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yyspbfq.filmplay.R;
 import com.yyspbfq.filmplay.biz.login.RegexUtils;
 import com.yyspbfq.filmplay.biz.login.UserHelper;
+import com.yyspbfq.filmplay.ui.BaseActivity;
+import com.yyspbfq.filmplay.utils.BLog;
 import com.yyspbfq.filmplay.utils.tools.ToastUtils;
 
 import java.util.HashMap;
@@ -29,14 +35,13 @@ import java.util.Map;
 public class LoginDialog extends Dialog {
 
     private Context mContext;
-    private TextView dialog_title;
     private EditText phone_number_edit;
     private EditText code_edit;
     private TextView code_button;
     private Button loginBtn;
 
     public LoginDialog(Context context) {
-        this(context, R.style.dialog_base_style);
+        this(context, R.style.dialog_login_style);
     }
 
     public LoginDialog(Context context, int themeResId) {
@@ -48,13 +53,9 @@ public class LoginDialog extends Dialog {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.custom_dialog_login_mobile);
-        dialog_title = (TextView) findViewById(R.id.dialog_title);
-        dialog_title.setTextSize(18f);
-        dialog_title.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
-        dialog_title.setText("请登录");
+        ((TextView) findViewById(R.id.tv_base_title)).setText("请登录");
 
-        ImageView close = (ImageView) findViewById(R.id.dialog_close);
-        close.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.iv_base_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LoginDialog.this.dismiss();
@@ -133,10 +134,53 @@ public class LoginDialog extends Dialog {
 
         enableCodeBtn(false);
         loginBtn.setEnabled(false);
+        ((BaseActivity) mContext).setStatusBarColor();
+        try {
+            WindowManager m = ((Activity) mContext).getWindowManager();
+            Display d = m.getDefaultDisplay(); // 获取屏幕宽、高用
+            WindowManager.LayoutParams p = getWindow().getAttributes(); // 获取对话框当前的参数值
+            p.width = (int) (d.getWidth());
+            p.height = (int) (d.getHeight() + ((BaseActivity) mContext).getStatusBarHeight());
+            getWindow().setAttributes(p);
+            getWindow().setGravity(Gravity.TOP);
+
+        } catch (Exception e){
+            BLog.e(e);
+        }
     }
 
     private void loginMobile() {
 
+    }
+
+    private boolean fullModel = false;
+    public void setFullModel() {
+        fullModel = true;
+        ((BaseActivity) mContext).setStatusBarTranslucent(R.color.base_title_background);
+//        initStatusBar(findViewById(R.id.status_bar));
+    }
+
+    //设置状态栏
+    public void initStatusBar(View v){
+        try {
+            if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.KITKAT){
+                ViewGroup.LayoutParams params=v.getLayoutParams();
+                params.height= getStatusBarHeight();
+                v.setLayoutParams(params);
+            }
+        }catch (Exception e){
+            BLog.e(e, "initStatusBar");
+        }
+    }
+
+    //获取状态栏高度
+    public int getStatusBarHeight() {
+        int result = 0;
+        int resourceId = mContext.getResources().getIdentifier("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = mContext.getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
     }
 
     private static final long MAX_TIME = 60;
@@ -190,7 +234,7 @@ public class LoginDialog extends Dialog {
 
     private void enableCodeBtn(boolean enable) {
         if (enable) {
-            code_button.setTextColor(Color.parseColor("#f98700"));
+            code_button.setTextColor(Color.parseColor("#E3B88E"));
             code_button.setText("获取验证码");
             code_button.setEnabled(true);
             if (timer != null) {
@@ -205,6 +249,15 @@ public class LoginDialog extends Dialog {
 
     @Override
     public void dismiss() {
+        try {
+            if (fullModel) {
+                ((BaseActivity) mContext).clearLoginFullModel();
+            } else {
+                ((BaseActivity) mContext).clearStatusBarColor();
+            }
+        } catch (Exception e){
+
+        }
         super.dismiss();
         if (timer != null) {
             timer.cancel();

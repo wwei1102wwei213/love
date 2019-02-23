@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.orhanobut.logger.Logger;
 import com.wei.wlib.pullrefresh.PullToRefreshListView;
 import com.yyspbfq.filmplay.BaseApplication;
 import com.yyspbfq.filmplay.R;
@@ -23,7 +22,10 @@ import com.yyspbfq.filmplay.db.DBHelper;
 import com.yyspbfq.filmplay.db.VideoDownloadBean;
 import com.yyspbfq.filmplay.ui.BaseActivity;
 import com.yyspbfq.filmplay.utils.BLog;
+import com.yyspbfq.filmplay.utils.CommonUtils;
+import com.yyspbfq.filmplay.utils.sp.SPLongUtils;
 import com.yyspbfq.filmplay.utils.tools.DensityUtils;
+import com.yyspbfq.filmplay.utils.tools.FileUtils;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -33,6 +35,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import cn.jzvd.Jzvd;
 
 public class DownloadListActivity extends BaseActivity{
 
@@ -51,6 +55,7 @@ public class DownloadListActivity extends BaseActivity{
 
         initViews();
         initData();
+
         EventBus.getDefault().register(this);
     }
 
@@ -62,6 +67,7 @@ public class DownloadListActivity extends BaseActivity{
     private TextView tv_select_all, tv_delete;
     private View v_edit, headView, v_no_data, v_head;
     private TextView tv_download_num;
+    private TextView tv_sdcard_detail;
     private void initViews() {
 
         tv_right = findViewById(R.id.tv_base_right);
@@ -72,6 +78,7 @@ public class DownloadListActivity extends BaseActivity{
         tv_select_all = findViewById(R.id.tv_select_all);
         v_edit = findViewById(R.id.v_edit);
         v_no_data = findViewById(R.id.v_no_data);
+        tv_sdcard_detail = findViewById(R.id.tv_sdcard_detail);
 
         plv = (PullToRefreshListView) findViewById(R.id.plv);
         lv = plv.getRefreshableView();
@@ -82,6 +89,7 @@ public class DownloadListActivity extends BaseActivity{
         headView = LayoutInflater.from(this).inflate(R.layout.head_download_list_lv, lv, false);
 
         tv_download_num = headView.findViewById(R.id.tv_download_num);
+
         v_head = headView.findViewById(R.id.v_head);
         lv.addHeaderView(headView);
         mData = new ArrayList<>();
@@ -124,7 +132,14 @@ public class DownloadListActivity extends BaseActivity{
                 }
             }
         });
-        tv_download_num.setText("同时缓存个数 "+ DownloadTaskManager.getInstance().getCurrentCount());
+        tv_download_num.setText("同时缓存个数 "+ SPLongUtils.getInt(this, "film_download_count", 3));
+        //CommonUtils.getFreeSpace();
+        tv_download_num.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(DownloadCountActivity.class);
+            }
+        });
     }
 
     private void initData() {
@@ -145,7 +160,6 @@ public class DownloadListActivity extends BaseActivity{
                         }
                     }
                 });
-//                int d = DownloadTaskManager.getInstance().getCurrentCount();
                 boolean all = true;
                 for (VideoDownloadBean bean : list) {
                     if (bean.getState()!=99) {
@@ -154,9 +168,9 @@ public class DownloadListActivity extends BaseActivity{
                     }
                 }
                 if (!all) {
-                    if (tv_download_num!=null) {
+                    /*if (tv_download_num!=null) {
                         tv_download_num.setText("同时缓存个数 "+ DownloadTaskManager.getInstance().getCurrentCount());
-                    }
+                    }*/
                     v_head.setVisibility(View.VISIBLE);
                 } else {
                     v_head.setVisibility(View.GONE);
@@ -168,27 +182,32 @@ public class DownloadListActivity extends BaseActivity{
                 if (v_no_data.getVisibility()!=View.GONE) {
                     v_no_data.setVisibility(View.GONE);
                 }
+                tv_sdcard_detail.setVisibility(adapter.getMODEL()==0?View.VISIBLE:View.GONE);
+                if (tv_sdcard_detail.getVisibility()==View.VISIBLE) {
+                    setSdcardDetail();
+                }
             } else {
                 plv.setVisibility(View.GONE);
                 v_no_data.setVisibility(View.VISIBLE);
                 tv_right.setText("编辑");
                 v_edit.setVisibility(View.GONE);
                 adapter.setMODEL(0);
+                tv_sdcard_detail.setVisibility(View.GONE);
             }
         } catch (Exception e){
             BLog.e(e);
         }
     }
 
-    private boolean isDeleting = false;
     private void toDelete() {
-        if (isDeleting) return;
-        isDeleting = true;
         DownloadTaskManager.getInstance().cancelTask(adapter.getSelects());
-
     }
 
     private void changeEditMode() {
+        if (adapter==null||adapter.getCount()==0) {
+            showToast("没有可编辑内容");
+            return;
+        }
         if (adapter!=null&&adapter.getMODEL()!=0) {
             setEditModel(false);
         } else {
@@ -202,19 +221,39 @@ public class DownloadListActivity extends BaseActivity{
                 tv_right.setText("取消编辑");
                 v_edit.setVisibility(View.VISIBLE);
                 adapter.update(1);
+                tv_sdcard_detail.setVisibility(View.GONE);
             } else {
                 tv_right.setText("编辑");
                 v_edit.setVisibility(View.GONE);
                 tv_select_all.setText("全选");
                 adapter.update(0);
+                tv_sdcard_detail.setVisibility(View.VISIBLE);
+                setSdcardDetail();
             }
         } catch (Exception e){
             BLog.e(e);
         }
     }
 
+    private void setSdcardDetail() {
+        try {
+            tv_sdcard_detail.setText("已占用 "+ FileUtils.getVideoFileSize()+"，可用空间 "+ CommonUtils.getFreeSpace());
+        } catch (Exception e){
+
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Jzvd.releaseAllVideos();
+    }
+
     @Override
     public void onBackPressed() {
+        if (Jzvd.backPress()) {
+            return;
+        }
         if (adapter!=null&&adapter.getMODEL()!=0) {
             setEditModel(false);
         } else {
@@ -227,28 +266,31 @@ public class DownloadListActivity extends BaseActivity{
     public void handleEvent(MessageEvent messageEvent) {
         if (messageEvent.getMessage() == MessageEvent.MSG_DOWNLOAD_VIDEO) {
             try {
-                Logger.e("handleEvent:"+messageEvent.getFlag());
+//                Logger.e("handleEvent:"+messageEvent.getFlag());
                 if (messageEvent.getFlag() == DownloadTask.DOWNLOAD_HANDLE_COMPLETED ||
                         messageEvent.getFlag() == DownloadTask.DOWNLOAD_HANDLE_CANCEL) {
                     initData();
-                } else if (messageEvent.getFlag() == DownloadTask.DOWNLOAD_HANDLE_CHANGE_COUNT) {
-                    if (tv_download_num!=null)
-                        tv_download_num.setText("同时缓存个数 "+ DownloadTaskManager.getInstance().getCurrentCount());
+                } else if (messageEvent.getFlag() == DownloadTask.DOWNLOAD_HANDLE_CHANGE_COUNT ||
+                        messageEvent.getFlag() == DownloadTask.DOWNLOAD_HANDLE_RESTART ||
+                        messageEvent.getFlag() == DownloadTask.DOWNLOAD_HANDLE_PAUSE) {
                     if (adapter!=null) adapter.notifyDataSetChanged();
-                } else {
-                    if (messageEvent.getFlag() == DownloadTask.DOWNLOAD_HANDLE_PAUSE) {
+                } else if (messageEvent.getFlag() == DownloadTask.DOWNLOAD_HANDLE_PROGRESS){
+                    if (System.currentTimeMillis() - longSpace > 100) {
+                        longSpace = System.currentTimeMillis();
                         if (adapter!=null) adapter.notifyDataSetChanged();
-                    } else {
-                        if (System.currentTimeMillis() - longSpace > 100) {
-                            if (adapter!=null) adapter.notifyDataSetChanged();
-                        }
                     }
                 }
-
             } catch (Exception e){
                 BLog.e(e);
             }
         }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        if (tv_download_num!=null)
+                        tv_download_num.setText("同时缓存个数 "+ SPLongUtils.getInt(this, "film_download_count", 3));
     }
 
     @Override

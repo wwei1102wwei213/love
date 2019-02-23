@@ -19,4 +19,8 @@ public class Factory {
         return new HttpRespBiz(flag, tag, mResp, mClass, codeType);
     }
 
+    public static IWLibHttpBiz resp(WLibHttpListener mResp, int flag, Object tag, Class<?> mClass, boolean checkUrl){
+        return new HttpRespBiz(flag, tag, mResp, mClass, checkUrl);
+    }
+
 }

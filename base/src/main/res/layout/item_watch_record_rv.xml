@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="62dp"
         android:scaleType="centerCrop"
-        android:background="@mipmap/default_error_img"
+        android:background="@mipmap/base_default_image"
         />
     <TextView
         android:id="@+id/tv"

@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.Surface;
 import android.view.TextureView;
 
+import com.yyspbfq.filmplay.utils.BLog;
+
 /**
  * 这个类用来和jzvd互相调用，当jzvd需要调用Media的时候调用这个类，当MediaPlayer有回调的时候，通过这个类回调JZVD
  * Created by Nathen on 2017/11/18.
@@ -77,7 +79,11 @@ public class JZMediaManager implements TextureView.SurfaceTextureListener {
 
     public static void seekTo(long time) {
         //todo
-        instance().jzMediaInterface.seekTo(time);
+        try {
+            instance().jzMediaInterface.seekTo(time);
+        } catch (Exception e){
+            BLog.e(e);
+        }
     }
 
     public static void pause() {

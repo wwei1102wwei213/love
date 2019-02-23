@@ -7,6 +7,8 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.orhanobut.logger.Logger;
+
 
 /***
  *  自定义控件
@@ -30,15 +32,16 @@ public class DrawCircleView extends View {
 		super(context, attr);
 	}
 	
-	public void setDrawCricle(int count,int r,int hollow,int solid) {
+	public void setDrawCricle(int count,int r,int hollow,int solid, int w) {
 		this.r = r;
 		this.hollow = hollow;
 		this.solid = solid;
 		this.count = count;
-		if(this.r == 0) this.r = 10;
-		if(this.hollow == 0) this.hollow = Color.parseColor("#FFFFFF");
-		if(this.solid == 0) this.solid = Color.parseColor("#333333");
+		if(this.r == 0) this.r = 8;
+		if(this.hollow == 0) this.hollow = Color.parseColor("#555555");
+		if(this.solid == 0) this.solid = Color.parseColor("#FFFFFF");
 		if(this.count== 0) this.count = 3;
+		onSizeChanged(w, 0, 0, 0);
 	}	
 	@Override
 	protected void onDraw(Canvas canvas) {
@@ -65,8 +68,9 @@ public class DrawCircleView extends View {
 			hx = w/2-r*2*(count);
 			LogCustom.show("false:"+hx+",count:"+count);
 		}*/
-		hx = w/2-r*4*((count-1)/2);
+		hx = w/2-r*4*(count/2);
 		sx = hx;
+		Logger.e("onSizeChanged:"+hx+",r:"+r+",c:"+count);
 	}
 
 	public boolean isOdd(int a){

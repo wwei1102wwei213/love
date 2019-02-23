@@ -113,13 +113,14 @@
     <string name="home_menu_hot_title">重磅热播</string>
     <string name="home_menu_like_title">猜你喜欢</string>
     <string name="home_menu_more_btn">更多</string>
+    <string name="home_menu_hot_change">换一批</string>
     <string name="channel_menu_recommend">推荐专栏</string>
     <string name="channel_menu_hot">热门专栏</string>
     <string name="channel_menu_human">人气明星</string>
     <string name="channel_detail_name">专题名称</string>
     <string name="channel_detail_video_list">相关影片</string>
-    <string name="channel_detail_sort_newest">最热</string>
-    <string name="channel_detail_sort_most">最新</string>
+    <string name="channel_detail_sort_newest">最新</string>
+    <string name="channel_detail_sort_most">最热</string>
     <string name="classify_tag_like_most">最多喜欢</string>
     <string name="classify_tag_play_most">最多播放</string>
     <string name="classify_tag_newest">最近更新</string>
@@ -140,4 +141,10 @@
     <string name="download_list_no_data">还没有缓存的影片~\n在详情页可点击下载按钮缓存影片</string>
     <string name="record_list_no_data">您还没有播放记录\n快开始您的观影之旅吧！</string>
     <string name="collation_list_no_data">您还没有收藏的视频~\n在详情页可点击喜欢按钮收藏喜欢的影片！</string>
+
+    <string name="login_mobile_hint">请输入手机号</string>
+    <string name="login_code_hint">请输入验证码</string>
+
+    <string name="hint_title_download_count">温馨提示：</string>
+    <string name="hint_content_download_count">请根据网络情况，选择同时缓存个数\n1、网速较好，推荐使用2-3个，享受多个视频同时高速下载。\n2、网速不佳，推荐选择1个，集中网速帮助单个视频更快速度下完。</string>
 </resources>

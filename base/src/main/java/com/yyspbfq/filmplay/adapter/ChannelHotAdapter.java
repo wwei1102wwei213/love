@@ -11,6 +11,7 @@ import com.bumptech.glide.Glide;
 import com.wei.wlib.widget.CircleImageView;
 import com.yyspbfq.filmplay.R;
 import com.yyspbfq.filmplay.bean.ChannelDefaultBean;
+import com.yyspbfq.filmplay.utils.BLog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,9 +54,13 @@ public class ChannelHotAdapter extends BaseAdapter{
         } else {
             vh = (ViewHolder) convertView.getTag();
         }
-        String title = list.get(position).getTitle();
-        vh.tv.setText(title==null?"":title);
-        Glide.with(context).load(list.get(position).getThumb()).crossFade().into(vh.iv);
+        try {
+            String title = list.get(position).getTitle();
+            vh.tv.setText(title==null?"":title);
+            Glide.with(context).load(list.get(position).getThumb()).crossFade().into(vh.iv);
+        } catch (Exception e){
+            BLog.e(e);
+        }
         return convertView;
     }
 

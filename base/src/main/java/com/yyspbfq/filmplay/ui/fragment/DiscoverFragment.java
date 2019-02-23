@@ -2,7 +2,6 @@ package com.yyspbfq.filmplay.ui.fragment;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -39,8 +38,6 @@ public class DiscoverFragment extends BaseFragment implements WLibHttpListener{
     private ListView lv;
     private DiscoverAdapter adapter;
     private List<VideoEntity> mData;
-    SensorManager sensorManager;
-    Jzvd.JZAutoFullscreenListener sensorEventListener;
 
     @Nullable
     @Override
@@ -56,7 +53,6 @@ public class DiscoverFragment extends BaseFragment implements WLibHttpListener{
 
         plv = (PullToRefreshListView) findViewById(R.id.plv);
         lv = plv.getRefreshableView();
-        lv.setDivider(null);
         lv.setSelector(new ColorDrawable(Color.TRANSPARENT));
         lv.setVerticalScrollBarEnabled(false);
         mData = new ArrayList<>();
@@ -77,7 +73,19 @@ public class DiscoverFragment extends BaseFragment implements WLibHttpListener{
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                Jzvd.onScrollAutoTiny(view, firstVisibleItem, visibleItemCount, totalItemCount);
+                try {
+                    if (!adapter.isPlayed()) return;
+                    if (adapter.getINDEX()==-1) return;
+                    if (adapter.getINDEX()<firstVisibleItem||adapter.getINDEX()>(firstVisibleItem+visibleItemCount)) {
+                        Jzvd.releaseAllVideos();
+                        adapter.setPlayed(false);
+                        adapter.setINDEX(-1);
+                        adapter.notifyDataSetChanged();
+                    }
+                } catch (Exception e){
+                    BLog.e(e);
+                }
+
             }
         });
 
@@ -93,9 +101,6 @@ public class DiscoverFragment extends BaseFragment implements WLibHttpListener{
             }
         });
 
-        /*sensorManager = (SensorManager) (context.getSystemService(Context.SENSOR_SERVICE));
-        sensorEventListener = new Jzvd.JZAutoFullscreenListener();*/
-
         findViewById(R.id.iv_search).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,6 +113,8 @@ public class DiscoverFragment extends BaseFragment implements WLibHttpListener{
 
     private void loadData() {
         if (isLoading) return;
+        Jzvd.releaseAllVideos();
+
         isLoading = true;
         page = 0;
         initData();
@@ -140,11 +147,7 @@ public class DiscoverFragment extends BaseFragment implements WLibHttpListener{
                         plv.setHasMoreData(false);
                     }
                 } else {
-                    if (page==0) {
-                        mData.clear();
-                    }
-                    mData.addAll(list);
-                    adapter.update(mData);
+                    adapter.update(list, page);
                     if (list.size()<bean.getSize()) {
                         plv.setHasMoreData(false);
                     } else {
@@ -205,12 +208,7 @@ public class DiscoverFragment extends BaseFragment implements WLibHttpListener{
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (hidden) {
-//            sensorManager.unregisterListener(sensorEventListener);
             Jzvd.releaseAllVideos();
-
-        } else {
-            /*Sensor accelerometerSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-            sensorManager.registerListener(sensorEventListener, accelerometerSensor, SensorManager.SENSOR_DELAY_NORMAL);*/
         }
     }
 }

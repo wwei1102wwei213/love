@@ -71,8 +71,9 @@
             android:id="@+id/current"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="00:00"
+            android:text="00:00:00"
             android:textSize="10sp"
+            android:gravity="center_horizontal"
             android:textColor="#E3B88E" />
 
         <SeekBar
@@ -96,8 +97,9 @@
             android:id="@+id/total"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="00:00"
+            android:text="00:00:00"
             android:textSize="10sp"
+            android:gravity="center_horizontal"
             android:textColor="#E3B88E" />
 
         <TextView
@@ -216,14 +218,25 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <ProgressBar
+    <!--<ProgressBar
         android:id="@+id/loading"
         android:layout_width="@dimen/jz_start_button_w_h_normal"
         android:layout_height="@dimen/jz_start_button_w_h_normal"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:indeterminateDrawable="@drawable/jz_loading"
-        android:visibility="invisible" />
+        android:visibility="visible" />-->
+
+    <RelativeLayout
+        android:id="@+id/v_loading_middle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone">
+
+
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/v_seek_loading"
@@ -232,11 +245,19 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:visibility="invisible" >
-        <ProgressBar
+        <TextView
+            android:id="@+id/tv_loading_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#E3B88E"
+            android:textSize="14sp"
+            android:gravity="center"
+            />
+        <!--<ProgressBar
             android:layout_width="@dimen/jz_start_button_w_h_normal"
             android:layout_height="@dimen/jz_start_button_w_h_normal"
             android:indeterminateDrawable="@drawable/jz_loading"
-            android:visibility="visible" />
+            android:visibility="visible" />-->
     </RelativeLayout>
 
 

@@ -33,17 +33,41 @@ android {
         ]
     }
 
-    buildTypes {
+    signingConfigs {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            storeFile file("film.jks")
+            storePassword "12345679"
+            keyAlias "filma"
+            keyPassword "123456798"
+        }
+
+        debug {
+            storeFile file("C:/Users/Administrator/.android/debug.keystore")
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
         }
     }
 
-    sourceSets {
-        main {
-            jniLibs.srcDirs = ["libs"]
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.release //for release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable true
         }
+
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.debug //for debug
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable true
+        }
+    }
+
+    sourceSets.main {
+        jniLibs.srcDirs = ["libs"]
     }
 
     compileOptions {
@@ -60,7 +84,7 @@ android {
 
     flavorDimensions "default"
     productFlavors {
-        "2001" { dimension "default"}
+        "1232" { dimension "default"}
     }
 
     productFlavors.all {
@@ -69,7 +93,8 @@ android {
 
     android.applicationVariants.all { variant ->
         variant.outputs.all {
-            outputFileName = "player_${defaultConfig.versionName}_${defaultConfig.versionCode}_${releaseTime()}_${variant.productFlavors[0].name}.apk"
+            outputFileName = "player_${defaultConfig.versionName}_${defaultConfig.versionCode}_${releaseTime()}_" +
+                    "${variant.productFlavors[0].name}_${variant.buildType.name}.apk"
         }
     }
 
@@ -102,9 +127,9 @@ dependencies {
     //二维码
     implementation 'com.google.zxing:core:3.3.0'
     //视频播放
-//    implementation(name: 'ijkplayer', ext: 'aar')
+    //    implementation(name: 'ijkplayer', ext: 'aar')
     implementation 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
-//        implementation 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8'
+    //        implementation 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8'
     implementation 'com.google.android.exoplayer:exoplayer:2.9.1'
     implementation 'com.danikula:videocache:2.7.0'
     implementation project(':jiaozivideoplayer')
@@ -113,8 +138,10 @@ dependencies {
     implementation files('libs/thinkandroid-1.1-bin.jar')
     //UMeng
     implementation 'com.umeng.analytics:analytics:6.1.4'
+    //html解析
+    implementation project(':htmlspanner')
     //JPUSH
-    implementation files('libs/jcore-android_v1.1.3.jar')
-    implementation files('libs/jpush-android_v3.0.6.jar')
+    implementation files('libs/jcore-android-1.2.7.jar')
+    implementation files('libs/jpush-android-3.1.8.jar')
 }
 

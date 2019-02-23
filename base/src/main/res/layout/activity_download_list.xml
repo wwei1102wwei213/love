@@ -75,4 +75,13 @@
 
 
     </LinearLayout>
+    <TextView
+        android:id="@+id/tv_sdcard_detail"
+        android:layout_width="match_parent"
+        android:layout_height="22dp"
+        android:background="#31343A"
+        android:gravity="center"
+        android:textSize="12sp"
+        android:textColor="#999"
+        android:visibility="gone"/>
 </LinearLayout>

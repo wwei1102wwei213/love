@@ -1,6 +1,9 @@
 package cn.jzvd;
 
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.net.TrafficStats;
 import android.net.Uri;
 import android.os.Handler;
 import android.util.Log;
@@ -34,7 +37,9 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 import com.google.android.exoplayer2.video.VideoListener;
 import com.orhanobut.logger.Logger;
+import com.yyspbfq.filmplay.BaseApplication;
 import com.yyspbfq.filmplay.R;
+import com.yyspbfq.filmplay.utils.BLog;
 
 
 /**
@@ -101,6 +106,8 @@ public class JZExoPlayer extends JZMediaInterface implements Player.EventListene
         simpleExoPlayer.prepare(videoSource);
         simpleExoPlayer.setPlayWhenReady(true);
         callback = new onBufferingUpdate();
+        mainHandler.removeCallbacks(mSpeedRunnable);
+        mainHandler.post(mSpeedRunnable);
     }
 
 
@@ -155,7 +162,6 @@ public class JZExoPlayer extends JZMediaInterface implements Player.EventListene
             simpleExoPlayer.seekTo(time);
             previousSeek = time;
             JzvdMgr.getCurrentJzvd().seekToInAdvance = time;
-            Logger.e("seekTo: getBitrateEstimate: "+bandwidthMeter.getBitrateEstimate());
         }
     }
 
@@ -164,8 +170,12 @@ public class JZExoPlayer extends JZMediaInterface implements Player.EventListene
         if (simpleExoPlayer != null) {
             simpleExoPlayer.release();
         }
-        if (mainHandler != null)
+        if (mainHandler != null) {
             mainHandler.removeCallbacks(callback);
+            oldUidBytes = 0;
+            mainHandler.removeCallbacks(mSpeedRunnable);
+        }
+
     }
 
     @Override
@@ -185,7 +195,6 @@ public class JZExoPlayer extends JZMediaInterface implements Player.EventListene
     @Override
     public void setSurface(Surface surface) {
         simpleExoPlayer.setVideoSurface(surface);
-        Log.e(TAG, "setSurface");
     }
 
     @Override
@@ -202,7 +211,6 @@ public class JZExoPlayer extends JZMediaInterface implements Player.EventListene
 
     @Override
     public void onTimelineChanged(final Timeline timeline, Object manifest, final int reason) {
-        Log.e(TAG, "onTimelineChanged");
 //        JZMediaManager.instance().mainThreadHandler.post(() -> {
 //                if (reason == 0) {
 //
@@ -217,30 +225,29 @@ public class JZExoPlayer extends JZMediaInterface implements Player.EventListene
     }
 
     @Override
-    public void onLoadingChanged(boolean isLoading) {
-        Log.e(TAG, "onLoadingChanged");
-    }
+    public void onLoadingChanged(boolean isLoading) {}
 
     @Override
     public void onPlayerStateChanged(final boolean playWhenReady, final int playbackState) {
-        Log.e(TAG, "onPlayerStateChanged" + playbackState + "/ready=" + String.valueOf(playWhenReady));
         JZMediaManager.instance().mainThreadHandler.post(() -> {
             if (JzvdMgr.getCurrentJzvd() != null) {
                 switch (playbackState) {
                     case Player.STATE_IDLE: {
-                        Logger.e("PlayerStateChanged:STATE_IDLE");
+
                     }
                     break;
                     case Player.STATE_BUFFERING: {
-                        Logger.e("PlayerStateChanged:STATE_BUFFERING");
                         mainHandler.post(callback);
+                        mainHandler.removeCallbacks(mSpeedRunnable);
+                        mainHandler.post(mSpeedRunnable);
                         JzvdMgr.getCurrentJzvd().onPreparing();
                     }
                     break;
                     case Player.STATE_READY: {
-                        Logger.e("PlayerStateChanged:STATE_READY+"+playWhenReady);
                         if (playWhenReady) {
                             JzvdMgr.getCurrentJzvd().onPrepared();
+                            oldUidBytes = 0;
+                            mainHandler.removeCallbacks(mSpeedRunnable);
                         } else {
                         }
                     }
@@ -267,7 +274,7 @@ public class JZExoPlayer extends JZMediaInterface implements Player.EventListene
 
     @Override
     public void onPlayerError(ExoPlaybackException error) {
-        Log.e(TAG, "onPlayerError" + error.toString());
+        Logger.e(TAG, "onPlayerError" + error.toString());
         JZMediaManager.instance().mainThreadHandler.post(() -> {
             if (JzvdMgr.getCurrentJzvd() != null) {
                 JzvdMgr.getCurrentJzvd().onError(1000, 1000);
@@ -282,16 +289,58 @@ public class JZExoPlayer extends JZMediaInterface implements Player.EventListene
 
     @Override
     public void onPlaybackParametersChanged(PlaybackParameters playbackParameters) {
-        Log.e(TAG, "onPlaybackParametersChanged:" + playbackParameters.speed+", pitch:"+playbackParameters.pitch);
+
     }
 
     @Override
     public void onSeekProcessed() {
+        oldUidBytes = 0;
+        mainHandler.removeCallbacks(mSpeedRunnable);
         JZMediaManager.instance().mainThreadHandler.post(() -> {
             if (JzvdMgr.getCurrentJzvd() != null) {
                 JzvdMgr.getCurrentJzvd().onSeekComplete();
             }
         });
     }
+
+    private long oldSpeed = 0;
+    private long oldUidBytes = 0;
+    private Runnable mSpeedRunnable = new Runnable() {
+        @Override
+        public void run() {
+            try {
+                long all = getUidRxBytes();
+                if (JzvdMgr.getCurrentJzvd() != null) {
+                    String temp = "0";
+                    if (oldUidBytes==0) {
+                        if (oldSpeed!=0) {
+                            temp = oldSpeed+"";
+                        }
+                    } else {
+                        oldSpeed = all - oldUidBytes;
+                        temp = oldSpeed+"";
+                    }
+                    oldUidBytes = all;
+                    JzvdMgr.getCurrentJzvd().showSpeedView(temp);
+                }
+                mainHandler.postDelayed(mSpeedRunnable, 1000);
+            } catch (Exception e){
+                BLog.e(e);
+            }
+        }
+    };
+
+    public long getUidRxBytes() { //获取总的接受字节数，包含Mobile和WiFi等
+        PackageManager pm = BaseApplication.getInstance().getPackageManager();
+        long result = 0;
+        try {
+            ApplicationInfo ai = pm.getApplicationInfo("com.yyspbfq.filmplay", 0);
+            result = TrafficStats.getUidRxBytes(ai.uid) == TrafficStats.UNSUPPORTED ? 0 : (TrafficStats.getTotalRxBytes() / 1024);;
+        } catch (PackageManager.NameNotFoundException e1) {
+            e1.printStackTrace();
+        }
+        return result;
+    }
+
 
 }

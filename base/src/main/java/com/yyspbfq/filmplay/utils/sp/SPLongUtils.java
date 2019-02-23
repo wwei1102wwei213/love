@@ -42,6 +42,40 @@ public class SPLongUtils {
     }
 
     /**
+     * 获取int值
+     *
+     * @param context
+     * @param key
+     * @param defValue
+     * @return
+     */
+    public static int getInt(Context context, String key, int defValue) {
+        try {
+            SharedPreferences sp = context.getSharedPreferences(SP_NAME, 0);
+            return sp.getInt(key, defValue);
+        }catch (Exception e){
+            BLog.e(e);
+        }
+        return defValue;
+    }
+
+    /**
+     * 保存int
+     *
+     * @param context
+     * @param key
+     * @param value
+     */
+    public static void saveInt(Context context, String key, int value) {
+        try {
+            SharedPreferences sp = context.getSharedPreferences(SP_NAME, 0);
+            sp.edit().putInt(key, value).apply();
+        }catch (Exception e){
+            BLog.e(e);
+        }
+    }
+
+    /**
      * 保存字符串
      *
      * @param context

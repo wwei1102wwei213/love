@@ -2,7 +2,7 @@ package com.yyspbfq.filmplay.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -17,6 +17,8 @@ import com.yyspbfq.filmplay.biz.Factory;
 import com.yyspbfq.filmplay.biz.http.HttpFlag;
 import com.yyspbfq.filmplay.ui.BaseActivity;
 import com.yyspbfq.filmplay.utils.BLog;
+
+import net.nightwhistler.htmlspanner.HtmlSpanner;
 
 import java.util.List;
 
@@ -60,6 +62,7 @@ public class VideoHelpActivity extends BaseActivity implements WLibHttpListener{
             try {
                 List<HelpDataBean> list = new Gson().fromJson(formatData.toString(), new TypeToken<List<HelpDataBean>>(){}.getType());
                 if (list!=null&&list.size()>0) {
+                    HtmlSpanner spanner = new HtmlSpanner();
                     body.removeAllViews();
                     for (int i=0;i<list.size();i++) {
                         String name = list.get(i).getName();
@@ -68,7 +71,8 @@ public class VideoHelpActivity extends BaseActivity implements WLibHttpListener{
                         body.addView(tv_name);
                         String content = list.get(i).getContent();
                         TextView tv_content = (TextView) LayoutInflater.from(this).inflate(R.layout.item_info_help_content, body, false);
-                        tv_content.setText(content==null?"": Html.fromHtml(content));
+                        tv_content.setText(content==null?"": spanner.fromHtml(content));
+                        tv_content.setMovementMethod(LinkMovementMethod.getInstance());
                         body.addView(tv_content);
                         if (i<list.size()-1) {
                             View line = LayoutInflater.from(this).inflate(R.layout.item_info_help_line, body, false);

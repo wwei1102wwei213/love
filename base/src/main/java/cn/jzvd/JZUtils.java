@@ -30,7 +30,7 @@ public class JZUtils {
 
     public static String stringForTime(long timeMs) {
         if (timeMs <= 0 || timeMs >= 24 * 60 * 60 * 1000) {
-            return "00:00";
+            return "00:00:00";
         }
         long totalSeconds = timeMs / 1000;
         int seconds = (int) (totalSeconds % 60);
@@ -38,11 +38,18 @@ public class JZUtils {
         int hours = (int) (totalSeconds / 3600);
         StringBuilder stringBuilder = new StringBuilder();
         Formatter mFormatter = new Formatter(stringBuilder, Locale.getDefault());
-        if (hours > 0) {
-            return mFormatter.format("%d:%02d:%02d", hours, minutes, seconds).toString();
+//        String result = "";
+//        result = mFormatter.format("%02d:%02d", minutes, seconds).toString();
+        return  mFormatter.format("%02d:%02d:%02d", hours, minutes, seconds).toString();
+        /*if (hours > 0) {
+            return  mFormatter.format("%02d:%02d", minutes, seconds).toString();
+//            result = hours + ":" + result;
         } else {
-            return mFormatter.format("%02d:%02d", minutes, seconds).toString();
-        }
+            return  mFormatter.format("%02d:%02d", minutes, seconds).toString();
+        }*/
+//        if (result.endsWith(":")) result = result + "00";
+//        BLog.e("jzutils", result);
+//        return result;
     }
 
     /**
@@ -134,7 +141,6 @@ public class JZUtils {
         if (progress < 5000) {
             progress = 0;
         }
-        Log.e(TAG, "saveProgress: " + progress+"\nvideo:"+new Gson().toJson(entity));
         VideoRecordBean bean = new VideoRecordBean();
         bean.setVid(entity.getId());
         bean.setLast_progress(progress/1000);

@@ -91,6 +91,7 @@
         <!--下载列表页面-->
         <activity android:name=".ui.activity.DownloadListActivity"
             android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize"
             android:launchMode="singleTop"/>
         <!--Web展示页面-->
         <activity android:name=".ui.activity.ShowWebActivity"
@@ -143,9 +144,14 @@
         <!--用户收藏-->
         <activity android:name=".ui.activity.InfoCollationActivity"
             android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize|keyboardHidden"
             android:launchMode="singleTop"/>
         <!--播放记录-->
         <activity android:name=".ui.activity.VideoRecordActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
+        <!--选择缓存个数页面-->
+        <activity android:name=".ui.activity.DownloadCountActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTop"/>
 
@@ -157,10 +163,31 @@
 
 
         <!--J PUSH-->
-        <!-- Required SDK核心功能 -->
+        <!-- Rich push 核心功能 since 2.0.6-->
+        <activity
+            android:name="cn.jpush.android.ui.PopWinActivity"
+            android:theme="@style/MyDialogStyle"
+            android:exported="false">
+        </activity>
+
+        <!-- Required SDK核心功能-->
+        <activity
+            android:name="cn.jpush.android.ui.PushActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="cn.jpush.android.ui.PushActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="com.yyspbfq.filmplay" />
+            </intent-filter>
+        </activity>
+
+        <!-- Required SDK 核心功能-->
+        <!-- 可配置android:process参数将PushService放在其他进程中 -->
         <service
             android:name="cn.jpush.android.service.PushService"
-            android:enabled="true"
+            android:process=":pushcore"
             android:exported="false">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.REGISTER" />
@@ -169,21 +196,13 @@
                 <action android:name="cn.jpush.android.intent.PUSH_TIME" />
             </intent-filter>
         </service>
-
-
-        <!-- Required SDK 核心功能 -->
-        <!-- 可配置android:process参数将PushService放在其他进程中 -->
-        <!--<service
-            android:name="cn.jpush.android.service.PushService"
-            android:enabled="true"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="cn.jpush.android.intent.REGISTER" />
-                <action android:name="cn.jpush.android.intent.REPORT" />
-                <action android:name="cn.jpush.android.intent.PushService" />
-                <action android:name="cn.jpush.android.intent.PUSH_TIME" />
-            </intent-filter>
-        </service>-->
+        <!-- since 3.0.9 Required SDK 核心功能-->
+        <provider
+            android:authorities="com.yyspbfq.filmplay.DataProvider"
+            android:name="cn.jpush.android.service.DataProvider"
+            android:process=":pushcore"
+            android:exported="false"
+            />
 
         <!-- since 1.8.0 option 可选项。用于同一设备中不同应用的JPush服务相互拉起的功能。 -->
         <!-- 若不启用该功能可删除该组件，将不拉起其他应用也不能被其他应用拉起 -->
@@ -193,18 +212,23 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="cn.jpush.android.intent.DaemonService" />
-
                 <category android:name="com.yyspbfq.filmplay" />
             </intent-filter>
-        </service>
 
-        <!-- Required SDK核心功能 -->
+        </service>
+        <!-- since 3.1.0 Required SDK 核心功能-->
+        <provider
+            android:authorities="com.yyspbfq.filmplay.DownloadProvider"
+            android:name="cn.jpush.android.service.DownloadProvider"
+            android:exported="true"
+            />
+        <!-- Required SDK核心功能-->
         <receiver
             android:name="cn.jpush.android.service.PushReceiver"
-            android:enabled="true">
+            android:enabled="true"
+            android:exported="false">
             <intent-filter android:priority="1000">
-                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />
-
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />   <!--Required  显示通知栏 -->
                 <category android:name="com.yyspbfq.filmplay" />
             </intent-filter>
             <intent-filter>
@@ -220,66 +244,57 @@
             </intent-filter>
         </receiver>
 
-        <!-- Required SDK核心功能 -->
-        <activity
-            android:name="cn.jpush.android.ui.PushActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:exported="false"
-            android:theme="@android:style/Theme.NoTitleBar">
-            <intent-filter>
-                <action android:name="cn.jpush.android.ui.PushActivity" />
+        <!-- Required SDK核心功能-->
+        <receiver android:name="cn.jpush.android.service.AlarmReceiver" android:exported="false"/>
 
-                <category android:name="android.intent.category.DEFAULT" />
+        <!-- User defined.  For test only  用户自定义的广播接收器-->
+        <receiver
+            android:name=".service.JPushReceiver"
+            android:exported="false"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION" /> <!--Required  用户注册SDK的intent-->
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" /> <!--Required  用户接收SDK消息的intent-->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" /> <!--Required  用户接收SDK通知栏信息的intent-->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" /> <!--Required  用户打开自定义通知栏的intent-->
+                <action android:name="cn.jpush.android.intent.CONNECTION" /><!-- 接收网络变化 连接/断开 since 1.6.3 -->
                 <category android:name="com.yyspbfq.filmplay" />
             </intent-filter>
-        </activity>
-        <!-- SDK核心功能 -->
-        <activity
-            android:name="cn.jpush.android.ui.PopWinActivity"
-            android:configChanges="orientation|keyboardHidden"
-            android:exported="false"
-            android:theme="@style/MyDialogStyle">
+        </receiver>
+
+        <!-- User defined.  For test only  用户自定义接收消息器,3.0.7开始支持,目前新tag/alias接口设置结果会在该广播接收器对应的方法中回调-->
+        <!--<receiver android:name="com.example.jpushdemo.MyJPushMessageReceiver">
             <intent-filter>
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="com.yyspbfq.filmplay" />
+                <action android:name="cn.jpush.android.intent.RECEIVE_MESSAGE" />
+                <category android:name="您应用的包名"></category>
             </intent-filter>
-        </activity>
+        </receiver>-->
 
-        <!-- Required  SDK核心功能 -->
-        <service
-            android:name="cn.jpush.android.service.DownloadService"
-            android:enabled="true"
-            android:exported="false" />
-
-        <!-- Required SDK核心功能 -->
-        <receiver
-            android:name="cn.jpush.android.service.AlarmReceiver"
-            android:exported="false" />
-
-        <receiver
+        <!--<receiver
             android:name=".service.JPushReceiver"
             android:enabled="true"
             android:exported="false">
             <intent-filter>
 
-                <!-- Required 用户注册SDK的intent -->
+                &lt;!&ndash; Required 用户注册SDK的intent &ndash;&gt;
                 <action android:name="cn.jpush.android.intent.REGISTRATION" />
-                <!-- Required 用户接收SDK消息的intent -->
+                &lt;!&ndash; Required 用户接收SDK消息的intent &ndash;&gt;
                 <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />
-                <!-- Required 用户接收SDK通知栏信息的intent -->
+                &lt;!&ndash; Required 用户接收SDK通知栏信息的intent &ndash;&gt;
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" />
-                <!-- Required 用户打开自定义通知栏的intent -->
+                &lt;!&ndash; Required 用户打开自定义通知栏的intent &ndash;&gt;
                 <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
-                <!-- 接收网络变化 连接/断开 since 1.6.3 -->
+                &lt;!&ndash; 接收网络变化 连接/断开 since 1.6.3 &ndash;&gt;
                 <action android:name="cn.jpush.android.intent.CONNECTION" />
 
                 <category android:name="com.yyspbfq.filmplay" />
             </intent-filter>
-        </receiver>
+        </receiver>-->
 
         <!--JPush自定义消息处理页面-->
         <activity android:name=".service.IPushHandleActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashAppTheme"/>
 
         <meta-data android:name="JPUSH_CHANNEL" android:value="${CHANNEL_VALUE}"/>
         <meta-data android:name="JPUSH_APPKEY" android:value="964415854bf8de9c0fe341ec" /> <!--  </>值来自开发者平台取得的AppKey-->

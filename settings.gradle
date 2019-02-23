@@ -1,1 +1,1 @@
-include ':app', ':XRefreshView', ':base', ':wlib', ':libtest', ':jiaozivideoplayer'
+include ':fuyou', ':XRefreshView', ':base', ':wlib', ':libtest', ':jiaozivideoplayer', ':htmlspanner'

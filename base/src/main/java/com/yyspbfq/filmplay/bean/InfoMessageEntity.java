@@ -7,7 +7,15 @@ public class InfoMessageEntity {
                 "openType": "1", //操作类型，1:打开url，2:应用下载，3:打开视频 4:活动页面
                 "url": "http://www.baidu.com"*/
 
-    private String title, vid, openType, url, ctime;
+    private String id, title, vid, openType, url, ctime;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;

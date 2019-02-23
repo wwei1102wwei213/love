@@ -8,6 +8,7 @@ buildscript {
         }
         google()
         jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
@@ -22,6 +23,10 @@ allprojects {
     repositories {
         google()
         jcenter()
+        mavenCentral()
+        maven {
+            url "http://repo.pageturner-reader.org"
+        }
     }
 }
 

@@ -3,11 +3,14 @@ package com.yyspbfq.filmplay;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.os.Handler;
 import android.support.multidex.MultiDex;
 
 import com.danikula.videocache.HttpProxyCacheServer;
 import com.orhanobut.logger.AndroidLogAdapter;
+import com.orhanobut.logger.FormatStrategy;
 import com.orhanobut.logger.Logger;
+import com.orhanobut.logger.PrettyFormatStrategy;
 import com.ta.TAApplication;
 import com.wei.wlib.WLibManager;
 import com.yyspbfq.filmplay.biz.http.HttpInterceptor;
@@ -17,11 +20,13 @@ import cn.jpush.android.api.JPushInterface;
 public class BaseApplication extends TAApplication{
 
     private static BaseApplication instance;
-
+    protected Handler handler;
+    public static int mainThreadId;
     @Override
     public void onCreate() {
         super.onCreate();
         instance = this;
+        mainThreadId = android.os.Process.myTid();
         //初始化日志工具
         initLogger();
         //网络初始化
@@ -44,7 +49,8 @@ public class BaseApplication extends TAApplication{
     }
 
     private void initLogger() {
-        Logger.addLogAdapter(new AndroidLogAdapter() {
+        FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder().showThreadInfo(true).tag("WWEI").build();
+        Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy) {
             @Override
             public boolean isLoggable(int priority, String tag) {
                 return BuildConfig.DEBUG;
@@ -73,4 +79,10 @@ public class BaseApplication extends TAApplication{
         res.updateConfiguration(config, res.getDisplayMetrics());
     }
 
+    public Handler getHandler() {
+        if (handler==null) {
+            handler = new Handler(getMainLooper());
+        }
+        return handler;
+    }
 }

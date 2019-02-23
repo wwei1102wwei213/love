@@ -124,7 +124,7 @@ public class DBHelper {
     }
 
     /**
-     *
+     * 同步播放记录
      * @param application
      * @param list
      */
@@ -448,6 +448,24 @@ public class DBHelper {
                 tasqLiteDatabase.delete(VideoDownloadBean.class, "vid="+key);
             } catch (Exception e){
 
+            }
+            application.getSQLiteDatabasePool().releaseSQLiteDatabase(tasqLiteDatabase);
+        } catch (Exception e){
+            BLog.e(e);
+        }
+    }
+
+    /**
+     *
+     * @param application
+     */
+    public void clearVideoRecord(TAApplication application) {
+        try {
+            TASQLiteDatabase tasqLiteDatabase = application.getSQLiteDatabasePool().getSQLiteDatabase();
+            if (!tasqLiteDatabase.hasTable(VideoRecordBean.class)) {
+
+            } else {
+                tasqLiteDatabase.dropTable(VideoRecordBean.class);
             }
             application.getSQLiteDatabasePool().releaseSQLiteDatabase(tasqLiteDatabase);
         } catch (Exception e){

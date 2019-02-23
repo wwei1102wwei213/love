@@ -9,7 +9,9 @@ import android.widget.TextView;
 
 import com.yyspbfq.filmplay.R;
 import com.yyspbfq.filmplay.bean.InfoMessageEntity;
+import com.yyspbfq.filmplay.utils.BLog;
 import com.yyspbfq.filmplay.utils.UiUtils;
+import com.yyspbfq.filmplay.utils.sp.SPLongUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,10 +57,21 @@ public class InfoMessageAdapter extends BaseAdapter{
         }
         final InfoMessageEntity entity = list.get(position);
         vh.tv.setText(entity.getTitle()==null?"":entity.getTitle());
+        final int mClick = SPLongUtils.getInt(context,  "video_info_message"+entity.getId(), 0);
+        try {
+            vh.tv.setCompoundDrawablesWithIntrinsicBounds(null, null,
+                    mClick==0?context.getResources().getDrawable(R.mipmap.my_message_red_dot):null, null);
+        } catch (Exception e){
+            BLog.e(e);
+        }
         vh.v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (mClick==0) {
+                    SPLongUtils.saveInt(context, "video_info_message"+entity.getId(), 1);
+                }
                 UiUtils.handleInfoMessage(context, entity);
+                notifyDataSetChanged();
             }
         });
 

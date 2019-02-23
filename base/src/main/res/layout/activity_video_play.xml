@@ -17,6 +17,39 @@
             android:id="@+id/jvd"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
+        <RelativeLayout
+            android:id="@+id/v_ads"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#363636"
+            android:visibility="gone">
+            <ImageView
+                android:id="@+id/iv_ads_above"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                />
+            <ImageView
+                android:id="@+id/iv_ads_back"
+                android:layout_width="@dimen/base_title_height"
+                android:layout_height="@dimen/base_title_height"
+                android:src="@drawable/jz_back_normal"
+                android:padding="10dp"
+                android:scaleType="centerInside"/>
+            <TextView
+                android:id="@+id/tv_adv_num"
+                android:layout_width="44dp"
+                android:layout_height="22dp"
+                android:background="@drawable/bg_adv_time_num"
+                android:gravity="center"
+                android:text="5s"
+                android:textColor="@color/text_white"
+                android:layout_marginTop="11dp"
+                android:layout_marginRight="11dp"
+                android:layout_alignParentRight="true"
+                />
+
+        </RelativeLayout>
     </RelativeLayout>
 
     <LinearLayout
@@ -38,7 +71,7 @@
             android:background="@drawable/bg_comment_input_hint"
             android:drawableLeft="@mipmap/play_pinglun_icon"
             android:paddingLeft="12dp"
-            android:text="@string/search_hint_text"
+            android:text="@string/comment_hint_text"
             android:textSize="14sp"
             android:gravity="center_vertical"
             android:layout_marginTop="11dp"

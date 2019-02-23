@@ -319,7 +319,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener, WL
         switch (v.getId()) {
             case R.id.v_user_detail:
             case R.id.my_head_rl://编辑个人信息
-                if (!"2".equals(UserDataUtil.getLoginType(context))) {
+                if (!UserDataUtil.isLogin(context)) {
                     new LoginDialog(context).show();
                     return;
                 }

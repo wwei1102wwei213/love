@@ -8,11 +8,13 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
@@ -82,6 +84,7 @@ public class HomeFragment extends BaseFragment implements WLibHttpListener{
     private MyPagerAdapter pagerAdapter;
     private DrawCircleView dcv;
     private ImageView iv_adv;
+    private TextView tv_adv_hint;
     private void initViews() {
 
         ll_classify = (LinearLayout) findViewById(R.id.ll_classify);
@@ -89,6 +92,7 @@ public class HomeFragment extends BaseFragment implements WLibHttpListener{
         ll_hot = (LinearLayout) findViewById(R.id.ll_hot);
         ll_column = (LinearLayout) findViewById(R.id.ll_column);
         iv_adv = (ImageView) findViewById(R.id.iv_adv);
+        tv_adv_hint = (TextView) findViewById(R.id.tv_adv_hint);
 
         rv_like = (RecyclerView) findViewById(R.id.rv_like);
         LinearLayoutManager manager = new LinearLayoutManager(context);
@@ -155,17 +159,18 @@ public class HomeFragment extends BaseFragment implements WLibHttpListener{
                 }
             }
         });
-
+        //最近更新
         findViewById(R.id.more_newest).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                VideoClassifyActivity.actionStart(context, "0");
+                VideoClassifyActivity.actionStart(context, 2);
             }
         });
+        //最多播放
         findViewById(R.id.more_hot).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                VideoClassifyActivity.actionStart(context, "0");
+                VideoClassifyActivity.actionStart(context, 1);
             }
         });
 //        mHandler.sendEmptyMessageDelayed(CHANGE_BANNER, 4000);
@@ -175,9 +180,16 @@ public class HomeFragment extends BaseFragment implements WLibHttpListener{
                 UiUtils.handleAdvert(context, mAdvertBean);
             }
         });
+        findViewById(R.id.tv_hot_change).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Factory.resp(HomeFragment.this, HttpFlag.FLAG_HOME_HOT_VIDEO, null, null).post(null);
+            }
+        });
     }
 
     private void initData() {
+
         Factory.resp(this, HttpFlag.FLAG_HOME_SLIDE, null, null).post(null);
         Factory.resp(this, HttpFlag.FLAG_HOME_MENU_COLUMN, null, null).post(null);
         Factory.resp(this, HttpFlag.FLAG_HOME_LIKE_VIDEO, null, null).post(null);
@@ -236,7 +248,8 @@ public class HomeFragment extends BaseFragment implements WLibHttpListener{
             try {
                 List<SlideBean> datas = new Gson().fromJson(formatData.toString(), new TypeToken<List<SlideBean>>(){}.getType());
                 if (datas!=null&&datas.size()>0) {
-                    dcv.setDrawCricle(datas.size(), 0, 0, 0 );
+                    dcv.setDrawCricle(datas.size(), 0, 0, 0 , CommonUtils.getDeviceWidth(context));
+                    dcv.redraw(0);
                     pagerAdapter.update(datas);
                     indexBanner = datas.size();
                     pager.setCurrentItem(datas.size());
@@ -251,6 +264,11 @@ public class HomeFragment extends BaseFragment implements WLibHttpListener{
                     findViewById(R.id.line_adv).setVisibility(View.VISIBLE);
                     iv_adv.setVisibility(View.VISIBLE);
                     Glide.with(context).load(mAdvertBean.getThumb()+"").crossFade().into(iv_adv);
+                    String temp = mAdvertBean.getTitle();
+                    if (!TextUtils.isEmpty(temp)) {
+                        tv_adv_hint.setText(temp);
+                        tv_adv_hint.setVisibility(View.VISIBLE);
+                    }
                 } else {
                     findViewById(R.id.line_adv).setVisibility(View.GONE);
                     iv_adv.setVisibility(View.GONE);

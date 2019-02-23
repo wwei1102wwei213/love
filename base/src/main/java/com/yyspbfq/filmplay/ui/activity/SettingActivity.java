@@ -10,6 +10,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.content.FileProvider;
@@ -20,22 +22,31 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.gson.Gson;
+import com.orhanobut.logger.Logger;
 import com.wei.wlib.WLibManager;
 import com.wei.wlib.glide.GlideCacheUtil;
 import com.wei.wlib.http.WLibHttpListener;
 import com.wei.wlib.ui.WLibDialogHelper;
 import com.wei.wlib.widget.CircleImageView;
+import com.yyspbfq.filmplay.BaseApplication;
 import com.yyspbfq.filmplay.R;
+import com.yyspbfq.filmplay.bean.UpdateConfig;
 import com.yyspbfq.filmplay.bean.UserInfo;
 import com.yyspbfq.filmplay.biz.Factory;
 import com.yyspbfq.filmplay.biz.http.HttpFlag;
 import com.yyspbfq.filmplay.biz.login.UserHelper;
+import com.yyspbfq.filmplay.db.DBHelper;
 import com.yyspbfq.filmplay.ui.BaseActivity;
 import com.yyspbfq.filmplay.ui.dialog.EditNickNameDialog;
 import com.yyspbfq.filmplay.ui.dialog.SexDialog;
+import com.yyspbfq.filmplay.ui.dialog.UpdateAppDialog;
 import com.yyspbfq.filmplay.utils.BLog;
+import com.yyspbfq.filmplay.utils.CommonUtils;
 import com.yyspbfq.filmplay.utils.CropUtils;
 import com.yyspbfq.filmplay.utils.SystemUtils;
+import com.yyspbfq.filmplay.utils.UiUtils;
+import com.yyspbfq.filmplay.utils.sp.SPLongUtils;
 import com.yyspbfq.filmplay.utils.sp.SharePrefUtil;
 import com.yyspbfq.filmplay.utils.sp.UserDataUtil;
 import com.yyspbfq.filmplay.utils.tools.ToastUtils;
@@ -46,13 +57,23 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import okhttp3.ResponseBody;
+
 public class SettingActivity extends BaseActivity implements View.OnClickListener, WLibHttpListener{
 
     private Dialog dialogLoading;
+    private MyHandler mHandler;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         setStatusBarTranslucent();
@@ -62,30 +83,42 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         setBackViews(R.id.iv_base_back);
         ((TextView) findViewById(R.id.tv_base_title)).setText("系统设置");
         initViews();
+        initData();
     }
 
-    private TextView tv_name, tv_sex, tv_version;
+    private void initData() {
+        mHandler = new MyHandler(this);
+        checkUpdate(SPLongUtils.getString(this, "video_update_app_url", HttpFlag.URL_UPDATE));
+    }
+
+    private TextView tv_name, tv_sex, tv_version, tv_version_hint;
     private CircleImageView civ;
     private void initViews() {
-        findViewById(R.id.v_lj).setOnClickListener(this);
-        civ = findViewById(R.id.civ);
-        tv_name = findViewById(R.id.tv_name);
-        tv_sex = findViewById(R.id.tv_sex);
-        tv_version = findViewById(R.id.tv_version);
-        if (UserDataUtil.isLogin(this)) {
-            findViewById(R.id.tv_exit).setVisibility(View.VISIBLE);
-            findViewById(R.id.v_avatar).setOnClickListener(this);
-            findViewById(R.id.v_sex).setOnClickListener(this);
-            findViewById(R.id.v_name).setOnClickListener(this);
-            findViewById(R.id.tv_exit).setOnClickListener(this);
-        } else {
+        try {
+            findViewById(R.id.v_lj).setOnClickListener(this);
+            civ = findViewById(R.id.civ);
+            tv_name = findViewById(R.id.tv_name);
+            tv_sex = findViewById(R.id.tv_sex);
+            tv_version = findViewById(R.id.tv_version);
+            tv_version.setText("版本 V"+ CommonUtils.getVersionNum());
+            tv_version_hint = findViewById(R.id.tv_version_hint);
+            if (UserDataUtil.isLogin(this)) {
+                findViewById(R.id.tv_exit).setVisibility(View.VISIBLE);
+                findViewById(R.id.v_avatar).setOnClickListener(this);
+                findViewById(R.id.v_sex).setOnClickListener(this);
+                findViewById(R.id.v_name).setOnClickListener(this);
+                findViewById(R.id.tv_exit).setOnClickListener(this);
+            }
+            findViewById(R.id.v_version).setOnClickListener(this);
 
+            UserInfo userInfo = UserDataUtil.getUserInfo(this);
+            Glide.with(this).load(userInfo.avatar).crossFade().into(civ);
+            tv_name.setText(userInfo.name==null?"":userInfo.name);
+            tv_sex.setText(getSex(userInfo.sex));
+            dialogLoading = WLibDialogHelper.createProgressDialog(this, "正在提交...");
+        } catch (Exception e){
+            BLog.e(e);
         }
-        UserInfo userInfo = UserDataUtil.getUserInfo(this);
-        Glide.with(this).load(userInfo.avatar).crossFade().into(civ);
-        tv_name.setText(userInfo.name==null?"":userInfo.name);
-        tv_sex.setText(getSex(userInfo.sex));
-        dialogLoading = WLibDialogHelper.createProgressDialog(this, "正在提交...");
     }
 
     private String getSex(String sex) {
@@ -109,12 +142,15 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 toChangeName();
                 break;
             case R.id.v_lj:
-                GlideCacheUtil.getInstance().clearImageDiskCache(this);
+                GlideCacheUtil.getInstance().clearImageDiskCache(BaseApplication.getInstance());
                 SystemUtils.clearWebCache(this);
                 showToast("清除成功");
                 break;
             case R.id.tv_exit:
                 toExit();
+                break;
+            case R.id.v_version:
+                checkUpdateApp();
                 break;
         }
     }
@@ -146,6 +182,18 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         public TempTag(int type, String str) {
             this.type = type;
             this.str = str;
+        }
+    }
+
+    private void checkUpdateApp() {
+        try {
+            if (hasUpdate) {
+                UpdateAppDialog dialog = new UpdateAppDialog(this);
+                dialog.setData(mConfig);
+                dialog.show();
+            }
+        } catch (Exception e){
+            BLog.e(e);
         }
     }
 
@@ -319,6 +367,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 WLibManager.getInstance().clearCookieJar();
                 SystemUtils.clearCookie(this);
                 SystemUtils.clearWebCache(this);
+                DBHelper.getInstance().clearVideoRecord(BaseApplication.getInstance());
                 UserHelper.getInstance().getUserInfo(this);
                 finish();
             } catch (Exception e){
@@ -372,5 +421,81 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
     @Override
     public void handleAfter(int flag, Object tag) {
 
+    }
+
+    /**
+     * 检查更新
+     * @param url
+     */
+    public void checkUpdate(String url) {
+        if (TextUtils.isEmpty(url)) return;
+        Logger.e("checkUpdate:"+url);
+        Request request = new Request.Builder().url(url).build();
+        new OkHttpClient().newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                try {
+                    Message msg = Message.obtain();
+                    msg.what = MSG_WHAT_CHECK_UPDATE;
+                    msg.arg1 = 2;
+                    mHandler.sendMessage(msg);
+                } catch (Exception ee){
+                    BLog.e(ee);
+                }
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) {
+                try {
+                    ResponseBody body = response.body();
+                    UpdateConfig config = new Gson().fromJson(body.charStream(), UpdateConfig.class);
+                    Logger.e("checkUpdate："+new Gson().toJson(config));
+                    Message msg = Message.obtain();
+                    msg.what = MSG_WHAT_CHECK_UPDATE;
+                    msg.obj = config;
+                    msg.arg1 = 1;
+                    mHandler.sendMessage(msg);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    private boolean hasUpdate = false;
+    private UpdateConfig mConfig = null;
+    private void handleUpdate(Message msg) {
+        try {
+            if (msg.arg1==1) {
+                mConfig = (UpdateConfig) msg.obj;
+                hasUpdate = UiUtils.checkUpdate(mConfig);
+                if (hasUpdate) {
+                    tv_version_hint.setText("有新版本");
+                    tv_version_hint.setTextColor(getResources().getColor(R.color.base_title_color));
+                } else {
+                    tv_version_hint.setText("当前已是最新版");
+                }
+            } else if (msg.arg2==2) {
+                tv_version_hint.setText("检测版本信息失败");
+            }
+
+        } catch (Exception e){
+            BLog.e(e);
+        }
+    }
+
+    private static final int MSG_WHAT_CHECK_UPDATE = 1;
+    private static final int MSG_WHAT_CHECK_UPDATE_ERROR = 2;
+    private static class MyHandler extends Handler {
+        private WeakReference<SettingActivity> weak;
+        private MyHandler(SettingActivity activity) {
+            weak = new WeakReference<>(activity);
+        }
+        @Override
+        public void handleMessage(Message msg) {
+            if (weak.get()!=null&&msg.what==MSG_WHAT_CHECK_UPDATE) {
+                weak.get().handleUpdate(msg);
+            }
+        }
     }
 }

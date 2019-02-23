@@ -8,10 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
-import android.net.TrafficStats;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -30,6 +27,7 @@ import android.widget.Toast;
 import com.orhanobut.logger.Logger;
 import com.yyspbfq.filmplay.R;
 import com.yyspbfq.filmplay.ui.activity.FeedbackActivity;
+import com.yyspbfq.filmplay.utils.AppUtils;
 import com.yyspbfq.filmplay.utils.BLog;
 
 import java.text.SimpleDateFormat;
@@ -46,7 +44,9 @@ public class JzvdStd extends Jzvd {
     protected static Timer DISMISS_CONTROL_VIEW_TIMER;
 
     public ImageView backButton;
-    public ProgressBar bottomProgressBar, loadingProgressBar;
+    public ProgressBar bottomProgressBar;
+    public View v_loading_middle;
+    public TextView tv_loading_hint;
     public TextView titleTextView;
     public ImageView thumbImageView;
     public ImageView tinyBackImageView;
@@ -113,7 +113,9 @@ public class JzvdStd extends Jzvd {
         titleTextView = findViewById(R.id.title);
         backButton = findViewById(R.id.back);
         thumbImageView = findViewById(R.id.thumb);
-        loadingProgressBar = findViewById(R.id.loading);
+//        loadingProgressBar = findViewById(R.id.loading);
+        v_loading_middle = findViewById(R.id.v_loading_middle);
+        tv_loading_hint = findViewById(R.id.tv_loading_hint);
         tinyBackImageView = findViewById(R.id.back_tiny);
         batteryLevel = findViewById(R.id.battery_level);
         videoCurrentTime = findViewById(R.id.video_current_time);
@@ -131,7 +133,6 @@ public class JzvdStd extends Jzvd {
         clarity.setOnClickListener(this);
         mRetryBtn.setOnClickListener(this);
         tv_contact_us.setOnClickListener(this);
-
 
     }
 
@@ -171,8 +172,6 @@ public class JzvdStd extends Jzvd {
             clarity.setVisibility(View.GONE);
         }
         setSystemTimeAndBattery();
-
-
         if (tmp_test_back) {
             tmp_test_back = false;
             JzvdMgr.setFirstFloor(this);
@@ -548,7 +547,6 @@ public class JzvdStd extends Jzvd {
     }
 
     public void changeUiToNormal() {
-        Logger.e("changeUiToNormal ");
         switch (currentScreen) {
             case SCREEN_WINDOW_NORMAL:
             case SCREEN_WINDOW_LIST:
@@ -567,7 +565,6 @@ public class JzvdStd extends Jzvd {
     }
 
     public void changeUiToPreparing() {
-        Logger.e("changeUiToPreparing ");
         switch (currentScreen) {
             case SCREEN_WINDOW_NORMAL:
             case SCREEN_WINDOW_LIST:
@@ -712,7 +709,7 @@ public class JzvdStd extends Jzvd {
             }
         }
         startButton.setVisibility(startBtn);
-        loadingProgressBar.setVisibility(loadingPro);
+        v_loading_middle.setVisibility(loadingPro);
         thumbImageView.setVisibility(thumbImg);
         bottomProgressBar.setVisibility(bottomPro);
         mRetryLayout.setVisibility(retryLayout);
@@ -737,11 +734,13 @@ public class JzvdStd extends Jzvd {
         } else if (currentState == CURRENT_STATE_ERROR) {
             startButton.setVisibility(INVISIBLE);
             replayTextView.setVisibility(GONE);
+            v_seek_loading.setVisibility(GONE);
         } else if (currentState == CURRENT_STATE_AUTO_COMPLETE) {
             startButton.setVisibility(VISIBLE);
 //            startButton.setImageResource(R.drawable.jz_click_replay_selector);
             replayTextView.setVisibility(VISIBLE);
         } else {
+            v_seek_loading.setVisibility(GONE);
             startButton.setImageResource(R.drawable.jz_click_play_selector);
             replayTextView.setVisibility(GONE);
         }
@@ -931,28 +930,30 @@ public class JzvdStd extends Jzvd {
     @Override
     public void onSeekLoading() {
         super.onSeekLoading();
+
         if (v_seek_loading!=null&&v_seek_loading.getVisibility()!=View.VISIBLE) {
             v_seek_loading.setVisibility(View.VISIBLE);
-
         }
     }
 
-    private Runnable mSpeedRunnable = new Runnable() {
-        @Override
-        public void run() {
-             try {
-                 long speed = getUidRxBytes();
-                 Logger.e("mSpeedRunnable:"+speed);
-//                 if ()
-             } catch (Exception e){
-                 BLog.e(e);
-             }
-        }
-    };
-
     private boolean isLoading = false;
 
-
+    @Override
+    public void showSpeedView(String speed) {
+        try {
+            AppUtils.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (v_seek_loading!=null&&v_seek_loading.getVisibility()!=View.VISIBLE) {
+                        v_seek_loading.setVisibility(View.VISIBLE);
+                    }
+                    if (tv_loading_hint!=null) tv_loading_hint.setText("正在缓冲，请稍等...\n"+speed+"KB/S");
+                }
+            });
+        } catch (Exception e){
+            BLog.e(e);
+        }
+    }
 
     public class DismissControlViewTimerTask extends TimerTask {
 
@@ -962,15 +963,4 @@ public class JzvdStd extends Jzvd {
         }
     }
 
-    public long getUidRxBytes() { //获取总的接受字节数，包含Mobile和WiFi等
-        PackageManager pm = getContext().getPackageManager();
-        ApplicationInfo ai = null;
-        try {
-            ai = pm.getApplicationInfo("com.yyspbfq.filmplay", 0);
-        } catch (PackageManager.NameNotFoundException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        }
-        return TrafficStats.getUidRxBytes(ai.uid) == TrafficStats.UNSUPPORTED ? 0 : (TrafficStats.getTotalRxBytes() / 1024);
-    }
 }

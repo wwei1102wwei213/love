@@ -164,7 +164,16 @@ public class VideoSearchActivity extends BaseActivity implements WLibHttpListene
         v_clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                et.setText("");
+                try {
+                    et.setText("");
+                    v_no_data.setVisibility(View.GONE);
+                    v_result.setVisibility(View.GONE);
+                    plv.setVisibility(View.GONE);
+                    initHistoryView();
+                } catch (Exception e){
+                    BLog.e(e);
+                }
+
             }
         });
 
@@ -173,6 +182,7 @@ public class VideoSearchActivity extends BaseActivity implements WLibHttpListene
             public void onClick(View v) {
                 try {
                     fl_history.removeAllViews();
+                    ll_history.setVisibility(View.GONE);
                     SPLongUtils.clearSearchRecord(VideoSearchActivity.this);
                 } catch (Exception e){
                     BLog.e(e);
@@ -206,6 +216,7 @@ public class VideoSearchActivity extends BaseActivity implements WLibHttpListene
             return;
         }
         keyword = label;
+        et.setText(label);
         page = 0;
         Map<String, String> map = new HashMap<>();
         map.put("page", page+"");
@@ -238,6 +249,7 @@ public class VideoSearchActivity extends BaseActivity implements WLibHttpListene
         if (temp.size()>0) {
             setLabelView(temp, fl_history);
             ll_history.setVisibility(View.VISIBLE);
+            tv_delete.setVisibility(View.VISIBLE);
         } else {
             ll_history.setVisibility(View.GONE);
         }

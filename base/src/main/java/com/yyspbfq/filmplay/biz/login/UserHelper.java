@@ -13,6 +13,7 @@ import com.yyspbfq.filmplay.bean.MessageEvent;
 import com.yyspbfq.filmplay.bean.UserInfoBean;
 import com.yyspbfq.filmplay.biz.Factory;
 import com.yyspbfq.filmplay.biz.http.HttpFlag;
+import com.yyspbfq.filmplay.db.DBHelper;
 import com.yyspbfq.filmplay.utils.BLog;
 import com.yyspbfq.filmplay.utils.CommonUtils;
 import com.yyspbfq.filmplay.utils.SystemUtils;
@@ -49,27 +50,17 @@ public class UserHelper {
         getUserInfo(context, false);
     }
 
-    public void getUserInfo(Context context, final boolean needProgress) {
-        getUserInfo(context, needProgress, false);
+    public void getUserInfo(Context context, final boolean needLoading) {
+        getUserInfo(context, needLoading, false);
     }
 
     /**
      * 获取用户信息
      *
-     * @param isLoading 是否开启加载浮层
-     * @param isLogin   是否是登陆后获取用户信息
+     * @param needLoading 是否开启加载浮层
+     * @param needSync    是否需要同步播放记录
      */
-    public void getUserInfo(final Context mContext, final boolean isLoading, final boolean isLogin) {
-        getUserInfo(mContext, isLoading, isLogin, false);
-    }
-
-    /**
-     * 获取用户信息
-     *
-     * @param isLoading 是否开启加载浮层
-     * @param isLogin   是否是登陆后获取用户信息
-     */
-    public void getUserInfo(final Context mContext, final boolean isLoading, final boolean isLogin, final boolean isPull) {
+    public void getUserInfo(final Context mContext, final boolean needLoading, final boolean needSync) {
         Logger.d("网络刷新用户信息");
         final Dialog userProgressDialog = WLibDialogHelper.createProgressDialog(mContext, mContext.getString(R.string.msg_loading_userinfo));
         Factory.resp(new WLibHttpListener() {
@@ -79,8 +70,10 @@ public class UserHelper {
                     UserInfoBean bean = (UserInfoBean) formatData;
                     UserDataUtil.saveLoginType(BaseApplication.getInstance(), bean.getType()+"");
                     UserDataUtil.saveUserData(BaseApplication.getInstance(), bean.getData());
+                    DBHelper.getInstance().clearVideoRecord(BaseApplication.getInstance());
                     MessageEvent event = new MessageEvent();
                     event.setMessage(MessageEvent.MSG_GET_USER_INFO);
+                    event.setNeedSync(needSync);
                     EventBus.getDefault().post(event);
                 } catch (Exception e){
                     BLog.e(e);
@@ -89,7 +82,7 @@ public class UserHelper {
 
             @Override
             public void handleLoading(int flag, Object tag, boolean isShow) {
-                if (isLoading&&isShow)
+                if (needLoading&&isShow)
                     WLibDialogHelper.show(userProgressDialog);
             }
 
@@ -100,11 +93,10 @@ public class UserHelper {
 
             @Override
             public void handleAfter(int flag, Object tag) {
-                if (isLoading)
+                if (needLoading)
                     WLibDialogHelper.dismiss(userProgressDialog);
             }
         }, HttpFlag.FLAG_USER_INFO, null, UserInfoBean.class).post(null);
-
     }
 
     public void getUserInfo() {

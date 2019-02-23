@@ -14,12 +14,14 @@
         <View
             android:id="@+id/status_bar"
             android:layout_width="match_parent"
-            android:layout_height="1dp"/>
+            android:layout_height="1dp"
+            android:background="#26292F"/>
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="@dimen/base_search_layout_height"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:background="#26292F">
             <TextView
                 android:id="@+id/tv_search"
                 android:layout_width="0dp"
@@ -62,32 +64,31 @@
                 android:layout_height="wrap_content">
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="220dp"
-                    android:background="@color/base_bg_black">
+                    android:layout_height="210dp">
 
                     <com.wei.wlib.widget.coverflow.core.PagerContainer
                         android:id="@+id/pc_banner"
                         android:layout_width="match_parent"
-                        android:layout_height="220dp"
+                        android:layout_height="190dp"
                         >
 
                         <android.support.v4.view.ViewPager
                             android:id="@+id/vp_banner"
-                            android:layout_width="300dp"
-                            android:layout_height="200dp"
+                            android:layout_width="match_parent"
+                            android:layout_marginLeft="31dp"
+                            android:layout_marginRight="31dp"
+                            android:layout_height="190dp"
                             android:layout_gravity="center" />
 
                     </com.wei.wlib.widget.coverflow.core.PagerContainer>
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="20dp"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginBottom="3dp">
+                        android:layout_height="12dp"
+                        android:layout_below="@id/pc_banner">
                         <com.wei.wlib.widget.DrawCircleView
                             android:id="@+id/dcv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"/>
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"/>
                     </RelativeLayout>
 
 
@@ -203,7 +204,20 @@
                     >
 
                 </LinearLayout>
-
+                <TextView
+                    android:id="@+id/tv_hot_change"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="10dp"
+                    android:gravity="center_vertical"
+                    android:text="@string/home_menu_hot_change"
+                    android:layout_gravity="center_horizontal"
+                    android:textColor="#E3B88E"
+                    android:textSize="16sp"
+                    android:drawableLeft="@mipmap/icon_home_change"
+                    android:drawablePadding="7dp"
+                    android:paddingLeft="15dp"
+                    android:paddingRight="15dp"/>
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="8dp"
@@ -254,6 +268,18 @@
                     android:background="@mipmap/default_error_img"
                     android:visibility="gone"
                     />
+                <TextView
+                    android:id="@+id/tv_adv_hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="猜你喜欢下面的广告位，可在后台中控制 开启/关闭"
+                    android:textColor="#999"
+                    android:textSize="13sp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="20dp"
+                    android:visibility="gone"/>
 
                 <LinearLayout
                     android:id="@+id/ll_column"

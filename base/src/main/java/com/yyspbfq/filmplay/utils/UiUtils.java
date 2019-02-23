@@ -25,6 +25,7 @@ import com.yyspbfq.filmplay.bean.HomeClassifyBean;
 import com.yyspbfq.filmplay.bean.HomeColumnBean;
 import com.yyspbfq.filmplay.bean.InfoMessageEntity;
 import com.yyspbfq.filmplay.bean.SlideBean;
+import com.yyspbfq.filmplay.bean.UpdateConfig;
 import com.yyspbfq.filmplay.bean.VideoShortBean;
 import com.yyspbfq.filmplay.biz.Factory;
 import com.yyspbfq.filmplay.biz.http.HttpFlag;
@@ -235,7 +236,7 @@ public class UiUtils {
                 });
                 ImageView iv = (ImageView) item.getChildAt(0);
                 setViewHeight(iv, ivHeight);
-                Glide.with(context).load(list.get(i).getThumb()).crossFade().into(iv);
+                Glide.with(context).load(list.get(i).getPic()).crossFade().into(iv);
                 TextView name = (TextView) item.getChildAt(1);
                 String nameStr = list.get(i).getTitle();
                 name.setText(TextUtils.isEmpty(nameStr)?"":nameStr);
@@ -291,11 +292,30 @@ public class UiUtils {
         try {
             if (bean==null||bean.getOpenType()==null) return;
             if ("1".equals(bean.getOpenType())) {
-                ShowWebActivity.actionStart(context, bean.getUrl());
+                if (!TextUtils.isEmpty(bean.getUrl())) {
+                    ShowWebActivity.actionStart(context, bean.getUrl());
+                }
             } else if ("2".equals(bean.getOpenType())) {
-
+                if (!TextUtils.isEmpty(bean.getUrl())) {
+                    try {
+                        String url = bean.getUrl();
+                        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+                            String apkName = url.substring(url.lastIndexOf("/"));
+                            Intent downloadIntent = new Intent(context, DownloadService.class);
+                            downloadIntent.putExtra(DownloadService.DOWNLOAD_APK_NAME, apkName);
+                            downloadIntent.putExtra(DownloadService.DOWNLOAD_APK_URL, url);
+                            context.startService(downloadIntent);
+                        } else {
+                            Toast.makeText(context, context.getResources().getString(R.string.not_find_sdcard), Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (Exception e){
+                        BLog.e(e);
+                    }
+                }
             } else if ("3".equals(bean.getOpenType())) {
-                VideoPlayActivity.actionStart(context, "1");
+                if (!TextUtils.isEmpty(bean.getVid())) {
+                    VideoPlayActivity.actionStart(context, bean.getVid());
+                }
             } else if ("4".equals(bean.getOpenType())) {
 
             }
@@ -376,4 +396,17 @@ public class UiUtils {
         return watch+"次播放";
     }
 
+    public static boolean checkUpdate(UpdateConfig config) {
+        if (config==null) return false;
+        try {
+            int now = Integer.parseInt(CommonUtils.getVersionCodeStr());
+            int sever = Integer.parseInt(config.versionCode);
+            if (sever>now) {
+                return true;
+            }
+        } catch (Exception e){
+
+        }
+        return false;
+    }
 }
