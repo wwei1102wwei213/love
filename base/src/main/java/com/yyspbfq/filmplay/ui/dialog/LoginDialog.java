@@ -19,7 +19,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.wei.wlib.http.WLibHttpListener;
 import com.yyspbfq.filmplay.R;
+import com.yyspbfq.filmplay.biz.Factory;
+import com.yyspbfq.filmplay.biz.http.HttpFlag;
 import com.yyspbfq.filmplay.biz.login.RegexUtils;
 import com.yyspbfq.filmplay.biz.login.UserHelper;
 import com.yyspbfq.filmplay.ui.BaseActivity;
@@ -211,6 +214,30 @@ public class LoginDialog extends Dialog {
         enableCodeBtn(false);
         Map<String, String> map = new HashMap<>();
         map.put("phoneNum", phone);
+        Factory.resp(new WLibHttpListener() {
+            @Override
+            public void handleResp(Object formatData, int flag, Object tag, String response, String hint) {
+
+            }
+
+            @Override
+            public void handleLoading(int flag, Object tag, boolean isShow) {
+
+            }
+
+            @Override
+            public void handleError(int flag, Object tag, int errorType, String response, String hint) {
+                if (errorType == HttpFlag.HTTP_ERROR_CODE&&!TextUtils.isEmpty(hint)) {
+                    ToastUtils.showToast(hint);
+                }
+                enableCodeBtn(true);
+            }
+
+            @Override
+            public void handleAfter(int flag, Object tag) {
+
+            }
+        }, HttpFlag.FLAG_MOBILE_CODE, null, null).post(map);
         /*Factory.resp(new HttpRepListener() {
             @Override
             public void handleResp(Object data, int flag, Object obj, String response, String hint) {}

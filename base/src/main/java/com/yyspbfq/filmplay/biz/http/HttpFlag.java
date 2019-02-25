@@ -16,6 +16,9 @@ public class HttpFlag extends WLibHttpFlag{
     public static final int FLAG_UPLOAD_IMG = 3;
     public static final String URL_UPLOAD_IMG = "http://47.107.94.24:90/upload.php";
 
+    //手机验证码
+    public static final int FLAG_MOBILE_CODE = 10;
+    public static String URL_MOBILE_CODE = BASE_URL + "Login/verifyCode";
     //登陆
     public static final int FLAG_LOGIN_MOBILE = 11;
     public static String URL_LOGIN_MOBILE = BASE_URL + "login/phoneLogin";
@@ -171,6 +174,7 @@ public class HttpFlag extends WLibHttpFlag{
      * 切换服务器地址
      */
     public static void changeBaseUrl() {
+        URL_MOBILE_CODE = BASE_URL + "Login/verifyCode";
         URL_LOGIN_MOBILE = BASE_URL + "login/phoneLogin";
         URL_VIDEO_DETAIL = BASE_URL + "video/detail";
         URL_VIDEO_DETAIL_LIKE = BASE_URL + "video/getDetailLike";

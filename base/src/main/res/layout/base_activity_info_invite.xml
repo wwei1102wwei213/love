@@ -10,7 +10,7 @@
         android:id="@+id/btn_ads"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/bg_white"
+        android:background="#2F2F31"
         android:layout_alignParentBottom="true">
 
         <TextView
@@ -23,10 +23,10 @@
             android:textSize="16sp"
             android:textColor="#403122"
             android:background="@drawable/base_bg_invite_btn"/>
-        <View
+       <!-- <View
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:background="@color/line_f1f1f1"/>
+            android:background="@color/line_f1f1f1"/>-->
     </RelativeLayout>
     <RelativeLayout
         android:orientation="vertical"
@@ -51,7 +51,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@mipmap/my_tuiguang_yellowbg"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="12dp"
                     android:layout_marginRight="12dp"
                     android:padding="20dp"
@@ -187,7 +187,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="80dp"
                     android:background="@drawable/base_bg_white_radius"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="3dp"
                     android:layout_marginLeft="12dp"
                     android:layout_marginRight="12dp"
                     android:paddingLeft="15dp"

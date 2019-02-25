@@ -1300,10 +1300,12 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         Logger.e("updateReplayImage:"+currentState);
         if (currentState == CURRENT_STATE_NORMAL) {
             if (isReplayFirst&&currentScreen != SCREEN_WINDOW_FULLSCREEN) {
+                startButton.setImageResource(R.drawable.jz_click_play_selector);
+                iv_replay.setImageResource(R.drawable.jz_click_play_selector);
                 iv_replay.setVisibility(VISIBLE);
-                if (currentScreen != SCREEN_WINDOW_LIST) {
+                /*if (currentScreen != SCREEN_WINDOW_LIST) {
                     isReplayFirst = false;
-                }
+                }*/
             } else {
                 iv_replay.setVisibility(GONE);
             }

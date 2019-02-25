@@ -13,6 +13,7 @@ import com.orhanobut.logger.Logger;
 import com.orhanobut.logger.PrettyFormatStrategy;
 import com.ta.TAApplication;
 import com.wei.wlib.WLibManager;
+import com.wei.wlib.util.WLibLog;
 import com.yyspbfq.filmplay.biz.http.HttpInterceptor;
 
 import cn.jpush.android.api.JPushInterface;
@@ -31,8 +32,10 @@ public class BaseApplication extends TAApplication{
         initLogger();
         //网络初始化
         WLibManager.getInstance().initOkHttp(this, true, new HttpInterceptor(this));
-        // 设置开启日志,发布时请关闭日志
-        JPushInterface.setDebugMode(true);
+        //设置网络请求日志
+        WLibLog.setIsDebug(BuildConfig.DEBUG);
+        // 设置推广日志,发布时请关闭日志
+        JPushInterface.setDebugMode(BuildConfig.DEBUG);
         // 初始化 JPush
         JPushInterface.init(this);
     }

@@ -283,6 +283,10 @@ public class DiscoverAdapter extends BaseAdapter{
         notifyDataSetChanged();
     }
 
+    public List<VideoEntity> getList() {
+        return list;
+    }
+
     class ViewHolder {
         ImageView collation, share;
         TextView watch;

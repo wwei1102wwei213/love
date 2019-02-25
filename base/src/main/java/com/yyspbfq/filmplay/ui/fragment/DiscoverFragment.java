@@ -130,7 +130,23 @@ public class DiscoverFragment extends BaseFragment implements WLibHttpListener{
     private int page = 0;
     private void initData() {
         Map<String, String> map = new HashMap<>();
-        map.put("page", page+"");
+        if (page==0) {
+            map.put("vids", "");
+        } else {
+            StringBuilder sb = new StringBuilder();
+            List<VideoEntity> temp = adapter.getList();
+            if (temp!=null&&temp.size()>0) {
+                for (int i=0;i<temp.size();i++) {
+                    if (i!=0) {
+                        sb.append(",");
+                    }
+                    sb.append(temp.get(i).getId());
+                }
+                map.put("vids", sb.toString());
+            } else {
+                map.put("vids", "");
+            }
+        }
         map.put("size", "10");
         Factory.resp(this, HttpFlag.FLAG_MAIN_DISCOVER, page, DiscoverDataBean.class).post(map);
     }

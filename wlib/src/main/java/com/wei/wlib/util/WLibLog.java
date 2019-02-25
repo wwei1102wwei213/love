@@ -8,6 +8,10 @@ public class WLibLog {
 
     private static boolean isDebug = true;
 
+    public static void setIsDebug(boolean isDebug) {
+        WLibLog.isDebug = isDebug;
+    }
+
     public static void e (Throwable e) {
         if (isDebug) {
 //            e.printStackTrace();

@@ -41,6 +41,9 @@ public class HttpRespBiz extends WLibDefaultHttpBiz{
             case HttpFlag.FLAG_LOGIN_MOBILE:
                 result = HttpFlag.URL_LOGIN_MOBILE;
                 break;
+            case HttpFlag.FLAG_MOBILE_CODE:
+                result = HttpFlag.URL_MOBILE_CODE;
+                break;
             case HttpFlag.FLAG_VIDEO_DETAIL:
                 result = HttpFlag.URL_VIDEO_DETAIL;
                 break;
