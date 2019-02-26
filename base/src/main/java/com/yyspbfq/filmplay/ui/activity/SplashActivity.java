@@ -1,6 +1,5 @@
 package com.yyspbfq.filmplay.ui.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
@@ -21,7 +20,6 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.orhanobut.logger.Logger;
 import com.wei.wlib.http.WLibHttpFlag;
 import com.wei.wlib.http.WLibHttpListener;
 import com.wei.wlib.service.DownloadService;
@@ -40,7 +38,9 @@ import com.yyspbfq.filmplay.utils.sp.SPLongUtils;
 import net.nightwhistler.htmlspanner.HtmlSpanner;
 
 import java.lang.ref.WeakReference;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -85,13 +85,10 @@ public class SplashActivity extends BaseActivity implements WLibHttpListener{
                 enterMain();
             } else {
                 try {
-
                     List<ThumbEntity> thumb = new Gson().fromJson(new Gson().toJson(advertBean.getThumb()), new TypeToken<List<ThumbEntity>>(){}.getType());
                     if (thumb==null||thumb.size()==0) {
-
                         enterMain();
                     } else {
-
                         String defaultThumb = null;
                         String matchThumb = null;
                         DisplayMetrics dm = new DisplayMetrics();
@@ -121,11 +118,9 @@ public class SplashActivity extends BaseActivity implements WLibHttpListener{
                 }
             }
         }
-
     }
 
     private void settingShipView(String thumb) {
-        Logger.e("settingShipView");
         time = advertBean.getShowtime();
         if (time<=0) time = 3;
         jumpAble = advertBean.getIsclose();
@@ -163,7 +158,6 @@ public class SplashActivity extends BaseActivity implements WLibHttpListener{
                 }
             });
         }
-
         sendMsg();
     }
 
@@ -171,23 +165,12 @@ public class SplashActivity extends BaseActivity implements WLibHttpListener{
         if (mHandler!=null) mHandler.sendEmptyMessageDelayed(time, 900);
     }
 
-    /*private void handleMsg(int what) {
-        if (isJump) return;
-        if (what>=0) {
-            tv.setText(String.format(getString(R.string.format_splash_skip), what));
-            if (tv.getVisibility()!=View.VISIBLE) tv.setVisibility(View.VISIBLE);
-            if (mHandler!=null) mHandler.sendEmptyMessageDelayed(what-1, 1000);
-        } else if (what==-1) {
-            toNext(MainActivity.class);
-        } else {
-            toNext();
-        }
-    }*/
-
     private void clickAdvert() {
         try {
             clearHandler();
-            Factory.resp(this, HttpFlag.FLAG_INVITE_CLICK_ADS, null, null).post(null);
+            Map<String, String> map = new HashMap<>();
+            map.put("id", advertBean.getId());
+            Factory.resp(this, HttpFlag.FLAG_INVITE_CLICK_ADS, null, null).post(map);
         } catch (Exception e){
             BLog.e(e);
         }
@@ -272,11 +255,6 @@ public class SplashActivity extends BaseActivity implements WLibHttpListener{
         }
     }
 
-    private void toNext(Class<? extends Activity> mClass){
-        startActivity(mClass);
-        finish();
-    }
-
     @Override
     public void handleResp(Object formatData, int flag, Object tag, String response, String hint) {
         if (flag==HttpFlag.FLAG_ADVERT_FIRST_SCREEN) {
@@ -304,7 +282,7 @@ public class SplashActivity extends BaseActivity implements WLibHttpListener{
     public void handleError(int flag, Object tag, int errorType, String response, String hint) {
         if (flag==HttpFlag.FLAG_ADVERT_FIRST_SCREEN) {
             if (errorType == WLibHttpFlag.HTTP_ERROR_BASE_URL_CHANGED) {
-                SPLongUtils.saveString(this, "mevideo_base_url", WLibHttpFlag.BASE_URL);
+                SPLongUtils.saveString(this, "mevideo_base_url", HttpFlag.BASE_URL);
             } else if (errorType == WLibHttpFlag.HTTP_ERROR_DISCONNECT) {
                 try {
                     enterError = true;

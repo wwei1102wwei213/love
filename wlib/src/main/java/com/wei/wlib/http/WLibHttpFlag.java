@@ -21,6 +21,6 @@ public class WLibHttpFlag {
     public static final int HTTP_ERROR_OTHER = 7;       //其他异常
     public static final int HTTP_ERROR_BASE_URL_CHANGED = 8;    //域名切换
 
-    public static String BASE_URL = "http://47.107.94.24:95/";
+
 
 }

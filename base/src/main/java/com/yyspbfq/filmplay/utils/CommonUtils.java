@@ -15,7 +15,9 @@ import android.text.TextUtils;
 import android.util.DisplayMetrics;
 
 import com.yyspbfq.filmplay.BaseApplication;
+import com.yyspbfq.filmplay.utils.tools.Md5Util;
 
+import java.io.File;
 import java.text.DecimalFormat;
 import java.util.Locale;
 
@@ -194,6 +196,48 @@ public class CommonUtils {
             e.printStackTrace();
         }
         return false;
+    }
+
+    /**
+     * 比较指定apk包名
+     *
+     * @param context
+     * @param file
+     * @return
+     */
+    public static boolean comparePackage(Context context, File file) {
+        try {
+            PackageManager pm = context.getApplicationContext().getPackageManager();
+            PackageInfo pkgInfo = pm.getPackageArchiveInfo(file.getPath(), PackageManager.GET_ACTIVITIES);
+            if (pkgInfo==null) return true;
+            String name = pkgInfo.applicationInfo.packageName;
+            if (name.equals(context.getPackageName())) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e){
+            BLog.e(e);
+        }
+        return true;
+    }
+
+    /**
+     * 比较指定apkMD5值
+     *
+     * @param file
+     * @return
+     */
+    public static boolean compareMd5(File file, String md5) {
+        if(file == null) return false;
+        if(TextUtils.isEmpty(md5))return true;//升级文件没有sign,不做md5检查直接升级
+        String md5New = Md5Util.getFileMD5String(file);
+        if(TextUtils.isEmpty(md5New)) return false;
+        if (md5New.equalsIgnoreCase(md5)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

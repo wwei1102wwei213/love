@@ -8,7 +8,15 @@ public class SlideBean {
             "url": "",
             "pic": "http://p.xxxxxxxx.com/uploads/default/201901/17/default201901171157567846.png"*/
 
-    private String title, vid, openType, url, pic;
+    private String title, vid, openType, url, pic, id;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;

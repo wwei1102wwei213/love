@@ -138,7 +138,6 @@ public class DownloadService extends Service {
                 cursor.close();
                 return bytesTotal;
             }
-
             return -1;
         }
 

@@ -16,7 +16,6 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.umeng.analytics.MobclickAgent;
-import com.wei.wlib.http.WLibHttpFlag;
 import com.yyspbfq.filmplay.R;
 import com.yyspbfq.filmplay.biz.http.HttpFlag;
 import com.yyspbfq.filmplay.utils.BLog;
@@ -172,8 +171,8 @@ public class BaseActivity extends FragmentActivity {
     public void checkBaseUrl() {
         try {
             String baseUrl = SPLongUtils.getString(this, "mevideo_base_url", "");
-            if (!TextUtils.isEmpty(baseUrl)&&!baseUrl.equals(WLibHttpFlag.BASE_URL)) {
-                WLibHttpFlag.BASE_URL = baseUrl;
+            if (!TextUtils.isEmpty(baseUrl)&&!baseUrl.equals(HttpFlag.BASE_URL)) {
+                HttpFlag.BASE_URL = baseUrl;
                 HttpFlag.changeBaseUrl();
             }
         } catch (Exception e){

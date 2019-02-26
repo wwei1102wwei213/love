@@ -54,7 +54,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -371,11 +370,7 @@ public class MainActivity extends BaseActivity implements WLibHttpListener{
                 try {
                     if (CommonUtils.IsNetWorkEnable(BaseApplication.getInstance())) {
                         if (updateUrls==null) {
-                            updateUrls = new ArrayList<>();
-                            updateUrls.add("http://47.107.94.24:191/android/update.json");
-                            updateUrls.add("http://47.107.94.24:91/android/update.json");
-                            updateUrls.add("http://47.107.94.24:96/android/update.json");
-                            updateUrls.add("http://47.107.94.24:97/android/update.json");
+                            updateUrls = HttpFlag.getUpdateUrls();
                         }
                         updateUrls.remove(url);
                         if (updateUrls.size()>0) {

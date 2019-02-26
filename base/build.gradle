@@ -82,9 +82,14 @@ android {
         disable 'MissingTranslation'    // 忽略翻译检查
     }
 
+    //打包配置
     flavorDimensions "default"
     productFlavors {
         "1232" { dimension "default"}
+        //例：
+        //"1233" { dimension "default"}
+        //"1234" { dimension "default"}
+        //如上则添加了1233,1234两个渠道, 后面的default值不要更改
     }
 
     productFlavors.all {

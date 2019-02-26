@@ -20,6 +20,7 @@ import com.orhanobut.logger.Logger;
 import com.yyspbfq.filmplay.R;
 import com.yyspbfq.filmplay.bean.UpdateConfig;
 import com.yyspbfq.filmplay.utils.BLog;
+import com.yyspbfq.filmplay.utils.CommonUtils;
 import com.yyspbfq.filmplay.utils.tools.FileUtils;
 import com.yyspbfq.filmplay.utils.tools.ToastUtils;
 
@@ -67,6 +68,7 @@ public class UpdateAppDialog extends Dialog{
         pb = findViewById(R.id.pb);
     }
 
+    private String mSign = null;
     public void setData(UpdateConfig config) {
         try {
             tv_version.setText(TextUtils.isEmpty(config.versionName)?"":("V"+config.versionName));
@@ -110,7 +112,7 @@ public class UpdateAppDialog extends Dialog{
                     }
                 });
             }
-
+            mSign = config.sign;
         } catch (Exception e){
             BLog.e(e);
         }
@@ -134,8 +136,8 @@ public class UpdateAppDialog extends Dialog{
                     String.format(format, newVersion));
             Logger.e("filePath:"+updateFile.getPath()+",updateFile.exists():"+updateFile.exists());
             if (updateFile.exists() && updateFile.isFile()) {
-                installApk(updateFile.getPath());
-                /*tv_update.setClickable(true);
+                /*installApk(updateFile.getPath());
+                *//*tv_update.setClickable(true);
                 v_btns.setVisibility(View.VISIBLE);
                 v_progress.setVisibility(View.GONE);
                 tv_update.setText("立即安装");
@@ -145,13 +147,13 @@ public class UpdateAppDialog extends Dialog{
                         installApk(updateFile.getPath());
                     }
                 });*/
-            } else {
-                if (!updateFile.getParentFile().exists()) {
-                    updateFile.getParentFile().mkdirs();
-                }
-                mHandler = new MyHandler(this);
-                downloadInThread(downurl, updateFile);
+                updateFile.delete();
             }
+            if (!updateFile.getParentFile().exists()) {
+                updateFile.getParentFile().mkdirs();
+            }
+            mHandler = new MyHandler(this);
+            downloadInThread(downurl, updateFile);
         } catch (Exception e){
             BLog.e(e);
         }
@@ -185,7 +187,6 @@ public class UpdateAppDialog extends Dialog{
                 super.run();
                 Message msg = Message.obtain();
                 try {
-//                    JFileDownloader downloader = new JFileDownloader()
                     download(url, updateFile);
                     msg.what = MSG_WHAT_DOWNLOAD_SUCCESS;
                     msg.obj = updateFile.getPath();
@@ -250,24 +251,25 @@ public class UpdateAppDialog extends Dialog{
 
         }*/
         try {
+            File apkFile = new File(path);
             //比较包名
-            /*if (!UpdateHelper.comparePackage(context, apkFile)) {
+            if (!CommonUtils.comparePackage(context, apkFile)) {
                 ToastUtils.showToast("安装包错误，您可能遭到DNS劫持，请稍后再重新升级");
                 if (apkFile.isFile() && apkFile.exists()) {
                     apkFile.delete();
                 }
-                release();
+                dismiss();
                 return;
-            }*/
-            //比较md5
-        /*if (!UpdateHelper.compareMd5(apkFile, sign)) {
-            ToastUtils.showToast("安装包错误，请重新升级");
-            if (apkFile.isFile() && apkFile.exists()) {
-                apkFile.delete();
             }
-            release();
-            return;
-        }*/
+            //比较md5
+            if (!CommonUtils.compareMd5(apkFile, mSign)) {
+                ToastUtils.showToast("安装包错误，请重新升级");
+                if (apkFile.isFile() && apkFile.exists()) {
+                    apkFile.delete();
+                }
+                dismiss();
+                return;
+            }
             Intent installIntent = new Intent(Intent.ACTION_VIEW);
             installIntent.setDataAndType(Uri.parse("file://" + path), "application/vnd.android.package-archive");
             installIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -34,7 +34,9 @@ import com.yyspbfq.filmplay.ui.activity.ShowWebActivity;
 import com.yyspbfq.filmplay.ui.activity.VideoClassifyActivity;
 import com.yyspbfq.filmplay.ui.activity.VideoPlayActivity;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class UiUtils {
 
@@ -319,6 +321,10 @@ public class UiUtils {
             } else if ("4".equals(bean.getOpenType())) {
 
             }
+            if (TextUtils.isEmpty(bean.getId())) return;
+            Map<String, String> map = new HashMap<>();
+            map.put("id", bean.getId());
+            Factory.resp(null, HttpFlag.FLAG_CLICK_SLIDE, null, null).post(map);
         } catch (Exception e){
             BLog.e(e);
         }
@@ -328,6 +334,8 @@ public class UiUtils {
         if (advertBean==null||TextUtils.isEmpty(advertBean.getUrl())) return;
         String url = advertBean.getUrl();
         try {
+            Map<String, String> map = new HashMap<>();
+            map.put("id", advertBean.getId());
             if (advertBean.getType()==2) {
                 if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
                     BLog.s("downloadApk");
@@ -342,7 +350,7 @@ public class UiUtils {
             } else {
                 ShowWebActivity.actionStart(context, url);
             }
-            Factory.resp(null, HttpFlag.FLAG_INVITE_CLICK_ADS, null, null).post(null);
+            Factory.resp(null, HttpFlag.FLAG_INVITE_CLICK_ADS, null, null).post(map);
         } catch (Exception e){
             BLog.e(e);
         }

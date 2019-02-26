@@ -9,8 +9,16 @@ public class AdvertBean {
         "showtime": 3, // 显示几秒 （秒数）
         "isclose": 1 // 是否可关闭 1:可以 0:不可以*/
     private Object thumb;
-    private String url, title;
+    private String url, title, id;
     private int space, type, showtime, isclose;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public Object getThumb() {
         return thumb;

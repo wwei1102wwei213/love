@@ -2,14 +2,57 @@ package com.yyspbfq.filmplay.biz.http;
 
 import com.wei.wlib.http.WLibHttpFlag;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Administrator on 2018/3/30 0030.
  */
 
 public class HttpFlag extends WLibHttpFlag{
 
-    //升级地址
+    //默认API服务地址
+    public static String BASE_URL = "http://47.107.94.24:95/";
+    //默认升级地址
     public static String URL_UPDATE = "http://47.107.94.24:191/android/update.json";
+
+    //API服务地址列表
+    private static final String[] URLS = {
+            "http://47.107.94.24:92/",
+            "http://47.107.94.24:93/",
+            "http://47.107.94.24:94/",
+            "http://47.107.94.24:95/",
+            "http://47.107.94.24:88/"
+    };
+
+    //升级地址列表
+    private static final String[] UPDATE_URLS = {
+            "http://47.107.94.24:191/android/update.json",
+            "http://47.107.94.24:91/android/update.json",
+            "http://47.107.94.24:96/android/update.json",
+            "http://47.107.94.24:97/android/update.json"
+    };
+
+    //主页地址配置
+    public static String getWebsite() {
+        return "http://www.baidu.com";
+    }
+
+    public static List<String> getBaseUrls() {
+        List<String> result = new ArrayList<>();
+        for (String url:URLS) {
+            result.add(url);
+        }
+        return result;
+    }
+
+    public static List<String> getUpdateUrls() {
+        List<String> result = new ArrayList<>();
+        for (String url:UPDATE_URLS) {
+            result.add(url);
+        }
+        return result;
+    }
 
 
     //上传头像
@@ -169,11 +212,15 @@ public class HttpFlag extends WLibHttpFlag{
     //公告
     public static final int FLAG_NOTICE_SHOW = 60;
     public static String URL_NOTICE_SHOW = BASE_URL + "Notice/show";
+    //点击幻灯片
+    public static final int FLAG_CLICK_SLIDE = 61;
+    public static String URL_CLICK_SLIDE = BASE_URL + "user/clickSlide";
 
     /**
      * 切换服务器地址
      */
     public static void changeBaseUrl() {
+        URL_CLICK_SLIDE = BASE_URL + "user/clickSlide";
         URL_MOBILE_CODE = BASE_URL + "Login/verifyCode";
         URL_LOGIN_MOBILE = BASE_URL + "login/phoneLogin";
         URL_VIDEO_DETAIL = BASE_URL + "video/detail";
@@ -227,9 +274,7 @@ public class HttpFlag extends WLibHttpFlag{
         URL_NOTICE_SHOW = BASE_URL + "Notice/show";
     }
 
-    public static String getWebsite() {
-        return "http://www.baidu.com";
-    }
+
 
 
 

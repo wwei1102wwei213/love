@@ -3,6 +3,8 @@ package com.yyspbfq.filmplay.biz.http;
 import com.wei.wlib.http.WLibDefaultHttpBiz;
 import com.wei.wlib.http.WLibHttpListener;
 
+import java.util.List;
+
 public class HttpRespBiz extends WLibDefaultHttpBiz{
 
     public HttpRespBiz(int flag, Object tag, WLibHttpListener callback, Class<?> mClass) {
@@ -18,7 +20,18 @@ public class HttpRespBiz extends WLibDefaultHttpBiz{
     }
 
     @Override
-    protected void changeBaseUrl() {
+    protected List<String> getBaseUrls() {
+        return HttpFlag.getBaseUrls();
+    }
+
+    @Override
+    protected String getCurrentBaseUrl() {
+        return HttpFlag.BASE_URL;
+    }
+
+    @Override
+    protected void changeBaseUrl(String baseUrl) {
+        HttpFlag.BASE_URL = baseUrl;
         HttpFlag.changeBaseUrl();
     }
 
@@ -190,6 +203,9 @@ public class HttpRespBiz extends WLibDefaultHttpBiz{
                 break;
             case HttpFlag.FLAG_NOTICE_SHOW:
                 result = HttpFlag.URL_NOTICE_SHOW;
+                break;
+            case HttpFlag.FLAG_CLICK_SLIDE:
+                result = HttpFlag.URL_CLICK_SLIDE;
                 break;
         }
         return result;

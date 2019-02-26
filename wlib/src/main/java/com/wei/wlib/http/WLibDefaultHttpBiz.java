@@ -10,7 +10,6 @@ import com.zhy.http.okhttp.builder.PostFormBuilder;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -65,7 +64,7 @@ public class WLibDefaultHttpBiz implements IWLibHttpBiz {
     @Override
     public void post(final Map<String, String> params) {
         if (callback!=null) callback.handleLoading(flag, tag, true);
-        currentBaseUrl = WLibHttpFlag.BASE_URL;
+        currentBaseUrl = getCurrentBaseUrl();
         currentUrl = postUrl();
         handlePost(params);
     }
@@ -81,12 +80,7 @@ public class WLibDefaultHttpBiz implements IWLibHttpBiz {
                 WLibLog.h("请求地址："+currentUrl+",FLAG:"+flag + ",错误信息:"+e.getMessage()+",请求参数："+mGson.toJson(params));
                 if (checkUrl) {
                     if (urls==null) {
-                        urls = new ArrayList<>();
-                        urls.add("http://47.107.94.24:92/");
-                        urls.add("http://47.107.94.24:93/");
-                        urls.add("http://47.107.94.24:94/");
-                        urls.add("http://47.107.94.24:95/");
-                        urls.add("http://47.107.94.24:88/");
+                        urls = getBaseUrls();
                     }
                     urls.remove(currentBaseUrl);
                     if (urls.size()>0) {
@@ -111,8 +105,7 @@ public class WLibDefaultHttpBiz implements IWLibHttpBiz {
             public void onResponse(String response, int id) {
                 WLibLog.h("请求地址："+currentUrl+"(POST)\n请求参数："+mGson.toJson(params)+ "\n请求数据："+response);
                 if (checkUrl&&IsChangeBase) {
-                    WLibHttpFlag.BASE_URL = currentBaseUrl;
-                    changeBaseUrl();
+                    changeBaseUrl(currentBaseUrl);
                     if (callback!=null) callback.handleError(flag, tag, WLibHttpFlag.HTTP_ERROR_BASE_URL_CHANGED, currentBaseUrl, null);
                 }
                 handleResponse(response);
@@ -124,7 +117,7 @@ public class WLibDefaultHttpBiz implements IWLibHttpBiz {
     @Override
     public void get(final Map<String, String> params) {
         if (callback!=null) callback.handleLoading(flag, tag, true);
-        currentBaseUrl = WLibHttpFlag.BASE_URL;
+        currentBaseUrl = getCurrentBaseUrl();
         currentUrl = getUrl();
         handleGet(params);
     }
@@ -140,12 +133,7 @@ public class WLibDefaultHttpBiz implements IWLibHttpBiz {
                 WLibLog.h("请求地址："+currentUrl+",FLAG:"+flag + ",错误信息:"+e.getMessage()+",请求参数："+mGson.toJson(params));
                 if (checkUrl) {
                     if (urls==null) {
-                        urls = new ArrayList<>();
-                        urls.add("http://47.107.94.24:88/");
-                        urls.add("http://47.107.94.24:92/");
-                        urls.add("http://47.107.94.24:93/");
-                        urls.add("http://47.107.94.24:94/");
-                        urls.add("http://47.107.94.24:95/");
+                        urls = getBaseUrls();
                     }
                     urls.remove(currentBaseUrl);
                     if (urls.size()>0) {
@@ -170,8 +158,7 @@ public class WLibDefaultHttpBiz implements IWLibHttpBiz {
             public void onResponse(String response, int id) {
                 WLibLog.h("请求地址："+currentUrl+"(GET)\n请求参数："+mGson.toJson(params)+ "\n请求数据："+response);
                 if (checkUrl&&IsChangeBase) {
-                    WLibHttpFlag.BASE_URL = currentBaseUrl;
-                    changeBaseUrl();
+                    changeBaseUrl(currentBaseUrl);
                     if (callback!=null) callback.handleError(flag, tag, WLibHttpFlag.HTTP_ERROR_BASE_URL_CHANGED, currentBaseUrl, null);
                 }
                 handleResponse(response);
@@ -198,7 +185,15 @@ public class WLibDefaultHttpBiz implements IWLibHttpBiz {
         return null;
     }
 
-    protected void changeBaseUrl() {}
+    protected String getCurrentBaseUrl() {
+        return null;
+    }
+
+    protected List<String> getBaseUrls() {
+        return null;
+    }
+
+    protected void changeBaseUrl(String baseUrl) {}
 
     private void handleResponse(String response) {
         if (callback!=null) {
