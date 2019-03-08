@@ -141,8 +141,8 @@ public class FileUtils {
                         if (result.contains(".00")) {
                             result = result.replace(".00", "");
                         } else {
-                            if (result.contains(".0")) {
-                                result = result.replace(".0", "");
+                            if (result.endsWith(".0GB")) {
+                                result = result.replace(".0GB", "GB");
                             }
                         }
                         return result;

@@ -1,7 +1,7 @@
 package com.yyspbfq.filmplay.db;
 
 import android.content.Context;
-import android.util.Log;
+
 
 import com.google.gson.Gson;
 import com.ta.TAApplication;
@@ -55,11 +55,11 @@ public class DBHelper {
             TASQLiteDatabase tasqLiteDatabase = application.getSQLiteDatabasePool().getSQLiteDatabase();
             if (!tasqLiteDatabase.hasTable(mClass)) {
                 tasqLiteDatabase.creatTable(mClass);
-                Log.e("DBHelper", mClass.getSimpleName()+"表已创建");
+                BLog.e("DBHelper", mClass.getSimpleName()+"表已创建");
             }
             application.getSQLiteDatabasePool().releaseSQLiteDatabase(tasqLiteDatabase);
         } catch (Exception e){
-            Log.e("DBHelper", e.getMessage());
+            BLog.e("DBHelper", e.getMessage());
         }
     }
 
@@ -72,11 +72,11 @@ public class DBHelper {
             TASQLiteDatabase tasqLiteDatabase = application.getSQLiteDatabasePool().getSQLiteDatabase();
             if (!tasqLiteDatabase.hasTable(mClass)) {
                 tasqLiteDatabase.dropTable(mClass);
-                Log.e("DBHelper", mClass.getSimpleName()+"表已删除");
+                BLog.e("DBHelper", mClass.getSimpleName()+"表已删除");
             }
             application.getSQLiteDatabasePool().releaseSQLiteDatabase(tasqLiteDatabase);
         } catch (Exception e){
-            Log.e("DBHelper", e.getMessage());
+            BLog.e("DBHelper", e.getMessage());
         }
     }
 
@@ -90,12 +90,12 @@ public class DBHelper {
             TASQLiteDatabase tasqLiteDatabase = application.getSQLiteDatabasePool().getSQLiteDatabase();
             if (!tasqLiteDatabase.hasTable(mClass)) {
                 tasqLiteDatabase.creatTable(mClass);
-                Log.e("DBHelper", mClass.getSimpleName()+"表已创建");
+                BLog.e("DBHelper", mClass.getSimpleName()+"表已创建");
             }
             tasqLiteDatabase.insert(object);
             application.getSQLiteDatabasePool().releaseSQLiteDatabase(tasqLiteDatabase);
         } catch (Exception e){
-            Log.e("DBHelper", e.getMessage());
+            BLog.e("DBHelper", e.getMessage());
         }
     }
 
@@ -118,7 +118,7 @@ public class DBHelper {
             application.getSQLiteDatabasePool().releaseSQLiteDatabase(tasqLiteDatabase);
             return list;
         } catch (Exception e){
-            Log.e("DBHelper", e.getMessage());
+            BLog.e("DBHelper", e.getMessage());
         }
         return null;
     }
@@ -133,7 +133,7 @@ public class DBHelper {
             TASQLiteDatabase tasqLiteDatabase = application.getSQLiteDatabasePool().getSQLiteDatabase();
             if (tasqLiteDatabase.hasTable(VideoRecordBean.class)) {
                 tasqLiteDatabase.dropTable(VideoRecordBean.class);
-                Log.e("DBHelper", VideoRecordBean.class.getSimpleName()+"表已创建");
+                BLog.e("DBHelper", VideoRecordBean.class.getSimpleName()+"表已创建");
             }
             tasqLiteDatabase.creatTable(VideoRecordBean.class);
             for (VideoEntity entity:list) {
@@ -161,7 +161,7 @@ public class DBHelper {
             TASQLiteDatabase tasqLiteDatabase = application.getSQLiteDatabasePool().getSQLiteDatabase();
             if (!tasqLiteDatabase.hasTable(VideoRecordBean.class)) {
                 tasqLiteDatabase.creatTable(VideoRecordBean.class);
-                Log.e("DBHelper", VideoRecordBean.class.getSimpleName()+"表已创建");
+                BLog.e("DBHelper", VideoRecordBean.class.getSimpleName()+"表已创建");
             }
             for (VideoRecordBean entity:list) {
                 String where = "vid="+entity.getVid();
@@ -262,7 +262,7 @@ public class DBHelper {
             TASQLiteDatabase tasqLiteDatabase = application.getSQLiteDatabasePool().getSQLiteDatabase();
             if (!tasqLiteDatabase.hasTable(VideoDownloadBean.class)) {
                 tasqLiteDatabase.creatTable(VideoDownloadBean.class);
-                Log.e("DBHelper", VideoDownloadBean.class.getSimpleName()+"表已创建");
+                BLog.e("DBHelper", VideoDownloadBean.class.getSimpleName()+"表已创建");
             }
             List<VideoDownloadBean> find = tasqLiteDatabase.query(
                     VideoDownloadBean.class, false, null, null, null, "create_time desc", null);
@@ -287,7 +287,7 @@ public class DBHelper {
             TASQLiteDatabase tasqLiteDatabase = application.getSQLiteDatabasePool().getSQLiteDatabase();
             if (!tasqLiteDatabase.hasTable(VideoDownloadBean.class)) {
                 tasqLiteDatabase.creatTable(VideoDownloadBean.class);
-                Log.e("DBHelper", VideoDownloadBean.class.getSimpleName()+"表已创建");
+                BLog.e("DBHelper", VideoDownloadBean.class.getSimpleName()+"表已创建");
             }
             List<VideoDownloadBean> find = tasqLiteDatabase.query(
                     VideoDownloadBean.class, false, "state=99", null, null, "create_time desc", limit+"");
@@ -311,7 +311,7 @@ public class DBHelper {
             TASQLiteDatabase tasqLiteDatabase = application.getSQLiteDatabasePool().getSQLiteDatabase();
             if (!tasqLiteDatabase.hasTable(VideoDownloadBean.class)) {
                 tasqLiteDatabase.creatTable(VideoDownloadBean.class);
-                Log.e("DBHelper", VideoDownloadBean.class.getSimpleName()+"表已创建");
+                BLog.e("DBHelper", VideoDownloadBean.class.getSimpleName()+"表已创建");
             }
             List<VideoDownloadBean> find = tasqLiteDatabase.query(
                     VideoDownloadBean.class, false, "vid="+key, null, null, "create_time desc", null);
@@ -335,10 +335,10 @@ public class DBHelper {
             TASQLiteDatabase tasqLiteDatabase = application.getSQLiteDatabasePool().getSQLiteDatabase();
             if (!tasqLiteDatabase.hasTable(VideoDownloadBean.class)) {
                 tasqLiteDatabase.creatTable(VideoDownloadBean.class);
-                Log.e("DBHelper", VideoDownloadBean.class.getSimpleName()+"表已创建");
+                BLog.e("DBHelper", VideoDownloadBean.class.getSimpleName()+"表已创建");
             }
             String where = "vid="+object.getVid();
-            Log.e("DBHelper", "VideoDownloadBean:"+new Gson().toJson(object) +"\nwhere:"+where);
+            BLog.e("DBHelper", "VideoDownloadBean:"+new Gson().toJson(object) +"\nwhere:"+where);
             List<VideoDownloadBean> find = tasqLiteDatabase.query(
                     VideoDownloadBean.class, false, where, null, null, null, null);
             if (find==null||find.size()==0) {
@@ -360,10 +360,10 @@ public class DBHelper {
             TASQLiteDatabase tasqLiteDatabase = application.getSQLiteDatabasePool().getSQLiteDatabase();
             if (!tasqLiteDatabase.hasTable(VideoDownloadBean.class)) {
                 tasqLiteDatabase.creatTable(VideoDownloadBean.class);
-                Log.e("DBHelper", VideoDownloadBean.class.getSimpleName()+"表已创建");
+                BLog.e("DBHelper", VideoDownloadBean.class.getSimpleName()+"表已创建");
             }
             String where = "vid="+object.getVid();
-            Log.e("DBHelper", "VideoDownloadBean:"+new Gson().toJson(object) +"\nwhere:"+where);
+            BLog.e("DBHelper", "VideoDownloadBean:"+new Gson().toJson(object) +"\nwhere:"+where);
             try {
                 tasqLiteDatabase.delete(VideoDownloadBean.class, where);
             } catch (Exception e){
@@ -387,10 +387,10 @@ public class DBHelper {
             TASQLiteDatabase tasqLiteDatabase = application.getSQLiteDatabasePool().getSQLiteDatabase();
             if (!tasqLiteDatabase.hasTable(VideoDownloadBean.class)) {
                 tasqLiteDatabase.creatTable(VideoDownloadBean.class);
-                Log.e("DBHelper", VideoDownloadBean.class.getSimpleName()+"表已创建");
+                BLog.e("DBHelper", VideoDownloadBean.class.getSimpleName()+"表已创建");
             }
             String where = "vid="+object.getVid();
-            Log.e("DBHelper", "VideoDownloadBean:"+new Gson().toJson(object) +"\nwhere:"+where);
+            BLog.e("DBHelper", "VideoDownloadBean:"+new Gson().toJson(object) +"\nwhere:"+where);
             try {
                 tasqLiteDatabase.delete(VideoDownloadBean.class, where);
             } catch (Exception e){
@@ -415,7 +415,7 @@ public class DBHelper {
             TASQLiteDatabase tasqLiteDatabase = application.getSQLiteDatabasePool().getSQLiteDatabase();
             if (!tasqLiteDatabase.hasTable(VideoDownloadBean.class)) {
                 tasqLiteDatabase.creatTable(VideoDownloadBean.class);
-                Log.e("DBHelper", VideoDownloadBean.class.getSimpleName()+"表已创建");
+                BLog.e("DBHelper", VideoDownloadBean.class.getSimpleName()+"表已创建");
             }
             for (String key:list) {
                 String where = "vid="+key;
@@ -442,7 +442,7 @@ public class DBHelper {
             TASQLiteDatabase tasqLiteDatabase = application.getSQLiteDatabasePool().getSQLiteDatabase();
             if (!tasqLiteDatabase.hasTable(VideoDownloadBean.class)) {
                 tasqLiteDatabase.creatTable(VideoDownloadBean.class);
-                Log.e("DBHelper", VideoDownloadBean.class.getSimpleName()+"表已创建");
+                BLog.e("DBHelper", VideoDownloadBean.class.getSimpleName()+"表已创建");
             }
             try {
                 tasqLiteDatabase.delete(VideoDownloadBean.class, "vid="+key);
@@ -472,72 +472,4 @@ public class DBHelper {
             BLog.e(e);
         }
     }
-
-    /**
-     * 查询聊天记录
-     * @param lastTime
-     * @param ChatID
-     * @return
-     */
-    /*public List<ChatMessageBean> queryChatObject (TAApplication applicationString lastTime, String ChatID){
-        try {
-            TASQLiteDatabase tasqLiteDatabase = application.getSQLiteDatabasePool().getSQLiteDatabase();
-            if (!tasqLiteDatabase.hasTable(ChatMessageBean.class)) {
-                return null;
-            }
-            String where = "ChatID="+ChatID;
-            if (!TextUtils.isEmpty(lastTime)) {
-                where += " AND SendTime<" + lastTime;
-            }
-            List<ChatMessageBean> list = tasqLiteDatabase.query(ChatMessageBean.class, false, where,
-                    null, null, "SendTime desc", "10");
-            Collections.sort(list, new Comparator<ChatMessageBean>() {
-                @Override
-                public int compare(ChatMessageBean bean, ChatMessageBean t1) {
-                    try {
-                        long time1 = Long.parseLong(bean.getSendTime());
-                        long time2 = Long.parseLong(t1.getSendTime());
-                        int result = 0;
-                        if (time1>time2) {
-                            result = 1;
-                        } else if (time1<time2) {
-                            result = -1;
-                        }
-                        return result;
-                    } catch (Exception e){
-
-                    }
-                    return 0;
-                }
-            });
-            application.getSQLiteDatabasePool().releaseSQLiteDatabase(tasqLiteDatabase);
-            return list;
-        } catch (Exception e){
-            ExceptionUtils.ExceptionSend(e);
-        }
-        return null;
-    }
-
-    public void insertChatHistory(List<ChatMessageBean> list) {
-        try {
-            TASQLiteDatabase tasqLiteDatabase = application.getSQLiteDatabasePool().getSQLiteDatabase();
-            if (!tasqLiteDatabase.hasTable(ChatMessageBean.class)) {
-                tasqLiteDatabase.creatTable(ChatMessageBean.class);
-                Log.e("DBHelper", ChatMessageBean.class.getSimpleName()+"表已创建");
-            }
-            List<ChatMessageBean> find;
-            String where;
-            for (ChatMessageBean bean:list) {
-                where = "ChatID="+bean.getChatID() + " AND SendTime=" + bean.getSendTime() + " AND ToID=" + bean.getToID();
-                find = tasqLiteDatabase.query(ChatMessageBean.class, false, where, null, null, null, null);
-                if (find==null||find.size()==0) {
-                    tasqLiteDatabase.insert(bean);
-                }
-            }
-            application.getSQLiteDatabasePool().releaseSQLiteDatabase(tasqLiteDatabase);
-        } catch (Exception e){
-            ExceptionUtils.ExceptionSend(e);
-        }
-    }*/
-
 }

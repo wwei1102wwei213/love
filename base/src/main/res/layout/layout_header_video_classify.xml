@@ -84,4 +84,13 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="10dp"/>
+
+    <LinearLayout
+        android:id="@+id/v_no_data"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </LinearLayout>
+
 </LinearLayout>

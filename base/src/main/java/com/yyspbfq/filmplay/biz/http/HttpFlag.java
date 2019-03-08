@@ -12,17 +12,36 @@ import java.util.List;
 public class HttpFlag extends WLibHttpFlag{
 
     //默认API服务地址
-    public static String BASE_URL = "http://47.107.94.24:95/";
+    /*public static String BASE_URL = "http://23.224.135.234:8002/";
+    //默认升级地址
+    public static String URL_UPDATE = "http://23.224.135.234:8005/android/update.json";
+
+    //API服务地址列表
+    private static final String[] URLS = {
+            "http://23.224.135.234:8002/"
+    };
+
+    //升级地址列表
+    private static final String[] UPDATE_URLS = {
+            "http://23.224.135.234:8005/android/update.json"
+    };
+
+    //上传头像
+    public static final int FLAG_UPLOAD_IMG = 3;
+    public static final String URL_UPLOAD_IMG = "http://23.224.135.234:8003/upload.php";*/
+
+    //默认API服务地址
+    public static String BASE_URL = "http://47.107.94.24:88/";
     //默认升级地址
     public static String URL_UPDATE = "http://47.107.94.24:191/android/update.json";
 
     //API服务地址列表
     private static final String[] URLS = {
-            "http://47.107.94.24:92/",
+            "http://47.107.94.24:88/",
             "http://47.107.94.24:93/",
             "http://47.107.94.24:94/",
             "http://47.107.94.24:95/",
-            "http://47.107.94.24:88/"
+            "http://47.107.94.24:92/"
     };
 
     //升级地址列表
@@ -32,6 +51,10 @@ public class HttpFlag extends WLibHttpFlag{
             "http://47.107.94.24:96/android/update.json",
             "http://47.107.94.24:97/android/update.json"
     };
+
+    //上传头像
+    public static final int FLAG_UPLOAD_IMG = 3;
+    public static final String URL_UPLOAD_IMG = "http://47.107.94.24:90/upload.php";
 
     //主页地址配置
     public static String getWebsite() {
@@ -53,11 +76,6 @@ public class HttpFlag extends WLibHttpFlag{
         }
         return result;
     }
-
-
-    //上传头像
-    public static final int FLAG_UPLOAD_IMG = 3;
-    public static final String URL_UPLOAD_IMG = "http://47.107.94.24:90/upload.php";
 
     //手机验证码
     public static final int FLAG_MOBILE_CODE = 10;

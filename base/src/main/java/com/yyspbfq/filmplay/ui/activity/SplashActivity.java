@@ -288,7 +288,7 @@ public class SplashActivity extends BaseActivity implements WLibHttpListener{
                     enterError = true;
                     if (CommonUtils.IsNetWorkEnable(BaseApplication.getInstance())) {
                         HtmlSpanner spanner = new HtmlSpanner();
-                        String temp = "请至官网重新下载最新版本\n<a href=\"http://www.baidu.com\"><span style=\"color:#ffffff\">http://www.baidu.com</span></a>";
+                        String temp = "请至官网重新下载最新版本\n<a href=\""+HttpFlag.getWebsite()+"\"><span style=\"color:#ffffff\">"+HttpFlag.getWebsite()+"</span></a>";
                         tv_hint_loading.setText(spanner.fromHtml(temp));
                         tv_hint_loading.setMovementMethod(LinkMovementMethod.getInstance());
                         tv_hint_loading.setVisibility(View.VISIBLE);

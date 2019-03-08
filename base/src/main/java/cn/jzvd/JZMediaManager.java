@@ -5,7 +5,6 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.Message;
-import android.util.Log;
 import android.view.Surface;
 import android.view.TextureView;
 
@@ -38,7 +37,7 @@ public class JZMediaManager implements TextureView.SurfaceTextureListener {
         mMediaHandlerThread = new HandlerThread(TAG);
         mMediaHandlerThread.start();
         mMediaHandler = new MediaHandler(mMediaHandlerThread.getLooper());
-        mainThreadHandler = new Handler();
+        mainThreadHandler = new Handler(Looper.getMainLooper());
         if (jzMediaInterface == null)
             jzMediaInterface = new JZExoPlayer();
     }
@@ -119,7 +118,6 @@ public class JZMediaManager implements TextureView.SurfaceTextureListener {
     @Override
     public void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i, int i1) {
         if (JzvdMgr.getCurrentJzvd() == null) return;
-        Log.i(TAG, "onSurfaceTextureAvailable [" + JzvdMgr.getCurrentJzvd().hashCode() + "] ");
         if (savedSurfaceTexture == null) {
             savedSurfaceTexture = surfaceTexture;
             prepare();

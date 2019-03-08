@@ -6,7 +6,7 @@ import android.content.pm.PackageManager;
 import android.net.TrafficStats;
 import android.net.Uri;
 import android.os.Handler;
-import android.util.Log;
+import android.os.Looper;
 import android.view.Surface;
 
 import com.google.android.exoplayer2.C;
@@ -36,7 +36,6 @@ import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 import com.google.android.exoplayer2.video.VideoListener;
-import com.orhanobut.logger.Logger;
 import com.yyspbfq.filmplay.BaseApplication;
 import com.yyspbfq.filmplay.R;
 import com.yyspbfq.filmplay.utils.BLog;
@@ -62,8 +61,7 @@ public class JZExoPlayer extends JZMediaInterface implements Player.EventListene
 
     @Override
     public void prepare() {
-        Log.e(TAG, "prepare");
-        mainHandler = new Handler();
+        mainHandler = new Handler(Looper.getMainLooper());
         Context context = JzvdMgr.getCurrentJzvd().getContext();
 
         bandwidthMeter = new DefaultBandwidthMeter();
@@ -76,19 +74,11 @@ public class JZExoPlayer extends JZMediaInterface implements Player.EventListene
                 360000, 600000, 1000, 5000,
                 C.LENGTH_UNSET,
                 false);
-
-        // 2. Create the player
-        //
-
-
         RenderersFactory renderersFactory = new DefaultRenderersFactory(context);
         simpleExoPlayer = ExoPlayerFactory.newSimpleInstance(JzvdMgr.getCurrentJzvd().getContext(), renderersFactory, trackSelector, loadControl);
         // Produces DataSource instances through which media data is loaded.
         DataSource.Factory dataSourceFactory = new DefaultDataSourceFactory(context,
                 Util.getUserAgent(context, context.getResources().getString(R.string.app_name)));
-
-
-
         String currUrl = jzDataSource.getCurrentUrl().toString();
         if (currUrl.contains(".m3u8")) {
             videoSource = new HlsMediaSource.Factory(dataSourceFactory)
@@ -98,20 +88,13 @@ public class JZExoPlayer extends JZMediaInterface implements Player.EventListene
                     .createMediaSource(Uri.parse(currUrl));
         }
         simpleExoPlayer.addVideoListener(this);
-
-        Log.e(TAG, "URL Link = " + currUrl);
-
         simpleExoPlayer.addListener(this);
-
         simpleExoPlayer.prepare(videoSource);
         simpleExoPlayer.setPlayWhenReady(true);
         callback = new onBufferingUpdate();
         mainHandler.removeCallbacks(mSpeedRunnable);
         mainHandler.post(mSpeedRunnable);
     }
-
-
-
 
     @Override
     public void onVideoSizeChanged(int width, int height, int unappliedRotationDegrees, float pixelWidthHeightRatio) {
@@ -126,7 +109,7 @@ public class JZExoPlayer extends JZMediaInterface implements Player.EventListene
 
     @Override
     public void onRenderedFirstFrame() {
-        Log.e(TAG, "onRenderedFirstFrame");
+
     }
 
     private class onBufferingUpdate implements Runnable {
@@ -210,14 +193,7 @@ public class JZExoPlayer extends JZMediaInterface implements Player.EventListene
     }
 
     @Override
-    public void onTimelineChanged(final Timeline timeline, Object manifest, final int reason) {
-//        JZMediaManager.instance().mainThreadHandler.post(() -> {
-//                if (reason == 0) {
-//
-//                    JzvdMgr.getCurrentJzvd().onInfo(reason, timeline.getPeriodCount());
-//                }
-//        });
-    }
+    public void onTimelineChanged(final Timeline timeline, Object manifest, final int reason) {}
 
     @Override
     public void onTracksChanged(TrackGroupArray trackGroups, TrackSelectionArray trackSelections) {
@@ -253,7 +229,6 @@ public class JZExoPlayer extends JZMediaInterface implements Player.EventListene
                     }
                     break;
                     case Player.STATE_ENDED: {
-                        Logger.e("PlayerStateChanged:STATE_ENDED");
                         JzvdMgr.getCurrentJzvd().onAutoCompletion();
                     }
                     break;
@@ -274,7 +249,6 @@ public class JZExoPlayer extends JZMediaInterface implements Player.EventListene
 
     @Override
     public void onPlayerError(ExoPlaybackException error) {
-        Logger.e(TAG, "onPlayerError" + error.toString());
         JZMediaManager.instance().mainThreadHandler.post(() -> {
             if (JzvdMgr.getCurrentJzvd() != null) {
                 JzvdMgr.getCurrentJzvd().onError(1000, 1000);

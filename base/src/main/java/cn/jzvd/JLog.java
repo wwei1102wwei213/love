@@ -2,9 +2,11 @@ package cn.jzvd;
 
 import android.util.Log;
 
+import com.yyspbfq.filmplay.BuildConfig;
+
 public class JLog {
 
-    private static boolean DEBUG_MODEL = true;
+    private static boolean DEBUG_MODEL = !BuildConfig.DEBUG;
 
     public static void setDebug(boolean debugModel) {
         DEBUG_MODEL = debugModel;

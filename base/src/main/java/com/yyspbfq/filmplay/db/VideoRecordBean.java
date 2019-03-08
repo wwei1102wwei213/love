@@ -48,17 +48,6 @@ public class VideoRecordBean {
         this.last_progress = last_progress;
     }
 
-    /*public String getName() {
-        String result = "";
-        try {
-            UserInfo userInfo = new Gson().fromJson(detail, UserInfo.class);
-            result = userInfo.name==null?"":userInfo.name;
-        } catch (Exception e){
-            BLog.e(e);
-        }
-        return result;
-    }*/
-
     public VideoEntity getVideoData() {
         VideoEntity entity = null;
         try {
@@ -72,7 +61,7 @@ public class VideoRecordBean {
 
     public int getTodayType() {
         long current = System.currentTimeMillis();
-        long zero=current/(1000*3600*24)*(1000*3600*24)- TimeZone.getDefault().getRawOffset();
+        long zero=(current+TimeZone.getDefault().getRawOffset())/(1000*3600*24)*(1000*3600*24)- TimeZone.getDefault().getRawOffset();
         if (update_time*1000>=zero) {
             return 1;
         }

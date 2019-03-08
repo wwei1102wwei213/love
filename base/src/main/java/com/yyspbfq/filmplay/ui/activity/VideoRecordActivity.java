@@ -7,12 +7,10 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.wei.wlib.http.WLibHttpListener;
 import com.wei.wlib.pullrefresh.PullToRefreshListView;
 import com.yyspbfq.filmplay.BaseApplication;
@@ -121,7 +119,6 @@ public class VideoRecordActivity extends BaseActivity implements WLibHttpListene
         List<VideoRecordBean> list = DBHelper.getInstance().getVideoRecord(BaseApplication.getInstance(), 100);
         if (list!=null&&list.size()>0) {
             adapter.update(list);
-            Log.e("VideoRecordBean","list:"+new Gson().toJson(list));
         } else {
             plv.setVisibility(View.GONE);
             v_no_data.setVisibility(View.VISIBLE);

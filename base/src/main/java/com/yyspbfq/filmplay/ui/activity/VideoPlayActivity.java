@@ -22,7 +22,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.orhanobut.logger.Logger;
 import com.wei.wlib.http.WLibHttpFlag;
 import com.wei.wlib.http.WLibHttpListener;
 import com.wei.wlib.pullrefresh.PullToRefreshListView;
@@ -710,7 +709,7 @@ public class VideoPlayActivity extends BaseActivity implements  WLibHttpListener
                     showToast("播放地址错误");
                     return;
                 }
-                Logger.e("mVid:"+mVid+"\nisLocation:"+isLocation+"\nurl:"+url);
+                BLog.e("mVid:"+mVid+"\nisLocation:"+isLocation+"\nurl:"+url);
                 jvd.setUp(url, mVideoData.getName(), mVideoData,  JzvdStd.SCREEN_WINDOW_NORMAL);
                 Glide.with(this).
                         load(mVideoData.getVideo_thump()).

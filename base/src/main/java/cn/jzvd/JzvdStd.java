@@ -44,7 +44,7 @@ public class JzvdStd extends Jzvd {
     protected static Timer DISMISS_CONTROL_VIEW_TIMER;
 
     public ImageView backButton;
-    public ProgressBar bottomProgressBar;
+//    public ProgressBar bottomProgressBar;
     public View v_loading_middle;
     public TextView tv_loading_hint;
     public TextView titleTextView;
@@ -109,7 +109,7 @@ public class JzvdStd extends Jzvd {
     public void init(Context context) {
         super.init(context);
         batteryTimeLayout = findViewById(R.id.battery_time_layout);
-        bottomProgressBar = findViewById(R.id.bottom_progress);
+//        bottomProgressBar = findViewById(R.id.bottom_progress);
         titleTextView = findViewById(R.id.title);
         backButton = findViewById(R.id.back);
         thumbImageView = findViewById(R.id.thumb);
@@ -199,20 +199,18 @@ public class JzvdStd extends Jzvd {
     public void onStateNormal() {
         super.onStateNormal();
         changeUiToNormal();
-        Logger.e("onStateNormal ");
+        BLog.e("onStateNormal ");
     }
 
     @Override
     public void onStatePreparing() {
         super.onStatePreparing();
         changeUiToPreparing();
-        Logger.e("onStatePreparing ");
     }
 
     @Override
     public void changeUrl(int urlMapIndex, long seekToInAdvance) {
         super.changeUrl(urlMapIndex, seekToInAdvance);
-        Logger.e("onStateChangeUrl ");
         startButton.setVisibility(INVISIBLE);
         replayTextView.setVisibility(View.GONE);
         mRetryLayout.setVisibility(View.GONE);
@@ -221,7 +219,6 @@ public class JzvdStd extends Jzvd {
     @Override
     public void changeUrl(JZDataSource jzDataSource, long seekToInAdvance) {
         super.changeUrl(jzDataSource, seekToInAdvance);
-        Logger.e("onStateChangeUrl ");
         titleTextView.setText(jzDataSource.title);
         startButton.setVisibility(INVISIBLE);
         replayTextView.setVisibility(View.GONE);
@@ -233,7 +230,6 @@ public class JzvdStd extends Jzvd {
         super.onStatePlaying();
         handleSeekLoading();
         changeUiToPlayingClear();
-        Logger.e("onStatePlaying ");
     }
 
     @Override
@@ -241,14 +237,12 @@ public class JzvdStd extends Jzvd {
         super.onStatePause();
         changeUiToPauseShow();
         cancelDismissControlViewTimer();
-        Logger.e("onStatePause ");
     }
 
     @Override
     public void onStateError() {
         super.onStateError();
         changeUiToError();
-        Logger.e("onStateError ");
     }
 
     @Override
@@ -256,8 +250,7 @@ public class JzvdStd extends Jzvd {
         super.onStateAutoComplete();
         changeUiToComplete();
         cancelDismissControlViewTimer();
-        bottomProgressBar.setProgress(100);
-        Logger.e("onStateAutoComplete ");
+//        bottomProgressBar.setProgress(100);
     }
 
     @Override
@@ -287,11 +280,11 @@ public class JzvdStd extends Jzvd {
                     break;
                 case MotionEvent.ACTION_UP:
                     startDismissControlViewTimer();
-                    if (mChangePosition) {
+                    /*if (mChangePosition) {
                         long duration = getDuration();
                         int progress = (int) (mSeekTimePosition * 100 / (duration == 0 ? 1 : duration));
                         bottomProgressBar.setProgress(progress);
-                    }
+                    }*/
                     if (!mChangePosition && !mChangeVolume) {
                         onEvent(JZUserActionStd.ON_CLICK_BLANK);
                         onClickUiToggle();
@@ -530,20 +523,20 @@ public class JzvdStd extends Jzvd {
     @Override
     public void onProgress(int progress, long position, long duration) {
         super.onProgress(progress, position, duration);
-        if (progress != 0) bottomProgressBar.setProgress(progress);
+//        if (progress != 0) bottomProgressBar.setProgress(progress);
     }
 
     @Override
     public void setBufferProgress(int bufferProgress) {
         super.setBufferProgress(bufferProgress);
-        if (bufferProgress != 0) bottomProgressBar.setSecondaryProgress(bufferProgress);
+//        if (bufferProgress != 0) bottomProgressBar.setSecondaryProgress(bufferProgress);
     }
 
     @Override
     public void resetProgressAndTime() {
         super.resetProgressAndTime();
-        bottomProgressBar.setProgress(0);
-        bottomProgressBar.setSecondaryProgress(0);
+        /*bottomProgressBar.setProgress(0);
+        bottomProgressBar.setSecondaryProgress(0);*/
     }
 
     public void changeUiToNormal() {
@@ -580,7 +573,7 @@ public class JzvdStd extends Jzvd {
     }
 
     public void changeUiToPlayingShow() {
-        Logger.e("changeUiToPlayingShow ");
+        Logger.d("changeUiToPlayingShow ");
         switch (currentScreen) {
             case SCREEN_WINDOW_NORMAL:
             case SCREEN_WINDOW_LIST:
@@ -600,16 +593,19 @@ public class JzvdStd extends Jzvd {
     }
 
     public void changeUiToPlayingClear() {
-        Logger.e("changeUiToPlayingClear ");
+        Logger.d("changeUiToPlayingClear ");
         switch (currentScreen) {
             case SCREEN_WINDOW_NORMAL:
             case SCREEN_WINDOW_LIST:
                 setAllControlsVisiblity(View.INVISIBLE, View.INVISIBLE, View.INVISIBLE,
                         View.INVISIBLE, View.INVISIBLE, View.VISIBLE, View.INVISIBLE);
+                updateStartImage();
+                //TODO
                 break;
             case SCREEN_WINDOW_FULLSCREEN:
                 setAllControlsVisiblity(View.INVISIBLE, View.INVISIBLE, View.INVISIBLE,
                         View.INVISIBLE, View.INVISIBLE, View.VISIBLE, View.INVISIBLE);
+                updateStartImage();
                 break;
             case SCREEN_WINDOW_TINY:
                 break;
@@ -618,7 +614,7 @@ public class JzvdStd extends Jzvd {
     }
 
     public void changeUiToPauseShow() {
-        Logger.e("changeUiToPauseShow ");
+        Logger.d("changeUiToPauseShow ");
         switch (currentScreen) {
             case SCREEN_WINDOW_NORMAL:
             case SCREEN_WINDOW_LIST:
@@ -637,7 +633,7 @@ public class JzvdStd extends Jzvd {
     }
 
     public void changeUiToPauseClear() {
-        Logger.e("changeUiToPauseClear ");
+        Logger.d("changeUiToPauseClear ");
         switch (currentScreen) {
             case SCREEN_WINDOW_NORMAL:
             case SCREEN_WINDOW_LIST:
@@ -655,7 +651,7 @@ public class JzvdStd extends Jzvd {
     }
 
     public void changeUiToComplete() {
-        Logger.e("changeUiToComplete ");
+        Logger.d("changeUiToComplete ");
         switch (currentScreen) {
             case SCREEN_WINDOW_NORMAL:
             case SCREEN_WINDOW_LIST:
@@ -675,7 +671,7 @@ public class JzvdStd extends Jzvd {
     }
 
     public void changeUiToError() {
-        Logger.e("changeUiToError ");
+        Logger.d("changeUiToError ");
         switch (currentScreen) {
             case SCREEN_WINDOW_NORMAL:
             case SCREEN_WINDOW_LIST:
@@ -711,7 +707,7 @@ public class JzvdStd extends Jzvd {
         startButton.setVisibility(startBtn);
         v_loading_middle.setVisibility(loadingPro);
         thumbImageView.setVisibility(thumbImg);
-        bottomProgressBar.setVisibility(bottomPro);
+//        bottomProgressBar.setVisibility(bottomPro);
         mRetryLayout.setVisibility(retryLayout);
     }
 
@@ -905,9 +901,9 @@ public class JzvdStd extends Jzvd {
                 if (clarityPopWindow != null) {
                     clarityPopWindow.dismiss();
                 }
-                if (currentScreen != SCREEN_WINDOW_TINY) {
+                /*if (currentScreen != SCREEN_WINDOW_TINY) {
                     bottomProgressBar.setVisibility(View.VISIBLE);
-                }
+                }*/
             });
         }
     }

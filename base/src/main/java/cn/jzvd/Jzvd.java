@@ -12,7 +12,6 @@ import android.provider.Settings;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -92,7 +91,6 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
                     break;
                 case AudioManager.AUDIOFOCUS_LOSS:
                     releaseAllVideos();
-                    JLog.d(TAG, "AUDIOFOCUS_LOSS [" + this.hashCode() + "]");
                     break;
                 case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT:
                     try {
@@ -103,7 +101,6 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
                     } catch (IllegalStateException e) {
                         e.printStackTrace();
                     }
-                    JLog.d(TAG, "AUDIOFOCUS_LOSS_TRANSIENT [" + this.hashCode() + "]");
                     break;
                 case AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK:
                     break;
@@ -325,14 +322,12 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
                     if (JzvdMgr.getCurrentJzvd().currentState == Jzvd.CURRENT_STATE_PAUSE) {
                         Jzvd.releaseAllVideos();
                     } else {
-                        JLog.e(TAG, "onScroll: out screen");
                         JzvdMgr.getCurrentJzvd().startWindowTiny();
                     }
                 }
             } else {
                 if (JzvdMgr.getCurrentJzvd() != null &&
                         JzvdMgr.getCurrentJzvd().currentScreen == Jzvd.SCREEN_WINDOW_TINY) {
-                    JLog.e(TAG, "onScroll: into screen");
                     Jzvd.backPress();
                 }
             }
@@ -342,8 +337,6 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     public static void onScrollReleaseAllVideos(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
         int lastVisibleItem = firstVisibleItem + visibleItemCount;
         int currentPlayPosition = JZMediaManager.instance().positionInList;
-        JLog.e(TAG, "onScrollReleaseAllVideos: " +
-                currentPlayPosition + " " + firstVisibleItem + " " + currentPlayPosition + " " + lastVisibleItem);
         if (currentPlayPosition >= 0) {
             if ((currentPlayPosition < firstVisibleItem || currentPlayPosition > (lastVisibleItem - 1))) {
                 if (JzvdMgr.getCurrentJzvd().currentScreen != Jzvd.SCREEN_WINDOW_FULLSCREEN) {
@@ -454,7 +447,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     }
 
     public void setUp(String url, String title, VideoEntity entity,int screen) {
-        Logger.e("播放地址:"+url);
+        Logger.d("播放地址:"+url);
         setUp(new JZDataSource(url, title, entity), screen);
     }
 
@@ -729,7 +722,6 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
             showWifiDialog();
             return;
         }
-        Log.e("START_VIDEO", "autoPlay");
         startVideo();
     }
 
@@ -898,8 +890,8 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
             if (isPrepareFirst) {
                 long position = JZUtils.getSavedProgress(getContext(), jzDataSource.getCurrentUrl(),
                         jzDataSource.mVideo==null?null:(""+jzDataSource.mVideo.getId()));
-                Log.e(TAG, "jzDataSource.mVideo: " + new Gson().toJson(jzDataSource.mVideo));
-                Log.e(TAG, "saveProgress(get): " + position);
+                BLog.e(TAG, "jzDataSource.mVideo: " + new Gson().toJson(jzDataSource.mVideo));
+                BLog.e(TAG, "saveProgress(get): " + position);
 
                 if (position != 0) {
                     JZMediaManager.seekTo(position*1000);
@@ -987,6 +979,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
 
     public void onCompletion() {
         BLog.i(TAG, "onCompletion " + " [" + this.hashCode() + "] ");
+        isPrepareFirst = true;
         if (currentState == CURRENT_STATE_PLAYING || currentState == CURRENT_STATE_PAUSE) {
             long position = getCurrentPositionWhenPlaying();
             JZUtils.saveProgress(getContext(), jzDataSource.getCurrentUrl(), position, jzDataSource.mVideo);
@@ -1023,7 +1016,6 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
             } else if (JzvdMgr.getSecondFloor() == null && JzvdMgr.getFirstFloor() != null &&
                     JzvdMgr.getFirstFloor().currentScreen == SCREEN_WINDOW_FULLSCREEN) {//直接全屏
             } else {
-                JLog.d(TAG, "releaseMediaPlayer [" + this.hashCode() + "]");
                 releaseAllVideos();
             }
         }
@@ -1297,9 +1289,8 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     private boolean isReplayFirst = true;
     public void updateReplayImage() {
         if (iv_replay==null) return;
-        Logger.e("updateReplayImage:"+currentState);
         if (currentState == CURRENT_STATE_NORMAL) {
-            if (isReplayFirst&&currentScreen != SCREEN_WINDOW_FULLSCREEN) {
+            if (/*isReplayFirst&&*/currentScreen != SCREEN_WINDOW_FULLSCREEN) {
                 startButton.setImageResource(R.drawable.jz_click_play_selector);
                 iv_replay.setImageResource(R.drawable.jz_click_play_selector);
                 iv_replay.setVisibility(VISIBLE);

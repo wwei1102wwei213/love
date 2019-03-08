@@ -157,10 +157,10 @@ public class CommonUtils {
             DecimalFormat df = new DecimalFormat("#.00");
             String result = df.format(d) + "GB";
             if (result.contains(".00")) {
-                result.replace(".00", "");
+                result = result.replace(".00", "");
             } else {
-                if (result.contains(".0")) {
-                    result.replace(".0", "");
+                if (result.endsWith(".0GB")) {
+                    result = result.replace(".0GB", "GB");
                 }
             }
             return result;

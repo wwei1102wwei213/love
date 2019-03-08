@@ -52,7 +52,7 @@ public class BaseApplication extends TAApplication{
     }
 
     private void initLogger() {
-        FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder().showThreadInfo(true).tag("WWEI").build();
+        FormatStrategy formatStrategy = PrettyFormatStrategy.newBuilder().showThreadInfo(true).tag("XXXXX").build();
         Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy) {
             @Override
             public boolean isLoggable(int priority, String tag) {

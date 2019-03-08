@@ -114,7 +114,7 @@ public final class BLog {
 
     public static void e(String mes) {
         if (isDebug) {
-            Logger.t(LOG_TAG_ERROR).e(mes);
+            Log.e(LOG_TAG_ERROR, mes);
         }
     }
 

@@ -283,6 +283,8 @@ public class VideoClassifyActivity extends BaseActivity implements WLibHttpListe
                     if (page>0) {
                         page--;
                         plv.setHasMoreData(false);
+                    } else {
+                        adapter.update(null);
                     }
                 } else {
                     if (page==0) {

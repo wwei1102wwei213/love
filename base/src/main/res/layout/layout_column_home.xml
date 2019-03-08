@@ -14,7 +14,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:scaleType="centerCrop"
-            android:src="@mipmap/base_icon_default"
+            android:background="@mipmap/base_icon_default"
             />
         <TextView
             android:layout_width="match_parent"
@@ -38,7 +38,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:scaleType="centerCrop"
-            android:src="@mipmap/base_icon_default"
+            android:background="@mipmap/base_icon_default"
             />
         <TextView
             android:layout_width="match_parent"
@@ -62,7 +62,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:scaleType="centerCrop"
-            android:src="@mipmap/base_icon_default"
+            android:background="@mipmap/base_icon_default"
             />
         <TextView
             android:layout_width="match_parent"
@@ -86,7 +86,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:scaleType="centerCrop"
-            android:src="@mipmap/base_icon_default"
+            android:background="@mipmap/base_icon_default"
             />
         <TextView
             android:layout_width="match_parent"

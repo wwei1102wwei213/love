@@ -105,7 +105,7 @@ public class ChannelDetailAdapter extends BaseAdapter{
     }
 
     public void update(List<VideoShortBean> list) {
-        if (list==null) return;
+        if (list==null) list = new ArrayList<>();
         this.list = list;
         notifyDataSetChanged();
     }

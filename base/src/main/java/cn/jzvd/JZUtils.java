@@ -135,7 +135,6 @@ public class JZUtils {
 
     public static void saveProgress(Context context, Object url, long progress, VideoEntity entity) {
         if (!Jzvd.SAVE_PROGRESS) return;
-        Log.e(TAG, "saveProgress: " + progress+"\nvideo:"+new Gson().toJson(entity));
         if (entity==null||TextUtils.isEmpty(entity.getId())) return;
 
         if (progress < 5000) {
@@ -163,7 +162,6 @@ public class JZUtils {
     public static long getSavedProgress(Context context, Object url, String id) {
         if (!Jzvd.SAVE_PROGRESS || TextUtils.isEmpty(id)) return 0;
         VideoRecordBean bean = DBHelper.getInstance().getProgressById(context, id);
-        Log.e(TAG, "saveProgress: bean:" + new Gson().toJson(bean));
         if (bean!=null) {
             return bean.getLast_progress();
         }
