@@ -7,7 +7,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -144,7 +143,6 @@ public class PagerContainer extends FrameLayout implements ViewPager.OnPageChang
                 break;
             }
             case MotionEvent.ACTION_UP: {
-                Log.e("TOUCH_TEST", "MotionEvent:");
                 long pressDuration = System.currentTimeMillis() - pressStartTime;
                 if (pressDuration < 1000 && stayedWithinClickDistance) {
                     endX = event.getX();

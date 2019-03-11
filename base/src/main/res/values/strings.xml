@@ -141,6 +141,8 @@
     <string name="download_list_no_data">还没有缓存的影片~\n在详情页可点击下载按钮缓存影片</string>
     <string name="record_list_no_data">您还没有播放记录\n快开始您的观影之旅吧！</string>
     <string name="collation_list_no_data">您还没有收藏的视频~\n在详情页可点击喜欢按钮收藏喜欢的影片！</string>
+    <string name="classify_list_no_data">暂无影片\n试试其他分类看吧~</string>
+    <string name="video_comment_list_no_data">虚位以待，评论抢沙发</string>
 
     <string name="login_mobile_hint">请输入手机号</string>
     <string name="login_code_hint">请输入验证码</string>

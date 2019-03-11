@@ -55,6 +55,8 @@ public class VideoClassifyActivity extends BaseActivity implements WLibHttpListe
     private int sort = 0;
     private final int size = 12;
 
+    private boolean noDataFlag = false;
+
     public static void actionStart(Context context, String classifyId) {
         Intent intent = new Intent(context, VideoClassifyActivity.class);
         intent.putExtra("Classify_id", classifyId);
@@ -107,7 +109,7 @@ public class VideoClassifyActivity extends BaseActivity implements WLibHttpListe
         plv.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
-                if (plv.isReadyForPullUp() && plv.hasMoreData()) {
+                if (!noDataFlag && plv.isReadyForPullUp() && plv.hasMoreData()) {
                     scrollLoadMore();
                 }
             }
@@ -130,7 +132,11 @@ public class VideoClassifyActivity extends BaseActivity implements WLibHttpListe
 
     private ClassifyChooseAdapter tagAdapter;
     private List<HomeClassifyBean> tadDatas;
+    private View v_no_data;
     private void initHeaderView() {
+
+        v_no_data = mHeaderView.findViewById(R.id.v_no_data);
+
         RecyclerView rv = mHeaderView.findViewById(R.id.rv);
         manager = new LinearLayoutManager(this);
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -277,6 +283,9 @@ public class VideoClassifyActivity extends BaseActivity implements WLibHttpListe
             }
         } else if (flag==HttpFlag.FLAG_CLASSIFY_LIST) {
             try {
+                noDataFlag = false;
+                plv.setScrollLoadEnabled(true);
+                v_no_data.setVisibility(View.GONE);
                 ClassifyTagData data = (ClassifyTagData) formatData;
                 List<VideoShortBean> list = data.getData();
                 if (list==null||list.size()==0) {
@@ -284,7 +293,10 @@ public class VideoClassifyActivity extends BaseActivity implements WLibHttpListe
                         page--;
                         plv.setHasMoreData(false);
                     } else {
+                        v_no_data.setVisibility(View.VISIBLE);
                         adapter.update(null);
+                        noDataFlag = true;
+                        plv.setScrollLoadEnabled(false);
                     }
                 } else {
                     if (page==0) {

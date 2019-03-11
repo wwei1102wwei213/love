@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="64dp"
+    android:layout_height="78dp"
     >
     <LinearLayout
         android:orientation="vertical"
@@ -11,10 +11,9 @@
         android:gravity="center"
         android:visibility="invisible">
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
             android:scaleType="centerCrop"
-            android:background="@mipmap/base_icon_default"
             />
         <TextView
             android:layout_width="match_parent"
@@ -24,7 +23,7 @@
             android:ellipsize="end"
             android:layout_marginTop="5dp"
             android:text="栏目名称"
-            android:textSize="13sp"
+            android:textSize="14sp"
             android:textColor="@color/base_bg_white_half"/>
     </LinearLayout>
     <LinearLayout
@@ -35,10 +34,9 @@
         android:gravity="center"
         android:visibility="invisible">
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
             android:scaleType="centerCrop"
-            android:background="@mipmap/base_icon_default"
             />
         <TextView
             android:layout_width="match_parent"
@@ -48,7 +46,7 @@
             android:ellipsize="end"
             android:layout_marginTop="5dp"
             android:text="栏目名称"
-            android:textSize="13sp"
+            android:textSize="14sp"
             android:textColor="@color/base_bg_white_half"/>
     </LinearLayout>
     <LinearLayout
@@ -59,10 +57,9 @@
         android:gravity="center"
         android:visibility="invisible">
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
             android:scaleType="centerCrop"
-            android:background="@mipmap/base_icon_default"
             />
         <TextView
             android:layout_width="match_parent"
@@ -72,7 +69,7 @@
             android:ellipsize="end"
             android:layout_marginTop="5dp"
             android:text="栏目名称"
-            android:textSize="13sp"
+            android:textSize="14sp"
             android:textColor="@color/base_bg_white_half"/>
     </LinearLayout>
     <LinearLayout
@@ -83,10 +80,9 @@
         android:gravity="center"
         android:visibility="invisible">
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
             android:scaleType="centerCrop"
-            android:background="@mipmap/base_icon_default"
             />
         <TextView
             android:layout_width="match_parent"
@@ -96,7 +92,7 @@
             android:ellipsize="end"
             android:layout_marginTop="5dp"
             android:text="栏目名称"
-            android:textSize="13sp"
+            android:textSize="14sp"
             android:textColor="@color/base_bg_white_half"/>
     </LinearLayout>
 </LinearLayout>

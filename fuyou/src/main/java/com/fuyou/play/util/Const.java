@@ -28,6 +28,7 @@ public class Const {
     public final static String SL_DISK_IMG_BIG = Environment.getExternalStorageDirectory().getPath() + "/ML/image/big/"; //大图片的本地存储*/
     public final static String SL_DISK_IMG_SMALL = Environment.getExternalStorageDirectory().getPath() + "/ML/image/small/"; //小图片的本地存储*/
     public final static String SL_DISK_IMG_TEMP = Environment.getExternalStorageDirectory().getPath() + "/ML/temp/";
+    public final static String SL_DISK_IMG_LOVE = Environment.getExternalStorageDirectory().getAbsolutePath() + "/MLove/temp/";
     public final static String SL_DIRECTORY_PICTURE_FOLD_PATH = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getPath()
             + File.separator + "ML";                   // 图片存储到相册目录下
 

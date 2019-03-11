@@ -33,7 +33,7 @@ public class HttpFlag extends WLibHttpFlag{
     //默认API服务地址
     public static String BASE_URL = "http://47.107.94.24:88/";
     //默认升级地址
-    public static String URL_UPDATE = "http://47.107.94.24:191/android/update.json";
+    public static String URL_UPDATE = "http://47.107.94.24:91/android/update.json";
 
     //API服务地址列表
     private static final String[] URLS = {

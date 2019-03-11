@@ -106,6 +106,7 @@ public class CommentListAdapter extends BaseAdapter{
     }
 
     public void update(List<CommentEntity> list) {
+        if (list == null) list = new ArrayList<>();
         this.list = list;
         notifyDataSetChanged();
     }

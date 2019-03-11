@@ -76,6 +76,7 @@ public class VideoPlayActivity extends BaseActivity implements  WLibHttpListener
     private boolean isHasAdvertAbove = false;
     private boolean isSyncDetail = false;
     private boolean isSyncAdvert = false;
+    private boolean noDataFlag = false;
 
     public static void actionStart(Context context, String id) {
         Intent intent = new Intent(context, VideoPlayActivity.class);
@@ -148,7 +149,7 @@ public class VideoPlayActivity extends BaseActivity implements  WLibHttpListener
         plv.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
-                if (plv.isReadyForPullUp() && plv.hasMoreData()) {
+                if (!noDataFlag && plv.isReadyForPullUp() && plv.hasMoreData()) {
                     scrollLoadMore();
                 }
             }
@@ -229,7 +230,9 @@ public class VideoPlayActivity extends BaseActivity implements  WLibHttpListener
     private View v_ads;
     private TextView tv_ads_num;
     private ImageView iv_ads_above;
+    private View v_no_data;
     private void initHeadView(View view) {
+        v_no_data = view.findViewById(R.id.v_no_data);
         iv_adv = view.findViewById(R.id.iv_adv);
         tv_video_name = view.findViewById(R.id.tv_video_name);
         v_video_intro = view.findViewById(R.id.v_video_intro);
@@ -586,12 +589,20 @@ public class VideoPlayActivity extends BaseActivity implements  WLibHttpListener
             }
         } else if (flag == HttpFlag.FLAG_COMMENT_LIST) {
             try {
+                noDataFlag = false;
+                plv.setScrollLoadEnabled(true);
+                v_no_data.setVisibility(View.GONE);
                 CommentDataBean bean = (CommentDataBean) formatData;
                 List<CommentEntity> list = bean.getData();
                 if (list==null||list.size()==0) {
                     if (page>0) {
                         page--;
                         plv.setHasMoreData(false);
+                    } else {
+                        v_no_data.setVisibility(View.VISIBLE);
+                        adapter.update(null);
+                        noDataFlag = true;
+                        plv.setScrollLoadEnabled(false);
                     }
                 } else {
                     if (page==0) {

@@ -29,16 +29,19 @@
         android:layout_marginLeft="15dp"
         android:layout_centerVertical="true">
         <TextView
-            android:id="@+id/btn_vol"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/jz_vol_selector"/>
-        <TextView
             android:id="@+id/btn_lock"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/jz_lock_selector"
-            android:layout_marginTop="17dp"/>
+            android:layout_marginBottom="17dp"
+            />
+        <TextView
+            android:id="@+id/btn_vol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/jz_vol_selector"
+            />
+
     </LinearLayout>
     <LinearLayout
         android:id="@+id/layout_bottom"
@@ -129,14 +132,14 @@
 
     </LinearLayout>
 
-    <ProgressBar
+    <!--<ProgressBar
         android:id="@+id/bottom_progress"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="1.5dp"
         android:layout_alignParentBottom="true"
         android:max="100"
-        android:progressDrawable="@drawable/jz_bottom_progress" />
+        android:progressDrawable="@drawable/jz_bottom_progress" />-->
 
     <ImageView
         android:id="@+id/back_tiny"

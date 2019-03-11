@@ -35,6 +35,9 @@ import com.google.gson.JsonSyntaxException;
 import org.greenrobot.eventbus.EventBus;
 import org.jivesoftware.smack.packet.Message;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.Map;
@@ -54,6 +57,37 @@ public class MainActivity extends BaseActivity implements HttpRepListener, View.
         setContentView(R.layout.activity_main);
         dealWithLogin(UserDataUtil.getUserID(this), Const.CHAT_ACCOUNT_PASSWORD);
         initViews();
+        test();
+    }
+
+    private void test() {
+        File file = new File(Const.SL_DISK_IMG_LOVE+"test.txt");
+        FileWriter writer = null;
+        try {
+            if (!file.getParentFile().exists()) {
+                file.getParentFile().mkdirs();
+            }
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            // 打开一个写文件器，构造函数中的第二个参数true表示以追加形式写文件
+            writer = new FileWriter(file, true);
+            writer.write("追加写入"+getRandom()+"\r\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(writer != null){
+                    writer.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private int getRandom() {
+        return (int) (Math.random()*10000);
     }
 
 
