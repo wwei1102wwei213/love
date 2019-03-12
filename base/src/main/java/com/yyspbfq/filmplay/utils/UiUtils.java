@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,7 +58,7 @@ public class UiUtils {
                 item.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        VideoClassifyActivity.actionStart(context, list.get(index).getId());
+                        VideoClassifyActivity.actionStart(context, list.get(index).getId(), 2);
                     }
                 });
                 ImageView iv = (ImageView) item.getChildAt(0);
@@ -86,7 +87,7 @@ public class UiUtils {
             ImageView iv = (ImageView) all.getChildAt(0);
             iv.setImageResource(R.mipmap.home_class_pic_all);
             TextView name = (TextView) all.getChildAt(1);
-            name.setText("全部");
+            name.setText("全部栏目");
             all.setVisibility(View.VISIBLE);
             ll.addView(top);
             if (list.size()>3) {
@@ -120,12 +121,25 @@ public class UiUtils {
                         VideoPlayActivity.actionStart(context, list.get(index).getId());
                     }
                 });
-                ImageView iv = (ImageView) item.getChildAt(0);
-                setViewHeight(iv, ivHeight);
+                RelativeLayout rl = (RelativeLayout) item.getChildAt(0);
+                setViewHeight(rl, ivHeight);
+                ImageView iv = (ImageView) rl.getChildAt(0);
                 Glide.with(context).load(list.get(i).getVideo_thump()).crossFade().into(iv);
+                TextView quality = (TextView) rl.getChildAt(1);
+                String qualityStr = list.get(i).getQuality();
+                if (!TextUtils.isEmpty(qualityStr)) {
+                    quality.setText(qualityStr);
+                    quality.setVisibility(View.VISIBLE);
+                }
                 TextView name = (TextView) item.getChildAt(1);
                 String nameStr = list.get(i).getName();
                 name.setText(TextUtils.isEmpty(nameStr)?"":nameStr);
+                TextView subHead = (TextView) item.getChildAt(2);
+                String subStr = list.get(i).getSubheading();
+                if (!TextUtils.isEmpty(subStr)) {
+                    subHead.setText(subStr);
+                    subHead.setVisibility(View.VISIBLE);
+                }
                 item.setVisibility(View.VISIBLE);
             }
             ll.addView(top);
@@ -162,12 +176,25 @@ public class UiUtils {
                         VideoPlayActivity.actionStart(context, list.get(index).getId());
                     }
                 });
-                ImageView iv = (ImageView) item.getChildAt(0);
-                setViewHeight(iv, ivHeight);
+                RelativeLayout rl = (RelativeLayout) item.getChildAt(0);
+                setViewHeight(rl, ivHeight);
+                ImageView iv = (ImageView) rl.getChildAt(0);
                 Glide.with(context).load(list.get(i).getVideo_thump()).crossFade().into(iv);
+                TextView quality = (TextView) rl.getChildAt(1);
+                String qualityStr = list.get(i).getQuality();
+                if (!TextUtils.isEmpty(qualityStr)) {
+                    quality.setText(qualityStr);
+                    quality.setVisibility(View.VISIBLE);
+                }
                 TextView name = (TextView) item.getChildAt(1);
                 String nameStr = list.get(i).getName();
                 name.setText(TextUtils.isEmpty(nameStr)?"":nameStr);
+                TextView subHead = (TextView) item.getChildAt(2);
+                String subStr = list.get(i).getSubheading();
+                if (!TextUtils.isEmpty(subStr)) {
+                    subHead.setText(subStr);
+                    subHead.setVisibility(View.VISIBLE);
+                }
                 item.setVisibility(View.VISIBLE);
             }
             ll.addView(top);
@@ -200,7 +227,7 @@ public class UiUtils {
                     @Override
                     public void onClick(View v) {
                         if (bean.getType()==1) {
-                            VideoClassifyActivity.actionStart(context, bean.getId());
+                            VideoClassifyActivity.actionStart(context, bean.getId(), 2);
                         } else {
                             ChannelDetailActivity.actionStart(context, bean.getId());
                         }
@@ -302,7 +329,7 @@ public class UiUtils {
                     ShowWebActivity.actionStart(context, bean.getUrl());
                 }
             } else if ("2".equals(bean.getOpenType())) {
-                if (!TextUtils.isEmpty(bean.getUrl())) {
+                if (!TextUtils.isEmpty(bean.getUrl())&&bean.getUrl().startsWith("http")) {
                     try {
                         String url = bean.getUrl();
                         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
@@ -337,6 +364,7 @@ public class UiUtils {
     public static void handleAdvert(Context context, AdvertBean advertBean) {
         if (advertBean==null||TextUtils.isEmpty(advertBean.getUrl())) return;
         String url = advertBean.getUrl();
+        if (TextUtils.isEmpty(url)||!url.startsWith("http")) return;
         try {
             Map<String, String> map = new HashMap<>();
             map.put("id", advertBean.getId());
@@ -367,7 +395,7 @@ public class UiUtils {
                 ShowWebActivity.actionStart(context, entity.getUrl());
             }
         } else if ("2".equals(entity.getOpenType())) {
-            if (!TextUtils.isEmpty(entity.getUrl())) {
+            if (!TextUtils.isEmpty(entity.getUrl())&&entity.getUrl().startsWith("http")) {
                 try {
                     String url = entity.getUrl();
                     if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {

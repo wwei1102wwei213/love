@@ -124,7 +124,7 @@
             android:paddingLeft="12dp"
             android:paddingStart="12dp"
             android:scaleType="centerInside"
-            android:src="@drawable/jz_click_back_selector" />
+            android:src="@drawable/jz_back_normal" />
 
         <TextView
             android:id="@+id/title"
@@ -207,7 +207,7 @@
             android:id="@+id/start"
             android:layout_width="@dimen/jz_start_button_w_h_normal"
             android:layout_height="@dimen/jz_start_button_w_h_normal"
-            android:src="@drawable/jz_click_play_selector" />
+            android:src="@drawable/jz_play_normal" />
     </LinearLayout>
 
     <TextView

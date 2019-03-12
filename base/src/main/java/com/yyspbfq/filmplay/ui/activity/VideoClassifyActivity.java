@@ -63,6 +63,13 @@ public class VideoClassifyActivity extends BaseActivity implements WLibHttpListe
         context.startActivity(intent);
     }
 
+    public static void actionStart(Context context, String classifyId, int sort) {
+        Intent intent = new Intent(context, VideoClassifyActivity.class);
+        intent.putExtra("Classify_id", classifyId);
+        intent.putExtra("Sort_id", sort);
+        context.startActivity(intent);
+    }
+
     public static void actionStart(Context context, int sort) {
         Intent intent = new Intent(context, VideoClassifyActivity.class);
         intent.putExtra("Sort_id", sort);

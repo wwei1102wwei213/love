@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -44,7 +43,6 @@ public class JzvdStd extends Jzvd {
     protected static Timer DISMISS_CONTROL_VIEW_TIMER;
 
     public ImageView backButton;
-//    public ProgressBar bottomProgressBar;
     public View v_loading_middle;
     public TextView tv_loading_hint;
     public TextView titleTextView;
@@ -55,7 +53,7 @@ public class JzvdStd extends Jzvd {
     public TextView videoCurrentTime;
     public View replayTextView;
 
-    public TextView clarity;
+//    public TextView clarity;
     public PopupWindow clarityPopWindow;
     public TextView mRetryBtn;
     public TextView tv_contact_us;
@@ -108,32 +106,33 @@ public class JzvdStd extends Jzvd {
     @Override
     public void init(Context context) {
         super.init(context);
-        batteryTimeLayout = findViewById(R.id.battery_time_layout);
-//        bottomProgressBar = findViewById(R.id.bottom_progress);
-        titleTextView = findViewById(R.id.title);
-        backButton = findViewById(R.id.back);
-        thumbImageView = findViewById(R.id.thumb);
-//        loadingProgressBar = findViewById(R.id.loading);
-        v_loading_middle = findViewById(R.id.v_loading_middle);
-        tv_loading_hint = findViewById(R.id.tv_loading_hint);
-        tinyBackImageView = findViewById(R.id.back_tiny);
-        batteryLevel = findViewById(R.id.battery_level);
-        videoCurrentTime = findViewById(R.id.video_current_time);
-        replayTextView = findViewById(R.id.replay_text);
+        try {
+            batteryTimeLayout = findViewById(R.id.battery_time_layout);
+            titleTextView = findViewById(R.id.title);
+            backButton = findViewById(R.id.back);
+            thumbImageView = findViewById(R.id.thumb);
+            v_loading_middle = findViewById(R.id.v_loading_middle);
+            tv_loading_hint = findViewById(R.id.tv_loading_hint);
+            tinyBackImageView = findViewById(R.id.back_tiny);
+            batteryLevel = findViewById(R.id.battery_level);
+            videoCurrentTime = findViewById(R.id.video_current_time);
+            replayTextView = findViewById(R.id.replay_text);
 
-        clarity = findViewById(R.id.clarity);
-        mRetryBtn = findViewById(R.id.retry_btn);
-        tv_contact_us = findViewById(R.id.tv_contact_us);
-        v_seek_loading = findViewById(R.id.v_seek_loading);
-        mRetryLayout = findViewById(R.id.retry_layout);
+//            clarity = findViewById(R.id.clarity);
+            mRetryBtn = findViewById(R.id.retry_btn);
+            tv_contact_us = findViewById(R.id.tv_contact_us);
+            v_seek_loading = findViewById(R.id.v_seek_loading);
+            mRetryLayout = findViewById(R.id.retry_layout);
 
-        thumbImageView.setOnClickListener(this);
-        backButton.setOnClickListener(this);
-        tinyBackImageView.setOnClickListener(this);
-        clarity.setOnClickListener(this);
-        mRetryBtn.setOnClickListener(this);
-        tv_contact_us.setOnClickListener(this);
-
+            thumbImageView.setOnClickListener(this);
+            backButton.setOnClickListener(this);
+            tinyBackImageView.setOnClickListener(this);
+//            clarity.setOnClickListener(this);
+            mRetryBtn.setOnClickListener(this);
+            tv_contact_us.setOnClickListener(this);
+        } catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public void setUp(JZDataSource jzDataSource, int screen) {
@@ -144,12 +143,12 @@ public class JzvdStd extends Jzvd {
             backButton.setVisibility(View.VISIBLE);
             tinyBackImageView.setVisibility(View.INVISIBLE);
             batteryTimeLayout.setVisibility(View.VISIBLE);
-            if (jzDataSource.urlsMap.size() == 1) {
+            /*if (jzDataSource.urlsMap.size() == 1) {
                 clarity.setVisibility(GONE);
             } else {
                 clarity.setText(jzDataSource.getCurrentKey().toString());
                 clarity.setVisibility(View.VISIBLE);
-            }
+            }*/
             changeStartButtonSize((int) getResources().getDimension(R.dimen.jz_start_button_w_h_fullscreen));
         } else if (currentScreen == SCREEN_WINDOW_NORMAL
                 || currentScreen == SCREEN_WINDOW_LIST) {
@@ -163,13 +162,13 @@ public class JzvdStd extends Jzvd {
             tinyBackImageView.setVisibility(View.INVISIBLE);
             changeStartButtonSize((int) getResources().getDimension(R.dimen.jz_start_button_w_h_normal));
             batteryTimeLayout.setVisibility(View.GONE);
-            clarity.setVisibility(View.GONE);
+//            clarity.setVisibility(View.GONE);
         } else if (currentScreen == SCREEN_WINDOW_TINY) {
             tinyBackImageView.setVisibility(View.VISIBLE);
             setAllControlsVisiblity(View.INVISIBLE, View.INVISIBLE, View.INVISIBLE,
                     View.INVISIBLE, View.INVISIBLE, View.INVISIBLE, View.INVISIBLE);
             batteryTimeLayout.setVisibility(View.GONE);
-            clarity.setVisibility(View.GONE);
+//            clarity.setVisibility(View.GONE);
         }
         setSystemTimeAndBattery();
         if (tmp_test_back) {
@@ -344,7 +343,7 @@ public class JzvdStd extends Jzvd {
             } else {
                 backPress();
             }
-        } else if (i == R.id.clarity) {
+        } /*else if (i == R.id.clarity) {
             LayoutInflater inflater = (LayoutInflater) getContext()
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             final LinearLayout layout = (LinearLayout) inflater.inflate(R.layout.jz_layout_clarity, null);
@@ -386,7 +385,7 @@ public class JzvdStd extends Jzvd {
             int offsetX = clarity.getMeasuredWidth() / 3;
             int offsetY = clarity.getMeasuredHeight() / 3;
             clarityPopWindow.update(clarity, -offsetX, -offsetY, Math.round(layout.getMeasuredWidth() * 2), layout.getMeasuredHeight());
-        } else if (i == R.id.retry_btn) {
+        } */else if (i == R.id.retry_btn) {
             if (jzDataSource.urlsMap.isEmpty() || jzDataSource.getCurrentUrl() == null) {
                 Toast.makeText(getContext(), getResources().getString(R.string.no_url), Toast.LENGTH_SHORT).show();
                 return;
@@ -441,7 +440,7 @@ public class JzvdStd extends Jzvd {
     public void onClickUiToggle() {
         if (bottomContainer.getVisibility() != View.VISIBLE) {
             setSystemTimeAndBattery();
-            clarity.setText(jzDataSource.getCurrentKey().toString());
+//            clarity.setText(jzDataSource.getCurrentKey().toString());
         }
         if (currentState == CURRENT_STATE_PREPARING) {
             changeUiToPreparing();
@@ -725,7 +724,7 @@ public class JzvdStd extends Jzvd {
     public void updateStartImage() {
         if (currentState == CURRENT_STATE_PLAYING) {
             startButton.setVisibility(VISIBLE);
-            startButton.setImageResource(R.drawable.jz_click_pause_selector);
+            startButton.setImageResource(R.drawable.jz_pause_normal);
             replayTextView.setVisibility(GONE);
         } else if (currentState == CURRENT_STATE_ERROR) {
             startButton.setVisibility(INVISIBLE);
@@ -737,7 +736,7 @@ public class JzvdStd extends Jzvd {
             replayTextView.setVisibility(VISIBLE);
         } else {
             v_seek_loading.setVisibility(GONE);
-            startButton.setImageResource(R.drawable.jz_click_play_selector);
+            startButton.setImageResource(R.drawable.jz_play_normal);
             replayTextView.setVisibility(GONE);
         }
         updateReplayImage();

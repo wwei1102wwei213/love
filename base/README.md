@@ -23,3 +23,8 @@
     6.闪屏背景
       drawable-xhdpi中base_bg_splash.png
       根据图片来选择是否要用.9图
+
+    7.UMeng、JPush配置
+      可搜索
+      JPUSH_APPKEY
+      UMENG_APPKEY

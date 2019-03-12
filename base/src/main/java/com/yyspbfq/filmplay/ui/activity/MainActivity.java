@@ -408,6 +408,7 @@ public class MainActivity extends BaseActivity implements WLibHttpListener{
     }
 
     private void handleUpdate(UpdateConfig config) {
+        if (mBaseExit) return;
         SPLongUtils.saveString(this, "mevideo_update_config", new Gson().toJson(config));
         if (updateUrls!=null) {
             SPLongUtils.saveString(this, "video_update_app_url", config.meHost);
@@ -420,6 +421,7 @@ public class MainActivity extends BaseActivity implements WLibHttpListener{
     }
 
     private void handleUpdateError() {
+        if (mBaseExit) return;
         NoticeDialog dialog = new NoticeDialog(this);
         dialog.setUpdateHint();
         dialog.show();

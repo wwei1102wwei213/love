@@ -471,6 +471,7 @@ public class VideoPlayActivity extends BaseActivity implements  WLibHttpListener
     }
 
     private void toDownload(){
+        if (mVideoData==null) return;
         if (TextUtils.isEmpty(mVideoData.getDown_url())) {
             showToast("没有下载地址");
             return;
@@ -501,7 +502,7 @@ public class VideoPlayActivity extends BaseActivity implements  WLibHttpListener
         }*/
     }
 
-    private VideoEntity mVideoData;
+    private VideoEntity mVideoData = null;
     private int canColl = 1;
     @Override
     public void handleResp(Object formatData, int flag, Object tag, String response, String hint) {

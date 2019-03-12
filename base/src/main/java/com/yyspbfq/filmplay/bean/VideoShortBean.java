@@ -6,7 +6,7 @@ public class VideoShortBean {
                     "name":"test video",
                     "video_thump":"http://p.xxxxxxxx.com/20181228/DzsBvBMv/1.jpg"*/
 
-    private String id, name, video_thump;
+    private String id, name, video_thump, quality, subheading;
 
     public String getId() {
         return id;
@@ -30,5 +30,21 @@ public class VideoShortBean {
 
     public void setVideo_thump(String video_thump) {
         this.video_thump = video_thump;
+    }
+
+    public String getQuality() {
+        return quality;
+    }
+
+    public void setQuality(String quality) {
+        this.quality = quality;
+    }
+
+    public String getSubheading() {
+        return subheading;
+    }
+
+    public void setSubheading(String subheading) {
+        this.subheading = subheading;
     }
 }

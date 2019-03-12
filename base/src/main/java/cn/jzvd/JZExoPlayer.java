@@ -131,6 +131,7 @@ public class JZExoPlayer extends JZMediaInterface implements Player.EventListene
 
     @Override
     public void pause() {
+        if (simpleExoPlayer!=null)
         simpleExoPlayer.setPlayWhenReady(false);
     }
 
@@ -141,24 +142,33 @@ public class JZExoPlayer extends JZMediaInterface implements Player.EventListene
 
     @Override
     public void seekTo(long time) {
-        if (time != previousSeek) {
-            simpleExoPlayer.seekTo(time);
-            previousSeek = time;
-            JzvdMgr.getCurrentJzvd().seekToInAdvance = time;
+        try {
+            if (simpleExoPlayer==null) return;
+            if (time != previousSeek) {
+                simpleExoPlayer.seekTo(time);
+                previousSeek = time;
+                JzvdMgr.getCurrentJzvd().seekToInAdvance = time;
+            }
+        } catch (Exception e){
+
         }
+
     }
 
     @Override
     public void release() {
-        if (simpleExoPlayer != null) {
-            simpleExoPlayer.release();
-        }
-        if (mainHandler != null) {
-            mainHandler.removeCallbacks(callback);
-            oldUidBytes = 0;
-            mainHandler.removeCallbacks(mSpeedRunnable);
-        }
+        try {
+            if (simpleExoPlayer != null) {
+                simpleExoPlayer.release();
+            }
+            if (mainHandler != null) {
+                mainHandler.removeCallbacks(callback);
+                oldUidBytes = 0;
+                mainHandler.removeCallbacks(mSpeedRunnable);
+            }
+        } catch (Exception e){
 
+        }
     }
 
     @Override
@@ -177,19 +187,33 @@ public class JZExoPlayer extends JZMediaInterface implements Player.EventListene
 
     @Override
     public void setSurface(Surface surface) {
-        simpleExoPlayer.setVideoSurface(surface);
+        try {
+            simpleExoPlayer.setVideoSurface(surface);
+        } catch (Exception e){
+
+        }
     }
 
     @Override
     public void setVolume(float leftVolume, float rightVolume) {
-        simpleExoPlayer.setVolume(leftVolume);
-        simpleExoPlayer.setVolume(rightVolume);
+        try {
+            if (simpleExoPlayer!=null) {
+                simpleExoPlayer.setVolume(leftVolume);
+                simpleExoPlayer.setVolume(rightVolume);
+            }
+        } catch (Exception e){
+
+        }
     }
 
     @Override
     public void setSpeed(float speed) {
-        PlaybackParameters playbackParameters = new PlaybackParameters(speed, 1.0F);
-        simpleExoPlayer.setPlaybackParameters(playbackParameters);
+        try {
+            PlaybackParameters playbackParameters = new PlaybackParameters(speed, 1.0F);
+            simpleExoPlayer.setPlaybackParameters(playbackParameters);
+        } catch (Exception e){
+
+        }
     }
 
     @Override

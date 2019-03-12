@@ -12,8 +12,11 @@ import android.os.Binder;
 import android.os.Environment;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
+
 import com.wei.wlib.R;
 import com.wei.wlib.WLibConfig;
+import com.wei.wlib.util.WLibLog;
 
 import java.io.File;
 
@@ -36,6 +39,10 @@ public class DownloadService extends Service {
 
     private boolean mIsDownloading = false;
 
+    public DownloadService() {
+
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -50,27 +57,39 @@ public class DownloadService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        if (mIsDownloading) {
+        if (intent==null) return Service.START_STICKY;
+        String temp1 = intent.getStringExtra(DOWNLOAD_APK_NAME);
+        String temp2 = intent.getStringExtra(DOWNLOAD_APK_URL);
+        if (TextUtils.isEmpty(temp1) || TextUtils.isEmpty(temp2) || !temp2.startsWith("http")) return Service.START_STICKY;
+        try {
+            if (mIsDownloading) {
 
-        } else {
-            mReceiver = new BroadcastReceiver() {
-                @Override
-                public void onReceive(Context context, Intent intent) {
-                    long id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, 0);
-                    if (id == mDownLoadAPKId) {
-                        if (null != mReceiver) {
-                            unregisterReceiver(mReceiver);
+            } else {
+                mReceiver = new BroadcastReceiver() {
+                    @Override
+                    public void onReceive(Context context, Intent intent) {
+                        try {
+                            long id = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, 0);
+                            if (id == mDownLoadAPKId) {
+                                if (null != mReceiver) {
+                                    unregisterReceiver(mReceiver);
+                                }
+                                mIsDownloading = false;
+                                installApk();
+                            }
+                        } catch (Exception e){
+                            WLibLog.e(e);
                         }
-                        mIsDownloading = false;
-                        installApk();
                     }
-                }
-            };
-            registerReceiver(mReceiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
-            mNewestAppName = intent.getStringExtra(DOWNLOAD_APK_NAME);
-            mDownloadUrl = intent.getStringExtra(DOWNLOAD_APK_URL);
-            deleteOldFile();
-            startDownLoad();
+                };
+                registerReceiver(mReceiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+                mNewestAppName = intent.getStringExtra(DOWNLOAD_APK_NAME);
+                mDownloadUrl = intent.getStringExtra(DOWNLOAD_APK_URL);
+                deleteOldFile();
+                startDownLoad();
+            }
+        } catch (Exception e){
+            WLibLog.e(e);
         }
         return Service.START_STICKY;
     }
@@ -81,36 +100,48 @@ public class DownloadService extends Service {
     }
 
     private void deleteOldFile() {
-        File file1 = new File(Environment.getExternalStorageDirectory().getPath() + DOWNLOAD_APK_DIR, mNewestAppName);
-        File file2 = new File(Environment.getExternalStorageDirectory().getPath() + DOWNLOAD_APK_DIR, WLibConfig.WLIB_CONFIG_UPDATE_APP);
-        if (null != file1 && file1.exists()) {
-            file1.delete();
-        }
-        if (null != file2 && file2.exists()) {
-            file2.delete();
+        try {
+            File file1 = new File(Environment.getExternalStorageDirectory().getPath() + DOWNLOAD_APK_DIR, mNewestAppName);
+            File file2 = new File(Environment.getExternalStorageDirectory().getPath() + DOWNLOAD_APK_DIR, WLibConfig.WLIB_CONFIG_UPDATE_APP);
+            if (null != file1 && file1.exists()) {
+                file1.delete();
+            }
+            if (null != file2 && file2.exists()) {
+                file2.delete();
+            }
+        } catch (Exception e){
+            WLibLog.e(e);
         }
     }
 
     private void startDownLoad() {
-        DownloadManager.Request request = new DownloadManager.Request(
-                Uri.parse(mDownloadUrl));
-        request.setMimeType("application/vnd.android.package-archive");
-        request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE | DownloadManager.Request.NETWORK_WIFI);
-        request.setTitle(getString(R.string.wlib_downloading_apk));
-        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
-        request.setDestinationInExternalPublicDir(DOWNLOAD_APK_DIR, mNewestAppName);
-        mDownLoadAPKId = mDm.enqueue(request);
-        mIsDownloading = true;
+        try {
+            DownloadManager.Request request = new DownloadManager.Request(
+                    Uri.parse(mDownloadUrl));
+            request.setMimeType("application/vnd.android.package-archive");
+            request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE | DownloadManager.Request.NETWORK_WIFI);
+            request.setTitle(getString(R.string.wlib_downloading_apk));
+            request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+            request.setDestinationInExternalPublicDir(DOWNLOAD_APK_DIR, mNewestAppName);
+            mDownLoadAPKId = mDm.enqueue(request);
+            mIsDownloading = true;
+        } catch (Exception e){
+            WLibLog.e(e);
+        }
     }
 
     private void installApk() {
-        Intent installIntent = new Intent(Intent.ACTION_VIEW);
-        installIntent.setDataAndType(Uri.parse("file://" + Environment.getExternalStorageDirectory().getPath() + DOWNLOAD_APK_DIR + File.separator + mNewestAppName),
-                "application/vnd.android.package-archive");
-        installIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        installIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        startActivity(installIntent);
-        stopSelf();
+        try {
+            Intent installIntent = new Intent(Intent.ACTION_VIEW);
+            installIntent.setDataAndType(Uri.parse("file://" + Environment.getExternalStorageDirectory().getPath() + DOWNLOAD_APK_DIR + File.separator + mNewestAppName),
+                    "application/vnd.android.package-archive");
+            installIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            installIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            startActivity(installIntent);
+            stopSelf();
+        } catch (Exception e){
+            WLibLog.e(e);
+        }
     }
 
     private class QueryProgressBinder extends Binder {

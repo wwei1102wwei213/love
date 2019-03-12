@@ -1,12 +1,14 @@
 package com.yyspbfq.filmplay.adapter;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -59,16 +61,22 @@ public class ChannelDetailAdapter extends BaseAdapter{
         ViewHolder vh;
         if (convertView==null) {
             vh = new ViewHolder();
-            convertView = LayoutInflater.from(context).inflate(R.layout.layout_channel_recommend, parent, false);
+            convertView = LayoutInflater.from(context).inflate(R.layout.layout_channel_recommend_lv, parent, false);
             LinearLayout temp = (LinearLayout) convertView;
             vh.left = (LinearLayout) temp.getChildAt(0);
             vh.right = (LinearLayout) temp.getChildAt(1);
-            vh.iv_left = (ImageView) vh.left.getChildAt(0);
+            vh.rl_left = (RelativeLayout) vh.left.getChildAt(0);
+            vh.iv_left = (ImageView) vh.rl_left.getChildAt(0);
+            vh.tv_left_dpi = (TextView) vh.rl_left.getChildAt(1);
             vh.tv_left = (TextView) vh.left.getChildAt(1);
-            vh.iv_right = (ImageView) vh.right.getChildAt(0);
+            vh.rl_right = (RelativeLayout) vh.right.getChildAt(0);
+            vh.iv_right = (ImageView) vh.rl_right.getChildAt(0);
+            vh.tv_right_dpi = (TextView) vh.rl_right.getChildAt(1);
             vh.tv_right = (TextView) vh.right.getChildAt(1);
-            setViewHeight(vh.iv_left, mHeight);
-            setViewHeight(vh.iv_right, mHeight);
+            vh.tv_left_sub = (TextView) vh.left.getChildAt(2);
+            vh.tv_right_sub = (TextView) vh.right.getChildAt(2);
+            setViewHeight(vh.rl_left, mHeight);
+            setViewHeight(vh.rl_right, mHeight);
             convertView.setTag(vh);
         } else {
             vh = (ViewHolder) convertView.getTag();
@@ -83,6 +91,18 @@ public class ChannelDetailAdapter extends BaseAdapter{
                     VideoPlayActivity.actionStart(context, leftData.getId());
                 }
             });
+            if (TextUtils.isEmpty(leftData.getQuality())) {
+                vh.tv_left_dpi.setVisibility(View.GONE);
+            } else {
+                vh.tv_left_dpi.setText(leftData.getQuality());
+                vh.tv_left_dpi.setVisibility(View.VISIBLE);
+            }
+            if (TextUtils.isEmpty(leftData.getSubheading())) {
+                vh.tv_left_sub.setVisibility(View.GONE);
+            } else {
+                vh.tv_left_sub.setText(leftData.getSubheading());
+                vh.tv_left_sub.setVisibility(View.VISIBLE);
+            }
             vh.left.setVisibility(View.VISIBLE);
             if (list.size()<((position+1)*2)) {
                 vh.right.setVisibility(View.INVISIBLE);
@@ -96,8 +116,21 @@ public class ChannelDetailAdapter extends BaseAdapter{
                         VideoPlayActivity.actionStart(context, rightData.getId());
                     }
                 });
+                if (TextUtils.isEmpty(rightData.getQuality())) {
+                    vh.tv_right_dpi.setVisibility(View.GONE);
+                } else {
+                    vh.tv_right_dpi.setText(rightData.getQuality());
+                    vh.tv_right_dpi.setVisibility(View.VISIBLE);
+                }
+                if (TextUtils.isEmpty(rightData.getSubheading())) {
+                    vh.tv_right_sub.setVisibility(View.GONE);
+                } else {
+                    vh.tv_right_sub.setText(rightData.getSubheading());
+                    vh.tv_right_sub.setVisibility(View.VISIBLE);
+                }
                 vh.right.setVisibility(View.VISIBLE);
             }
+
         } catch (Exception e){
             BLog.e(e);
         }
@@ -117,9 +150,12 @@ public class ChannelDetailAdapter extends BaseAdapter{
     }
 
     class ViewHolder {
+        RelativeLayout rl_left, rl_right;
         LinearLayout left, right;
         ImageView iv_left, iv_right;
         TextView tv_left, tv_right;
+        TextView tv_left_dpi, tv_right_dpi;
+        TextView tv_left_sub, tv_right_sub;
     }
 
 }

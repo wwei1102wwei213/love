@@ -388,58 +388,47 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
     public abstract int getLayoutId();
 
     public void init(Context context) {
-        View.inflate(context, getLayoutId(), this);
-        startButton = findViewById(R.id.start);
-        iv_replay = findViewById(R.id.iv_replay);
-        fullscreenButton = findViewById(R.id.fullscreen);
-        progressBar = findViewById(R.id.bottom_seek_progress);
-        currentTimeTextView = findViewById(R.id.current);
-        totalTimeTextView = findViewById(R.id.total);
-        bottomContainer = findViewById(R.id.layout_bottom);
-        textureViewContainer = findViewById(R.id.surface_container);
-        topContainer = findViewById(R.id.layout_top);
-
-        leftContainer = findViewById(R.id.layout_left);
-        btnVol = findViewById(R.id.btn_vol);
-        btnLock = findViewById(R.id.btn_lock);
-        btnVol.setOnClickListener(this);
-        btnLock.setOnClickListener(this);
-
-        startButton.setOnClickListener(this);
-        iv_replay.setOnClickListener(this);
-        fullscreenButton.setOnClickListener(this);
-        progressBar.setOnSeekBarChangeListener(this);
-        /*progressBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
-        });*/
-        bottomContainer.setOnClickListener(this);
-        textureViewContainer.setOnClickListener(this);
-        textureViewContainer.setOnTouchListener(this);
-
-        mScreenWidth = getContext().getResources().getDisplayMetrics().widthPixels;
-        mScreenHeight = getContext().getResources().getDisplayMetrics().heightPixels;
-        mAudioManager = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
-
         try {
-            if (isCurrentPlay()) {
-                NORMAL_ORIENTATION = ((AppCompatActivity) context).getRequestedOrientation();
+            View.inflate(context, getLayoutId(), this);
+            startButton = findViewById(R.id.start);
+            iv_replay = findViewById(R.id.iv_replay);
+            fullscreenButton = findViewById(R.id.fullscreen);
+            progressBar = findViewById(R.id.bottom_seek_progress);
+            currentTimeTextView = findViewById(R.id.current);
+            totalTimeTextView = findViewById(R.id.total);
+            bottomContainer = findViewById(R.id.layout_bottom);
+            textureViewContainer = findViewById(R.id.surface_container);
+            topContainer = findViewById(R.id.layout_top);
+
+            leftContainer = findViewById(R.id.layout_left);
+            btnVol = findViewById(R.id.btn_vol);
+            btnLock = findViewById(R.id.btn_lock);
+            btnVol.setOnClickListener(this);
+            btnLock.setOnClickListener(this);
+
+            startButton.setOnClickListener(this);
+            iv_replay.setOnClickListener(this);
+            fullscreenButton.setOnClickListener(this);
+            progressBar.setOnSeekBarChangeListener(this);
+            bottomContainer.setOnClickListener(this);
+            textureViewContainer.setOnClickListener(this);
+            textureViewContainer.setOnTouchListener(this);
+
+            mScreenWidth = getContext().getResources().getDisplayMetrics().widthPixels;
+            mScreenHeight = getContext().getResources().getDisplayMetrics().heightPixels;
+            mAudioManager = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
+
+            try {
+                if (isCurrentPlay()) {
+                    NORMAL_ORIENTATION = ((AppCompatActivity) context).getRequestedOrientation();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
+        } catch (Exception e){
             e.printStackTrace();
         }
+
     }
 
     public void setUp(String url, String title, int screen) {
@@ -1291,8 +1280,8 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
         if (iv_replay==null) return;
         if (currentState == CURRENT_STATE_NORMAL) {
             if (/*isReplayFirst&&*/currentScreen != SCREEN_WINDOW_FULLSCREEN) {
-                startButton.setImageResource(R.drawable.jz_click_play_selector);
-                iv_replay.setImageResource(R.drawable.jz_click_play_selector);
+                startButton.setImageResource(R.drawable.jz_play_normal);
+                iv_replay.setImageResource(R.drawable.jz_play_normal);
                 iv_replay.setVisibility(VISIBLE);
                 /*if (currentScreen != SCREEN_WINDOW_LIST) {
                     isReplayFirst = false;
@@ -1302,7 +1291,7 @@ public abstract class Jzvd extends FrameLayout implements View.OnClickListener, 
             }
         } else if (currentState == CURRENT_STATE_AUTO_COMPLETE) {
             iv_replay.setVisibility(VISIBLE);
-            iv_replay.setImageResource(R.drawable.jz_click_replay_selector);
+            iv_replay.setImageResource(R.drawable.jz_restart_normal);
         } else {
             iv_replay.setVisibility(GONE);
         }

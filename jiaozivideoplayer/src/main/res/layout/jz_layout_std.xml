@@ -68,7 +68,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/jz_click_play_selector" />
+                android:src="@drawable/jz_play_normal" />
         </LinearLayout>
         <TextView
             android:id="@+id/current"
@@ -105,7 +105,7 @@
             android:gravity="center_horizontal"
             android:textColor="#E3B88E" />
 
-        <TextView
+        <!--<TextView
             android:id="@+id/clarity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -114,7 +114,7 @@
             android:textSize="10sp"
             android:text="clarity"
             android:textAlignment="center"
-            android:textColor="#ffffff" />
+            android:textColor="#ffffff" />-->
 
         <ImageView
             android:id="@+id/fullscreen"
@@ -172,7 +172,7 @@
             android:layout_marginTop="12dp"
             android:padding="3dp"
             android:scaleType="centerInside"
-            android:src="@drawable/jz_click_back_selector" />
+            android:src="@drawable/jz_back_normal" />
 
         <TextView
             android:id="@+id/title"
@@ -216,19 +216,10 @@
                 android:layout_gravity="center_horizontal"
                 android:gravity="center_vertical"
                 android:maxLines="1"
-                android:textColor="#ffffffff"
+                android:textColor="#ffffff"
                 android:textSize="12.0sp" />
         </LinearLayout>
     </RelativeLayout>
-
-    <!--<ProgressBar
-        android:id="@+id/loading"
-        android:layout_width="@dimen/jz_start_button_w_h_normal"
-        android:layout_height="@dimen/jz_start_button_w_h_normal"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:indeterminateDrawable="@drawable/jz_loading"
-        android:visibility="visible" />-->
 
     <RelativeLayout
         android:id="@+id/v_loading_middle"
@@ -236,8 +227,6 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:visibility="gone">
-
-
 
     </RelativeLayout>
 
@@ -256,11 +245,6 @@
             android:textSize="14sp"
             android:gravity="center"
             />
-        <!--<ProgressBar
-            android:layout_width="@dimen/jz_start_button_w_h_normal"
-            android:layout_height="@dimen/jz_start_button_w_h_normal"
-            android:indeterminateDrawable="@drawable/jz_loading"
-            android:visibility="visible" />-->
     </RelativeLayout>
 
 
@@ -269,7 +253,7 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:scaleType="centerInside"
-        android:src="@drawable/jz_click_play_selector"
+        android:src="@drawable/jz_play_normal"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:visibility="invisible"/>
@@ -315,8 +299,7 @@
             android:paddingRight="9dp"
             android:paddingTop="4dp"
             android:text="点击重试"
-            android:autoLink="all"
-            android:textColor="@android:color/white"
+            android:textColor="#ffffff"
             android:textSize="14sp" />
 
         <TextView
@@ -329,8 +312,7 @@
             android:paddingRight="9dp"
             android:paddingTop="4dp"
             android:text="联系我们"
-            android:autoLink="all"
-            android:textColor="@android:color/white"
+            android:textColor="#ffffff"
             android:textSize="14sp" />
     </LinearLayout>
 </RelativeLayout>

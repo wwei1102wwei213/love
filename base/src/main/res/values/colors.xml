@@ -128,4 +128,6 @@
 
     <color name="info_message_space_line">#2A2E32</color>
     <color name="base_line_gray">#2A2E32</color>
+
+    <color name="video_dpi_color">#61ABFF</color>
 </resources>

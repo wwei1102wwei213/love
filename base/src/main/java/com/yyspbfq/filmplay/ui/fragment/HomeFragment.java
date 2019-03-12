@@ -22,7 +22,6 @@ import com.google.gson.reflect.TypeToken;
 import com.wei.wlib.http.WLibHttpListener;
 import com.wei.wlib.widget.DrawCircleView;
 import com.wei.wlib.widget.coverflow.CoverFlow;
-import com.wei.wlib.widget.coverflow.core.PageItemClickListener;
 import com.wei.wlib.widget.coverflow.core.PagerContainer;
 import com.yyspbfq.filmplay.R;
 import com.yyspbfq.filmplay.adapter.HomeLikeAdapter;
@@ -111,12 +110,6 @@ public class HomeFragment extends BaseFragment implements WLibHttpListener{
         pager.setOffscreenPageLimit(8);
         indexBanner = 0;
 
-        container.setPageItemClickListener(new PageItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                showToast("position:" + position);
-            }
-        });
         container.setPagerChangeListener(new PagerContainer.PagerChangeListener() {
             @Override
             public void onPagerSelected(int position) {
@@ -323,16 +316,14 @@ public class HomeFragment extends BaseFragment implements WLibHttpListener{
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
 
-            View view = LayoutInflater.from(context).inflate(R.layout.item_cover,null);
+            View view = LayoutInflater.from(context).inflate(R.layout.item_cover,container, false);
             ImageView imageView = (ImageView) view.findViewById(R.id.image_cover);
-//            imageView.setImageDrawable(getResources().getDrawable(args[position%args.length]));
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             Glide.with(context).load(slides.get(position%slides.size()).getPic()).crossFade().into(imageView);
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     UiUtils.handleSlide(context, slides.get(position%slides.size()));
-
                 }
             });
             container.addView(view);

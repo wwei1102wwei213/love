@@ -232,6 +232,9 @@ public static final int *;
 -dontwarn cn.jzvd.**
 -keep class cn.jzvd.** { *;}
 
+-keep class cn.jzvd.Jzvd { *; }
+-keep public class * extends cn.jzvd.Jzvd
+
 #-dontwarn com.wei.wlib.**
 #-keep class com.wei.wlib.** { *;}
 

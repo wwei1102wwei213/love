@@ -86,11 +86,20 @@ public class JZMediaManager implements TextureView.SurfaceTextureListener {
     }
 
     public static void pause() {
-        instance().jzMediaInterface.pause();
+        try {
+            instance().jzMediaInterface.pause();
+        } catch (Exception e){
+
+        }
+
     }
 
     public static void start() {
-        instance().jzMediaInterface.start();
+        try {
+            instance().jzMediaInterface.start();
+        } catch (Exception e){
+
+        }
     }
 
     public static boolean isPlaying() {
