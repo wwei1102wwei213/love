@@ -65,6 +65,7 @@ public class RecordListAdapter extends BaseAdapter{
             vh.check = convertView.findViewById(R.id.v_check);
             vh.iv = convertView.findViewById(R.id.iv);
             vh.space = convertView.findViewById(R.id.v_space);
+            vh.v_space_bottom = convertView.findViewById(R.id.v_space_bottom);
             vh.progress = convertView.findViewById(R.id.tv_watch_time);
             vh.tv_record_time = convertView.findViewById(R.id.tv_record_time);
             convertView.setTag(vh);
@@ -125,6 +126,11 @@ public class RecordListAdapter extends BaseAdapter{
             vh.space.setVisibility(View.VISIBLE);
         } else {
             vh.space.setVisibility(View.GONE);
+        }
+        if (position==list.size()-1){
+            vh.v_space_bottom.setVisibility(View.VISIBLE);
+        } else {
+            vh.v_space_bottom.setVisibility(View.GONE);
         }
         if (position==TIME_LINE_1) {
             vh.tv_record_time.setVisibility(View.VISIBLE);
@@ -225,6 +231,6 @@ public class RecordListAdapter extends BaseAdapter{
     class ViewHolder {
         ImageView iv;
         TextView time, title, progress, tv_record_time;
-        View v, check, space;
+        View v, check, space, v_space_bottom;
     }
 }

@@ -55,7 +55,8 @@ public class DownloadTask implements Runnable, JFileDownloadListener{
     public DownloadTask(String url, String fileName, VideoDownloadBean tag) {
         this.key = fileName;
         this.url = url;
-        this.fileName = fileName + url.substring(url.lastIndexOf("."), url.length());
+//        this.fileName = fileName + url.substring(url.lastIndexOf("."), url.length());
+        this.fileName = fileName + ".mp6";
         this.tag = tag;
         status = TASK_STATUS_INIT;
     }

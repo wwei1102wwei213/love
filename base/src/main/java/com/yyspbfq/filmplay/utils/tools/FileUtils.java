@@ -57,8 +57,8 @@ public class FileUtils {
         }
         String mAudioRawPath = "";
         if (isSdcardExit()) {
-            if (!fileName.endsWith(".mp4")) {
-                fileName = fileName + ".mp4";
+            if (!fileName.endsWith(".mp6")) {
+                fileName = fileName + ".mp6";
             }
             String fileBasePath = Environment.getExternalStorageDirectory().getAbsolutePath() + AUDIO_MP4_BASE_PATH;
             File file = new File(fileBasePath);
@@ -80,8 +80,8 @@ public class FileUtils {
         }
         String mAudioRawPath = "";
         if (isSdcardExit()) {
-            if (!fileName.endsWith(".mp4")) {
-                fileName = fileName + ".mp4";
+            if (!fileName.endsWith(".mp6")) {
+                fileName = fileName + ".mp6";
             }
             String fileBasePath = Environment.getExternalStorageDirectory().getAbsolutePath() + AUDIO_MP4_BASE_PATH;
             File file = new File(fileBasePath);

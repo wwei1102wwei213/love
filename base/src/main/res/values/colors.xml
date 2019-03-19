@@ -14,6 +14,7 @@
 
     <!--背景色-->
     <color name="bg_color">#171A1E</color>
+    <color name="bg_color_alpha">#6E171A1E</color>
     <color name="base_bg_color">#f2f2f2</color>
     <color name="base_bg_color_dark">#000000</color>
     <color name="base_home_menu_ground">#171a1e</color>

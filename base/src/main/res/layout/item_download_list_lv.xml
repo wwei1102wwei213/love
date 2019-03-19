@@ -47,14 +47,17 @@
                 />
             <TextView
                 android:id="@+id/tv_video_time"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="00:01:19"
                 android:textColor="#ffe3b88e"
                 android:textSize="10sp"
-                android:layout_marginLeft="9dp"
-                android:layout_marginBottom="6dp"
+                android:paddingLeft="9dp"
+                android:paddingRight="9dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
                 android:layout_alignParentBottom="true"
+                android:background="@color/bg_color_alpha"
                 />
         </RelativeLayout>
         <RelativeLayout
