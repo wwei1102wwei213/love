@@ -137,7 +137,7 @@
         <activity android:name=".ui.activity.SettingActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTop"/>
-        <!--我的消息-->
+        <!--系统消息-->
         <activity android:name=".ui.activity.InfoMessageActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTop"/>
@@ -152,6 +152,14 @@
             android:launchMode="singleTop"/>
         <!--选择缓存个数页面-->
         <activity android:name=".ui.activity.DownloadCountActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
+        <!--我的消息-->
+        <activity android:name=".ui.activity.MyMessageActivity"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTop"/>
+        <!--客服反馈-->
+        <activity android:name=".ui.activity.FeedbackMessageActivity"
             android:screenOrientation="portrait"
             android:launchMode="singleTop"/>
 

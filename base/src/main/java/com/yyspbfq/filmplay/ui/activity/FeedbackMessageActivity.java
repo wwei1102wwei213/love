@@ -1,7 +1,5 @@
 package com.yyspbfq.filmplay.ui.activity;
 
-import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -16,9 +14,9 @@ import com.wei.wlib.http.WLibHttpFlag;
 import com.wei.wlib.http.WLibHttpListener;
 import com.wei.wlib.pullrefresh.PullToRefreshListView;
 import com.yyspbfq.filmplay.R;
-import com.yyspbfq.filmplay.adapter.InfoMessageAdapter;
-import com.yyspbfq.filmplay.bean.InfoMessageBean;
-import com.yyspbfq.filmplay.bean.InfoMessageEntity;
+import com.yyspbfq.filmplay.adapter.FeedbackMessageAdapter;
+import com.yyspbfq.filmplay.bean.FeedbackMessageBean;
+import com.yyspbfq.filmplay.bean.FeedbackMessageEntity;
 import com.yyspbfq.filmplay.biz.Factory;
 import com.yyspbfq.filmplay.biz.http.HttpFlag;
 import com.yyspbfq.filmplay.ui.BaseActivity;
@@ -30,28 +28,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class InfoMessageActivity extends BaseActivity implements WLibHttpListener{
-
-    public static void actionStart(Context context) {
-        context.startActivity(new Intent(context, InfoMessageActivity.class));
-    }
+public class FeedbackMessageActivity extends BaseActivity implements WLibHttpListener {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         setStatusBarTranslucent();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_system_message);
+        setContentView(R.layout.activity_feedback_message);
         initStatusBar();
         setBackViews(R.id.iv_base_back);
-        ((TextView) findViewById(R.id.tv_base_title)).setText("系统消息");
+        ((TextView) findViewById(R.id.tv_base_title)).setText("客服反馈");
         initViews();
         initData();
     }
 
     private PullToRefreshListView plv;
     private ListView lv;
-    private InfoMessageAdapter adapter;
-    private List<InfoMessageEntity> mData;
+    private FeedbackMessageAdapter adapter;
+    private List<FeedbackMessageEntity> mData;
     private void initViews(){
         plv = (PullToRefreshListView) findViewById(R.id.plv);
         lv = plv.getRefreshableView();
@@ -60,7 +54,7 @@ public class InfoMessageActivity extends BaseActivity implements WLibHttpListene
         lv.setVerticalScrollBarEnabled(false);
         List<String> list = new ArrayList<>();
         mData = new ArrayList<>();
-        adapter = new InfoMessageAdapter(this, mData);
+        adapter = new FeedbackMessageAdapter(this, mData);
         lv.setAdapter(adapter);
         //关闭下拉
         plv.setPullRefreshEnabled(false);
@@ -80,6 +74,15 @@ public class InfoMessageActivity extends BaseActivity implements WLibHttpListene
 
             }
         });
+        TextView tv_title_right = (TextView) findViewById(R.id.tv_base_right);
+        tv_title_right.setText("我要反馈");
+        tv_title_right.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(FeedbackActivity.class);
+            }
+        });
+        tv_title_right.setVisibility(View.VISIBLE);
     }
 
     private int page = 0;
@@ -88,14 +91,19 @@ public class InfoMessageActivity extends BaseActivity implements WLibHttpListene
         Map<String, String> map = new HashMap<>();
         map.put("page", page+"");
         map.put("size", size+"");
-        Factory.resp(this, HttpFlag.FLAG_MESSAGE_SHOW, null, InfoMessageBean.class).post(map);
+        Factory.resp(this, HttpFlag.FLAG_FEEDBACK_SHOW, null, FeedbackMessageBean.class).post(map);
     }
 
     private void getList() {
         Map<String, String> map = new HashMap<>();
         map.put("page", page+"");
         map.put("size", size+"");
-        Factory.resp(this, HttpFlag.FLAG_MESSAGE_SHOW, null, InfoMessageBean.class).post(map);
+        Factory.resp(this, HttpFlag.FLAG_FEEDBACK_SHOW, null, FeedbackMessageBean.class).post(map);
+    }
+
+    private void reList() {
+        page=0;
+        getList();
     }
 
     private boolean isLoading = false;
@@ -108,10 +116,10 @@ public class InfoMessageActivity extends BaseActivity implements WLibHttpListene
 
     @Override
     public void handleResp(Object formatData, int flag, Object tag, String response, String hint) {
-        if (flag == HttpFlag.FLAG_MESSAGE_SHOW) {
+        if (flag == HttpFlag.FLAG_FEEDBACK_SHOW) {
             try {
-                InfoMessageBean bean = (InfoMessageBean) formatData;
-                List<InfoMessageEntity> list = bean.getData();
+                FeedbackMessageBean bean = (FeedbackMessageBean) formatData;
+                List<FeedbackMessageEntity> list = bean.getData();
                 if (list==null||list.size()==0) {
                     if (page==0) {
                         plv.setVisibility(View.GONE);
@@ -123,7 +131,7 @@ public class InfoMessageActivity extends BaseActivity implements WLibHttpListene
                 } else {
                     if (page==0) {
                         mData.clear();
-                        UserDataUtil.saveMessageLastTime(this, System.currentTimeMillis()/1000+"");
+                        UserDataUtil.saveFeedbackLastTime(this, System.currentTimeMillis()/1000+"");
                     }
                     mData.addAll(list);
                     adapter.update(mData);
@@ -174,6 +182,16 @@ public class InfoMessageActivity extends BaseActivity implements WLibHttpListene
             } catch (Exception e){
                 BLog.e(e);
             }
+        }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        try {
+            reList();
+        } catch (Exception e){
+
         }
     }
 }

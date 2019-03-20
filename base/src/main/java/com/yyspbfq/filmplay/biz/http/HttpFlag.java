@@ -233,6 +233,9 @@ public class HttpFlag extends WLibHttpFlag{
     //点击幻灯片
     public static final int FLAG_CLICK_SLIDE = 61;
     public static String URL_CLICK_SLIDE = BASE_URL + "user/clickSlide";
+    //系统消息
+    public static final int FLAG_FEEDBACK_SHOW = 62;
+    public static String URL_FEEDBACK_SHOW = BASE_URL + "Feedback/show";
 
     /**
      * 切换服务器地址
@@ -290,6 +293,7 @@ public class HttpFlag extends WLibHttpFlag{
         URL_INFO_HELP = BASE_URL + "help/show";
         URL_DEL_COLLECTION_BY_ID = BASE_URL + "user/delCollectionById";
         URL_NOTICE_SHOW = BASE_URL + "Notice/show";
+        URL_FEEDBACK_SHOW = BASE_URL + "Feedback/show";
     }
 
 

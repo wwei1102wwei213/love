@@ -6,6 +6,7 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
@@ -19,7 +20,10 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.wei.wlib.elasticity.ElasticityNestedScrollView;
 import com.wei.wlib.http.WLibHttpListener;
+import com.wei.wlib.pullrefresh.PullElasticityNestedScrollView;
+import com.wei.wlib.pullrefresh.PullToRefreshBase;
 import com.wei.wlib.widget.DrawCircleView;
 import com.wei.wlib.widget.coverflow.CoverFlow;
 import com.wei.wlib.widget.coverflow.core.PagerContainer;
@@ -54,6 +58,7 @@ public class HomeFragment extends BaseFragment implements WLibHttpListener{
     private MyHandler mHandler;
     private static int CHANGE_BANNER = 1;
     private AdvertBean mAdvertBean;
+    private boolean isPull = false;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -61,7 +66,8 @@ public class HomeFragment extends BaseFragment implements WLibHttpListener{
         initStatusBar(findViewById(R.id.status_bar));
         mHandler = new MyHandler(this);
         initScreenSize();
-        initViews();
+        initPullView();
+//        initViews();
         initData();
         return rootView;
     }
@@ -70,6 +76,55 @@ public class HomeFragment extends BaseFragment implements WLibHttpListener{
     private void initScreenSize() {
         mItemW = (CommonUtils.getDeviceWidth(context) - DensityUtils.dp2px(context, 10))/2;
         mItemH = mItemW*9/16;
+    }
+
+    private PullElasticityNestedScrollView mPullScrollView;
+    private View content;
+    private void initPullView() {
+        findViewById(R.id.tv_search).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                VideoSearchActivity.actionStart(context);
+            }
+        });
+        findViewById(R.id.iv_search_download).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DownloadListActivity.actionStart(context);
+            }
+        });
+        findViewById(R.id.iv_search_record).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (UserDataUtil.isLogin(context)) {
+                    VideoRecordActivity.actionStart(context);
+                } else {
+                    new LoginDialog(context).show();
+                }
+            }
+        });
+
+        content = LayoutInflater.from(context).inflate(R.layout.pull_content_home, null);
+        content.setVisibility(View.VISIBLE);
+
+        mPullScrollView = (PullElasticityNestedScrollView) findViewById(R.id.pull_refresh_scroll);
+        NestedScrollView mScrollView = mPullScrollView.getRefreshableView();
+        mScrollView.setVerticalScrollBarEnabled(false);
+        mScrollView.addView(content);
+
+        mPullScrollView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ElasticityNestedScrollView>() {
+            @Override
+            public void onPullDownToRefresh(PullToRefreshBase<ElasticityNestedScrollView> refreshView) {
+                isPull = true;
+                initData();
+            }
+
+            @Override
+            public void onPullUpToRefresh(PullToRefreshBase<ElasticityNestedScrollView> refreshView) {
+
+            }
+        });
+        initViews();
     }
 
     private ViewPager pager;
@@ -86,21 +141,21 @@ public class HomeFragment extends BaseFragment implements WLibHttpListener{
     private TextView tv_adv_hint;
     private void initViews() {
 
-        ll_classify = (LinearLayout) findViewById(R.id.ll_classify);
-        ll_newest = (LinearLayout) findViewById(R.id.ll_newest);
-        ll_hot = (LinearLayout) findViewById(R.id.ll_hot);
-        ll_column = (LinearLayout) findViewById(R.id.ll_column);
-        iv_adv = (ImageView) findViewById(R.id.iv_adv);
-        tv_adv_hint = (TextView) findViewById(R.id.tv_adv_hint);
+        ll_classify = (LinearLayout) content.findViewById(R.id.ll_classify);
+        ll_newest = (LinearLayout) content.findViewById(R.id.ll_newest);
+        ll_hot = (LinearLayout) content.findViewById(R.id.ll_hot);
+        ll_column = (LinearLayout) content.findViewById(R.id.ll_column);
+        iv_adv = (ImageView) content.findViewById(R.id.iv_adv);
+        tv_adv_hint = (TextView) content.findViewById(R.id.tv_adv_hint);
 
-        rv_like = (RecyclerView) findViewById(R.id.rv_like);
+        rv_like = (RecyclerView) content.findViewById(R.id.rv_like);
         LinearLayoutManager manager = new LinearLayoutManager(context);
         manager.setOrientation(LinearLayoutManager.HORIZONTAL);
         rv_like.setLayoutManager(manager);
         likeAdapter = new HomeLikeAdapter(context, null);
         rv_like.setAdapter(likeAdapter);
 
-        container = (PagerContainer) findViewById(R.id.pc_banner);
+        container = (PagerContainer) content.findViewById(R.id.pc_banner);
         pager = container.getViewPager();
         pager.setOverScrollMode(View.OVER_SCROLL_NEVER);
         List<SlideBean> temp = new ArrayList<>();
@@ -128,46 +183,25 @@ public class HomeFragment extends BaseFragment implements WLibHttpListener{
                 .spaceSize(0f)
                 .build();
 
-        dcv = (DrawCircleView) findViewById(R.id.dcv);
+        dcv = (DrawCircleView) content.findViewById(R.id.dcv);
 
-        findViewById(R.id.tv_search).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                VideoSearchActivity.actionStart(context);
-            }
-        });
-        findViewById(R.id.iv_search_download).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DownloadListActivity.actionStart(context);
-            }
-        });
-        findViewById(R.id.iv_search_record).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (UserDataUtil.isLogin(context)) {
-                    VideoRecordActivity.actionStart(context);
-                } else {
-                    new LoginDialog(context).show();
-                }
-            }
-        });
+
         //最近更新
-        findViewById(R.id.more_newest).setOnClickListener(new View.OnClickListener() {
+        content.findViewById(R.id.more_newest).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 VideoClassifyActivity.actionStart(context, 2);
             }
         });
         //最多播放
-        findViewById(R.id.more_hot).setOnClickListener(new View.OnClickListener() {
+        content.findViewById(R.id.more_hot).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 VideoClassifyActivity.actionStart(context, 1);
             }
         });
         //最多喜欢
-        findViewById(R.id.more_like).setOnClickListener(new View.OnClickListener() {
+        content.findViewById(R.id.more_like).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 VideoClassifyActivity.actionStart(context, 3);
@@ -180,7 +214,7 @@ public class HomeFragment extends BaseFragment implements WLibHttpListener{
                 UiUtils.handleAdvert(context, mAdvertBean);
             }
         });
-        findViewById(R.id.tv_hot_change).setOnClickListener(new View.OnClickListener() {
+        content.findViewById(R.id.tv_hot_change).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Factory.resp(HomeFragment.this, HttpFlag.FLAG_HOME_HOT_VIDEO, null, null).post(null);
@@ -261,7 +295,7 @@ public class HomeFragment extends BaseFragment implements WLibHttpListener{
             try {
                 mAdvertBean = (AdvertBean) formatData;
                 if (mAdvertBean.getThumb()!=null) {
-                    findViewById(R.id.line_adv).setVisibility(View.VISIBLE);
+                    content.findViewById(R.id.line_adv).setVisibility(View.VISIBLE);
                     iv_adv.setVisibility(View.VISIBLE);
                     Glide.with(context).load(mAdvertBean.getThumb()+"").crossFade().into(iv_adv);
                     String temp = mAdvertBean.getTitle();
@@ -270,7 +304,7 @@ public class HomeFragment extends BaseFragment implements WLibHttpListener{
                         tv_adv_hint.setVisibility(View.VISIBLE);
                     }
                 } else {
-                    findViewById(R.id.line_adv).setVisibility(View.GONE);
+                    content.findViewById(R.id.line_adv).setVisibility(View.GONE);
                     iv_adv.setVisibility(View.GONE);
                 }
             } catch (Exception e){
@@ -291,7 +325,14 @@ public class HomeFragment extends BaseFragment implements WLibHttpListener{
 
     @Override
     public void handleAfter(int flag, Object tag) {
-
+        if (flag == HttpFlag.FLAG_HOME_NEWEST_VIDEO) {//最新
+            try {
+                mPullScrollView.onPullDownRefreshComplete();
+               isPull = false;
+            } catch (Exception e){
+                BLog.e(e);
+            }
+        }
     }
 
     private static class MyHandler extends Handler {

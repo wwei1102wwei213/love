@@ -81,6 +81,14 @@ public class UserDataUtil {
         return SharePrefUtil.getString(context, "film_msg_last_time", "0");
     }
 
+    public static void  saveFeedbackLastTime(Context context, String lastTime) {
+        SharePrefUtil.saveString(context, "film_feedback_last_time", lastTime);
+    }
+
+    public static String getFeedbackLastTime(Context context) {
+        return SharePrefUtil.getString(context, "film_feedback_last_time", "0");
+    }
+
     public static <T> void saveDataList(Context context, String key, List<T> list){
         SharePrefUtil.saveDataList(context, key, list);
     }

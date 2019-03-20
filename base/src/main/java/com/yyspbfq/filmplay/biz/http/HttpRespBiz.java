@@ -207,6 +207,9 @@ public class HttpRespBiz extends WLibDefaultHttpBiz{
             case HttpFlag.FLAG_CLICK_SLIDE:
                 result = HttpFlag.URL_CLICK_SLIDE;
                 break;
+            case HttpFlag.FLAG_FEEDBACK_SHOW:
+                result = HttpFlag.URL_FEEDBACK_SHOW;
+                break;
         }
         return result;
     }

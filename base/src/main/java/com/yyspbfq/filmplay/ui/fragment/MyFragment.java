@@ -30,6 +30,8 @@ import com.yyspbfq.filmplay.adapter.DownloadListRvAdapter;
 import com.yyspbfq.filmplay.adapter.WatchRecordAdapter;
 import com.yyspbfq.filmplay.bean.AdvertBean;
 import com.yyspbfq.filmplay.bean.DiscoverDataBean;
+import com.yyspbfq.filmplay.bean.FeedbackMessageBean;
+import com.yyspbfq.filmplay.bean.FeedbackMessageEntity;
 import com.yyspbfq.filmplay.bean.InfoMessageBean;
 import com.yyspbfq.filmplay.bean.InfoMessageEntity;
 import com.yyspbfq.filmplay.bean.UserInfo;
@@ -44,8 +46,8 @@ import com.yyspbfq.filmplay.ui.BaseFragment;
 import com.yyspbfq.filmplay.ui.activity.DownloadListActivity;
 import com.yyspbfq.filmplay.ui.activity.InfoCollationActivity;
 import com.yyspbfq.filmplay.ui.activity.InfoInviteActivity;
-import com.yyspbfq.filmplay.ui.activity.InfoMessageActivity;
 import com.yyspbfq.filmplay.ui.activity.LevelExchangeActivity;
+import com.yyspbfq.filmplay.ui.activity.MyMessageActivity;
 import com.yyspbfq.filmplay.ui.activity.SettingActivity;
 import com.yyspbfq.filmplay.ui.activity.VideoHelpActivity;
 import com.yyspbfq.filmplay.ui.activity.VideoRecordActivity;
@@ -215,6 +217,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener, WL
         map.put("page", "0");
         map.put("size", "1");
         Factory.resp(this, HttpFlag.FLAG_MESSAGE_SHOW, null, InfoMessageBean.class).post(map);
+        Factory.resp(this, HttpFlag.FLAG_FEEDBACK_SHOW, null, FeedbackMessageBean.class).post(map);
     }
 
     public void getCollections() {
@@ -330,7 +333,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener, WL
                     new LoginDialog(context).show();
                     return;
                 } else {
-                    InfoMessageActivity.actionStart(context);
+                    context.startActivity(new Intent(context, MyMessageActivity.class));
                     v_red_dot.setVisibility(View.GONE);
                 }
                 break;
@@ -422,6 +425,20 @@ public class MyFragment extends BaseFragment implements View.OnClickListener, WL
                 if (list!=null&&list.size()>0) {
                     String newLastTime = list.get(0).getCtime();
                     boolean isRed = UiUtils.handleMessageRedPoint(newLastTime, UserDataUtil.getMessageLastTime(context));
+                    if (isRed) {
+                        v_red_dot.setVisibility(View.VISIBLE);
+                    }
+                }
+            } catch (Exception e){
+                BLog.e(e);
+            }
+        } else if (flag == HttpFlag.FLAG_FEEDBACK_SHOW) {
+            try {
+                FeedbackMessageBean bean = (FeedbackMessageBean) formatData;
+                List<FeedbackMessageEntity> list = bean.getData();
+                if (list!=null&&list.size()>0) {
+                    String newLastTime = list.get(0).getRetime();
+                    boolean isRed = UiUtils.handleMessageRedPoint(newLastTime, UserDataUtil.getFeedbackLastTime(context));
                     if (isRed) {
                         v_red_dot.setVisibility(View.VISIBLE);
                     }
