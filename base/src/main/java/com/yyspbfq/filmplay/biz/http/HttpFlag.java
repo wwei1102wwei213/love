@@ -12,70 +12,33 @@ import java.util.List;
 public class HttpFlag extends WLibHttpFlag{
 
     //默认API服务地址
-    /*public static String BASE_URL = "http://23.224.135.234:8002/";
-    //默认升级地址
-    public static String URL_UPDATE = "http://23.224.135.234:8005/android/update.json";
+    public static String BASE_URL = "";
+    //默认图片服务地址
+    public static String BASE_IMAGE_URL = "";
 
-    //API服务地址列表
-    private static final String[] URLS = {
-            "http://23.224.135.234:8002/"
+    //默认配置地址
+    public static final String[] HOST_DEFAULT_URLS = {
+        /*"http://byhost.uu3.me/host.json",
+        "http://byhost2.uu3.me/host.json"*/
+            "http://47.107.94.24:94/host.json"
     };
 
-    //升级地址列表
-    private static final String[] UPDATE_URLS = {
-            "http://23.224.135.234:8005/android/update.json"
-    };
+    //默认主页地址
+    public static final String DEFAULT_WEBSITE = "http://www.baidu.com";
+    //配置地址后缀
+    public static String URL_HOST_CONFIG_SUFFIX = "host.json";
 
-    //上传头像
-    public static final int FLAG_UPLOAD_IMG = 3;
-    public static final String URL_UPLOAD_IMG = "http://23.224.135.234:8003/upload.php";*/
 
-    //默认API服务地址
-    public static String BASE_URL = "http://47.107.94.24:88/";
-    //默认升级地址
-    public static String URL_UPDATE = "http://47.107.94.24:91/android/update.json";
-
-    //API服务地址列表
-    private static final String[] URLS = {
-            "http://47.107.94.24:88/",
-            "http://47.107.94.24:93/",
-            "http://47.107.94.24:94/",
-            "http://47.107.94.24:95/",
-            "http://47.107.94.24:92/"
-    };
-
-    //升级地址列表
-    private static final String[] UPDATE_URLS = {
-            "http://47.107.94.24:191/android/update.json",
-            "http://47.107.94.24:91/android/update.json",
-            "http://47.107.94.24:96/android/update.json",
-            "http://47.107.94.24:97/android/update.json"
-    };
-
-    //上传头像
-    public static final int FLAG_UPLOAD_IMG = 3;
-    public static final String URL_UPLOAD_IMG = "http://47.107.94.24:90/upload.php";
-
-    //主页地址配置
-    public static String getWebsite() {
-        return "http://www.baidu.com";
-    }
-
-    public static List<String> getBaseUrls() {
+    public static List<String> getDefaultHostUrls() {
         List<String> result = new ArrayList<>();
-        for (String url:URLS) {
+        for (String url:HOST_DEFAULT_URLS) {
             result.add(url);
         }
         return result;
     }
 
-    public static List<String> getUpdateUrls() {
-        List<String> result = new ArrayList<>();
-        for (String url:UPDATE_URLS) {
-            result.add(url);
-        }
-        return result;
-    }
+
+
 
     //手机验证码
     public static final int FLAG_MOBILE_CODE = 10;
@@ -297,7 +260,14 @@ public class HttpFlag extends WLibHttpFlag{
     }
 
 
+    //上传头像
+    public static final int FLAG_UPLOAD_IMG = 3;
+    public static String URL_UPLOAD_IMG = "http://47.107.94.24:90/upload.php";
 
+    public static void changeImageHost (String host) {
+        BASE_IMAGE_URL = host;
+        URL_UPLOAD_IMG = host + "upload.php";
+    }
 
 
 

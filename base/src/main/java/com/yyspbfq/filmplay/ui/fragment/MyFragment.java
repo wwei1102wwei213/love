@@ -267,7 +267,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener, WL
                 myNameTv.setText(userInfo.name);
                 tv_level_or_login.setText(levelName);
                 tv_level_next.setText(levelSpace);
-                Glide.with(context).load(userInfo.avatar).diskCacheStrategy(DiskCacheStrategy.ALL)
+                Glide.with(context).load(userInfo.getAvatar()).diskCacheStrategy(DiskCacheStrategy.ALL)
                         .error(R.mipmap.default_user_icon).into(myHeadImg);
             } else {
                 myNameTv.setText("请登录");
@@ -411,7 +411,7 @@ public class MyFragment extends BaseFragment implements View.OnClickListener, WL
                 mAdvertBean = (AdvertBean) formatData;
                 if (mAdvertBean.getThumb()!=null) {
                     iv_adv.setVisibility(View.VISIBLE);
-                    Glide.with(context).load(mAdvertBean.getThumb()+"").crossFade().into(iv_adv);
+                    Glide.with(context).load(mAdvertBean.getThumbWithHost()).crossFade().into(iv_adv);
                 } else {
                     iv_adv.setVisibility(View.GONE);
                 }

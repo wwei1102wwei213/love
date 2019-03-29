@@ -63,9 +63,9 @@ public class UiUtils {
                 });
                 ImageView iv = (ImageView) item.getChildAt(0);
                 if (!TextUtils.isEmpty(list.get(i).getThumb())) {
-                    Glide.with(context).load(list.get(i).getThumb()).crossFade().into(iv);
+                    Glide.with(context).load(list.get(i).getThumb()).placeholder(R.mipmap.base_icon_default).crossFade().into(iv);
                 } else {
-                    Glide.with(context).load(R.mipmap.base_icon_default).into(iv);
+                    Glide.with(context).load(R.mipmap.base_icon_default).placeholder(R.mipmap.base_icon_default).into(iv);
                 }
                 TextView name = (TextView) item.getChildAt(1);
                 String nameStr = list.get(i).getTname();

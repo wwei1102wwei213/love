@@ -27,6 +27,7 @@ import com.yyspbfq.filmplay.bean.MessageEvent;
 import com.yyspbfq.filmplay.bean.NoticeBean;
 import com.yyspbfq.filmplay.bean.UpdateConfig;
 import com.yyspbfq.filmplay.bean.UserInfoBean;
+import com.yyspbfq.filmplay.biz.AppUpdateBiz;
 import com.yyspbfq.filmplay.biz.Factory;
 import com.yyspbfq.filmplay.biz.download.DownloadTaskManager;
 import com.yyspbfq.filmplay.biz.http.HttpFlag;
@@ -52,7 +53,6 @@ import org.greenrobot.eventbus.ThreadMode;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.List;
 import java.util.Set;
@@ -61,12 +61,6 @@ import cn.jpush.android.api.JPushInterface;
 import cn.jpush.android.api.TagAliasCallback;
 import cn.jzvd.JZExoPlayer;
 import cn.jzvd.Jzvd;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
 
 public class MainActivity extends BaseActivity implements WLibHttpListener{
 
@@ -87,7 +81,6 @@ public class MainActivity extends BaseActivity implements WLibHttpListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.base_activity_main);
         initViews(savedInstanceState);
-        checkBaseUrl();
         Jzvd.setMediaInterface(new JZExoPlayer());
         //todo
         JPushInterface.setAlias(getApplicationContext(), CommonUtils.getUUID(), new TagAliasCallback() {
@@ -265,7 +258,7 @@ public class MainActivity extends BaseActivity implements WLibHttpListener{
             Factory.resp(this, HttpFlag.FLAG_SYNC_VIDEO_RECORD, null, null).post(null);
         } else if (flag == HttpFlag.FLAG_NOTICE_SHOW) {
             mHandler = new MyHandler(this);
-            checkUpdate(SPLongUtils.getString(this, "video_update_app_url", HttpFlag.URL_UPDATE));
+            new AppUpdateBiz(mHandler, MSG_WHAT_CHECK_UPDATE, MSG_WHAT_CHECK_UPDATE_ERROR, true).update();
         }
     }
 
@@ -354,65 +347,9 @@ public class MainActivity extends BaseActivity implements WLibHttpListener{
     }
 
     private MyHandler mHandler;
-    private List<String> updateUrls;
-
-    /**
-     * 检查更新
-     * @param url
-     */
-    public void checkUpdate(String url) {
-        if (TextUtils.isEmpty(url)) return;
-        Logger.e("checkUpdate:"+url);
-        Request request = new Request.Builder().url(url).build();
-        new OkHttpClient().newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                try {
-                    if (CommonUtils.IsNetWorkEnable(BaseApplication.getInstance())) {
-                        if (updateUrls==null) {
-                            updateUrls = HttpFlag.getUpdateUrls();
-                        }
-                        updateUrls.remove(url);
-                        if (updateUrls.size()>0) {
-                            checkUpdate(updateUrls.get(0));
-                        } else {
-//                            Logger.e("升级失败");
-                            Message msg = Message.obtain();
-                            msg.what = MSG_WHAT_CHECK_UPDATE_ERROR;
-                            mHandler.sendMessage(msg);
-                        }
-                    }
-                } catch (Exception ee){
-                    BLog.e(ee);
-                }
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) {
-                try {
-                    ResponseBody body = response.body();
-                    UpdateConfig config = new Gson().fromJson(body.charStream(), UpdateConfig.class);
-                    config.meHost = url;
-                    Logger.e("checkUpdate："+new Gson().toJson(config));
-                    if (!TextUtils.isEmpty(config.downurl)&&!TextUtils.isEmpty(config.versionCode)) {
-                        Message msg = Message.obtain();
-                        msg.what = MSG_WHAT_CHECK_UPDATE;
-                        msg.obj = config;
-                        mHandler.sendMessage(msg);
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
 
     private void handleUpdate(UpdateConfig config) {
         if (mBaseExit) return;
-        SPLongUtils.saveString(this, "mevideo_update_config", new Gson().toJson(config));
-        if (updateUrls!=null) {
-            SPLongUtils.saveString(this, "video_update_app_url", config.meHost);
-        }
         if (UiUtils.checkUpdate(config)) {
             UpdateAppDialog dialog = new UpdateAppDialog(this);
             dialog.setData(config);
@@ -420,10 +357,10 @@ public class MainActivity extends BaseActivity implements WLibHttpListener{
         }
     }
 
-    private void handleUpdateError() {
-        if (mBaseExit) return;
+    private void handleUpdateError(Object obj) {
+        if (mBaseExit||obj==null) return;
         NoticeDialog dialog = new NoticeDialog(this);
-        dialog.setUpdateHint();
+        dialog.setUpdateHint(obj.toString());
         dialog.show();
     }
 
@@ -439,8 +376,8 @@ public class MainActivity extends BaseActivity implements WLibHttpListener{
         super.onDestroy();
     }
 
-    private static final int MSG_WHAT_CHECK_UPDATE = 1;
-    private static final int MSG_WHAT_CHECK_UPDATE_ERROR = 2;
+    private static final int MSG_WHAT_CHECK_UPDATE = 13333;
+    private static final int MSG_WHAT_CHECK_UPDATE_ERROR = 13334;
     private static class MyHandler extends Handler {
         private WeakReference<MainActivity> weak;
         private MyHandler(MainActivity activity) {
@@ -451,7 +388,7 @@ public class MainActivity extends BaseActivity implements WLibHttpListener{
             if (weak.get()!=null&&msg.what==MSG_WHAT_CHECK_UPDATE) {
                 weak.get().handleUpdate((UpdateConfig) msg.obj);
             } else if (weak.get()!=null&&msg.what==MSG_WHAT_CHECK_UPDATE_ERROR) {
-                weak.get().handleUpdateError();
+                weak.get().handleUpdateError(msg.obj);
             }
         }
     }

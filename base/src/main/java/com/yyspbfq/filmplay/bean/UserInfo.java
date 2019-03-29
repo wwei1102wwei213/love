@@ -1,6 +1,7 @@
 package com.yyspbfq.filmplay.bean;
 
 import com.yyspbfq.filmplay.utils.ShareCodeUtils;
+import com.yyspbfq.filmplay.utils.glide.ImageHostUtils;
 
 public class UserInfo {
 
@@ -31,6 +32,10 @@ public class UserInfo {
     public String canWatch, maxWatch, canDown, maxDown;
     public UserGrade grade;
     public String type;
+
+    public String getAvatar() {
+        return ImageHostUtils.contact(avatar);
+    }
 
     public String getShareCodeID() {
         try {

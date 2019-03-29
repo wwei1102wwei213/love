@@ -1,5 +1,7 @@
 package com.yyspbfq.filmplay.bean;
 
+import com.yyspbfq.filmplay.utils.glide.ImageHostUtils;
+
 public class SlideBean {
 
     /*"title": "这还是一个幻灯片",
@@ -51,7 +53,7 @@ public class SlideBean {
     }
 
     public String getPic() {
-        return pic;
+        return ImageHostUtils.contact(pic);
     }
 
     public void setPic(String pic) {

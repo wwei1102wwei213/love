@@ -316,20 +316,6 @@
             android:value="${CHANNEL_VALUE}" />
         <!-- ##########################################友盟########################################## -->
 
-        <!--适配相册路径问题-->
-        <!--<provider
-            android:name="android.support.v4.content.FileProvider"
-            android:authorities="@string/provider_authorities"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            &lt;!&ndash;提供共享路径&ndash;&gt;
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
-        </provider>
-        &lt;!&ndash;适配全面屏手机&ndash;&gt;
-        <meta-data android:name="android.max_aspect"
-            android:value="ratio_float"/>-->
     </application>
 
 </manifest>

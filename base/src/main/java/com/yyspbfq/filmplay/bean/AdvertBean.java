@@ -1,5 +1,7 @@
 package com.yyspbfq.filmplay.bean;
 
+import com.yyspbfq.filmplay.utils.glide.ImageHostUtils;
+
 public class AdvertBean {
 
 /*"thumb": "http://127.0.0.1:9233/uploads/default/201901/18/default201901181558534635.png",
@@ -22,6 +24,12 @@ public class AdvertBean {
 
     public Object getThumb() {
         return thumb;
+    }
+
+    public String getThumbWithHost() {
+        if (thumb==null) return null;
+        return ImageHostUtils.contact(thumb+"");
+
     }
 
     public void setThumb(Object thumb) {

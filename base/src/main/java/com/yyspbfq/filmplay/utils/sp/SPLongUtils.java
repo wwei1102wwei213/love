@@ -22,6 +22,7 @@ public class SPLongUtils {
 
     private final static String SP_NAME = "filmplay_long_config";
 
+
     public static boolean isFirst(Context context) {
         try {
             SharedPreferences sp = context.getSharedPreferences(SP_NAME, 0);
@@ -40,6 +41,10 @@ public class SPLongUtils {
             BLog.e(e);
         }
     }
+
+    /*public static String getDefaultConfigUpdate() {
+        return DEFAULT_CONFIG_UPDATE;
+    }*/
 
     /**
      * 获取int值

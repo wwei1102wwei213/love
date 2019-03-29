@@ -48,7 +48,7 @@ public class ChannelFragment extends BaseFragment implements WLibHttpListener{
 
     private int mItemW, mItemH;
     private void initScreenSize() {
-        mItemW = (CommonUtils.getDeviceWidth(context) - DensityUtils.dp2px(context, 8))/2;
+        mItemW = (CommonUtils.getDeviceWidth(context) - DensityUtils.dp2px(context, 10))/2;
         mItemH = mItemW*9/16;
     }
 

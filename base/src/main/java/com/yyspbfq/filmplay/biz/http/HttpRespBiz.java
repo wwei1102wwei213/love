@@ -21,7 +21,7 @@ public class HttpRespBiz extends WLibDefaultHttpBiz{
 
     @Override
     protected List<String> getBaseUrls() {
-        return HttpFlag.getBaseUrls();
+        return null;
     }
 
     @Override

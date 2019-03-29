@@ -1,5 +1,7 @@
 package com.yyspbfq.filmplay.bean;
 
+import com.yyspbfq.filmplay.utils.glide.ImageHostUtils;
+
 public class CommentEntity {
 
     /*"id": "1",
@@ -30,7 +32,7 @@ public class CommentEntity {
     }
 
     public String getFig() {
-        return fig;
+        return ImageHostUtils.contact(fig);
     }
 
     public void setFig(String fig) {

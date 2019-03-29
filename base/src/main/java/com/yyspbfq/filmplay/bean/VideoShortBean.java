@@ -1,5 +1,7 @@
 package com.yyspbfq.filmplay.bean;
 
+import com.yyspbfq.filmplay.utils.glide.ImageHostUtils;
+
 public class VideoShortBean {
 
     /*"id":"4",
@@ -25,7 +27,7 @@ public class VideoShortBean {
     }
 
     public String getVideo_thump() {
-        return video_thump;
+        return ImageHostUtils.contact(video_thump);
     }
 
     public void setVideo_thump(String video_thump) {

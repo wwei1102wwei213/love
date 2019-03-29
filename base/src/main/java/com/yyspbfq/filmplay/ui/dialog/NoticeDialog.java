@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.yyspbfq.filmplay.R;
 import com.yyspbfq.filmplay.bean.NoticeBean;
-import com.yyspbfq.filmplay.biz.http.HttpFlag;
 import com.yyspbfq.filmplay.utils.BLog;
 
 import net.nightwhistler.htmlspanner.HtmlSpanner;
@@ -78,7 +77,7 @@ public class NoticeDialog extends Dialog{
         }
     }
 
-    public void setUpdateHint() {
+    public void setUpdateHint(String website) {
         tv_title.setText("提示");
         tv_content.setText("部分配置已失效，亲们两行泪!!!\n请至官网重新下载最新版App。");
         tv_sure.setText("去下载");
@@ -86,7 +85,7 @@ public class NoticeDialog extends Dialog{
             @Override
             public void onClick(View v) {
                 try {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(HttpFlag.getWebsite()));
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(website));
                     intent.putExtra(Browser.EXTRA_APPLICATION_ID, context.getPackageName());
                     context.startActivity(intent);
                 } catch (Exception e) {

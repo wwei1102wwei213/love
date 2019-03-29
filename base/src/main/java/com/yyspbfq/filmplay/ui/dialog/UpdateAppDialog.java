@@ -73,7 +73,9 @@ public class UpdateAppDialog extends Dialog{
         try {
             tv_version.setText(TextUtils.isEmpty(config.versionName)?"":("V"+config.versionName));
             tv_content.setText(TextUtils.isEmpty(config.text)?"":config.text);
-            if ("1".equals(config.autoup)) {
+            int mAutoUp = Integer.parseInt(config.autoup);
+            int mCode = Integer.parseInt(CommonUtils.getVersionCodeStr());
+            if (mCode<mAutoUp) {
                 setCancelable(false);
                 tv_cancel.setVisibility(View.GONE);
                 setOnKeyListener(new DialogInterface.OnKeyListener() {
@@ -94,7 +96,7 @@ public class UpdateAppDialog extends Dialog{
             tv_update.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    toDownload(config.versionCode, config.downurl);
+                    toDownload(config.versionCode, config.getDownUrl());
                 }
             });
             if (!TextUtils.isEmpty(config.website)) {

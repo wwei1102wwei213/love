@@ -32,7 +32,7 @@ public class ChannelDetailAdapter extends BaseAdapter{
         this.context = context;
         if (list==null) list = new ArrayList<>();
         this.list = list;
-        int w = (CommonUtils.getDeviceWidth(context) - DensityUtils.dp2px(context, 8))/2;
+        int w = (CommonUtils.getDeviceWidth(context) - DensityUtils.dp2px(context, 10))/2;
         mHeight = w*9/16;
     }
 

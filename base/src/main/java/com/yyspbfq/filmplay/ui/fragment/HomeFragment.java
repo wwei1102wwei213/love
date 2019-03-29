@@ -297,7 +297,7 @@ public class HomeFragment extends BaseFragment implements WLibHttpListener{
                 if (mAdvertBean.getThumb()!=null) {
                     content.findViewById(R.id.line_adv).setVisibility(View.VISIBLE);
                     iv_adv.setVisibility(View.VISIBLE);
-                    Glide.with(context).load(mAdvertBean.getThumb()+"").crossFade().into(iv_adv);
+                    Glide.with(context).load(mAdvertBean.getThumbWithHost()).crossFade().into(iv_adv);
                     String temp = mAdvertBean.getTitle();
                     if (!TextUtils.isEmpty(temp)) {
                         tv_adv_hint.setText(temp);

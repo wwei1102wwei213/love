@@ -17,9 +17,7 @@ import android.view.WindowManager;
 
 import com.umeng.analytics.MobclickAgent;
 import com.yyspbfq.filmplay.R;
-import com.yyspbfq.filmplay.biz.http.HttpFlag;
 import com.yyspbfq.filmplay.utils.BLog;
-import com.yyspbfq.filmplay.utils.sp.SPLongUtils;
 import com.yyspbfq.filmplay.utils.tools.ToastUtils;
 
 import java.io.BufferedReader;
@@ -168,7 +166,7 @@ public class BaseActivity extends FragmentActivity {
         }
     }
 
-    public void checkBaseUrl() {
+   /* public void checkBaseUrl() {
         try {
             String baseUrl = SPLongUtils.getString(this, "mevideo_base_url", "");
             if (!TextUtils.isEmpty(baseUrl)&&!baseUrl.equals(HttpFlag.BASE_URL)) {
@@ -178,7 +176,7 @@ public class BaseActivity extends FragmentActivity {
         } catch (Exception e){
 
         }
-    }
+    }*/
 
     //退出动画设置
     protected void finishForAnim(){

@@ -581,7 +581,7 @@ public class VideoPlayActivity extends BaseActivity implements  WLibHttpListener
                 mAdvertBean = (AdvertBean) formatData;
                 if (mAdvertBean.getThumb()!=null) {
                     iv_adv.setVisibility(View.VISIBLE);
-                    Glide.with(this).load(mAdvertBean.getThumb()+"").crossFade().into(iv_adv);
+                    Glide.with(this).load(mAdvertBean.getThumbWithHost()).crossFade().into(iv_adv);
                 } else {
                     iv_adv.setVisibility(View.GONE);
                 }

@@ -1,5 +1,7 @@
 package com.yyspbfq.filmplay.bean;
 
+import android.text.TextUtils;
+
 import java.io.Serializable;
 
 /**
@@ -15,4 +17,16 @@ public class UpdateConfig implements Serializable {
     public String sign;
     public String website;
     public String meHost;
+
+    public String getDownUrl() {
+        if (!TextUtils.isEmpty(downurl)&&!TextUtils.isEmpty(meHost)) {
+            if (!meHost.endsWith("/")) {
+                return meHost + "/" + downurl;
+            } else {
+                return meHost + downurl;
+            }
+        }
+        return "";
+    }
+
 }

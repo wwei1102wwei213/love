@@ -84,7 +84,7 @@ android {
     //打包配置
     flavorDimensions "default"
     productFlavors {
-        "1232" { dimension "default"}
+        "1223" { dimension "default"}
         //例：
         //"1233" { dimension "default"}
         //"1234" { dimension "default"}

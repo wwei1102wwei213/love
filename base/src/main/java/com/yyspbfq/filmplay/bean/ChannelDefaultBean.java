@@ -1,5 +1,7 @@
 package com.yyspbfq.filmplay.bean;
 
+import com.yyspbfq.filmplay.utils.glide.ImageHostUtils;
+
 import java.util.List;
 
 public class ChannelDefaultBean {
@@ -24,7 +26,7 @@ public class ChannelDefaultBean {
     }
 
     public String getThumb() {
-        return thumb;
+        return ImageHostUtils.contact(thumb);
     }
 
     public void setThumb(String thumb) {
@@ -40,7 +42,7 @@ public class ChannelDefaultBean {
     }
 
     public String getPic() {
-        return pic;
+        return ImageHostUtils.contact(pic);
     }
 
     public void setPic(String pic) {

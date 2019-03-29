@@ -2,6 +2,8 @@ package com.yyspbfq.filmplay.db;
 
 import android.text.TextUtils;
 
+import com.yyspbfq.filmplay.utils.glide.ImageHostUtils;
+
 public class VideoEntity {
 
 /*
@@ -138,7 +140,7 @@ public class VideoEntity {
     }
 
     public String getVideo_thump() {
-        return video_thump;
+        return ImageHostUtils.contact(video_thump);
     }
 
     public void setVideo_thump(String video_thump) {

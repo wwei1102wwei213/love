@@ -22,8 +22,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.google.gson.Gson;
-import com.orhanobut.logger.Logger;
 import com.wei.wlib.WLibManager;
 import com.wei.wlib.glide.GlideCacheUtil;
 import com.wei.wlib.http.WLibHttpListener;
@@ -33,6 +31,7 @@ import com.yyspbfq.filmplay.BaseApplication;
 import com.yyspbfq.filmplay.R;
 import com.yyspbfq.filmplay.bean.UpdateConfig;
 import com.yyspbfq.filmplay.bean.UserInfo;
+import com.yyspbfq.filmplay.biz.AppUpdateBiz;
 import com.yyspbfq.filmplay.biz.Factory;
 import com.yyspbfq.filmplay.biz.http.HttpFlag;
 import com.yyspbfq.filmplay.biz.login.UserHelper;
@@ -46,7 +45,6 @@ import com.yyspbfq.filmplay.utils.CommonUtils;
 import com.yyspbfq.filmplay.utils.CropUtils;
 import com.yyspbfq.filmplay.utils.SystemUtils;
 import com.yyspbfq.filmplay.utils.UiUtils;
-import com.yyspbfq.filmplay.utils.sp.SPLongUtils;
 import com.yyspbfq.filmplay.utils.sp.SharePrefUtil;
 import com.yyspbfq.filmplay.utils.sp.UserDataUtil;
 import com.yyspbfq.filmplay.utils.tools.ToastUtils;
@@ -57,18 +55,10 @@ import org.json.JSONObject;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
 
 public class SettingActivity extends BaseActivity implements View.OnClickListener, WLibHttpListener{
 
@@ -88,7 +78,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
 
     private void initData() {
         mHandler = new MyHandler(this);
-        checkUpdate(SPLongUtils.getString(this, "video_update_app_url", HttpFlag.URL_UPDATE));
+        new AppUpdateBiz(mHandler, MSG_WHAT_CHECK_UPDATE, MSG_WHAT_CHECK_UPDATE_ERROR, false).update();
     }
 
     private TextView tv_name, tv_sex, tv_version, tv_version_hint;
@@ -112,7 +102,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
             findViewById(R.id.v_version).setOnClickListener(this);
 
             UserInfo userInfo = UserDataUtil.getUserInfo(this);
-            Glide.with(this).load(userInfo.avatar).crossFade().into(civ);
+            Glide.with(this).load(userInfo.getAvatar()).crossFade().into(civ);
             tv_name.setText(userInfo.name==null?"":userInfo.name);
             tv_sex.setText(getSex(userInfo.sex));
             dialogLoading = WLibDialogHelper.createProgressDialog(this, "正在提交...");
@@ -264,7 +254,7 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         Uri uri;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             uri = FileProvider
-                    .getUriForFile(context.getApplicationContext(), getString(R.string.provider_authorities), file);
+                    .getUriForFile(context.getApplicationContext(), getString(R.string.wlib_provider_authorities), file);
         } else {
             uri = Uri.fromFile(file);
         }
@@ -423,50 +413,11 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
 
     }
 
-    /**
-     * 检查更新
-     * @param url
-     */
-    public void checkUpdate(String url) {
-        if (TextUtils.isEmpty(url)) return;
-        Logger.e("checkUpdate:"+url);
-        Request request = new Request.Builder().url(url).build();
-        new OkHttpClient().newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                try {
-                    Message msg = Message.obtain();
-                    msg.what = MSG_WHAT_CHECK_UPDATE;
-                    msg.arg1 = 2;
-                    mHandler.sendMessage(msg);
-                } catch (Exception ee){
-                    BLog.e(ee);
-                }
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) {
-                try {
-                    ResponseBody body = response.body();
-                    UpdateConfig config = new Gson().fromJson(body.charStream(), UpdateConfig.class);
-                    Logger.e("checkUpdate："+new Gson().toJson(config));
-                    Message msg = Message.obtain();
-                    msg.what = MSG_WHAT_CHECK_UPDATE;
-                    msg.obj = config;
-                    msg.arg1 = 1;
-                    mHandler.sendMessage(msg);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-
     private boolean hasUpdate = false;
     private UpdateConfig mConfig = null;
     private void handleUpdate(Message msg) {
         try {
-            if (msg.arg1==1) {
+            if (msg.what == MSG_WHAT_CHECK_UPDATE) {
                 mConfig = (UpdateConfig) msg.obj;
                 hasUpdate = UiUtils.checkUpdate(mConfig);
                 if (hasUpdate) {
@@ -475,17 +426,16 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
                 } else {
                     tv_version_hint.setText("当前已是最新版");
                 }
-            } else if (msg.arg2==2) {
+            } else if (msg.what == MSG_WHAT_CHECK_UPDATE_ERROR) {
                 tv_version_hint.setText("检测版本信息失败");
             }
-
         } catch (Exception e){
             BLog.e(e);
         }
     }
 
-    private static final int MSG_WHAT_CHECK_UPDATE = 1;
-    private static final int MSG_WHAT_CHECK_UPDATE_ERROR = 2;
+    private static final int MSG_WHAT_CHECK_UPDATE = 14352;
+    private static final int MSG_WHAT_CHECK_UPDATE_ERROR = 14353;
     private static class MyHandler extends Handler {
         private WeakReference<SettingActivity> weak;
         private MyHandler(SettingActivity activity) {
@@ -493,8 +443,12 @@ public class SettingActivity extends BaseActivity implements View.OnClickListene
         }
         @Override
         public void handleMessage(Message msg) {
-            if (weak.get()!=null&&msg.what==MSG_WHAT_CHECK_UPDATE) {
-                weak.get().handleUpdate(msg);
+            try {
+                if (weak.get()!=null&&(msg.what==MSG_WHAT_CHECK_UPDATE||msg.what==MSG_WHAT_CHECK_UPDATE_ERROR)) {
+                    weak.get().handleUpdate(msg);
+                }
+            } catch (Exception e){
+
             }
         }
     }

@@ -1,5 +1,9 @@
 package com.yyspbfq.filmplay.bean;
 
+import android.text.TextUtils;
+
+import com.yyspbfq.filmplay.utils.glide.ImageHostUtils;
+
 public class HomeClassifyBean {
 
     /*"id": "3",
@@ -34,6 +38,9 @@ public class HomeClassifyBean {
     }
 
     public String getThumb() {
+        if (!TextUtils.isEmpty(thumb)) {
+            return ImageHostUtils.contact(thumb);
+        }
         return thumb;
     }
 

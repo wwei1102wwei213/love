@@ -76,7 +76,7 @@ public class InfoInviteActivity extends BaseActivity  implements WLibHttpListene
         try {
             UserInfo userInfo = UserDataUtil.getUserInfo(this);
             ImageView civ = (ImageView) findViewById(R.id.civ);
-            Glide.with(this).load(userInfo.avatar).into(civ);
+            Glide.with(this).load(userInfo.getAvatar()).into(civ);
             ImageView iv1 = (ImageView) findViewById(R.id.iv_v1);
             String v1Url = userInfo.grade.now.thumb;
             Glide.with(this).load(TextUtils.isEmpty(v1Url)?R.mipmap.ic_level0:v1Url).into(iv1);

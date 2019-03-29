@@ -1,5 +1,7 @@
 package com.yyspbfq.filmplay.db;
 
+import com.yyspbfq.filmplay.utils.glide.ImageHostUtils;
+
 import java.text.DecimalFormat;
 
 public class VideoDownloadBean {
@@ -45,7 +47,7 @@ public class VideoDownloadBean {
     }
 
     public String getVideo_thumb() {
-        return video_thumb;
+        return ImageHostUtils.contact(video_thumb);
     }
 
     public void setVideo_thumb(String video_thumb) {
