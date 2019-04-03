@@ -20,13 +20,14 @@ public class HttpFlag extends WLibHttpFlag{
     public static final String[] HOST_DEFAULT_URLS = {
         /*"http://byhost.uu3.me/host.json",
         "http://byhost2.uu3.me/host.json"*/
-            "http://47.107.94.24:94/host.json"
+            "http://47.107.94.24:94/host/host.json"
     };
 
     //默认主页地址
     public static final String DEFAULT_WEBSITE = "http://www.baidu.com";
     //配置地址后缀
-    public static String URL_HOST_CONFIG_SUFFIX = "host.json";
+    public static String URL_HOST_CONFIG_SUFFIX = "host/host.json";
+    public static String URL_UPDATE_TIME_CONFIG_SUFFIX = "update/isUpdate.json";
 
 
     public static List<String> getDefaultHostUrls() {

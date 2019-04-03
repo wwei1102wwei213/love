@@ -72,7 +72,7 @@ public class AppInitBiz {
 
     public AppInitBiz(Handler mHandler) {
         baseUrls = HttpFlag.getDefaultHostUrls();
-        lastUpdateTime = SPLongUtils.getString(BaseApplication.getInstance(), KEY_LAST_UPDATE_TIME, null);
+        lastUpdateTime = SPLongUtils.getString(BaseApplication.getInstance(), KEY_LAST_UPDATE_TIME, "");
         isBackup = SPLongUtils.getInt(BaseApplication.getInstance(), KEY_IS_USE_BACKUP, 0);
         this.mHandler = mHandler;
     }
@@ -97,8 +97,9 @@ public class AppInitBiz {
     }
 
     private void checkUpdateTime(HostItem mHostItem) {
-        Logger.e("AppInitBiz: checkUpdateTime===>"+mHostItem.getRequest_url());
-        Request request = new Request.Builder().url(mHostItem.getRequest_url()).build();
+        String checkItemUrl = mHostItem.getUrl() + HttpFlag.URL_UPDATE_TIME_CONFIG_SUFFIX;
+        Logger.e("AppInitBiz: checkUpdateTime===>"+checkItemUrl);
+        Request request = new Request.Builder().url(checkItemUrl).build();
         new OkHttpClient().newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException eee) {
@@ -112,9 +113,10 @@ public class AppInitBiz {
                         ResponseBody body = response.body();
                         UpdateHostBean bean = new Gson().fromJson(body.charStream(), UpdateHostBean.class);
                         String updateTime = bean.getUpdateTime();
+                        Logger.e("AppInitBiz: UpdateHostBean===>" + bean.toString());
                         String mHostConfig = SPLongUtils.getString(BaseApplication.getInstance(), KEY_CURRENT_CONFIG, null);
                         SPLongUtils.saveString(BaseApplication.getInstance(), KEY_CURRENT_CHECK_UPDATE, new Gson().toJson(mHostItem));
-                        if (lastUpdateTime==null||!lastUpdateTime.endsWith(updateTime)||TextUtils.isEmpty(mHostConfig)) {//更新配置
+                        if (lastUpdateTime==null||!lastUpdateTime.equals(updateTime)||TextUtils.isEmpty(mHostConfig)) {//更新配置
                             SPLongUtils.saveString(BaseApplication.getInstance(), KEY_LAST_UPDATE_TIME, updateTime);
                             SPLongUtils.saveString(BaseApplication.getInstance(), KEY_CURRENT_API, "");
                             SPLongUtils.saveString(BaseApplication.getInstance(), KEY_CURRENT_IMAGE_HOST, "");
